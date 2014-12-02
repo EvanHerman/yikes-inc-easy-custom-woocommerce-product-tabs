@@ -2,12 +2,12 @@
 Contributors: YIKES Inc, eherman24
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.0
+Tested up to: 4.0.1
 Requires WooCommerce at least: 2.0
-Tested WooCommerce up to: 2.2.6
-Stable tag: 1.0
+Tested WooCommerce up to: 2.2.8
+Stable tag: 1.0 
 
-This plugin extends the WooCommerce e-commerce plugin by allowing a custom product tab to be created with arbitrary content.
+This plug in extends WooCommerce by adding new product meta field, and allowing users to generate as many custom product tabs as they please.
 
 == Description ==
 
