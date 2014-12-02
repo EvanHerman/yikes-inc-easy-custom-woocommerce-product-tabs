@@ -1,0 +1,28 @@
+@font-face {
+	font-family: 'yikes-woo-font';
+	src:url('./font/yikes-woo-font.eot?-394dt5');
+	src:url('./font/yikes-woo-font.eot?#iefix-394dt5') format('embedded-opentype'),
+		url('./font/yikes-woo-font.woff?-394dt5') format('woff'),
+		url('./font/yikes-woo-font.ttf?-394dt5') format('truetype'),
+		url('./font/yikes-woo-font.svg?-394dt5#yikes-woo-font') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="yikes-woo-"], [class*=" yikes-woo-"] {
+	font-family: 'yikes-woo-font';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.yikes-woo-uniE600:before {
+	content: "\e600";
+}
