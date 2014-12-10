@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Easy WooCommerce Custom Product Tabs
+ * Plugin Name: Yikes Inc. WooCommerce Repeatable Custom Product Tabs
  * Plugin URI: http://www.yikesinc.com
- * Description: Extend WooCommerce to add custom repeatable product tabs. Create as many product tabs needed per product.
- * Author: YIKES Inc
+ * Description: Extend WooCommerce to add a custom repeatable product tabs. Create as many product tabs needed per product.
+ * Author: yikesinc, eherman24
  * Author URI: http://www.yikesinc.com
  * Version: 1.0
- * Tested up to: 4.01
+ * Tested up to: 4.0
  * Text Domain: yikes-inc-woocommerce-custom-product-tabs
  * Domain Path: /i18n/languages/
  *
@@ -97,13 +97,13 @@ class YikesWooCommerceCustomProductTabs {
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 			if ( $post->post_type == 'product' ) {
 				// script
-				wp_register_script( 'repeatable-custom-tabs' , plugins_url() . '/yikes-inc-custom-repeatable-woo-product-tabs/js/repeatable-custom-tabs.js' , array('jquery') , 'all' );
+				wp_register_script( 'repeatable-custom-tabs' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/js/repeatable-custom-tabs.js' , array('jquery') , 'all' );
 				wp_enqueue_script( 'repeatable-custom-tabs' );
 				// style
-				wp_register_style( 'repeatable-custom-tabs-styles' , plugins_url() . '/yikes-inc-custom-repeatable-woo-product-tabs/css/repeatable-custom-tabs.css' , '' , 'all' );
+				wp_register_style( 'repeatable-custom-tabs-styles' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/css/repeatable-custom-tabs.css' , '' , 'all' );
 				wp_enqueue_style( 'repeatable-custom-tabs-styles' );
 				// font
-				wp_register_style( 'yikes-woo-tabs-font' , plugins_url() . '/yikes-inc-custom-repeatable-woo-product-tabs/css/yikes-woo-tabs-font.css' , '' , 'all' );
+				wp_register_style( 'yikes-woo-tabs-font' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/css/yikes-woo-tabs-font.css' , '' , 'all' );
 				wp_enqueue_style( 'yikes-woo-tabs-font' );
 			}
 		}
@@ -213,6 +213,10 @@ class YikesWooCommerceCustomProductTabs {
 								
 				// set up the initial display, by looping
 				foreach ( $tab_data as $tab ) {
+						if ( $i != 1 ) { ?>
+							<!-- Remove tab button, should not generate for the first tab! -->
+							<a href="#" onclick="return false;" class="button-secondary remove_this_tab" style="float:right;margin-right:4.25em;"><span class="dashicons dashicons-no-alt" style="line-height:1.3;"></span><?php echo __( 'Remove Tab' , self::TEXT_DOMAIN ); ?></a>
+						<?php } 						
 						woocommerce_wp_text_input( array( 'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i , 'label' => __( 'Tab Title', self::TEXT_DOMAIN ), 'description' => '', 'value' => $tab['title'] , 'placeholder' => 'Custom Tab Title' , 'class' => 'yikes_woo_tabs_title_field') );
 						$this->woocommerce_wp_textarea_input( array( 'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i , 'label' => __( 'Content', self::TEXT_DOMAIN ), 'placeholder' => __( 'HTML and text to display.', self::TEXT_DOMAIN ), 'value' => $tab['content'], 'style' => 'width:70%;height:10.5em;' ) );
 						if ( $i != count( $tab_data ) ) { 
@@ -232,7 +236,7 @@ class YikesWooCommerceCustomProductTabs {
 							
 				<p>
 					<label style="display:block;" for="_yikes_wc_custom_repeatable_product_tabs_tab_content_<?php echo $i; ?>"></label>
-					<a href="#" class="button-secondary" id="add_another_tab"><em class="dashicons dashicons-plus-alt" style="line-height:1.8;font-size:14px;"></em>Add Another Tab</a>
+					<a href="#" class="button-secondary" id="add_another_tab"><em class="dashicons dashicons-plus-alt" style="line-height:1.8;font-size:14px;"></em><?php echo __( 'Add Another Tab' , self::TEXT_DOMAIN ); ?></a>
 				</p>
 				<?php
 				// store number of tabs, for count!
@@ -384,7 +388,7 @@ class YikesWooCommerceCustomProductTabs {
 		?>
 			<div id="yikes-woo-tabs-review-us">
 				<a href="http://www.yikesinc.com" target="_blank">
-					<img src="<?php echo plugins_url() . '/yikes-inc-custom-repeatable-woo-product-tabs/images/yikes_logo.png'; ?>" title="Plugin created by YIKES Inc." height=40 width=50 class="yikes-logo" >
+					<img src="<?php echo plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/images/yikes_logo.png'; ?>" title="Plugin created by YIKES Inc." height=40 width=50 class="yikes-logo" >
 				</a>
 				<!--
 				<a href="#">
