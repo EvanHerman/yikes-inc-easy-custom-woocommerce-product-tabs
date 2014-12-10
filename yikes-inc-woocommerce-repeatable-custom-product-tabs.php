@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Yikes Inc. WooCommerce Repeatable Custom Product Tabs
+ * Plugin Name: Easy WooCommerce Custom Product Tabs
  * Plugin URI: http://www.yikesinc.com
- * Description: Extend WooCommerce to add a custom repeatable product tabs. Create as many product tabs needed per product.
- * Author: yikesinc, eherman24
+ * Description: Extend WooCommerce to add custom repeatable product tabs. Create as many product tabs needed per product.
+ * Author: YIKES Inc
  * Author URI: http://www.yikesinc.com
  * Version: 1.0
- * Tested up to: 4.0
+ * Tested up to: 4.01
  * Text Domain: yikes-inc-woocommerce-custom-product-tabs
  * Domain Path: /i18n/languages/
  *
