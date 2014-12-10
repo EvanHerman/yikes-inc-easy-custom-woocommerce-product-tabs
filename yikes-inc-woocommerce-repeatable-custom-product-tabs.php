@@ -97,13 +97,13 @@ class YikesWooCommerceCustomProductTabs {
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 			if ( $post->post_type == 'product' ) {
 				// script
-				wp_register_script( 'repeatable-custom-tabs' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/js/repeatable-custom-tabs.js' , array('jquery') , 'all' );
+				wp_register_script( 'repeatable-custom-tabs' , plugins_url() . '/yikes-inc-custom-repeatable-woo-product-tabs/js/repeatable-custom-tabs.js' , array('jquery') , 'all' );
 				wp_enqueue_script( 'repeatable-custom-tabs' );
 				// style
-				wp_register_style( 'repeatable-custom-tabs-styles' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/css/repeatable-custom-tabs.css' , '' , 'all' );
+				wp_register_style( 'repeatable-custom-tabs-styles' , plugins_url() . '/yikes-inc-custom-repeatable-woo-product-tabs/css/repeatable-custom-tabs.css' , '' , 'all' );
 				wp_enqueue_style( 'repeatable-custom-tabs-styles' );
 				// font
-				wp_register_style( 'yikes-woo-tabs-font' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/css/yikes-woo-tabs-font.css' , '' , 'all' );
+				wp_register_style( 'yikes-woo-tabs-font' , plugins_url() . '/yikes-inc-custom-repeatable-woo-product-tabs/css/yikes-woo-tabs-font.css' , '' , 'all' );
 				wp_enqueue_style( 'yikes-woo-tabs-font' );
 			}
 		}
@@ -384,7 +384,7 @@ class YikesWooCommerceCustomProductTabs {
 		?>
 			<div id="yikes-woo-tabs-review-us">
 				<a href="http://www.yikesinc.com" target="_blank">
-					<img src="<?php echo plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/images/yikes_logo.png'; ?>" title="Plugin created by YIKES Inc." height=40 width=50 class="yikes-logo" >
+					<img src="<?php echo plugins_url() . '/yikes-inc-custom-repeatable-woo-product-tabs/images/yikes_logo.png'; ?>" title="Plugin created by YIKES Inc." height=40 width=50 class="yikes-logo" >
 				</a>
 				<!--
 				<a href="#">
