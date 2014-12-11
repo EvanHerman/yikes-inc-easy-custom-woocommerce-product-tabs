@@ -97,13 +97,13 @@ class YikesWooCommerceCustomProductTabs {
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 			if ( $post->post_type == 'product' ) {
 				// script
-				wp_register_script( 'repeatable-custom-tabs' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/js/repeatable-custom-tabs.js' , array('jquery') , 'all' );
+				wp_register_script( 'repeatable-custom-tabs' , plugin_dir_url(__FILE__) . 'js/repeatable-custom-tabs.js' , array('jquery') , 'all' );
 				wp_enqueue_script( 'repeatable-custom-tabs' );
 				// style
-				wp_register_style( 'repeatable-custom-tabs-styles' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/css/repeatable-custom-tabs.css' , '' , 'all' );
+				wp_register_style( 'repeatable-custom-tabs-styles' , plugin_dir_url(__FILE__) . 'css/repeatable-custom-tabs.css' , '' , 'all' );
 				wp_enqueue_style( 'repeatable-custom-tabs-styles' );
 				// font
-				wp_register_style( 'yikes-woo-tabs-font' , plugins_url() . '/yikes-inc-woocommerce-repeatable-custom-product-tabs/css/yikes-woo-tabs-font.css' , '' , 'all' );
+				wp_register_style( 'yikes-woo-tabs-font' , plugin_dir_url(__FILE__) . 'css/yikes-woo-tabs-font.css' , '' , 'all' );
 				wp_enqueue_style( 'yikes-woo-tabs-font' );
 			}
 		}
@@ -208,7 +208,7 @@ class YikesWooCommerceCustomProductTabs {
 			
 				// echo $this->review_us_container();
 				
-				echo '<div class="yikes-woo-tabs-hidden-how-to-info"><h3 style="padding-top:0;padding-bottom:0;">' . __( "How To" , self::TEXT_DOMAIN ) . ':</h3><p style="margin:0;padding-left:13px;">' . __( "to generate tabs, enter a title and some content." , self::TEXT_DOMAIN ) . __( "to delete tabs, leave the title field, and the content field blank and re-save the product." , self::TEXT_DOMAIN ) . '</p></div>';
+				echo '<div class="yikes-woo-tabs-hidden-how-to-info"><h3 style="padding-top:0;padding-bottom:0;">' . __( "How To" , self::TEXT_DOMAIN ) . ':</h3><p style="margin:0;padding-left:13px;">' . __( "To generate tabs, click 'Add Another Tab' at the bottom of this container." , self::TEXT_DOMAIN ) . ' ' . __( "To delete tabs, click 'Remove Tab' to the right of the title field." , self::TEXT_DOMAIN ) . '</p> <p style="padding:0 0 0 13px;margin-top:0;">' . __( "Note : Empty title+content tabs will be removed upon saving." , self::TEXT_DOMAIN ) . '</p></div>';
 				echo '<div class="dashicons dashicons-editor-help yikes-tabs-how-to-toggle" title="' . __( "Help Me!" , self::TEXT_DOMAIN ) . '"></div>';
 								
 				// set up the initial display, by looping
@@ -218,7 +218,7 @@ class YikesWooCommerceCustomProductTabs {
 							<a href="#" onclick="return false;" class="button-secondary remove_this_tab" style="float:right;margin-right:4.25em;"><span class="dashicons dashicons-no-alt" style="line-height:1.3;"></span><?php echo __( 'Remove Tab' , self::TEXT_DOMAIN ); ?></a>
 						<?php } 						
 						woocommerce_wp_text_input( array( 'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i , 'label' => __( 'Tab Title', self::TEXT_DOMAIN ), 'description' => '', 'value' => $tab['title'] , 'placeholder' => 'Custom Tab Title' , 'class' => 'yikes_woo_tabs_title_field') );
-						$this->woocommerce_wp_textarea_input( array( 'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i , 'label' => __( 'Content', self::TEXT_DOMAIN ), 'placeholder' => __( 'HTML and text to display.', self::TEXT_DOMAIN ), 'value' => $tab['content'], 'style' => 'width:70%;height:10.5em;' ) );
+						$this->woocommerce_wp_textarea_input( array( 'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i , 'label' => __( 'Content', self::TEXT_DOMAIN ), 'placeholder' => __( 'HTML and text to display.', self::TEXT_DOMAIN ), 'value' => $tab['content'], 'style' => 'width:70%;height:10.5em;' , 'class' => 'yikes_woo_tabs_content_field' ) );
 						if ( $i != count( $tab_data ) ) { 
 							echo '<div class="yikes-woo-custom-tab-divider"></div>';
 						}
@@ -227,10 +227,11 @@ class YikesWooCommerceCustomProductTabs {
 				
 				?>
 				<div id="duplicate_this_row">
+				<a href="#" onclick="return false;" class="button-secondary remove_this_tab" style="float:right;margin-right:4.25em;"><span class="dashicons dashicons-no-alt" style="line-height:1.3;"></span><?php echo __( 'Remove Tab' , self::TEXT_DOMAIN ); ?></a>
 				<?php
 					// lets add an empty row, to use for duplicating purposes
 					woocommerce_wp_text_input( array( 'id' => 'hidden_duplicator_row_title' , 'label' => __( 'Tab Title', self::TEXT_DOMAIN ), 'description' => '', 'placeholder' => 'Custom Tab Title' , 'class' => 'yikes_woo_tabs_title_field' ) );
-					$this->woocommerce_wp_textarea_input( array( 'id' => 'hidden_duplicator_row_content' , 'label' => __( 'Content', self::TEXT_DOMAIN ), 'placeholder' => __( 'HTML and text to display.', self::TEXT_DOMAIN ), 'style' => 'width:70%;height:10.5em;' ) );
+					$this->woocommerce_wp_textarea_input( array( 'id' => 'hidden_duplicator_row_content' , 'label' => __( 'Content', self::TEXT_DOMAIN ), 'placeholder' => __( 'HTML and text to display.', self::TEXT_DOMAIN ), 'style' => 'width:70%;height:10.5em;' , 'class' => 'yikes_woo_tabs_content_field' ) );
 				?>
 				</div>
 							
