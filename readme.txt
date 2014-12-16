@@ -30,8 +30,8 @@ If you experience any problems, please submit a New Issue on our [Github Issue T
 
 == Screenshots ==
 
-1. Adding a custom tab to a product in the admin
-2. The custom tab displayed on the frontend
+1. Custom Tabs manager on the Edit Product screen
+2. The custom tabs displayed on the frontend
 
 == Frequently Asked Questions ==
 
@@ -40,6 +40,9 @@ When you editing a product in WoCommerce you will find "Custom Tabs" in the bott
 
 = Where will these tabs appear? =
 When the product is viewed on your website you will see the tabs you created to the right of the default "Description" tab. 
+
+= I added tabs, but they didn't appear on the front-end of the site. What's up? =
+Make sure you hit the Product's main Update button to save all the edits you made to custom tabs or they will not be saved.
 
 = How do I change the order of the tabs? =
 To change the order of the custom tabs use the up and down arrows to the right of the Tab Title.

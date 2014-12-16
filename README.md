@@ -28,8 +28,12 @@ When the product is viewed on your website you will see the tabs you created to 
 #### How do I change the order of the tabs?
 To change the order of the custom tabs use the up and down arrows to the right of the Tab Title.
 
+#### I added tabs, but they didn't appear on the front-end of the site. What's up?
+Make sure you hit the Product's main Update button to save all the edits you made to custom tabs or they will not be saved.
 
-== Changelog ==
+
+Changelog
+===========
 
 = 1.0.0 =
 * Initial Release
