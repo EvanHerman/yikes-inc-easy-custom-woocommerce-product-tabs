@@ -23,10 +23,9 @@ If you experience any problems, please submit a New Issue on our [Github Issue T
 
 == Installation ==
 
-1. Download the plugin .zip file
-2. Log in to yourdomain.com/wp-admin
-3. Click Plugins -> Add New -> Upload
-4. Edit a product in WooCommerce, then click on 'Custom Tab' within the 'Product Data' panel
+1. Upload the entire 'yikes-inc-custom-repeatable-woo-product-tabs' folder to the '/wp-content/plugins/' directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Edit a product, then click on 'Custom Tab' within the 'Product Data' panel
 
 == Screenshots ==
 
