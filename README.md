@@ -35,6 +35,6 @@ Make sure you hit the Product's main Update button to save all the edits you mad
 Changelog
 ===========
 
-= 1.0.0 =
+### 1.0.0:
 * Initial Release
 
