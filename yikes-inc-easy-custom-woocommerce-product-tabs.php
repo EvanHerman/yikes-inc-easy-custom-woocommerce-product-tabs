@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name: Custom WooCommerce Product Tabs by YIKES Inc.
+ * Plugin Name: Easy Custom WooCommerce Product Tabs
  * Plugin URI: http://www.yikesinc.com
- * Description: Extend WooCommerce to add custom repeatable product tabs. Create as many product tabs as needed per product.
- * Author: yikesinc, eherman24
+ * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
+ * Author: yikesinc, eherman24, liljimmi
  * Author URI: http://www.yikesinc.com
  * Version: 1.0
- * Tested up to: 4.0
+ * Tested up to: 4.1
  * Text Domain: yikes-inc-woocommerce-custom-product-tabs
  * Domain Path: /i18n/languages/
  *
- * Copyright: (c) 2014-2015 YIKES Inc., Evan Herman
+ * Copyright: (c) 2014-2015 YIKES Inc.
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -49,7 +49,7 @@
 			</style>
 			<!-- display our error message -->
 			<div class="error">
-				<p><?php _e( 'YIKES Inc. Easy Custom WooCommerce Product Tabs could not be activated because WooCommerce is not installed and active.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
+				<p><?php _e( 'Easy Custom WooCommerce Product Tabs could not be activated because WooCommerce is not installed and active.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
 				<p><?php _e( 'Please install and activate ', 'yikes-inc-woocommerce-custom-product-tabs' ); ?><a href="https://wordpress.org/plugins/woocommerce/" title="WooCommerce">WooCommerce</a><?php _e( ' before activating the plugin.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
 			</div>
 		<?php
