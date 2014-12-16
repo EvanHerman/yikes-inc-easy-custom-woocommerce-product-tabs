@@ -3,7 +3,7 @@
  * Plugin Name: Easy Custom WooCommerce Product Tabs
  * Plugin URI: http://www.yikesinc.com
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
- * Author: yikesinc, eherman24, liljimmi
+ * Author: YIKES Inc
  * Author URI: http://www.yikesinc.com
  * Version: 1.0
  * Tested up to: 4.1
