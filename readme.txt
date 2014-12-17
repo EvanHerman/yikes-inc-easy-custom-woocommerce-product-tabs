@@ -35,7 +35,7 @@ If you experience any problems, please submit a New Issue on our [Github Issue T
 == Frequently Asked Questions ==
 
 = Where do I go to add tabs to a product? =
-When you editing a product in WoCommerce you will find "Custom Tabs" in the bottom left corner of the Product Data box. Click on "Custom Tabs" and you will see the custom tab manager.
+When editing a product in WoCommerce you will find "Custom Tabs" in the bottom left corner of the Product Data box. Click on "Custom Tabs" and you will see the custom tab manager.
 
 = Where will these tabs appear? =
 When the product is viewed on your website you will see the tabs you created to the right of the default "Description" tab. 
