@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.0
+ * Version: 1.1
  * Tested up to: 4.1
  * Text Domain: yikes-inc-woocommerce-custom-product-tabs
  * Domain Path: /i18n/languages/
@@ -63,7 +63,7 @@
 		private $tab_data = false;
 
 		/** plugin version number */
-		const VERSION = "1.0";
+		const VERSION = "1.1";
 
 		/** plugin text domain */
 		const TEXT_DOMAIN = 'yikes-inc-woocommerce-custom-product-tabs';
@@ -87,7 +87,7 @@
 		/**
 		 * Init WooCommerce PDF Product Vouchers when WordPress initializes
 		 *
-		 * @since 1.2.5
+		 * @since 1.0.0
 		 */
 		public function load_translation() {
 			// localization
@@ -146,7 +146,7 @@
 		 *   )
 		 * )
 		 *
-		 * @since 1.2.0
+		 * @since 1.0.0
 		 * @param array $tabs array representing the product tabs
 		 * @return array representing the product tabs
 		 */
@@ -190,7 +190,7 @@
 			$content = apply_filters( 'the_content', $tab['content'] );
 			$content = str_replace( ']]>', ']]&gt;', $content );
 
-			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_heading', '<h2>' . $tab['title'] . '</h2>', $tab );
+			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_heading', '<h2 class="yikes-custom-woo-tab-title yikes-custom-woo-tab-title-'.sanitize_title($tab['title']).'">' . $tab['title'] . '</h2>', $tab );
 			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_content', $content, $tab );
 		}
 
