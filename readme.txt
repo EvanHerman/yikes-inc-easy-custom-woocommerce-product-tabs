@@ -3,10 +3,10 @@ Contributors: yikesinc, eherman24, liljimmi
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.1
+Tested up to: 4.1.1
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.2.10
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 
 This plugin extends WooCommerce to allow site admins to add custom tabs to products. 
@@ -48,6 +48,10 @@ To change the order of the custom tabs use the up and down arrows to the right o
 
 
 == Changelog ==
+
+= 1.2 - March 18th, 2015 =
+* Enhancement: fixed issue where non utf8 characters in tab titles caused front end not to generate the tabs
+* Enhancement: When user doesn't have WooCommerce installed, they are now redirected to the plugin install search page, with WooCommerce at the top.
 
 = 1.1 =
 * Added class to the Woo tabs content title, for targeting via CSS ( `.yikes-custom-woo-tab-title` )

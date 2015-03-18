@@ -5,8 +5,8 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.1
- * Tested up to: 4.1
+ * Version: 1.2
+ * Tested up to: 4.1.1
  * Text Domain: yikes-inc-woocommerce-custom-product-tabs
  * Domain Path: /i18n/languages/
  *
@@ -50,7 +50,7 @@
 			<!-- display our error message -->
 			<div class="error">
 				<p><?php _e( 'Easy Custom WooCommerce Product Tabs could not be activated because WooCommerce is not installed and active.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
-				<p><?php _e( 'Please install and activate ', 'yikes-inc-woocommerce-custom-product-tabs' ); ?><a href="https://wordpress.org/plugins/woocommerce/" title="WooCommerce">WooCommerce</a><?php _e( ' before activating the plugin.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
+				<p><?php _e( 'Please install and activate ', 'yikes-inc-woocommerce-custom-product-tabs' ); ?><a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce+-+excelling+eCommerce' ); ?>" title="WooCommerce">WooCommerce</a><?php _e( ' before activating the plugin.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
 			</div>
 		<?php
 	}
@@ -63,7 +63,7 @@
 		private $tab_data = false;
 
 		/** plugin version number */
-		const VERSION = "1.1";
+		const VERSION = "1.2";
 
 		/** plugin text domain */
 		const TEXT_DOMAIN = 'yikes-inc-woocommerce-custom-product-tabs';
@@ -167,7 +167,9 @@
 					$tabs['reviews']['priority'] = $i; // make sure the reviews tab remains on the end (if it is set)
 				}
 			}
+					
 			return $tabs;
+			
 		}
 
 
@@ -324,7 +326,8 @@
 					if ( $tab_title ) {
 						if ( strlen( $tab_title ) != strlen( utf8_encode( $tab_title ) ) ) {
 							// can't have titles with utf8 characters as it breaks the tab-switching javascript
-							$tab_id = "tab-custom";
+							// so we'll just append an integer
+							$tab_id = "tab-custom-" . $i;
 						} else {
 							// convert the tab title into an id string
 							$tab_id = strtolower( $tab_title );
