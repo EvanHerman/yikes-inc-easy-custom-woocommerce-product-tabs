@@ -3,10 +3,10 @@ Contributors: yikesinc, eherman24, liljimmi
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.1.1
+Tested up to: 4.3
 Requires WooCommerce at least: 2.0
-Tested WooCommerce up to: 2.2.10
-Stable tag: 1.2
+Tested WooCommerce up to: 2.3.13
+Stable tag: 1.3
 License: GPLv2 or later
 
 This plugin extends WooCommerce to allow site admins to add custom tabs to products. 
@@ -17,7 +17,7 @@ This plugin extends the [WooCommerce](www.woothemes.com/woocommerce/) eCommerce 
 
 Tabs are managed on the Edit Product screen and can be added on a per product basis. Tabs can be easily added, deleted and rearranged.
 
-Tab content areas may contain text, html or shortcodes. 
+Tab content areas use the standard WYSIWYG WordPress editor, and may contain text, html or shortcodes. 
 
 If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
 
@@ -29,8 +29,9 @@ If you experience any problems, please submit a New Issue on our [Github Issue T
 
 == Screenshots ==
 
-1. Custom Tabs manager on the Edit Product screen
-2. The custom tabs displayed on the frontend
+1. Custom Tabs manager on the 'Edit Product' screen
+2. Custom product tab content displayed on the front end
+3. Contact Form 7 shortcode rendered in custom product tab
 
 == Frequently Asked Questions ==
 
@@ -49,8 +50,12 @@ To change the order of the custom tabs use the up and down arrows to the right o
 
 == Changelog ==
 
+= 1.3 - July 21st, 2015 =
+* Enhancement: Enabled WYSIWYG editor on tab content containers (enables shortcode and content to pass through the_content() filter)
+* Updated repo screenshots and descriptions
+
 = 1.2 - March 18th, 2015 =
-* Enhancement: fixed issue where non utf8 characters in tab titles caused front end not to generate the tabs
+* Enhancement: Fixed issue where non utf8 characters in tab titles caused front end not to generate the tabs
 * Enhancement: When user doesn't have WooCommerce installed, they are now redirected to the plugin install search page, with WooCommerce at the top.
 
 = 1.1 =
@@ -58,3 +63,6 @@ To change the order of the custom tabs use the up and down arrows to the right o
 
 = 1.0.0 =
 * Initial Release
+
+== Upgrade Notice ==
+* Enhancement: Enabled WYSIWYG editor on tab content containers (enables shortcode and content to pass through the_content() filter)

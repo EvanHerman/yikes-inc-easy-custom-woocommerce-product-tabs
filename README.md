@@ -1,4 +1,4 @@
-Easy Custom WooCommerce Product Tabs v1.2
+Easy Custom WooCommerce Product Tabs v1.3
 ============================================
 
 This plugin extends the [WooCommerce](www.woothemes.com/woocommerce/) eCommerce plugin to allow admins to add custom tabs to products. 
@@ -35,7 +35,11 @@ Make sure you hit the Product's main Update button to save all the edits you mad
 Changelog
 ===========
 
-### 1.2
+### 1.3 - July 21st, 2015
+* Enhancement: Enabled WYSIWYG editor on tab content containers (enables shortcode and content to pass through the_content() filter)
+* Updated repo screenshots and descriptions
+
+### 1.2 - March 18th, 2015
 * Enhancement: fixed issue where non utf8 characters in tab titles caused front end not to generate the tabs
 * Enhancement: When user doesn't have WooCommerce installed, they are now redirected to the plugin install search page, with WooCommerce at the top.
 
