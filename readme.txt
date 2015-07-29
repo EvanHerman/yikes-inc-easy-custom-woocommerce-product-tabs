@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.3
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.3.13
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 
 This plugin extends WooCommerce to allow site admins to add custom tabs to products. 
@@ -47,8 +47,14 @@ Make sure you hit the Product's main Update button to save all the edits you mad
 = How do I change the order of the tabs? =
 To change the order of the custom tabs use the up and down arrows to the right of the Tab Title.
 
+= Does the custom tab data get exported with the standard WooCommerce product data? =
+Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom tab data is exported with all of the other standard WooCommerce data. This ensures a smooth transition of products between sites.
+
 
 == Changelog ==
+
+= 1.4 - July 29th, 2015 =
+* Enhancement: Added the 'Easy Custom WooCommerce Product Tabs' data to the standard WooCommerce export file, so custom tab data can be transferred between sites smoothly.
 
 = 1.3 - July 21st, 2015 =
 * Enhancement: Enabled WYSIWYG editor on tab content containers (enables shortcode and content to pass through the_content() filter)

@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.3
+ * Version: 1.4
  * Tested up to: 4.3
  * Text Domain: 'yikes-inc-woocommerce-custom-product-tabs'
  * Domain Path: /i18n/languages/
@@ -81,8 +81,44 @@
 
 			add_action( 'init',             array( $this, 'load_translation' ) );
 			add_action( 'woocommerce_init', array( $this, 'init' ) );
+			// add our data to the woocommerce export
+			add_filter( 'wc_customer_order_csv_export_order_headers', array( $this, 'wc_csv_export_modify_column_headers' ) );
+			add_filter( 'wc_customer_order_csv_export_order_row', array( $this, 'yikes_wootabs_wc_csv_export_modify_row_data' ), 10, 3 );
 		}
 
+		/**
+		 *	Add our data to the standard WooCommerce Export Functionality
+		 *	@since 1.4
+		**/
+		function yikes_wootabs_wc_csv_export_modify_column_headers( $column_headers ) { 
+ 
+			$new_headers = array(
+				'yikes_woo_products_tabs' => 'Yikes Inc. Custom WooCommerce Tabs',
+			);
+		 
+			return array_merge( $column_headers, $new_headers );
+		}
+		
+		/**
+		*	Append our yikes woo product tab data
+		*	@since 1.4
+		**/
+		function yikes_wootabs_wc_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
+		 
+			$custom_data = array(
+				'yikes_woo_products_tabs' => get_post_meta( $order->id, 'yikes_woo_products_tabs', true ),
+			);
+		 
+			$new_order_data = array();
+			if ( isset( $csv_generator->order_format ) && ( 'default_one_row_per_item' == $csv_generator->order_format || 'legacy_one_row_per_item' == $csv_generator->order_format ) ) {
+				foreach ( $order_data as $data ) {
+					$new_order_data[] = array_merge( (array) $data, $custom_data );
+				}
+			} else {
+				$new_order_data = array_merge( $order_data, $custom_data );
+			}
+			return $new_order_data;
+		}
 		
 		/**
 		 * Init WooCommerce PDF Product Vouchers when WordPress initializes
