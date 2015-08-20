@@ -1,12 +1,12 @@
-=== Easy Custom WooCommerce Product Tabs ===
+=== YIKES Custom Product Tabs for WooCommerce  ===
 Contributors: yikesinc, eherman24, liljimmi
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
 Tested up to: 4.3
 Requires WooCommerce at least: 2.0
-Tested WooCommerce up to: 2.3.13
-Stable tag: 1.4
+Tested WooCommerce up to: 2.4.4
+Stable tag: 1.4.1
 License: GPLv2 or later
 
 This plugin extends WooCommerce to allow site admins to add custom tabs to products. 
@@ -53,8 +53,12 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 
 == Changelog ==
 
+= 1.4 - August 20th, 2015 =
+* Fixed conflict with other CSV export plugins for WooCommerce
+* Now custom product tab and row data/headers only get exported via 'Tools > Export > Products'
+
 = 1.4 - July 29th, 2015 =
-* Enhancement: Added the 'Easy Custom WooCommerce Product Tabs' data to the standard WooCommerce export file, so custom tab data can be transferred between sites smoothly.
+* Enhancement: Added the 'YIKES Custom Product Tabs for WooCommerce ' data to the standard WooCommerce export file, so custom tab data can be transferred between sites smoothly.
 
 = 1.3 - July 21st, 2015 =
 * Enhancement: Enabled WYSIWYG editor on tab content containers (enables shortcode and content to pass through the_content() filter)

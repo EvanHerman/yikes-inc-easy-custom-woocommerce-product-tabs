@@ -1,4 +1,4 @@
-Easy Custom WooCommerce Product Tabs v1.4
+YIKES Easy Product Tabs for WooCommerce v1.4.1
 ============================================
 
 This plugin extends the [WooCommerce](www.woothemes.com/woocommerce/) eCommerce plugin to allow admins to add custom tabs to products. 
@@ -36,6 +36,10 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 
 Changelog
 ===========
+
+### 1.4.1 - August 20th, 2015
+* Altered the export function to only use the filters alongside the main WordPress export function (export.php - Tools > Export > Prodiucts)
+* Altered the plugin file name
 
 ### 1.4 - July 29th, 2015
 * Enhancement: Added the 'Easy Custom WooCommerce Product Tabs' data to the standard WooCommerce export file, so custom tab data can be transferred between sites smoothly.

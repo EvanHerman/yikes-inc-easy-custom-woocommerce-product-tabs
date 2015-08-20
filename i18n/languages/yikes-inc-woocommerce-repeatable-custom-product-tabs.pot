@@ -23,7 +23,7 @@ msgstr ""
 
 #: D:\xampp\htdocs\wp-svg-2\wp-content\plugins\yikes-inc-easy-custom-woocommerce-product-tabs/yikes-inc-easy-custom-woocommerce-product-tabs.php:52
 msgid ""
-"Easy Custom WooCommerce Product Tabs could not be activated because "
+"YIKES Custom Product Tabs for WooCommerce  could not be activated because "
 "WooCommerce is not installed and active."
 msgstr ""
 

@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Easy Custom WooCommerce Product Tabs
+ * Plugin Name: YIKES Custom Product Tabs for WooCommerce 
  * Plugin URI: http://www.yikesinc.com
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.4
+ * Version: 1.4.1
  * Tested up to: 4.3
  * Text Domain: 'yikes-inc-woocommerce-custom-product-tabs'
  * Domain Path: /i18n/languages/
@@ -49,7 +49,7 @@
 			</style>
 			<!-- display our error message -->
 			<div class="error">
-				<p><?php _e( 'Easy Custom WooCommerce Product Tabs could not be activated because WooCommerce is not installed and active.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
+				<p><?php _e( 'YIKES YIKES Custom Product Tabs for WooCommerce could not be activated because WooCommerce is not installed and active.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
 				<p><?php _e( 'Please install and activate ', 'yikes-inc-woocommerce-custom-product-tabs' ); ?><a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce+-+excelling+eCommerce' ); ?>" title="WooCommerce">WooCommerce</a><?php _e( ' before activating the plugin.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
 			</div>
 		<?php
@@ -79,13 +79,21 @@
 			// Installation
 			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) $this->install();
 
-			add_action( 'init',             array( $this, 'load_translation' ) );
+			add_action( 'init', array( $this, 'load_translation' ) );
 			add_action( 'woocommerce_init', array( $this, 'init' ) );
-			// add our data to the woocommerce export
-			add_filter( 'wc_customer_order_csv_export_order_headers', array( $this, 'wc_csv_export_modify_column_headers' ) );
-			add_filter( 'wc_customer_order_csv_export_order_row', array( $this, 'yikes_wootabs_wc_csv_export_modify_row_data' ), 10, 3 );
+			global $typenow;
+			add_action( 'init', array( $this, 'load_custom_export_filters' ) );
 		}
-
+	
+		public function load_custom_export_filters() {
+			global $pagenow;
+			if( 'export.php' == $pagenow ) {
+				// add our data to the woocommerce export
+				add_filter( 'wc_customer_order_csv_export_order_headers', array( $this, 'yikes_wootabs_wc_csv_export_modify_column_headers' ) );
+				add_filter( 'wc_customer_order_csv_export_order_row', array( $this, 'yikes_wootabs_wc_csv_export_modify_row_data' ), 10, 3 );
+			}
+		}
+		
 		/**
 		 *	Add our data to the standard WooCommerce Export Functionality
 		 *	@since 1.4
