@@ -9,7 +9,7 @@ Tab content areas may contain text, html or shortcodes.
 
 If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
 
-*Originally forked from [SkyVerge WooCommerce Custom Product Tabs Lite](https://github.com/skyverge/woocommerce-custom-product-tabs-lite) for a YIKES client site.*
+*Originally forked from [SkyVerge WooCommerce Custom Product Tabs Lite](https://github.com/skyverge/woocommerce-custom-product-tabs-lite) for a [YIKES](http://www.yikesinc.com) client site.*
 
 Installation
 ===========
