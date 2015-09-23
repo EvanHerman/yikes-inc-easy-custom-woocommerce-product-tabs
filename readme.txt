@@ -21,6 +21,8 @@ Tab content areas use the standard WYSIWYG WordPress editor, and may contain tex
 
 If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
 
+<i>Originally forked from (SkyVerge WooCommerce Custom Product Tabs Lite)[https://github.com/skyverge/woocommerce-custom-product-tabs-lite] for a YIKES client site.</i>
+
 == Installation ==
 
 1. Upload the entire 'yikes-inc-custom-repeatable-woo-product-tabs' folder to the '/wp-content/plugins/' directory
