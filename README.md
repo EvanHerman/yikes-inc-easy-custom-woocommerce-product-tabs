@@ -39,6 +39,9 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 Changelog
 ===========
 
+### 1.4.2 - February 17th, 2016
+* Updated the internationalization strings ( `yikes-inc-woocommerce-custom-product-tabs` to `yikes-inc-easy-custom-woocommerce-product-tabs` )
+
 ### 1.4.1 - August 20th, 2015
 * Altered the export function to only use the filters alongside the main WordPress export function (export.php - Tools > Export > Prodiucts)
 * Altered the plugin file name

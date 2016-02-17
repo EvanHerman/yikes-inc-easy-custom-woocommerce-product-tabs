@@ -5,9 +5,9 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.4.1
+ * Version: 1.4.2
  * Tested up to: 4.3
- * Text Domain: 'yikes-inc-woocommerce-custom-product-tabs'
+ * Text Domain: 'yikes-inc-easy-custom-woocommerce-product-tabs'
  * Domain Path: /i18n/languages/
  *
  * Copyright: (c) 2014-2015 YIKES Inc.
@@ -49,8 +49,8 @@
 			</style>
 			<!-- display our error message -->
 			<div class="error">
-				<p><?php _e( 'YIKES YIKES Custom Product Tabs for WooCommerce could not be activated because WooCommerce is not installed and active.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
-				<p><?php _e( 'Please install and activate ', 'yikes-inc-woocommerce-custom-product-tabs' ); ?><a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce+-+excelling+eCommerce' ); ?>" title="WooCommerce">WooCommerce</a><?php _e( ' before activating the plugin.', 'yikes-inc-woocommerce-custom-product-tabs' ); ?></p>
+				<p><?php _e( 'YIKES YIKES Custom Product Tabs for WooCommerce could not be activated because WooCommerce is not installed and active.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
+				<p><?php _e( 'Please install and activate ', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?><a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce+-+excelling+eCommerce' ); ?>" title="WooCommerce">WooCommerce</a><?php _e( ' before activating the plugin.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 			</div>
 		<?php
 	}
@@ -66,7 +66,7 @@
 		const VERSION = "1.3";
 
 		/** plugin text domain */
-		const TEXT_DOMAIN = 'yikes-inc-woocommerce-custom-product-tabs';
+		const TEXT_DOMAIN = 'yikes-inc-easy-custom-woocommerce-product-tabs';
 
 		/** plugin version name */
 		const VERSION_OPTION_NAME = 'yikes_woocommerce_custom_product_tabs_db_version';
@@ -135,7 +135,7 @@
 		 */
 		public function load_translation() {
 			// localization
-			load_plugin_textdomain( 'yikes-inc-woocommerce-custom-product-tabs', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n/languages' );
+			load_plugin_textdomain( 'yikes-inc-easy-custom-woocommerce-product-tabs', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n/languages' );
 		}
 
 		
@@ -196,7 +196,7 @@
 				$i = 25; // setup priorty to loop over, andrender tabs in proper order
 				foreach ( $this->tab_data as $tab ) {
 					$tabs[ $tab['id'] ] = array(
-						'title'    => __( $tab['title'], 'yikes-inc-woocommerce-custom-product-tabs' ),
+						'title'    => __( $tab['title'], 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
 						'priority' => $i++,
 						'callback' => array( $this, 'custom_product_tabs_panel_content' ),
 						'content'  => $tab['content'],  // custom field
@@ -242,7 +242,7 @@
 		 * Adds a new tab to the Product Data postbox in the admin product interface
 		 */
 		public function render_custom_product_tabs() {
-			echo "<li class=\"yikes_wc_product_tabs_tab\"><a href=\"#yikes_woocommerce_custom_product_tabs\">" . __( 'Custom Tabs', 'yikes-inc-woocommerce-custom-product-tabs' ) . "</a></li>";
+			echo "<li class=\"yikes_wc_product_tabs_tab\"><a href=\"#yikes_woocommerce_custom_product_tabs\">" . __( 'Custom Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . "</a></li>";
 		}
 
 
@@ -274,15 +274,15 @@
 				
 					echo $this->review_us_container();
 					
-					echo '<div class="yikes-woo-tabs-hidden-how-to-info"><h3 style="padding-top:0;padding-bottom:0;">' . __( "How To" , 'yikes-inc-woocommerce-custom-product-tabs' ) . ':</h3><p style="margin:0;padding-left:13px;">' . __( "To generate tabs, click 'Add Another Tab' at the bottom of this container." , 'yikes-inc-woocommerce-custom-product-tabs' ) . ' ' . __( "To delete tabs, click 'Remove Tab' to the right of the title field." , 'yikes-inc-woocommerce-custom-product-tabs' ) . '</p> <p style="padding:0 0 0 13px;margin-top:0;margin-bottom:0;"><em>' . __( "Note : Re-save the product to initialize the WordPress content editor on newly created tab content." , 'yikes-inc-woocommerce-custom-product-tabs' ) . '</em></p></div>';
-					echo '<div class="dashicons dashicons-editor-help yikes-tabs-how-to-toggle" title="' . __( "Help Me!" , 'yikes-inc-woocommerce-custom-product-tabs' ) . '"></div>';
+					echo '<div class="yikes-woo-tabs-hidden-how-to-info"><h3 style="padding-top:0;padding-bottom:0;">' . __( "How To" , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . ':</h3><p style="margin:0;padding-left:13px;">' . __( "To generate tabs, click 'Add Another Tab' at the bottom of this container." , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . ' ' . __( "To delete tabs, click 'Remove Tab' to the right of the title field." , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . '</p> <p style="padding:0 0 0 13px;margin-top:0;margin-bottom:0;"><em>' . __( "Note : Re-save the product to initialize the WordPress content editor on newly created tab content." , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . '</em></p></div>';
+					echo '<div class="dashicons dashicons-editor-help yikes-tabs-how-to-toggle" title="' . __( "Help Me!" , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . '"></div>';
 										
 					// set up the initial display, by looping
 					foreach ( $tab_data as $tab ) {
 							if ( $i != 1 ) { ?>
 								<section class="button-holder" alt="<?php echo $i; ?>">
 									<!-- Remove tab button, should not generate for the first tab! -->
-									<a href="#" onclick="return false;" class="button-secondary remove_this_tab"><span class="dashicons dashicons-no-alt" style="line-height:1.3;"></span><?php echo __( 'Remove Tab' , 'yikes-inc-woocommerce-custom-product-tabs' ); ?></a>
+									<a href="#" onclick="return false;" class="button-secondary remove_this_tab"><span class="dashicons dashicons-no-alt" style="line-height:1.3;"></span><?php echo __( 'Remove Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
 									<div style="text-align:center;margin-top:.5em;">	
 										<span class="dashicons dashicons-arrow-up move-tab-data-up"></span>
 										<span class="dashicons dashicons-arrow-down move-tab-data-down"></span>
@@ -296,11 +296,11 @@
 									</div>
 								</section>
 							<?php }
-							woocommerce_wp_text_input( array( 'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i , 'label' => __( 'Tab Title', 'yikes-inc-woocommerce-custom-product-tabs' ), 'description' => '', 'value' => $tab['title'] , 'placeholder' => 'Custom Tab Title' , 'class' => 'yikes_woo_tabs_title_field') );
+							woocommerce_wp_text_input( array( 'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i , 'label' => __( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'description' => '', 'value' => $tab['title'] , 'placeholder' => 'Custom Tab Title' , 'class' => 'yikes_woo_tabs_title_field') );
 							$this->woocommerce_wp_wysiwyg_input( array( 
 								'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i , 
-								'label' => __( 'Content', 'yikes-inc-woocommerce-custom-product-tabs' ), 
-								'placeholder' => __( 'HTML and text to display.', 'yikes-inc-woocommerce-custom-product-tabs' ), 
+								'label' => __( 'Content', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 
+								'placeholder' => __( 'HTML and text to display.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 
 								'value' => $tab['content'], 
 								'style' => 'width:70%;height:10.5em;', 
 								'class' => 'yikes_woo_tabs_content_field',
@@ -314,11 +314,11 @@
 					
 					?>
 					<div id="duplicate_this_row">
-						<a href="#" onclick="return false;" class="button-secondary remove_this_tab" style="float:right;margin-right:4.25em;"><span class="dashicons dashicons-no-alt" style="line-height:1.3;"></span><?php echo __( 'Remove Tab' , 'yikes-inc-woocommerce-custom-product-tabs' ); ?></a>
+						<a href="#" onclick="return false;" class="button-secondary remove_this_tab" style="float:right;margin-right:4.25em;"><span class="dashicons dashicons-no-alt" style="line-height:1.3;"></span><?php echo __( 'Remove Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
 						<?php
 							// lets add an empty row, to use for duplicating purposes
-							woocommerce_wp_text_input( array( 'id' => 'hidden_duplicator_row_title' , 'label' => __( 'Tab Title', 'yikes-inc-woocommerce-custom-product-tabs' ), 'description' => '', 'placeholder' => 'Custom Tab Title' , 'class' => 'yikes_woo_tabs_title_field' ) );
-							$this->woocommerce_wp_textarea_input( array( 'id' => 'hidden_duplicator_row_content' , 'label' => __( 'Content', 'yikes-inc-woocommerce-custom-product-tabs' ), 'placeholder' => __( 'HTML and text to display.', 'yikes-inc-woocommerce-custom-product-tabs' ), 'style' => 'width:70%;height:10.5em;' , 'class' => 'yikes_woo_tabs_content_field' ) );
+							woocommerce_wp_text_input( array( 'id' => 'hidden_duplicator_row_title' , 'label' => __( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'description' => '', 'placeholder' => 'Custom Tab Title' , 'class' => 'yikes_woo_tabs_title_field' ) );
+							$this->woocommerce_wp_textarea_input( array( 'id' => 'hidden_duplicator_row_content' , 'label' => __( 'Content', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'placeholder' => __( 'HTML and text to display.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'style' => 'width:70%;height:10.5em;' , 'class' => 'yikes_woo_tabs_content_field' ) );
 						?>
 						<section class="button-holder" alt="<?php echo $i; ?>">
 							<div style="text-align:center;">
@@ -330,7 +330,7 @@
 								
 					<p>
 						<label style="display:block;" for="_yikes_wc_custom_repeatable_product_tabs_tab_content_<?php echo $i; ?>"></label>
-						<a href="#" class="button-secondary" id="add_another_tab"><em class="dashicons dashicons-plus-alt" style="line-height:1.8;font-size:14px;"></em><?php echo __( 'Add Another Tab' , 'yikes-inc-woocommerce-custom-product-tabs' ); ?></a>
+						<a href="#" class="button-secondary" id="add_another_tab"><em class="dashicons dashicons-plus-alt" style="line-height:1.8;font-size:14px;"></em><?php echo __( 'Add Another Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
 					</p>
 					
 					<?php
