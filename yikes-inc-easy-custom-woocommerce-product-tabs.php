@@ -7,7 +7,7 @@
  * Author URI: http://www.yikesinc.com
  * Version: 1.4.2
  * Tested up to: 4.3
- * Text Domain: 'yikes-inc-easy-custom-woocommerce-product-tabs'
+ * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: /i18n/languages/
  *
  * Copyright: (c) 2014-2015 YIKES Inc.
