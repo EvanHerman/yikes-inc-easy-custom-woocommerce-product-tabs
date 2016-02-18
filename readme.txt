@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.4.2
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.5.2
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 
 This plugin extends WooCommerce to allow site admins to add custom tabs to products. 
@@ -55,7 +55,11 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 
 == Changelog ==
 
-= 1.4.2 - February 17th, 2015 =
+= 1.4.3 - February 18th, 2016 =
+* Wrapped missing 'Custom Tab Title' in localization/translation functions. (Plugin is now 100% translatable)
+* Removed i18n class files, and old .po/.mo files (less bloat)
+
+= 1.4.2 - February 17th, 2016 =
 * Updated the internationalization strings ( `yikes-inc-woocommerce-custom-product-tabs` to `yikes-inc-easy-custom-woocommerce-product-tabs` )
 
 = 1.4.1 - August 20th, 2015 =
@@ -80,4 +84,6 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 * Initial Release
 
 == Upgrade Notice ==
-* Enhancement: Enabled WYSIWYG editor on tab content containers (enables shortcode and content to pass through the_content() filter)
+= 1.4.3 - February 18th, 2016 =
+* Wrapped missing 'Custom Tab Title' in localization/translation functions. (Plugin is now 100% translatable)
+* Removed i18n class files, and old .po/.mo files (less bloat)
