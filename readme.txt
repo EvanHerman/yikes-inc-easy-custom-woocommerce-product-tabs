@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.4.2
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.5.2
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 
 This plugin extends WooCommerce to allow site admins to add custom tabs to products. 
@@ -55,6 +55,9 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 
 == Changelog ==
 
+= 1.4.4 - March 1st, 2016 =
+* Re-named the tab ID's to support URL's with query args (eg: http://www.example.com/shop#tab-reviews)
+
 = 1.4.3 - February 18th, 2016 =
 * Wrapped missing 'Custom Tab Title' in localization/translation functions. (Plugin is now 100% translatable)
 * Removed i18n class files, and old .po/.mo files (less bloat)
@@ -84,6 +87,5 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 * Initial Release
 
 == Upgrade Notice ==
-= 1.4.3 - February 18th, 2016 =
-* Wrapped missing 'Custom Tab Title' in localization/translation functions. (Plugin is now 100% translatable)
-* Removed i18n class files, and old .po/.mo files (less bloat)
+= 1.4.4 - March 1st, 2016 =
+* Re-named the tab ID's to support URL's with query args (eg: http://www.example.com/shop#tab-reviews)
