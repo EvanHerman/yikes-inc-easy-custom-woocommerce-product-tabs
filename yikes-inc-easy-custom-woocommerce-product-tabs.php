@@ -1284,7 +1284,7 @@
 			add_submenu_page(	
 				'options-general.php', 																							// Parent slug
 				__( 'Settings - YIKES Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), // Tab title name (HTML title)
-				__( 'Custom Product Tabs for WooCommerce Settings', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),			// Menu page name
+				__( 'Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),			// Menu page name
 				apply_filters( 'yikes_simple_taxonomy_ordering_capabilities', 'manage_options' ), 								// Capability required
 				'yikes-woo-settings', 																							// Page slug (?page=yikes-woo-settings)
 				array( $this, 'generate_yikes_settings_page' )																	// Function to generate page
@@ -1330,7 +1330,8 @@
 		* @return string 'tinymce'
 		*/
 		public function yikes_woo_set_editor_to_visual() {
-			return 'tinymce';
+			$default_editor_tab = apply_filters( 'yikes_woocommerce_default_editor_mode', 'tinymce' );
+			return $default_editor_tab;
 		}
 
 		/* End Misc. */
