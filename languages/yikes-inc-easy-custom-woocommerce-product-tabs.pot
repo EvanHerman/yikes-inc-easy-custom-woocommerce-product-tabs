@@ -1,0 +1,184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: yikes-inc-easy-custom-woocommerce-product-tabs 1.5.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-23 18:04+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: admin/yikes-woo-settings.php:14
+msgid "Create and save tabs on this page to apply them to existing products."
+msgstr ""
+
+#: admin/yikes-woo-settings.php:17
+msgid ""
+"If a tab is updated here, the changes will take effect on all products "
+"currently using that tab."
+msgstr ""
+
+#: admin/yikes-woo-settings.php:23
+msgid ""
+"To generate a tab, click 'Add Another Tab' at the bottom left of this page. "
+msgstr ""
+
+#: admin/yikes-woo-settings.php:26
+msgid "To delete a tab, click 'Delete Tab' underneath the tab."
+msgstr ""
+
+#: admin/yikes-woo-settings.php:29
+msgid "To save/update a tab, click 'Save/Update Tab' underneath the tab."
+msgstr ""
+
+#: admin/yikes-woo-settings.php:51 admin/yikes-woo-settings.php:87
+msgid "Tab Title: "
+msgstr ""
+
+#: admin/yikes-woo-settings.php:65
+msgid "Update Tab"
+msgstr ""
+
+#: admin/yikes-woo-settings.php:69 admin/yikes-woo-settings.php:105
+msgid "Delete Tab"
+msgstr ""
+
+#: admin/yikes-woo-settings.php:101
+msgid "Save Tab"
+msgstr ""
+
+#: admin/yikes-woo-settings.php:117
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:703
+msgid "Add Another Tab"
+msgstr ""
+
+#: node_modules/grunt-pot/test/fixtures/some-file.php:3
+msgid "I'm a translatable string."
+msgstr ""
+
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:4
+msgid "Me too"
+msgstr ""
+
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:7
+#, php-format
+msgid "I have %d apple"
+msgid_plural "I have %d apples"
+msgstr[0] ""
+msgstr[1] ""
+
+#. / TRANSLATORS: This should be translated as a shorthand for YEAR-MONTH-DAY using 4, 2 and 2 digits.
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:16
+msgid "yyyy-mm-dd"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:51
+msgid ""
+"YIKES Custom Product Tabs for WooCommerce could not be activated because "
+"WooCommerce is not installed and active."
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:52
+msgid "Please install and activate "
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:52
+msgid " before activating the plugin."
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:179
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:190
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:218
+msgid ""
+"Sorry! An error has occurred while trying to retrieve the editor. Please "
+"refresh the page and try again."
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:313
+msgid "Custom Tabs"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:403
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:558
+msgid "Tab Title"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:403
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:558
+msgid "Custom Tab Title"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:435
+msgid "How To"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:436
+msgid ""
+"To generate tabs, click 'Add Another Tab' at the bottom of this container."
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:436
+msgid "To delete tabs, click 'Remove Tab' to the right of the title field."
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:437
+msgid ""
+"Note : Tabs with empty titles will not be displayed on the product page."
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:439
+msgid "Help Me!"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:460
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:472
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:596
+msgid "Check this box to override the saved tab"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:462
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:474
+msgid " Override Saved Tab"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:499
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:618
+msgid "Apply a Saved Tab"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:519
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:637
+msgid "Remove Tab"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:573
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:652
+msgid "Content"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:574
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:652
+msgid "HTML and text to display."
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:597
+msgid "Override Saved Tab"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:1287
+msgid "Settings - YIKES Custom Product Tabs for WooCommerce"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:1288
+msgid "Custom Product Tabs for WooCommerce Settings"
+msgstr ""

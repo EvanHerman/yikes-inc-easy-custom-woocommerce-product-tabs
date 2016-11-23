@@ -3,7 +3,7 @@ Contributors: yikesinc, eherman24, liljimmi
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.4.2
+Tested up to: 4.6.1
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.5.2
 Stable tag: 1.4.4
@@ -38,7 +38,7 @@ If you experience any problems, please submit a New Issue on our [Github Issue T
 == Frequently Asked Questions ==
 
 = Where do I go to add tabs to a product? =
-When editing a product in WoCommerce, you will find "Custom Tabs" in the bottom left corner of the Product Data box. Click on "Custom Tabs" to reveal the custom tab manager.
+When editing a product in WooCommerce, you will find "Custom Tabs" in the bottom left corner of the Product Data box. Click on "Custom Tabs" to reveal the custom tab manager.
 
 = Where will these tabs appear? =
 When the product is viewed on your website you will see the tabs you created to the right of the default "Description" tab. 
