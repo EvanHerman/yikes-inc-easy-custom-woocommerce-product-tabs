@@ -49,11 +49,44 @@ Make sure you hit the Product's main Update button to save all the edits you mad
 = How do I change the order of the tabs? =
 To change the order of the custom tabs use the up and down arrows to the right of the Tab Title.
 
+= How do saved tabs work? =
+Saved tabs are tabs (title & content) that you can define in one central location (the settings page) and then apply to as many products you would like. If you update the tab from the settings page, the changes will take effect for all products using that tab.
+
+= How do I add saved tabs? =
+To add a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found in the Settings menu. Add a title and content, and save the tab.
+
+= How do I apply a saved tab? =
+To apply a saved tab to a product, click the 'Apply a Saved Tab' button above the tab and choose which tab you would like to apply.
+
+= What does overriding a saved tab do? =
+When using a saved tab on the product page, a checkbox appears with the message 'Override saved tab.' If you click this checkbox (and save), the tab will no longer be affected by updates to the saved tab.
+
+= Why does the WYSIWYG editor default to the 'Visual' tab? =
+This was added in version 1.5 to support the dynamic adding and removing of the wp_editor/WYSIWYG editor. Without this setting, the WYSIWYG editor does not load the correct toolbar and the editor can potentially break.
+
 = Does the custom tab data get exported with the standard WooCommerce product data? =
 Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom tab data is exported with all of the other standard WooCommerce data. This ensures a smooth transition of products between sites.
 
 
 == Changelog ==
+
+= 1.5 - November 23rd, 2016 =
+* Version 1.5 includes a brand new feature - saved tabs - as well as a number of bug fixes, style tweaks, code clean-up, and comments
+* Saved Tabs: A new settings page has been added for users to create / update / delete saved tabs (see FAQ for more information)
+* Saved Tabs: On the product edit page, a new button ('Apply a Saved Tab') has been added that allows you to choose one of your saved tabs and apply it to the current product
+* Custom Tabs section of the edit product page is now responsive
+* Adding a new tab initializes a new wp_editor (WYSIWYG) instead of a plain textarea
+* Added warning message when two tabs have the same title
+* Tabs with empty titles are no longer shown on the product page
+* Added ability to remove the first tab
+* Adding, moving, and removing tabs works as expected when the user's 'Visual Editor' option is checked
+* On the product & settings pages, WYSIWYG editors will default to the visual tab (this helps prevent errors with dynamic wp_editor generation)
+* Added a filter `yikes_woocommerce_default_editor_mode` that can change the default-to-visual-tab behavior (use at your own risk!)
+* Updated the 'How To' text, and slight modification to the style
+* Changed the JavaScript methods controlling how tabs were added, deleted, and moved up/down
+* Cleaned up and commented on all PHP and JavaScript files
+* Added proper i18n, with languages/ folder, .pot file, and `load_plugin_textdomain` hook
+* Incremented version #
 
 = 1.4.4 - March 1st, 2016 =
 * Re-named the tab ID's to support URL's with query args (eg: http://www.example.com/shop#tab-reviews)

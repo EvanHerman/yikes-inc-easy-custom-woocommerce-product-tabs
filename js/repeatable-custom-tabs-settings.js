@@ -115,7 +115,7 @@
 		// AJAX
 		jQuery.post( repeatable_custom_tabs_settings.ajaxurl, data, function( response ) { console.log(response);
 			if ( typeof( response.success ) !== 'undefined' && response.success === true ) {
-				yikes_woo_display_feedback_messages( 'yikes_woo_reusable_tab_delete_' + tab_number, 'tab_saved_success_message', 'Tab saved successfully.', true );
+				yikes_woo_display_feedback_messages( 'yikes_woo_reusable_tab_delete_' + tab_number, 'yikes_woo_tab_success_message', 'Tab saved successfully.', true );
 
 				// Add our tab_id back to the DOM
 				if ( typeof( response.data ) !== 'undefined' && typeof( response.data.tab_id ) !== 'undefined' ) {

@@ -7,7 +7,7 @@
 
 	<div class="row">
 
-		<h4> YIKES Custom Product Tabs for WooCommerce </h4>
+		<h4> YIKES Custom Product Tabs for WooCommerce - Saved Tabs </h4>
 
 		<div class="yikes_woo_settings_info">
 			<p>
