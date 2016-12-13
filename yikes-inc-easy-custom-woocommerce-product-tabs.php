@@ -6,7 +6,6 @@
  * Author: YIKES Inc
  * Author URI: http://www.yikesinc.com
  * Version: 1.5
- * Tested up to: 6.2.1
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -72,6 +71,15 @@
 		const VERSION_OPTION_NAME = 'yikes_woocommerce_custom_product_tabs_db_version';
 
 		/**
+		* Define the page slug for our plugin's custom settings page in one central location
+		*
+		* @since 1.5
+		* @access protected
+		* @var string | $settings_page_slug | The page slug for our plugin's custom settings page
+		*/
+		protected $settings_page_slug; 
+
+		/**
 		* Gets things started by adding an action to initialize this plugin once
 		* WooCommerce is known to be active and initialized
 		*/
@@ -85,6 +93,9 @@
 			// Add our custom options for saving tabs
 			add_option( 'yikes_woo_reusable_products_tabs' );
 			add_option( 'yikes_woo_reusable_products_tabs_applied' );
+
+			//Set our variables
+			$this->settings_page_slug = 'yikes-woo-settings';
 		}
 	
 		public function load_custom_export_filters() {
@@ -152,7 +163,7 @@
 			add_action( 'wp_ajax_yikes_woo_get_wp_editor', array( $this, 'yikes_woo_get_wp_editor' ) );
 			add_action( 'wp_ajax_yikes_woo_save_tab_as_reusable', array( $this, 'yikes_woo_save_tab_as_reusable' ) ); 
 			add_action( 'wp_ajax_yikes_woo_fetch_reusable_tab', array( $this, 'yikes_woo_fetch_reusable_tab' ) ); 
-			add_action( 'wp_ajax_yikes_woo_delete_reusable_tab', array( $this, 'yikes_woo_delete_reusable_tab' ) );
+			add_action( 'wp_ajax_yikes_woo_delete_reusable_tab_handler', array( $this, 'yikes_woo_delete_reusable_tab_handler' ) );
 			
 			// Add our custom settings page
 			add_action( 'admin_menu', array( $this, 'yikes_woo_register_settings_page' ) );
@@ -191,7 +202,7 @@
 					) );
 
 					// styles + font
-					wp_register_style( 'repeatable-custom-tabs-styles' , plugin_dir_url(__FILE__) . 'css/repeatable-custom-tabs.min.css' , '' , 'all' );
+					wp_register_style( 'repeatable-custom-tabs-styles' , plugin_dir_url(__FILE__) . 'css/repeatable-custom-tabs.min.css', '', self::VERSION, 'all' );
 					wp_enqueue_style( 'repeatable-custom-tabs-styles' );
 
 					// JS lity modal library and CSS
@@ -200,12 +211,13 @@
 				}
 			}
 
-			if ( $hook === 'settings_page_yikes-woo-settings' ) {
+			if ( $hook === 'settings_page_' . $this->settings_page_slug ) {
 				// script
 				wp_enqueue_script ( 'repeatable-custom-tabs-settings', plugin_dir_url(__FILE__) . 'js/repeatable-custom-tabs-settings.min.js' , array( 'jquery' ) , 'all' );
 				wp_localize_script( 'repeatable-custom-tabs-settings', 'repeatable_custom_tabs_settings', array(
 					'loading_gif' => '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif-settings" />',
 					'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					'tab_list_page_url' => admin_url( esc_url_raw( 'options-general.php?page=' . $this->settings_page_slug ) ),
 					'save_tab_as_reusable_nonce' => wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
 					'delete_reusable_tab_nonce' => wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' )
 				) );
@@ -219,11 +231,8 @@
 					) );
 
 				// styles + font
-				wp_register_style( 'repeatable-custom-tabs-styles' , plugin_dir_url(__FILE__) . 'css/repeatable-custom-tabs.min.css' , '' , 'all' );
+				wp_register_style( 'repeatable-custom-tabs-styles' , plugin_dir_url(__FILE__) . 'css/repeatable-custom-tabs.min.css', '', self::VERSION, 'all' );
 				wp_enqueue_style( 'repeatable-custom-tabs-styles' );
-
-				// Bootstrap CSS
-				wp_enqueue_style( 'bootstrap', plugin_dir_url(__FILE__) . 'css/dist/bootstrap.min.css' );
 			}
 		}
 
@@ -1016,6 +1025,9 @@
 			 	wp_send_json_error();
 			}
 
+			// Define it now, because we may use this later...
+			$return_redirect_url = '';
+
 			// Get our $_POST vars
 			if ( isset( $_POST['tab_title'] ) && ! empty( $_POST['tab_title'] ) ) {
 				$tab_title = $_POST['tab_title'];
@@ -1052,11 +1064,16 @@
 				);
 
 				update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_options_array );
-				wp_send_json_success( array( 'tab_id' => 1 ) );
+
+				// Return redirect URL
+				$return_redirect_url = admin_url( add_query_arg( array( 'saved-tab-id' => 1 ), esc_url_raw( 'options-general.php?page=' . $this->settings_page_slug ) ) );
+
+				// Send response
+				wp_send_json_success( array( 'tab_id' => 1, 'redirect' => true, 'redirect_url' => $return_redirect_url ) );
 			} else {
 
-				// If we don't have a tab_id, this is a new tab and we need to create a unique ID
-				if ( ! isset( $tab_id ) ) {
+				// this is a new tab and we need to create a unique ID
+				if ( $tab_id === 'new' ) {
 
 					// Get the max ID we have saved
 					foreach ( $yikes_custom_tab_data as $tab_data ) {
@@ -1079,7 +1096,12 @@
 					);
 
 					update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_data );
-					wp_send_json_success( array( 'tab_id' => $new_tab_id ) );
+
+					// Return redirect URL
+					$return_redirect_url = admin_url( add_query_arg( array( 'saved-tab-id' => $new_tab_id ), esc_url_raw( 'options-general.php?page=' . $this->settings_page_slug ) ) );
+
+					// Send response
+					wp_send_json_success( array( 'tab_id' => $new_tab_id, 'redirect' => true, 'redirect_url' => $return_redirect_url ) );
 
 				} else {
 
@@ -1100,7 +1122,7 @@
 					// Flag so we know we found a post and we should update it 
 					$update_post_meta_flag = false;
 
-					// Flag so we know we had to update the yikes_woo_reusable_products_tabs_applied
+					// Flag so we know we have to update the yikes_woo_reusable_products_tabs_applied
 					$update_applied_products_array = false;
 
 					foreach( $reusable_tab_options_array as $post_id => $reusable_tab_data ) {
@@ -1123,10 +1145,8 @@
 								// We may need to update the tab_string_id too
 								if ( $tab_string_id !== $tab['id'] ) {
 									$reusable_tab_options_array[$post_id][$tab_id]['tab_id'] = $tab_string_id;
-
 									$update_applied_products_array = true;
 								}
-
 								$update_post_meta_flag = true;
 							}
 						}
@@ -1144,7 +1164,7 @@
 				}
 			}
 
-			wp_send_json_success();
+			wp_send_json_success( array( 'redirect' => false ) );
 		}
 
 		/**
@@ -1192,7 +1212,7 @@
 		* @param  string $_POST['tab_id'] 
 		* @return object success w/ saved_tabs || failure w/ message 
 		*/
-		public function yikes_woo_delete_reusable_tab() {
+		public function yikes_woo_delete_reusable_tab_handler() {
 
 			// Verify the nonce
 			if ( ! check_ajax_referer( 'yikes_woo_delete_reusable_tab_nonce', 'security_nonce', false ) ) {
@@ -1201,14 +1221,61 @@
 
 			// Get our tab_id
 			if ( isset( $_POST['tab_id'] ) && ! empty( $_POST['tab_id'] ) ) {
-				$tab_id = $_POST['tab_id'];	
+
+				$tab_ids = $_POST['tab_id'];
+				
+				// if $tab_ids isn't an array, turn it into one
+				if ( ! is_array( $tab_ids ) ) {
+					$tab_ids = array( $tab_ids );
+				}
+
+				// Set this up before we use it
+				$return_vars = array();
+
+				foreach( $tab_ids as $tab_id ) {
+
+					// Delete the tab, store the return values in $return_vars
+					$return_vars = $this->yikes_woo_delete_reusable_tab( $tab_id );	
+
+					// Make sure $return_vars is what we think it is, and check if our delete failed
+					if ( is_array( $return_vars ) && isset( $return_vars['success'] ) && $return_vars['success'] === false ) {
+
+						// If something failed, let's return 
+						wp_send_json_error( $return_vars );
+					}
+				}
 			} else {
 
 				// Fail if we don't have a tab_id
 				wp_send_json_error( array( 'reason' => 'no tab id' ) );
 			}
 
-			// Remove the tab from our array of saved tabs
+			// Make sure $return_vars is what we think it is, and check if our delete was successful
+			if ( is_array( $return_vars ) && isset( $return_vars['success'] ) && $return_vars['success'] === true ) {
+
+				// If nothing failed, let's return 
+				wp_send_json_success( $return_vars );
+			}
+
+			// We shouldn't have gotten this far, but if we did let's return failure
+			wp_send_json_failure();
+		}
+
+		/* End AJAX Functions */
+
+		/* AJAX Helper Functions */
+
+		/**
+		* Delete a saved tab from the options array and delete the tab from the product's tabs array
+		*
+		* @since 1.5
+		* 
+		* @param  int 	 | $tab_id 	 | unique identifier of a tab
+		* @return array  | $response | array of data signifying success, message, reason, and other needed data
+		*/
+		protected function yikes_woo_delete_reusable_tab( $tab_id ) {
+
+			// The following code will remove the tab from our array of saved tabs
 
 			// Fetch all saved tabs
 			$saved_tabs = get_option( 'yikes_woo_reusable_products_tabs' );
@@ -1219,13 +1286,25 @@
 					unset( $saved_tabs[$tab_id] );
 					update_option( 'yikes_woo_reusable_products_tabs', $saved_tabs );
 				} else {
-					wp_send_json_error( array( 'reason' => 'no saved tab with tab_id ' . $tab_id . ' found' ) );	
+					$response = array(
+						'success' => false,
+						'tab_id' => $tab_id,
+						'message' => 'No saved tab with id ' . $tab_id . ' found!', 
+						'reason' => 'no saved tab found'
+					);
+					return $response;
 				}
 			} else {
-				wp_send_json_error( array( 'reason' => 'no saved tabs found' ) );
+				$response = array(
+					'success' => false,
+					'tab_id' => $tab_id,
+					'message' => 'No saved tabs found!', 
+					'reason' => 'no saved tabs found'
+				);
+				return $response;
 			}
 
-			// Remove the tab from our array of applied tabs and postmeta
+			// The following code will remove the tab from our array of applied tabs and postmeta
 
 			// Fetch all applied tabs
 			$applied_tabs = get_option( 'yikes_woo_reusable_products_tabs_applied', array() );
@@ -1265,10 +1344,21 @@
 				}
 			}
 
-			wp_send_json_success();
+			// If we're on the single tab edit screen, we want to redirect back to tab list so let's return a var
+			$return_redirect_url = admin_url( add_query_arg( array( 'delete-success' => true ), esc_url_raw( 'options-general.php?page=' . $this->settings_page_slug ) ) );
+
+			$response = array(
+				'success' => true,
+				'tab_id' => $tab_id,
+				'message' => 'Tab successfully deleted!', 
+				'reason' => 'tab successfully deleted',
+				'redirect_url' => $return_redirect_url
+			);
+
+			return $response;
 		}
 
-		/* End AJAX Functions */
+		/* End AJAX Helper Functions */
 
 		/* Plugin Settings Page */
 
@@ -1286,7 +1376,7 @@
 				__( 'Settings - YIKES Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), // Tab title name (HTML title)
 				__( 'Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),			// Menu page name
 				apply_filters( 'yikes_simple_taxonomy_ordering_capabilities', 'manage_options' ), 								// Capability required
-				'yikes-woo-settings', 																							// Page slug (?page=yikes-woo-settings)
+				$this->settings_page_slug, 																						// Page slug (?page=slug-name)
 				array( $this, 'generate_yikes_settings_page' )																	// Function to generate page
 			);
 		}
@@ -1298,7 +1388,80 @@
 		*
 		*/
 		public function generate_yikes_settings_page() {
-			require_once( plugin_dir_path(__FILE__) . 'admin/yikes-woo-settings.php' );
+
+			// Get our settings page slug for redirect purposes
+			$settings_page_slug = $this->settings_page_slug;
+
+			// Get our saved tabs array
+			$yikes_custom_tab_data = get_option( 'yikes_woo_reusable_products_tabs', array() );
+
+			// If saved_tab_id is set, we should show the single saved tab // add new tab page
+			if ( isset( $_GET['saved-tab-id'] ) && ! empty( $_GET['saved-tab-id'] ) ) {
+
+				// Are we trying to add a new tab?
+				$new_tab = ( $_GET['saved-tab-id'] === 'new' ) ? true : false;
+
+				// Sanitize saved_tab_id
+				$saved_tab_id = filter_var( $_GET['saved-tab-id'], FILTER_SANITIZE_NUMBER_INT );
+
+				// Get the tab
+				$tab = isset( $yikes_custom_tab_data[$saved_tab_id] ) ? $yikes_custom_tab_data[$saved_tab_id] : array();
+
+				// Get all the products using this tab
+				$products = $this->fetch_all_products_using_current_tab( $saved_tab_id );
+
+				// Redirect URL
+				$redirect = admin_url( esc_url_raw( 'options-general.php?page=' . $settings_page_slug ) );
+
+				require_once( plugin_dir_path(__FILE__) . 'admin/page.yikes-woo-saved-tabs-single.php' );
+
+			} else {
+				$delete_message_display = 'display: none;';
+
+				// Check if our $_GET variable 'delete-success' is set so we can display a nice success message
+				if ( isset( $_GET['delete-success'] ) && $_GET['delete-success'] === '1' ) {
+					$delete_message_display = '';
+				}
+
+				// New tab URL - used to supply the 'Add Tab' href
+				$new_tab_url = add_query_arg( array( 'saved-tab-id' => 'new' ), esc_url_raw( 'options-general.php?page=' . $settings_page_slug ) );
+
+				// Show tab table list
+				require_once( plugin_dir_path(__FILE__) . 'admin/page.yikes-woo-saved-tabs.php' );
+			}
+		}
+
+		/**
+		* Fetch all product ids that are using the saved tab
+		*
+		* @since 1.5
+		* 
+		* @param  int 	 | $tab_id 			  | unique identifier of a tab
+		* @return array  | $product_ids_array | array of product ids
+		*/
+		protected function fetch_all_products_using_current_tab( $tab_id ) {
+
+			// Set up our return array
+			$product_ids_array = array();
+
+			// Get all of the product IDs from the DB
+			$applied_tabs = get_option( 'yikes_woo_reusable_products_tabs_applied', array() );
+
+			// If the option returns an empty array, C YA
+			if ( ! isset( $applied_tabs ) && empty( $applied_tabs ) ) {
+				return $product_ids_array;
+			}
+
+			// Loop through all of our applied tabs and get the product IDs
+			foreach( $applied_tabs as $product_id => $saved_tabs_array ) {
+
+				// This means the product is using this saved tab
+				if ( isset( $saved_tabs_array[$tab_id] ) ) {
+					$product_ids_array[] = $product_id;
+				}
+			}
+
+			return $product_ids_array;
 		}
 
 		/* End Plugin Settings Page */

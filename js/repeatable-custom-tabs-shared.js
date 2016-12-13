@@ -94,7 +94,7 @@
 			dynamic_message_elements = '<span id="' + message_element_id + '" class="_yikes_wc_feedback_message">' + message + '</span>';
 		} else {
 			dynamic_message_elements = '<p id="' + message_element_id + '" class="_yikes_wc_feedback_message"> <span>' + message + '</span> </p>';
-		}	
+		}
 
 		// Add our message to the DOM
 		jQuery( '#' + anchor_element_id ).after( dynamic_message_elements );	

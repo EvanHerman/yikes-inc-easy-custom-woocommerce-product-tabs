@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.7
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.5.2
-Stable tag: 1.4.4
+Stable tag: 1.5
 License: GPLv2 or later
 
 This plugin extends WooCommerce to allow site admins to add custom tabs to products. 
@@ -53,10 +53,10 @@ To change the order of the custom tabs use the up and down arrows to the right o
 Saved tabs are tabs (title & content) that you can define in one central location (the settings page) and then apply to as many products you would like. If you update the tab from the settings page, the changes will take effect for all products using that tab.
 
 = How do I add saved tabs? =
-To add a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found in the Settings menu. Add a title and content, and save the tab.
+To add a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found in the Settings menu and click the "Add Tab" button.
 
 = How do I apply a saved tab? =
-To apply a saved tab to a product, click the 'Apply a Saved Tab' button above the tab and choose which tab you would like to apply.
+To apply a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Apply a Saved Tab' button above the tab, and choose which tab you would like to apply.
 
 = What does overriding a saved tab do? =
 When using a saved tab on the product page, a checkbox appears with the message 'Override saved tab.' If you click this checkbox (and save), the tab will no longer be affected by updates to the saved tab.
