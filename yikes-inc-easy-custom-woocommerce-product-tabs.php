@@ -48,7 +48,7 @@
 			</style>
 			<!-- display our error message -->
 			<div class="error">
-				<p><?php _e( 'YIKES Custom Product Tabs for WooCommerce could not be activated because WooCommerce is not installed and active.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
+				<p><?php _e( 'Custom Product Tabs for WooCommerce could not be activated because WooCommerce is not installed and active.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 				<p><?php _e( 'Please install and activate ', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?><a href="<?php echo admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce' ); ?>" title="WooCommerce">WooCommerce</a><?php _e( ' before activating the plugin.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 			</div>
 		<?php
@@ -1373,7 +1373,7 @@
 			// Add our custom settings page
 			add_submenu_page(	
 				'options-general.php', 																							// Parent slug
-				__( 'Saved Tabs - YIKES Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), // Tab title name (HTML title)
+				__( 'Saved Tabs - Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), // Tab title name (HTML title)
 				__( 'Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),			// Menu page name
 				apply_filters( 'yikes_simple_taxonomy_ordering_capabilities', 'manage_options' ), 								// Capability required
 				$this->settings_page_slug, 																						// Page slug (?page=slug-name)
