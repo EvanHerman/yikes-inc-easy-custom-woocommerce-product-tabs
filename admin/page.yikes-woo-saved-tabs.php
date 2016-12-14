@@ -1,7 +1,7 @@
 <div class="wrap">
 
 	<h1>
-		<?php _e( 'YIKES Custom Product Tabs | Saved Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+		<?php _e( 'Custom Product Tabs for WooCommerce | Saved Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 		<span class="yikes_woo_add_another_tab page-title-action" id="yikes_woo_add_another_tab">
 			<a href="<?php echo $new_tab_url; ?>"> <?php _e( 'Add Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>	</a>
 		</span>

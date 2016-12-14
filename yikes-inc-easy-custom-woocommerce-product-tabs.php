@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: YIKES Custom Product Tabs for WooCommerce 
+ * Plugin Name: Custom Product Tabs for WooCommerce 
  * Plugin URI: http://www.yikesinc.com
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES Inc
