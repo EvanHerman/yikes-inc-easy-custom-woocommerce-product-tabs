@@ -1030,7 +1030,7 @@
 
 			// Get our $_POST vars
 			if ( isset( $_POST['tab_title'] ) && ! empty( $_POST['tab_title'] ) ) {
-				$tab_title = $_POST['tab_title'];
+				$tab_title = stripslashes( $_POST['tab_title'] );
 
 				$tab_string_id = strtolower( $tab_title );
 				$tab_string_id = preg_replace( "/[^\w\s]/", '', $tab_string_id );
@@ -1373,7 +1373,7 @@
 			// Add our custom settings page
 			add_submenu_page(	
 				'options-general.php', 																							// Parent slug
-				__( 'Settings - YIKES Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), // Tab title name (HTML title)
+				__( 'Saved Tabs - YIKES Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), // Tab title name (HTML title)
 				__( 'Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),			// Menu page name
 				apply_filters( 'yikes_simple_taxonomy_ordering_capabilities', 'manage_options' ), 								// Capability required
 				$this->settings_page_slug, 																						// Page slug (?page=slug-name)
