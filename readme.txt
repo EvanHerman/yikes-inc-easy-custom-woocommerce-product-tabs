@@ -1,4 +1,4 @@
-=== YIKES Custom Product Tabs for WooCommerce  ===
+=== Custom Product Tabs for WooCommerce  ===
 Contributors: yikesinc, eherman24, liljimmi
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
@@ -9,25 +9,29 @@ Tested WooCommerce up to: 2.5.2
 Stable tag: 1.5
 License: GPLv2 or later
 
-This plugin extends WooCommerce to allow site admins to add custom tabs to products. 
+Add custom tabs to products in WooCommerce. 
 
 == Description ==
 
-This plugin extends the [WooCommerce](www.woothemes.com/woocommerce/) eCommerce plugin to allow site admins to add custom tabs to products.
+This plugin extends [WooCommerce](www.woothemes.com/woocommerce/) to allow shop owners to add custom tabs to products. The tabs are displayed on the individual product pages.
 
-Tabs are managed on the Edit Product screen and can be added on a per product basis. Tabs can be easily added, deleted and rearranged.
+Individual product tabs are managed on the WooCommerce Edit Product screen and can be added on a per product basis. You can also create saved tabs and add them to multiple products as needed. Tabs can be easily added, deleted and rearranged.
 
-Tab content areas use the standard WYSIWYG WordPress editor, and may contain text, html or shortcodes. 
+Tab content areas use the standard WordPress text editor, and may contain text, html or shortcodes. 
 
 If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
 
-<i>Originally a fork of <a href="https://wordpress.org/plugins/woocommerce-custom-product-tabs-lite/" target="_blank">SkyVerge WooCommerce Custom Product Tabs Lite</a>, and customized for a <a href="http://www.yikesinc.com" target="_blank">YIKES</a> client site.</i>
+<i>This plugin is a fork of <a href="https://wordpress.org/plugins/woocommerce-custom-product-tabs-lite/" target="_blank">SkyVerge WooCommerce Custom Product Tabs Lite</a></i>
 
 == Installation ==
 
-1. Upload the entire 'yikes-inc-custom-repeatable-woo-product-tabs' folder to the '/wp-content/plugins/' directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Edit a product, then click on 'Custom Tab' within the 'Product Data' panel
+1. Download the plugin .zip file and make note of where on your computer you downloaded it to.
+2. In the WordPress admin (yourdomain.com/wp-admin) go to Plugins > Add New or click the "Add New" button on the main plugins screen.
+3. On the following screen, click the "Upload Plugin" button.
+4. Browse your computer to where you downloaded the plugin .zip file, select it and click the "Install Now" button.
+5. After the plugin has successfully installed, click "Activate Plugin" and enjoy!
+6. Edit a product, then click on 'Custom Tab' within the 'Product Data' panel
+7. Create saved, reusable tabs under Settings > Custom Product Tabs for WooCommerce
 
 == Screenshots ==
 
@@ -50,10 +54,10 @@ Make sure you hit the Product's main Update button to save all the edits you mad
 To change the order of the custom tabs use the up and down arrows to the right of the Tab Title.
 
 = How do saved tabs work? =
-Saved tabs are tabs (title & content) that you can define in one central location (the settings page) and then apply to as many products you would like. If you update the tab from the settings page, the changes will take effect for all products using that tab.
+Saved tabs are tabs you can create under the Custom Product Tabs for WooCommerce settings page and then add to as many products you would like. If you update the tab from the settings page, the changes will take effect for all products using that tab.
 
 = How do I add saved tabs? =
-To add a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found in the Settings menu and click the "Add Tab" button.
+To add a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found under the Settings menu and click the "Add Tab" button.
 
 = How do I apply a saved tab? =
 To apply a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Apply a Saved Tab' button above the tab, and choose which tab you would like to apply.
@@ -103,7 +107,7 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 * Now custom product tab and row data/headers only get exported via 'Tools > Export > Products'
 
 = 1.4 - July 29th, 2015 =
-* Enhancement: Added the 'YIKES Custom Product Tabs for WooCommerce ' data to the standard WooCommerce export file, so custom tab data can be transferred between sites smoothly.
+* Enhancement: Added the 'Custom Product Tabs for WooCommerce ' data to the standard WooCommerce export file, so custom tab data can be transferred between sites smoothly.
 
 = 1.3 - July 21st, 2015 =
 * Enhancement: Enabled WYSIWYG editor on tab content containers (enables shortcode and content to pass through the_content() filter)

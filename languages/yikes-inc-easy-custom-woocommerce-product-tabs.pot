@@ -114,7 +114,7 @@ msgstr ""
 
 #: yikes-inc-easy-custom-woocommerce-product-tabs.php:52
 msgid ""
-"YIKES Custom Product Tabs for WooCommerce could not be activated because "
+"Custom Product Tabs for WooCommerce could not be activated because "
 "WooCommerce is not installed and active."
 msgstr ""
 
@@ -205,7 +205,7 @@ msgid "Add Another Tab"
 msgstr ""
 
 #: yikes-inc-easy-custom-woocommerce-product-tabs.php:1377
-msgid "Settings - YIKES Custom Product Tabs for WooCommerce"
+msgid "Settings - Custom Product Tabs for WooCommerce"
 msgstr ""
 
 #: yikes-inc-easy-custom-woocommerce-product-tabs.php:1378

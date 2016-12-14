@@ -20,7 +20,7 @@ $number_of_products_using_this_tab = count( $products );
 ?>
 <div class="wrap">
 	<h1 class="screen-media">
-		YIKES Custom Product Tabs | <span id="yikes_woo_tab_title_header"><?php echo $tab_title; ?></span>
+		Custom Product Tabs for WooCommerce | <span id="yikes_woo_tab_title_header"><?php echo $tab_title; ?></span>
 		<span class="yikes_woo_tab_id page-title-action">ID: <?php echo $tab_id; ?></span>
 	</h1>
 
