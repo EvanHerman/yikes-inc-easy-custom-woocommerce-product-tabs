@@ -3,7 +3,7 @@
  * Plugin Name: Custom Product Tabs for WooCommerce 
  * Plugin URI: http://www.yikesinc.com
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
- * Author: YIKES Inc
+ * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
  * Version: 1.5
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
@@ -504,7 +504,7 @@
 			$return_html .= '<p class="yikes_wc_apply_reusable_tab_container">';
 			$return_html .= 	'<span class="button-secondary _yikes_wc_apply_a_saved_tab" id="_yikes_wc_apply_a_saved_tab_' . $i . '" data-tab-number="' .  $i . '">';
 			$return_html .= 		'<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>';
-			$return_html .= 		__( 'Apply a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
+			$return_html .= 		__( 'Add a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
 			$return_html .=		'</span>';
 			$return_html .= '</p>';
 
@@ -623,7 +623,7 @@
 			$return_html .= '<p class="yikes_wc_apply_reusable_tab_container">';
 			$return_html .= 	'<span class="button-secondary _yikes_wc_apply_a_saved_tab" id="_yikes_wc_apply_a_saved_tab_duplicate" data-tab-number="">';
 			$return_html .= 		'<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>';
-			$return_html .= 		__( 'Apply a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
+			$return_html .= 		__( 'Add a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
 			$return_html .= 	'</span>';
 			$return_html .= '</p>';
 
@@ -1030,7 +1030,7 @@
 
 			// Get our $_POST vars
 			if ( isset( $_POST['tab_title'] ) && ! empty( $_POST['tab_title'] ) ) {
-				$tab_title = stripslashes( $_POST['tab_title'] );
+				$tab_title = $_POST['tab_title'];
 
 				$tab_string_id = strtolower( $tab_title );
 				$tab_string_id = preg_replace( "/[^\w\s]/", '', $tab_string_id );
@@ -1373,8 +1373,8 @@
 			// Add our custom settings page
 			add_submenu_page(	
 				'options-general.php', 																							// Parent slug
-				__( 'Saved Tabs - Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), // Tab title name (HTML title)
-				__( 'Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),			// Menu page name
+				__( 'Settings - Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 		// Tab title name (HTML title)
+				__( 'Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),					// Menu page name
 				apply_filters( 'yikes_simple_taxonomy_ordering_capabilities', 'manage_options' ), 								// Capability required
 				$this->settings_page_slug, 																						// Page slug (?page=slug-name)
 				array( $this, 'generate_yikes_settings_page' )																	// Function to generate page

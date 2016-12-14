@@ -1,7 +1,7 @@
 <div class="wrap">
 
 	<h1>
-		<?php _e( 'Custom Product Tabs for WooCommerce | Saved Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+		Custom Product Tabs for WooCommerce | Saved Tabs
 		<span class="yikes_woo_add_another_tab page-title-action" id="yikes_woo_add_another_tab">
 			<a href="<?php echo $new_tab_url; ?>"> <?php _e( 'Add Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>	</a>
 		</span>
@@ -19,10 +19,7 @@
 
 	<div class="yikes_woo_settings_info">
 		<p>
-			<?php _e( "Create tabs and apply them to existing products!", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
-		</p>
-		<p>
-			<?php _e( "If a tab is updated here, the changes will take effect on all products currently using that tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+			<?php _e( "Create and save tabs you can add to multiple products.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 		</p>
 	</div>
 

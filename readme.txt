@@ -59,8 +59,8 @@ Saved tabs are tabs you can create under the Custom Product Tabs for WooCommerce
 = How do I add saved tabs? =
 To add a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found under the Settings menu and click the "Add Tab" button.
 
-= How do I apply a saved tab? =
-To apply a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Apply a Saved Tab' button above the tab, and choose which tab you would like to apply.
+= How do I add a saved tab? =
+To add a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Add a Saved Tab' button above the tab, and choose which tab you would like to add.
 
 = What does overriding a saved tab do? =
 When using a saved tab on the product page, a checkbox appears with the message 'Override saved tab.' If you click this checkbox (and save), the tab will no longer be affected by updates to the saved tab.
@@ -77,7 +77,7 @@ Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom
 = 1.5 - November 23rd, 2016 =
 * Version 1.5 includes a brand new feature - saved tabs - as well as a number of bug fixes, style tweaks, code clean-up, and comments
 * Saved Tabs: A new settings page has been added for users to create / update / delete saved tabs (see FAQ for more information)
-* Saved Tabs: On the product edit page, a new button ('Apply a Saved Tab') has been added that allows you to choose one of your saved tabs and apply it to the current product
+* Saved Tabs: On the product edit page, a new button ('Add a Saved Tab') has been added that allows you to choose one of your saved tabs and add it to the current product
 * Custom Tabs section of the edit product page is now responsive
 * Adding a new tab initializes a new wp_editor (WYSIWYG) instead of a plain textarea
 * Added warning message when two tabs have the same title

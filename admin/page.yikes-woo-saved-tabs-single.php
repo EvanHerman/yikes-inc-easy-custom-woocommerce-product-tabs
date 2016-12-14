@@ -20,9 +20,15 @@ $number_of_products_using_this_tab = count( $products );
 ?>
 <div class="wrap">
 	<h1 class="screen-media">
-		<?php _e( 'Custom Product Tabs for WooCommerce', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); | <span id="yikes_woo_tab_title_header"><?php echo $tab_title; ?></span>
+		Custom Product Tabs for WooCommerce | <span id="yikes_woo_tab_title_header"><?php echo $tab_title; ?></span>
 		<span class="yikes_woo_tab_id page-title-action">ID: <?php echo $tab_id; ?></span>
 	</h1>
+
+	<div class="yikes_woo_settings_info">
+		<p>
+			<?php _e( "Any updates made here will take effect on all products currently using this tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+		</p>
+	</div>
 
 	<div id="poststuff">
 
@@ -30,37 +36,38 @@ $number_of_products_using_this_tab = count( $products );
 			<a href="<?php echo $redirect; ?>"><?php _e( 'Go back', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>  
 		</div>
 
-			<h3 class="yikes_woo_saved_tab_header">Tab Info</h3>
+		<div class="row yikes_woo_reusable_tabs_container" id="yikes_woo_reusable_tabs_container_<?php echo $tab_id ?>" data-tab-id="<?php echo $tab_id; ?>">
 
-					<div class="row yikes_woo_reusable_tabs_container" id="yikes_woo_reusable_tabs_container_<?php echo $tab_id ?>" data-tab-id="<?php echo $tab_id; ?>">
+			<!-- Title -->
+			<div class="yikes_woo_reusable_tab_title">
+				<label class="yikes_woo_reusable_tab_title_label" for="yikes_woo_reusable_tab_title_<?php echo $tab_id; ?>">
+					<h3><?php _e( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></h3>
+				</label>
+				<input type="text" id="yikes_woo_reusable_tab_title_<?php echo $tab_id; ?>" value="<?php echo $tab_title; ?>" />
+			</div>
+			
+			<!-- Content -->
+			<div class="yikes_woo_reusable_tab_content">
+				<label class="yikes_woo_reusable_tab_content_label" for="yikes_woo_reusable_tab_content_<?php echo $tab_id; ?>">
+					<h3><?php _e( 'Tab Content', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></h3>
+				</label>
+				<?php 
+					wp_editor( stripslashes( $tab_content ), 'yikes_woo_reusable_tab_content_' . $tab_id, array( 'textarea_name' => 'yikes_woo_reusable_tab_content_' . $tab_id, 'textarea_rows' => 8 ) );
+				 ?>
+			</div>
 
-						<!-- Title -->
-						<div class="yikes_woo_reusable_tab_title">
-							<label class="yikes_woo_reusable_tab_title_label" for="yikes_woo_reusable_tab_title_<?php echo $tab_id; ?>">
-								<?php _e( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>:
-							</label>
-							<input type="text" id="yikes_woo_reusable_tab_title_<?php echo $tab_id; ?>" value="<?php echo $tab_title; ?>" />
-						</div>
-						
-						<!-- Content -->
-						<div class="yikes_woo_reusable_tab_content">
-							<?php 
-								wp_editor( stripslashes( $tab_content ), 'yikes_woo_reusable_tab_content_' . $tab_id, array( 'textarea_name' => 'yikes_woo_reusable_tab_content_' . $tab_id, 'textarea_rows' => 8 ) );
-							 ?>
-						</div>
-
-						<!-- Buttons -->
-						<div class="yikes_woo_save_and_delete_tab_buttons">
-							<span class="button-secondary yikes_woo_save_this_tab" id="yikes_woo_save_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
-								<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>
-								<?php _e( 'Save Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
-							</span>
-							<span class="button-secondary yikes_woo_delete_this_tab yikes_woo_delete_this_tab_single" id="yikes_woo_delete_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
-								<i class="dashicons dashicons-dismiss inline-button-dashicons"></i>
-								<?php _e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
-							</span>
-						</div>
-					</div>
+			<!-- Buttons -->
+			<div class="yikes_woo_save_and_delete_tab_buttons">
+				<span class="button-secondary yikes_woo_save_this_tab" id="yikes_woo_save_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
+					<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>
+					<?php _e( 'Save Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+				</span>
+				<span class="button-secondary yikes_woo_delete_this_tab yikes_woo_delete_this_tab_single" id="yikes_woo_delete_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
+					<i class="dashicons dashicons-dismiss inline-button-dashicons"></i>
+					<?php _e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+				</span>
+			</div>
+		</div>
 
 		<div class="yikes_woo_saved_tab_products">
 			<h3 class="yikes_woo_saved_tab_header">Products</h3>
