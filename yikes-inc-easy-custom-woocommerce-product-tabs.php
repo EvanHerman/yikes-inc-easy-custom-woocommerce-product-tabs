@@ -377,9 +377,6 @@
 						// Override Saved Tab checkbox & hidden input fields
 						echo $this->display_yikes_override_container( $i, $reusable_tab_flag, $reusable_tab_id );
 
-						// Apply a Saved Tab button & container
-						echo $this->display_yikes_apply_tab_container( $i );
-
 						// Up & Down arrows & Remove Tab button
 						echo $this->display_yikes_button_holder_container( $i );
 
@@ -401,9 +398,6 @@
 						// Override Saved Tab checkbox & hidden input fields (Duplicate)
 						echo $this->display_yikes_override_container_duplicate();
 
-						// Duplicate: Apply a Saved Tab button & container (Duplicate)
-						echo $this->display_yikes_apply_tab_container_duplicate();
-
 						// Remove Tab button (Duplicate)
 						echo $this->display_yikes_remove_tab_duplicate();
 
@@ -418,7 +412,8 @@
 
 					echo '</div>';
 
-					echo $this->display_yikes_add_another_tab_container();
+					// Add a Saved Tab // Add Another Tab
+					echo $this->display_yikes_add_tabs_container();
 
 					// Hidden input field holding # of tabs
 					echo $this->display_yikes_number_of_tabs( count( $tab_data ) );
@@ -487,26 +482,6 @@
 				$return_html .= 		'id="_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '" value="' . $reusable_tab_id . '">';
 				$return_html .= '</p>';				
 			}
-
-			return $return_html;
-		}
-
-		/**
-		* Add apply a tab container HTML to page
-		*
-		* @since 1.5
-		*
-		* @param int $i Counter for tab generating loop
-		* @return string HTML
-		*/
-		public function display_yikes_apply_tab_container( $i ) {
-			$return_html = '';
-			$return_html .= '<p class="yikes_wc_apply_reusable_tab_container">';
-			$return_html .= 	'<span class="button-secondary _yikes_wc_apply_a_saved_tab" id="_yikes_wc_apply_a_saved_tab_' . $i . '" data-tab-number="' .  $i . '">';
-			$return_html .= 		'<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>';
-			$return_html .= 		__( 'Add a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
-			$return_html .=		'</span>';
-			$return_html .= '</p>';
 
 			return $return_html;
 		}
@@ -611,26 +586,6 @@
 		}
 
 		/**
-		* Add duplicate apply a tab container HTML to page
-		*
-		* @since 1.5
-		*
-		* @return string HTML
-		*/
-		public function display_yikes_apply_tab_container_duplicate() {
-			$return_html = '';
-
-			$return_html .= '<p class="yikes_wc_apply_reusable_tab_container">';
-			$return_html .= 	'<span class="button-secondary _yikes_wc_apply_a_saved_tab" id="_yikes_wc_apply_a_saved_tab_duplicate" data-tab-number="">';
-			$return_html .= 		'<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>';
-			$return_html .= 		__( 'Add a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
-			$return_html .= 	'</span>';
-			$return_html .= '</p>';
-
-			return $return_html;
-		}
-
-		/**
 		* Add duplicate remove tab button HTML to page
 		*
 		* @since 1.5
@@ -696,20 +651,26 @@
 		}
 
 		/**
-		* Add 'Add Another Tab' button to page
+		* Add 'Add Another Tab' and 'Add a Saved Tab' buttons to page
 		*
 		* @since 1.5
 		*
 		* @return string HTML
 		*/
-		public function display_yikes_add_another_tab_container() {
+		public function display_yikes_add_tabs_container() {
 			$return_html = '';
 
-			$return_html .= '<div class="add_another_tab_section">';
-			$return_html .= 	'<a href="#" class="button-secondary" id="add_another_tab">';
+			$return_html .= '<div class="add_tabs_container">';
+			$return_html .= 	'<a href="#" class="button-secondary _yikes_wc_add_tabs" id="add_another_tab">';
 			$return_html .= 		'<i class="dashicons dashicons-plus-alt inline-button-dashicons"></i>';
 			$return_html .=			__( 'Add Another Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
 			$return_html .=		'</a>';
+			$return_html .= '<span class="yikes_wc_apply_reusable_tab_container">';
+			$return_html .= 	'<span class="button-secondary _yikes_wc_apply_a_saved_tab _yikes_wc_add_tabs" id="_yikes_wc_apply_a_saved_tab">';
+			$return_html .= 		'<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>';
+			$return_html .= 		__( 'Add a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
+			$return_html .=		'</span>';
+			$return_html .= '</span>';
 			$return_html .= '</div>';
 
 			return $return_html;
@@ -985,6 +946,7 @@
 		* @since 1.5
 		*
 		* @param string $_POST['textarea_id'] ID of the textarea that we're initializing wp_editor with
+		* @param string $_POST['tab_content'] content to pre-supply the text editor with
 		* @return string wp_editor HTML
 		*/
 		public function yikes_woo_get_wp_editor() {
@@ -997,6 +959,9 @@
 			// Get & sanitize the $_POST var textarea_id
 			$textarea_id = filter_var( $_POST['textarea_id'], FILTER_SANITIZE_STRING );
 
+			// Check if we have tab content
+			$tab_content = isset( $_POST['tab_content'] ) ? $_POST['tab_content'] : '';
+
 			// Set up options
 			$wp_editor_options = array( 
 				'textarea_name' => $textarea_id,
@@ -1004,7 +969,7 @@
 			);
 
 			// Return wp_editor HTML
-			wp_editor( '', $textarea_id, $wp_editor_options );
+			wp_editor( $tab_content, $textarea_id, $wp_editor_options );
 			wp_die();
 		}
 
@@ -1200,8 +1165,11 @@
 			if ( ! empty( $saved_tabs ) ) {
 				wp_send_json_success( json_encode( $saved_tabs ) );	
 			} else {
-				wp_send_json_error( array( 'message' => 'No saved tabs were found.' ) );
+				wp_send_json_success( array( 'message' => 'No saved tabs were found.' ) );
 			}
+
+			// If we get this far, send error
+			wp_send_json_error( array( 'message' => 'Uh oh. Something went wrong.' ) );
 		}
 
 		/**

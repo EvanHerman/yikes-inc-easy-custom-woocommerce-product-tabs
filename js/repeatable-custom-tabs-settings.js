@@ -80,11 +80,11 @@
 
 		//If no tab_title || tab_content, show error message
 		if ( tab_title.length === 0 ) {
-			yikes_woo_display_feedback_messages( 'yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_error_message', 'Please fill out the tab title before saving.', false );
+			yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_error_message', 'Please fill out the tab title before saving.', {} );
 			return;
 		}
 		if ( tab_content.length === 0 ) {
-			yikes_woo_display_feedback_messages( 'yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_error_message', 'Please fill out the tab content before saving.', false );
+			yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_error_message', 'Please fill out the tab content before saving.', {} );
 			return;	
 		}
 
@@ -106,13 +106,13 @@
 						&& response.data.redirect === true && typeof( response.data.redirect_url !== 'undefined' ) ) {
 					location.href = response.data.redirect_url;
 				} else {
-					yikes_woo_display_feedback_messages( 'yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_success_message', 'Tab saved successfully.', false );	
+					yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_success_message', 'Tab saved successfully.', {} );	
 				}
 
 				jQuery( '#yikes_woo_tab_title_header' ).text( tab_title );
 			} else {
 				if ( typeof( response.data ) !== 'undefined' && typeof( response.data.message ) !== 'undefined' ) {
-					yikes_woo_display_feedback_messages( 'yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_error_message', response.data.message, false );
+					yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_error_message', response.data.message, {} );
 				} else {
 
 					// Ok, not sure what went wrong. Let's log it.

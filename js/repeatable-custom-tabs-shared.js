@@ -8,25 +8,21 @@
 	*
 	* @return bool
 	*/
-	function yikes_woo_get_wp_editor_ajax( textarea_id, product_page ) {
+	function yikes_woo_get_wp_editor_ajax( textarea_id, product_page, tab_content ) {
 
 		// Create data object for AJAX call
 		var data = {
 			'action': 'yikes_woo_get_wp_editor',
 			'textarea_id': textarea_id,
+			'tab_content': tab_content,
 			'security_nonce': repeatable_custom_tabs_shared.get_wp_editor_security_nonce
 		};
 
 		// AJAX
 		jQuery.post( repeatable_custom_tabs_shared.ajaxurl, data, function( response ) {
 
-			// Re-enable buttons / arrows if on the product page. If on the settings page, remove the loading gif.
-			if ( product_page === true ) {
-				yikes_woo_toggle_controls( 'enable' );
-			} else {
-				jQuery( '.yikes_woo_add_another_tab_container' ).children( 'img' ).remove();
-				jQuery( '.yikes_woo_add_another_tab_container' ).children( '.yikes_woo_add_another_tab' ).show();
-			}
+			// Re-enable buttons / arrows
+			yikes_woo_toggle_controls( 'enable' );
 
 			// If call failed, show error message
 			if ( response.success == false ) {
@@ -45,9 +41,26 @@
 			if( typeof( tinymce ) != 'undefined' ) {
 				tinymce.execCommand( 'mceAddEditor', false, textarea_id );	
 			}
+
+			// After tinymce is initialized, let's check if we need to disable the box (because it's a saved tab)
+			var tab_number = yikes_woo_get_tab_number_from_id( textarea_id );
+			if ( jQuery( '#_yikes_wc_custom_repeatable_product_tabs_tab_title_' + tab_number ).hasClass( 'yikes_woo_disable_this_tab' ) ) {
+				jQuery( '#_yikes_wc_custom_repeatable_product_tabs_tab_title_' + tab_number ).removeClass( 'yikes_woo_disable_this_tab' );
+				yikes_woo_toggle_reusable_override_overlay( 'disable', tab_number );
+			}
 			
 			return true;	
 		});
+	}
+
+	/**
+	* @summary Get the numerical ID from a string ID
+	*
+	* @param string  | id_string  | an id of the form this_is_an_id_10
+	* @return string | tab_number | the numerical suffix of the string id passed in
+	*/ 
+	function yikes_woo_get_tab_number_from_id( id_string ) {
+		return id_string.slice( ( id_string.lastIndexOf( '_' ) + 1 ) );
 	}
 
 	/**
@@ -77,30 +90,54 @@
 	*
 	* @since 1.5
 	*
-	* @param string | anchor_element_id | the ID of the element we're going to display the message next to
+	* @param string | anchor_element	| a selector for an element we're going to display the message next to
 	* @param string | message_element_id| the ID of the element we're creating to hold the message
 	* @param string | message 			| the message we're displaying to the user
-	* @param bool	| settings_page		| Flag indicating whether we're on the settings page (true) or product page (false)
+	* @param object	| options			| Collection of options for customizing the error message
 	*
 	*/
-	function yikes_woo_display_feedback_messages( anchor_element_id, message_element_id, message, settings_page ) {
+	function yikes_woo_display_feedback_messages( anchor_element_id, message_element_id, message, options ) {
+
+		var defaults = {
+			'inline': false,
+			'classes': [],
+			'css_string': '',
+			'time': 3000
+		}
+
+		var opts = jQuery.extend( defaults, options );
+
 		//remove any other success / error message elements
 		jQuery( '._yikes_wc_feedback_message' ).remove();
+
+		// Construct style string
+		var style_string = '';
+		if ( opts.css_string.length > 0 ) {
+		 	style_string = opts.css_string;
+		}
+
+		// Construct class string
+		var classes = defaults.classes;
+		if ( opts.classes.length > 0 ) {
+			opts.classes.each( function( index, class_name ) {
+				classes += class_name;
+			});
+		}
 
 		var dynamic_message_elements = '';
 
 		// Construct our message
-		if ( settings_page === true ) {
-			dynamic_message_elements = '<span id="' + message_element_id + '" class="_yikes_wc_feedback_message">' + message + '</span>';
+		if ( opts.inline === true ) {
+			dynamic_message_elements = '<span id="' + message_element_id + '" class="_yikes_wc_feedback_message ' + classes + '" style="' + style_string + '">' + message + '</span>';
 		} else {
-			dynamic_message_elements = '<p id="' + message_element_id + '" class="_yikes_wc_feedback_message"> <span>' + message + '</span> </p>';
+			dynamic_message_elements = '<p id="' + message_element_id + '" class="_yikes_wc_feedback_message ' + classes + '" style="' + style_string + '">' + message + '</p>';
 		}
 
 		// Add our message to the DOM
-		jQuery( '#' + anchor_element_id ).after( dynamic_message_elements );	
+		jQuery( anchor_element_id ).after( dynamic_message_elements );	
 			
 		// Display message by fadein/fadeout
-		jQuery( '#' + message_element_id ).fadeIn( 500 ).delay( 3000 ).fadeOut( 500 );
+		jQuery( '#' + message_element_id ).fadeIn( 500 ).delay( opts.time ).fadeOut( 500 );
 	}
 
 	/**
