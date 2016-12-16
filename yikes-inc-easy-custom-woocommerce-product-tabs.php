@@ -352,9 +352,7 @@
 			// Display the custom tab panel
 				echo '<div id="yikes_woocommerce_custom_product_tabs" class="panel wc-metaboxes-wrapper woocommerce_options_panel">';
 				echo '<div class="options_group">';
-				
-					echo $this->review_us_container();
-					
+									
 					echo $this->display_yikes_how_to();
 
 					// Set up the initial display, by looping
@@ -435,9 +433,7 @@
 		public function display_yikes_how_to() {
 			$return_html = '';
 			$return_html .= '<div class="yikes-woo-tabs-hidden-how-to-info">'; 
-			$return_html .= '<h3 class="yikes_woo_how_to_h3">' . __( "How To" , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . ':</h3>';
-			$return_html .= '<p class="yikes_woo_how_to_info">' . __( "To generate tabs, click 'Add Another Tab' at the bottom of this container." , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . ' ' . __( "To delete tabs, click 'Remove Tab' to the right of the title field." , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . '</p>';
-			$return_html .= '<p class="yikes_woo_how_to_note">' . __( "Note : Tabs with empty titles will not be displayed on the product page.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . '</p>';
+			$return_html .= '<p class="yikes_woo_how_to_info">' . __( "For help using Custom Tabs please visit our <a href='https://yikesplugins.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/' target='_blank'>Knowledge Base</a>" , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . '</p>';
 			$return_html .= '</div>';
 			$return_html .= '<div id="yikes-woo-help-me-icon" class="dashicons dashicons-editor-help yikes-tabs-how-to-toggle" title="' . __( "Help Me!" , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . '"></div>';
 
@@ -498,13 +494,14 @@
 			$return_html = '';
 
 			$return_html .= '<section class="button-holder" alt="' . $i . '">';
-			$return_html .= 	'<a href="#" onclick="return false;" class="button-secondary remove_this_tab"><span class="dashicons dashicons-no-alt" style="line-height:1.3;"></span>';
-			$return_html .= 	__( 'Remove Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
-			$return_html .= 	'</a>';
 			$return_html .= 	'<div style="text-align:center;margin-top:.5em;">';
+			$return_html .= 		'<p class="yikes_wc_move_tab">Move tab order</p>';
 			$return_html .= 		'<span class="dashicons dashicons-arrow-up move-tab-data-up"></span>';
 			$return_html .= 		'<span class="dashicons dashicons-arrow-down move-tab-data-down"></span>';
 			$return_html .= 	'</div>';
+			$return_html .= 	'<a href="#" onclick="return false;" class="button-secondary remove_this_tab"><span class="dashicons dashicons-no-alt"></span>';
+			$return_html .= 	__( 'Remove Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
+			$return_html .= 	'</a>';
 			$return_html .= '</section>';
 
 			return $return_html;
@@ -660,35 +657,22 @@
 		public function display_yikes_add_tabs_container() {
 			$return_html = '';
 
+			$return_html .= '<div class="yikes-woo-custom-tab-divider-last"></div>';
 			$return_html .= '<div class="add_tabs_container">';
 			$return_html .= 	'<a href="#" class="button-secondary _yikes_wc_add_tabs" id="add_another_tab">';
 			$return_html .= 		'<i class="dashicons dashicons-plus-alt inline-button-dashicons"></i>';
-			$return_html .=			__( 'Add Another Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
+			$return_html .=			__( 'Add a Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
 			$return_html .=		'</a>';
-			$return_html .= '<span class="yikes_wc_apply_reusable_tab_container">';
-			$return_html .= 	'<span class="button-secondary _yikes_wc_apply_a_saved_tab _yikes_wc_add_tabs" id="_yikes_wc_apply_a_saved_tab">';
-			$return_html .= 		'<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>';
-			$return_html .= 		__( 'Add a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
-			$return_html .=		'</span>';
-			$return_html .= '</span>';
+			$return_html .= 	'<span class="yikes_wc_apply_reusable_tab_container">';
+			$return_html .= 		'<span class="button-secondary _yikes_wc_apply_a_saved_tab _yikes_wc_add_tabs" id="_yikes_wc_apply_a_saved_tab">';
+			$return_html .= 			'<i class="dashicons  dashicons-plus-alt inline-button-dashicons"></i>';
+			$return_html .= 			__( 'Add a Saved Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
+			$return_html .=			'</span>';
+			$return_html .= 	'</span>';
+			$return_html .= 	'<input name="save" class="button button-primary" id="publish" value="Save Tabs" type="submit">';
 			$return_html .= '</div>';
 
 			return $return_html;
-		}
-
-		/** 
-		* Review Us Container - displays the yikes logo, inside of the 'Custom Tabs' container
-		*
-		* @since 1.5
-		*/
-		public function review_us_container() {
-			?>
-				<div id="yikes-woo-tabs-review-us">
-					<a href="http://www.yikesinc.com" target="_blank">
-						<img src="<?php echo plugin_dir_url(__FILE__) . 'images/yikes_logo.png';?>" title="Plugin created by YIKES Inc." height=40 width=50 class="yikes-logo" >						
-					</a>
-				</div>
-			<?php
 		}
 
 		/**
