@@ -26,7 +26,7 @@ $number_of_products_using_this_tab = count( $products );
 
 	<div class="yikes_woo_settings_info">
 		<p>
-			<?php _e( "Any updates made here will take effect on all products currently using this tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+			<?php _e( "Any updates made here will apply to all products using this tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 		</p>
 	</div>
 
@@ -58,11 +58,10 @@ $number_of_products_using_this_tab = count( $products );
 
 			<!-- Buttons -->
 			<div class="yikes_woo_save_and_delete_tab_buttons">
-				<span class="button-secondary yikes_woo_save_this_tab" id="yikes_woo_save_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
-					<i class="dashicons dashicons-star-filled inline-button-dashicons"></i>
+				<span class="button button-primary yikes_woo_save_this_tab" id="yikes_woo_save_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
 					<?php _e( 'Save Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 				</span>
-				<span class="button-secondary yikes_woo_delete_this_tab yikes_woo_delete_this_tab_single" id="yikes_woo_delete_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
+				<span class="button button-secondary yikes_woo_delete_this_tab yikes_woo_delete_this_tab_single" id="yikes_woo_delete_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
 					<i class="dashicons dashicons-dismiss inline-button-dashicons"></i>
 					<?php _e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 				</span>

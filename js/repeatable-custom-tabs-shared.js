@@ -149,9 +149,9 @@
 	function yikes_woo_toggle_how_to() {
 		jQuery( '.yikes-woo-tabs-hidden-how-to-info' ).slideToggle( 'fast', function() {
 			if ( jQuery( '#yikes-woo-help-me-icon' ).hasClass( 'dashicons-editor-help' ) ) {
-				jQuery( '#yikes-woo-help-me-icon' ).removeClass( 'dashicons-editor-help' ).addClass( 'dashicons-arrow-up' );
+				jQuery( '#yikes-woo-help-me-icon' ).removeClass( 'dashicons-editor-help' ).addClass( 'dashicons-dismiss' );
 			} else {
-				jQuery( '#yikes-woo-help-me-icon' ).removeClass( 'dashicons-arrow-up' ).addClass( 'dashicons-editor-help' );
+				jQuery( '#yikes-woo-help-me-icon' ).removeClass( 'dashicons-dismiss' ).addClass( 'dashicons-editor-help' );
 			}	
 		});
 	}
