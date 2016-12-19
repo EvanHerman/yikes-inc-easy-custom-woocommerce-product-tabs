@@ -41,44 +41,43 @@ If you experience any problems, please submit a New Issue on our [Github Issue T
 
 == Frequently Asked Questions ==
 
+**All documentation can be found in [our Knowledge Base](https://yikesplugins.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/).**
+
 = Where do I go to add tabs to a product? =
 When editing a product in WooCommerce, you will find "Custom Tabs" in the bottom left corner of the Product Data box. Click on "Custom Tabs" to reveal the custom tab manager.
 
 = Where will these tabs appear? =
 When the product is viewed on your website you will see the tabs you created to the right of the default "Description" tab. 
 
-= I added tabs, but they didn't appear on the front-end of the site. What's up? =
-Make sure you hit the Product's main Update button to save all the edits you made to custom tabs or they will not be saved.
-
 = How do I change the order of the tabs? =
-To change the order of the custom tabs use the up and down arrows to the right of the Tab Title.
+To change the order of custom tabs use the up and down "Move tab order" arrows.
 
 = How do saved tabs work? =
 Saved tabs are tabs you can create under the Custom Product Tabs for WooCommerce settings page and then add to as many products you would like. If you update the tab from the settings page, the changes will take effect for all products using that tab.
 
-= How do I add saved tabs? =
-To add a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found under the Settings menu and click the "Add Tab" button.
+= How do I create saved tabs? =
+To create a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found under the Settings menu and click the "Add Tab" button.
 
-= How do I add a saved tab? =
+= How do I add a saved tab to a product? =
 To add a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Add a Saved Tab' button above the tab, and choose which tab you would like to add.
 
 = What does overriding a saved tab do? =
-When using a saved tab on the product page, a checkbox appears with the message 'Override saved tab.' If you click this checkbox (and save), the tab will no longer be affected by updates to the saved tab.
+When using a saved tab on the product page, a checkbox appears with the message 'Override Saved Tab for this product.' If you click that checkbox, edit the tab and save, the tab will be changed for that product only. Any edits to that saved tab under the 'Custom Product Tabs for WooCommerce' settings page, will not be applied to that product.
 
 = Why does the WYSIWYG editor default to the 'Visual' tab? =
 This was added in version 1.5 to support the dynamic adding and removing of the wp_editor/WYSIWYG editor. Without this setting, the WYSIWYG editor does not load the correct toolbar and the editor can potentially break.
 
-= Does the custom tab data get exported with the standard WooCommerce product data? =
-Yes! Since v1.4 we've added the necessary hooks and filters to ensure the custom tab data is exported with all of the other standard WooCommerce data. This ensures a smooth transition of products between sites.
+= Does custom tab data get exported with standard WooCommerce product data? =
+Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is exported with all of the other standard WooCommerce data. This ensures a smooth transition of products between sites.
 
 
 == Changelog ==
 
-= 1.5 - November 23rd, 2016 =
+= 1.5 - December 20rd, 2016 =
 * Version 1.5 includes a brand new feature - saved tabs - as well as a number of bug fixes, style tweaks, code clean-up, and comments
+* UI: Complete overhaul of the custom tab interface for an easier, responsive tab creating experience.
 * Saved Tabs: A new settings page has been added for users to create / update / delete saved tabs (see FAQ for more information)
 * Saved Tabs: On the product edit page, a new button ('Add a Saved Tab') has been added that allows you to choose one of your saved tabs and add it to the current product
-* Custom Tabs section of the edit product page is now responsive
 * Adding a new tab initializes a new wp_editor (WYSIWYG) instead of a plain textarea
 * Added warning message when two tabs have the same title
 * Tabs with empty titles are no longer shown on the product page
