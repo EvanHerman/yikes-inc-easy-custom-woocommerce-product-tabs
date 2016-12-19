@@ -8,94 +8,42 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		}
 
 		/**
-		* Creates all of the HTML required for tabs
+		* Creates all of the HTML required for tabs on the product edit screen
 		*
 		* @since 1.5
 		*/
-		public function generate_tab_html() {
+		public function generate_html() {
 			global $post;
-			// the product
 
-			if ( defined( 'WOOCOMMERCE_VERSION' ) && version_compare( WOOCOMMERCE_VERSION, '2.1', '<' ) ) {
-				?>
-				<style type="text/css">
-					#woocommerce-product-data ul.product_data_tabs li.yikes_wc_product_tabs_tab a { padding:5px 5px 5px 28px;background-repeat:no-repeat;background-position:5px 7px; }
-				</style>
-				<?php
-			}
-
-			// pull the custom tab data out of the database
+			// Pull the custom tab data out of the database
 			$tab_data = maybe_unserialize( get_post_meta( $post->ID, 'yikes_woo_products_tabs', true ) );
-					
+
+			// If we don't have tab data, we display things slightly differently
+			$product_has_tabs = true;
 			if ( empty( $tab_data ) ) {
-				$tab_data['1'] = array( 'title' => '', 'content' => '' , 'duplicate' => '' );
+				$product_has_tabs = false;
 			}
 
 			// Pull the saved array of reusable tabs
 			$reusable_tab_options_array = get_option( 'yikes_woo_reusable_products_tabs_applied', array() );
-			
 					
-			$i = 1;
 			// Display the custom tab panel
 				echo '<div id="yikes_woocommerce_custom_product_tabs" class="panel wc-metaboxes-wrapper woocommerce_options_panel">';
 				echo '<div class="options_group">';
 									
 					echo $this->display_yikes_how_to();
 
-					// Set up the initial display, by looping
-					foreach ( $tab_data as $tab ) {
+					if ( $product_has_tabs === true ) {
 
-						$reusable_tab_flag = false;
-						$reusable_tab_id = '';
-
-						// If $tab is in the array of reusable tabs, set flag
-						if ( isset( $reusable_tab_options_array ) && isset( $reusable_tab_options_array[$post->ID] ) ) {
-
-							foreach( $reusable_tab_options_array[$post->ID] as $id => $reusable_tab_data ) {
-								if ( isset( $reusable_tab_data['tab_id'] ) && isset( $tab['id'] ) && $reusable_tab_data['tab_id'] === $tab['id'] ) {
-									$reusable_tab_flag = true;
-									$reusable_tab_id = $reusable_tab_data['reusable_tab_id'];
-								}
-							}
-						}
-						
-						// Override Saved Tab checkbox & hidden input fields
-						echo $this->display_yikes_override_container( $i, $reusable_tab_flag, $reusable_tab_id );
-
-						// Tab Title input field
-						$this->display_woocommerce_wp_text_input( $i, $tab );
-
-						// Tab content wysiwyg
-						$this->display_woocommerce_wp_wysiwyg_input( $i, $tab );
-
-						// Up & Down arrows & Remove Tab button
-						echo $this->display_yikes_button_holder_container( $i );
-
-						// line separating tabs
-						echo $this->display_yikes_tab_divider( $i, count( $tab_data ) );
-
-						$i++;
+						// Loop through all the tabs and add all components
+						$this->generate_tab_html( $tab_data );
 					}
-					
-					// duplicate_this_row content
-					echo '<div id="duplicate_this_row">';
 
-						// Override Saved Tab checkbox & hidden input fields (Duplicate)
-						echo $this->display_yikes_override_container_duplicate();
-
-						// Tab title input field
-						woocommerce_wp_text_input( array( 'id' => 'hidden_duplicator_row_title' , 'label' => __( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'description' => '', 'placeholder' =>  __( 'Custom Tab Title' , 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'class' => 'yikes_woo_tabs_title_field yikes_woo_tabs_title_field_duplicate' ) );
-
-						// WYSIWYG Content field
-						$this->display_woocommerce_wp_wysiwyg_input_duplicate();
-
-						// Up & Down arrows && Remove Tab button (Duplicate)
-						echo $this->display_yikes_button_holder_container_duplicate();
-
-					echo '</div>';
+					// Add duplicate container
+					$this->generate_duplicate_html();
 
 					// Add a Saved Tab // Add Another Tab
-					echo $this->display_yikes_add_tabs_container();
+					echo $this->display_yikes_add_tabs_container( $product_has_tabs );
 
 					// Hidden input field holding # of tabs
 					echo $this->display_yikes_number_of_tabs( count( $tab_data ) );
@@ -108,13 +56,85 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		/* Generate HTML Functions */
 
 		/**
+		* Generate the duplicate HTML block
+		*
+		* @since 1.5
+		*
+		*/
+		protected function generate_duplicate_html() {
+
+			// duplicate_this_row content
+			echo '<div id="duplicate_this_row">';
+
+			// Override Saved Tab checkbox & hidden input fields (Duplicate)
+			echo $this->display_yikes_override_container_duplicate();
+
+			// Tab title input field
+			woocommerce_wp_text_input( array( 'id' => 'hidden_duplicator_row_title' , 'label' => __( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'description' => '', 'placeholder' =>  __( 'Custom Tab Title' , 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'class' => 'yikes_woo_tabs_title_field yikes_woo_tabs_title_field_duplicate' ) );
+
+			// WYSIWYG Content field
+			$this->display_woocommerce_wp_wysiwyg_input_duplicate();
+
+			// Up & Down arrows && Remove Tab button (Duplicate)
+			echo $this->display_yikes_button_holder_container_duplicate();
+
+			echo '</div>';
+		}
+
+		/**
+		* Generate the normal tab HTML block
+		*
+		* @since 1.5
+		*
+		* @param array | $tab_data | array of tab data
+		*/
+		protected function generate_tab_html( $tab_data ) {
+			$i = 1;
+
+			// Set up the initial display, by looping
+			foreach ( $tab_data as $tab ) {
+
+				$reusable_tab_flag = false;
+				$reusable_tab_id = '';
+
+				// If $tab is in the array of reusable tabs, set flag
+				if ( isset( $reusable_tab_options_array ) && isset( $reusable_tab_options_array[$post->ID] ) ) {
+
+					foreach( $reusable_tab_options_array[$post->ID] as $id => $reusable_tab_data ) {
+						if ( isset( $reusable_tab_data['tab_id'] ) && isset( $tab['id'] ) && $reusable_tab_data['tab_id'] === $tab['id'] ) {
+							$reusable_tab_flag = true;
+							$reusable_tab_id = $reusable_tab_data['reusable_tab_id'];
+						}
+					}
+				}
+				
+				// Override Saved Tab checkbox & hidden input fields
+				echo $this->display_yikes_override_container( $i, $reusable_tab_flag, $reusable_tab_id );
+
+				// Tab Title input field
+				$this->display_woocommerce_wp_text_input( $i, $tab );
+
+				// Tab content wysiwyg
+				$this->display_woocommerce_wp_wysiwyg_input( $i, $tab );
+
+				// Up & Down arrows & Remove Tab button
+				echo $this->display_yikes_button_holder_container( $i );
+
+				// line separating tabs
+				echo $this->display_yikes_tab_divider( $i, count( $tab_data ) );
+
+				$i++;
+			}
+		}
+
+		/**
 		* Add how-to info HTML to page
 		*
 		* @since 1.5
 		*
 		* @return string HTML
 		*/
-		public function display_yikes_how_to() {
+		protected function display_yikes_how_to() {
 			$return_html = '';
 			$return_html .= '<div class="yikes-woo-tabs-hidden-how-to-info">'; 
 			$return_html .= '<p class="yikes_woo_how_to_info">' . __( "For help using Custom Tabs please visit our <a href='https://yikesplugins.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/' target='_blank'>Knowledge Base</a>" , 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . '</p>';
@@ -134,7 +154,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		* @param int  $reusable_tab_id		ID of the saved/reusable tab 
 		* @return string HTML
 		*/
-		public function display_yikes_override_container( $i, $reusable_tab_flag, $reusable_tab_id ) {
+		protected function display_yikes_override_container( $i, $reusable_tab_flag, $reusable_tab_id ) {
 			$return_html = '';
 
 			if ( $reusable_tab_flag === true ) {
@@ -174,7 +194,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		* @param int $i Counter for tab generating loop
 		* @return string HTML
 		*/
-		public function display_yikes_button_holder_container( $i ) {
+		protected function display_yikes_button_holder_container( $i ) {
 			$return_html = '';
 
 			$return_html .= '<section class="button-holder" alt="' . $i . '">';
@@ -200,7 +220,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		* @param int $tab_count Total # of tabs
 		* @return string HTML
 		*/
-		public function display_yikes_tab_divider( $i, $tab_count ) {
+		protected function display_yikes_tab_divider( $i, $tab_count ) {
 			$return_html = '';
 			if ( $i != $tab_count ) { 
 				$return_html .= '<div class="yikes-woo-custom-tab-divider"></div>';
@@ -217,7 +237,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		* @param int   $i 		Counter for tab generating loop
 		* @param array $tab		Array of tab data
 		*/
-		public function display_woocommerce_wp_text_input( $i, $tab ) {
+		protected function display_woocommerce_wp_text_input( $i, $tab ) {
 
 			woocommerce_wp_text_input( array( 'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i , 'label' => __( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'description' => '', 'value' => $tab['title'] , 'placeholder' => __( 'Custom Tab Title' , 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'class' => 'yikes_woo_tabs_title_field') );
 		}
@@ -230,7 +250,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		* @param int   $i 		Counter for tab generating loop
 		* @param array $tab		Array of tab data
 		*/
-		public function display_woocommerce_wp_wysiwyg_input( $i, $tab ) {
+		protected function display_woocommerce_wp_wysiwyg_input( $i, $tab ) {
 			echo '<div class="form-field-tinymce _yikes_wc_custom_repeatable_product_tabs_tab_content_field _yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i . '_field">';
 				$this->woocommerce_wp_wysiwyg_input( array( 
 					'id' => '_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i , 
@@ -253,7 +273,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		*
 		* @return string HTML
 		*/
-		public function display_yikes_override_container_duplicate() {
+		protected function display_yikes_override_container_duplicate() {
 			$return_html = '';
 
 			$return_html .= '<p class="yikes_wc_override_reusable_tab_container _yikes_wc_override_reusable_tab_container_duplicate" id="_yikes_wc_override_reusable_tab_container_duplicate" style="display: none;">';
@@ -273,7 +293,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		*
 		* @return string HTML
 		*/
-		public function display_yikes_remove_tab_duplicate() {
+		protected function display_yikes_remove_tab_duplicate() {
 			$return_html = '';
 
 			$return_html .= '<a href="#" onclick="return false;" class="button-secondary remove_this_tab">';
@@ -291,7 +311,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		*
 		* @param array $tab		Array of tab data
 		*/
-		public function display_woocommerce_wp_wysiwyg_input_duplicate() {
+		protected function display_woocommerce_wp_wysiwyg_input_duplicate() {
 
 			$this->woocommerce_wp_textarea_input( array( 'id' => 'hidden_duplicator_row_content' , 'label' => __( 'Content', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'placeholder' => __( 'HTML and text to display.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 'style' => 'width:70%;height:10.5em;' , 'class' => 'yikes_woo_tabs_content_field' ) );
 		}
@@ -303,7 +323,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		*
 		* @return string HTML
 		*/
-		public function display_yikes_button_holder_container_duplicate() {
+		protected function display_yikes_button_holder_container_duplicate() {
 			$return_html = '';
 
 			$return_html .= '<section class="button-holder" alt="">';
@@ -328,7 +348,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		*
 		* @return string HTML
 		*/
-		public function display_yikes_number_of_tabs( $tab_count ) {
+		protected function display_yikes_number_of_tabs( $tab_count ) {
 			$return_html = '';
 
 			$return_html .= '<input type="hidden" value="' . $tab_count . '" id="number_of_tabs" name="number_of_tabs" >';
@@ -341,12 +361,17 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		*
 		* @since 1.5
 		*
+		* @param bool | $product_has_tabs | flag indicating whether the product has any defined tabs
 		* @return string HTML
 		*/
-		public function display_yikes_add_tabs_container() {
+		protected function display_yikes_add_tabs_container( $product_has_tabs ) {
 			$return_html = '';
+
+			// If we don't have any tabs, then add a class
+			$class_to_add = ( $product_has_tabs === false ) ? '_yikes_wc_add_tab_center' : '';
 			
-			$return_html .= '<div class="add_tabs_container">';
+			$return_html .= '<div class="add_tabs_container ' . $class_to_add . '">';
+			$return_html .=		'<span id="yikes_woo_ajax_save_feedback"></span>';
 			$return_html .= 	'<a href="#" class="button-secondary _yikes_wc_add_tabs" id="add_another_tab">';
 			$return_html .= 		'<i class="dashicons dashicons-plus-alt inline-button-dashicons"></i>';
 			$return_html .=			__( 'Add a Tab' , 'yikes-inc-easy-custom-woocommerce-product-tabs' );
