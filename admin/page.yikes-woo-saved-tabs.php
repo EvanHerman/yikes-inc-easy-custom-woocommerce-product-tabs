@@ -90,7 +90,7 @@
 										<?php echo $tab_title; ?>
 										<div class="row-actions">
 											<span class="">
-												<a href="<?php echo $edit_tab_url ?>"><?php _e( 'View Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
+												<a href="<?php echo $edit_tab_url ?>"><?php _e( 'Edit Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
 											</span> |
 											<span data-tab-id="<?php echo $tab_id; ?>" class="yikes_woo_delete_this_tab trash">
 												<?php _e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
@@ -100,7 +100,7 @@
 									<td class="column-columnname"><?php echo $tab_content_excerpt; ?></td>
 									<td class="column-columnname" align="center">
 										<a href="<?php echo $edit_tab_url ?>" class="button-secondary view-saved-tab-button" data-entry-id="<?php echo (int) $tab_id; ?>">
-											<?php _e( 'View Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+											<?php _e( 'Edit Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 										</a>
 									</td>
 								</tr>

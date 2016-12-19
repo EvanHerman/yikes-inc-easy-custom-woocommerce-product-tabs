@@ -33,7 +33,7 @@ $number_of_products_using_this_tab = count( $products );
 	<div id="poststuff">
 
 		<div class="yikes_woo_go_back_url">
-			<a href="<?php echo $redirect; ?>"><?php _e( 'Go back', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>  
+			<a href="<?php echo $redirect; ?>"><?php _e( 'Go Back to Saved Tabs list', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>  
 		</div>
 
 		<div class="row yikes_woo_reusable_tabs_container" id="yikes_woo_reusable_tabs_container_<?php echo $tab_id ?>" data-tab-id="<?php echo $tab_id; ?>">
