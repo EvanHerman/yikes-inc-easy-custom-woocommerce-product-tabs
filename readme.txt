@@ -1,5 +1,5 @@
 === Custom Product Tabs for WooCommerce  ===
-Contributors: yikesinc, eherman24, liljimmi
+Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
@@ -73,7 +73,7 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
-= 1.5 - December 20rd, 2016 =
+= 1.5 - December 20th, 2016 =
 * Version 1.5 includes a brand new feature - saved tabs - as well as a number of bug fixes, style tweaks, code clean-up, and comments
 * UI: Complete overhaul of the custom tab interface for an easier, responsive tab creating experience.
 * Saved Tabs: A new settings page has been added for users to create / update / delete saved tabs (see FAQ for more information)
