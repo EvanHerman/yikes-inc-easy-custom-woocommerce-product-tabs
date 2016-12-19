@@ -5,6 +5,7 @@
 	*
 	* @param string | textarea_id  | ID of the textarea where we're initializing the WYSIWYG editor
 	* @param bool	| product_page | bool indicating whether we're on the product page (true) or settings page (false)
+	* @param string | tab_content  | String to pre-populate the editor with content
 	*
 	* @return bool
 	*/
@@ -29,6 +30,11 @@
 				jQuery( '.' + textarea_id + '_field' ).html( '<p>' + repeatable_custom_tabs_shared.get_wp_editor_failure_message + '</p>' );
 
 				return false;
+			}
+
+			// If we're on the button page, show the button holder (we temporarily hide it for UI/UX purposes)
+			if ( product_page === true ) {
+				jQuery( '.button-holder' ).show();
 			}
 
 			// Add wp_editor HTML to the page

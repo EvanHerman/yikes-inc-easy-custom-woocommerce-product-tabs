@@ -15,6 +15,14 @@
 		// Delete a saved tab
 		jQuery( '.yikes_woo_delete_this_tab' ).click( function() {
 
+			// Confirm: Are you sure?
+			var continue_delete = confirm( 'Are you sure you want to delete this tab?' );
+
+			if ( continue_delete === false ) {
+				return;
+			}
+
+			// Store the tab_id
 			var tab_id = jQuery( this ).data( 'tab-id' );
 
 			if ( jQuery( this ).hasClass( 'yikes_woo_delete_this_tab_single' ) ) {

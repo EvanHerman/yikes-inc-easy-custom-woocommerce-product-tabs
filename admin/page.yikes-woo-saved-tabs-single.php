@@ -24,11 +24,14 @@ $number_of_products_using_this_tab = count( $products );
 		<span class="yikes_woo_tab_id page-title-action">ID: <?php echo $tab_id; ?></span>
 	</h1>
 
-	<div class="yikes_woo_settings_info">
-		<p>
-			<?php _e( "Any updates made here will apply to all products using this tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
-		</p>
-	</div>
+	<?php if ( $new_tab !== true ) { ?>
+		<!-- Only show this if we're updating an existing tab -->
+		<div class="yikes_woo_settings_info">
+			<p>
+				<?php _e( "Any updates made here will apply to all products using this tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+			</p>
+		</div>
+	<?php } ?>
 
 	<div id="poststuff">
 
@@ -75,9 +78,11 @@ $number_of_products_using_this_tab = count( $products );
 					<p>
 						This tab is currently not used for any products.
 					</p>
-				<?php } else { ?>
+				<?php } else {
+					$plural_product_name = ( $number_of_products_using_this_tab > 1 ) ? 'products' : 'product';
+				?>
 					<p>
-						This tab is currently used on <span class="yikes_woo_number_of_products"><?php echo $number_of_products_using_this_tab; ?></span> product(s)
+						This tab is currently used on <span class="yikes_woo_number_of_products"><?php echo $number_of_products_using_this_tab; ?></span> <?php echo $plural_product_name ?>
 					</p>
 					<?php foreach( $products as $product_id ) { ?> 
 						<p>
