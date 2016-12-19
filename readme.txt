@@ -9,15 +9,15 @@ Tested WooCommerce up to: 2.5.2
 Stable tag: 1.5
 License: GPLv2 or later
 
-Add custom tabs to products in WooCommerce. 
+Add custom tabs with content to products in WooCommerce. 
 
 == Description ==
 
-This plugin extends [WooCommerce](www.woothemes.com/woocommerce/) to allow shop owners to add custom tabs to products. The tabs are displayed on the individual product pages.
+This plugin extends [WooCommerce](www.woothemes.com/woocommerce/) to allow shop owners to add custom tabs to products. The tabs are displayed on the individual product pages to the right of the default "Description" tab.
 
 Individual product tabs are managed on the WooCommerce Edit Product screen and can be added on a per product basis. You can also create saved tabs and add them to multiple products as needed. Tabs can be easily added, deleted and rearranged.
 
-Tab content areas use the standard WordPress text editor, and may contain text, html or shortcodes. 
+Tab content areas use the standard WordPress text editor and may contain text, images, html or shortcodes. 
 
 If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
 
