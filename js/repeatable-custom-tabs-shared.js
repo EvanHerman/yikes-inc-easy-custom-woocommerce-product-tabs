@@ -79,13 +79,15 @@
 	*/
 	function yikes_woo_toggle_controls( toggle_enable ) {
 		if ( toggle_enable === 'disable' ) {
-			jQuery( '.remove_this_tab' ).attr('disabled', 'disabled');
-			jQuery( '#add_another_tab' ).attr('disabled', 'disabled');
+			jQuery( '.remove_this_tab' ).attr( 'disabled', 'disabled' );
+			jQuery( '#add_another_tab' ).attr( 'disabled', 'disabled' );
+			jQuery( '._yikes_wc_apply_a_saved_tab' ).attr( 'disabled', 'disabled' );
 			jQuery( '.move-tab-data-up' ).hide();
 			jQuery( '.move-tab-data-down' ).hide();
 		} else {
-			jQuery( '.remove_this_tab' ).removeAttr('disabled');
-			jQuery( '#add_another_tab' ).removeAttr('disabled');
+			jQuery( '.remove_this_tab' ).removeAttr( 'disabled' );
+			jQuery( '#add_another_tab' ).removeAttr( 'disabled' );
+			jQuery( '._yikes_wc_apply_a_saved_tab' ).removeAttr( 'disabled' )
 			jQuery( '.move-tab-data-up' ).show();
 			jQuery( '.move-tab-data-down' ).show();		
 		}

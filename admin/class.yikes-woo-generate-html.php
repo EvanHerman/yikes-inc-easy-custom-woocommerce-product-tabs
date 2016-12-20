@@ -369,10 +369,10 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		protected function display_yikes_add_tabs_container( $product_has_tabs ) {
 			$return_html = '';
 
-			// If we don't have any tabs, then add a class
-			$class_to_add = ( $product_has_tabs === false ) ? '_yikes_wc_add_tab_center' : '';
+			// If we don't have any tabs, then add some classes
+			$classes_to_add = ( $product_has_tabs === false ) ? '_yikes_wc_add_tab_center_new _yikes_wc_add_tab_center' : '';
 			
-			$return_html .= '<div class="add_tabs_container ' . $class_to_add . '">';
+			$return_html .= '<div class="add_tabs_container ' . $classes_to_add . '">';
 			$return_html .=		'<span id="yikes_woo_ajax_save_feedback"></span>';
 			$return_html .= 	'<a href="#" class="button-secondary _yikes_wc_add_tabs" id="add_another_tab">';
 			$return_html .= 		'<i class="dashicons dashicons-plus-alt inline-button-dashicons"></i>';
