@@ -78,7 +78,7 @@
 
 							// Set variables before using them
 							$tab_title 			 = ( isset( $tab_data['tab_title'] ) && ! empty( $tab_data['tab_title'] ) ) ? $tab_data['tab_title'] : '';
-							$tab_content_excerpt = ( isset( $tab_data['tab_content'] ) && ! empty( $tab_data['tab_content'] ) ) ? substr( wp_strip_all_tags( $tab_data['tab_content'] ), 0, 150 ) : '';
+							$tab_content_excerpt = ( isset( $tab_data['tab_content'] ) && ! empty( $tab_data['tab_content'] ) ) ? stripslashes( substr( wp_strip_all_tags( $tab_data['tab_content'] ), 0, 150 ) ) : '';
 							$tab_id 			 = ( isset( $tab_data['tab_id'] ) && ! empty( $tab_data['tab_id'] ) ) ? (int) $tab_data['tab_id'] : 0;
 							$edit_tab_url 		 = ( isset( $settings_page_slug ) ) ? add_query_arg( array( 'saved-tab-id' => $tab_id ), esc_url_raw( 'options-general.php?page=' . $settings_page_slug ) ) : '';
 							?>
