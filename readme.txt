@@ -37,7 +37,8 @@ If you experience any problems, please submit a New Issue on our [Github Issue T
 
 1. Custom Tabs manager on the 'Edit Product' screen
 2. Custom product tab content displayed on the front end
-3. Contact Form 7 shortcode rendered in custom product tab
+3. All of the saved tabs on the settings page
+4. Editing a single saved tab
 
 == Frequently Asked Questions ==
 
