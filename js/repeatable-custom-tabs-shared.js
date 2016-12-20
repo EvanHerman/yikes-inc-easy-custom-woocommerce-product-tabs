@@ -177,7 +177,7 @@
 		var content = '';
 
 		// Check if tinymce is initialized, and if our instance is known
-		if ( tinymce !== 'undefined' && tinymce.get( editor_id ) !== 'undefined' ) {
+		if ( tinymce !== 'undefined' && tinymce.get( editor_id ) !== null ) {
 
 			// Store the content
 			content = tinymce.get( editor_id ).getContent();
