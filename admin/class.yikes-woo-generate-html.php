@@ -36,7 +36,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 					if ( $product_has_tabs === true ) {
 
 						// Loop through all the tabs and add all components
-						$this->generate_tab_html( $tab_data );
+						$this->generate_tab_html( $tab_data, $reusable_tab_options_array, $post );
 					}
 
 					// Add duplicate container
@@ -86,9 +86,11 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		*
 		* @since 1.5
 		*
-		* @param array | $tab_data | array of tab data
+		* @param array | $tab_data 				| Array of tab data
+		* @param array | $reusable_tab_options  | Array of saved tab data
+		* @param object| $post					| The global $post object
 		*/
-		protected function generate_tab_html( $tab_data ) {
+		protected function generate_tab_html( $tab_data, $reusable_tab_options, $post ) {
 			$i = 1;
 
 			// Set up the initial display, by looping
@@ -98,9 +100,9 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 				$reusable_tab_id = '';
 
 				// If $tab is in the array of reusable tabs, set flag
-				if ( isset( $reusable_tab_options_array ) && isset( $reusable_tab_options_array[$post->ID] ) ) {
+				if ( isset( $reusable_tab_options ) && isset( $reusable_tab_options[$post->ID] ) ) {
 
-					foreach( $reusable_tab_options_array[$post->ID] as $id => $reusable_tab_data ) {
+					foreach( $reusable_tab_options[$post->ID] as $id => $reusable_tab_data ) {
 						if ( isset( $reusable_tab_data['tab_id'] ) && isset( $tab['id'] ) && $reusable_tab_data['tab_id'] === $tab['id'] ) {
 							$reusable_tab_flag = true;
 							$reusable_tab_id = $reusable_tab_data['reusable_tab_id'];

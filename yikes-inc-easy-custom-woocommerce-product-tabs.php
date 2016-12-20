@@ -157,7 +157,7 @@
 			add_filter( 'yikes_woocommerce_custom_repeatable_product_tabs_content', 'do_shortcode' );
 			
 			// Enqueue our JS / CSS files
-			add_action( 'admin_enqueue_scripts' , array( $this , 'enqueue_repeatable_tab_script' ) );
+			add_action( 'admin_enqueue_scripts' , array( $this , 'enqueue_tab_scripts' ) );
 
 			// Define our AJAX calls
 			add_action( 'wp_ajax_yikes_woo_get_wp_editor', array( $this, 'yikes_woo_get_wp_editor' ) );
@@ -174,10 +174,17 @@
 
 			// i18n
 			add_action( 'plugins_loaded', array( $this, 'yikes_woo_load_plugin_textdomain' ) );
+
+			// Add settings link to plugin on plugins page
+			add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array( $this, 'add_plugin_action_links' ), 10, 1 );
 		}
 		
-		/** Frontend methods ******************************************************/
-		public function enqueue_repeatable_tab_script( $hook ) {
+		/**
+		* Enqueue all the required scripts and styles on the appropriate pages
+		*
+		* @param string | $hook | The current page slug
+		*/
+		public function enqueue_tab_scripts( $hook ) {
 			global $post;
 			if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 				if ( $post->post_type == 'product' ) {
@@ -238,6 +245,8 @@
 				wp_enqueue_style( 'repeatable-custom-tabs-styles' );
 			}
 		}
+
+		/** Frontend methods ******************************************************/
 
 		/**
 		 * Add the custom product tab
@@ -318,6 +327,19 @@
 		/** Admin methods ******************************************************/
 
 		/**
+		* Add a link to the settings page to the plugin's action links
+		*
+		* @since 1.5
+		*
+		* @param array | $links | array of links passed from the plugin_action_links_{plugin_name} filter
+		*/
+		public function add_plugin_action_links( $links ) {
+			$href = admin_url( esc_url_raw( 'options-general.php?page=' . $this->settings_page_slug ) );
+			$links[] = '<a href="'. $href .'">Settings</a>';
+			return $links;
+		}
+
+		/**
 		 * Adds a new tab to the Product Data postbox in the admin product interface
 		 */
 		public function render_custom_product_tabs() {
@@ -357,7 +379,12 @@
 		}
 
 		/**
+		* Save the tabs to the database
 		*
+		* @since 1.5
+		*
+		* @param int  | $post_id 	  | The ID of the post that has custom tabs
+		* @param bool | $is_ajax_flag | A flag signifying whether we're calling this function from an AJAX call
 		*/
 		protected function save_tabs( $post_id, $is_ajax_flag ) {
 			$tab_data = array();
@@ -609,7 +636,7 @@
 
 			// Get our $_POST vars
 			if ( isset( $_POST['tab_title'] ) && ! empty( $_POST['tab_title'] ) ) {
-				$tab_title = $_POST['tab_title'];
+				$tab_title = stripslashes( $_POST['tab_title'] );
 
 				$tab_string_id = strtolower( $tab_title );
 				$tab_string_id = preg_replace( "/[^\w\s]/", '', $tab_string_id );
@@ -768,11 +795,7 @@
 				if ( isset( $tab['tab_content'] ) ) {
 
 					// stripslashes() necessary for images
-					$saved_tabs[$key]['tab_content'] = stripslashes(  $tab['tab_content'] ); 
-
-					// Return a tab_content_excerpt for UI display purposes
-					$saved_tabs[$key]['tab_content_excerpt'] = substr( strip_tags( $tab['tab_content'] ), 0, 100 );
-
+					$saved_tabs[$key]['tab_content'] = stripslashes( $tab['tab_content'] ); 
 				}
 			}
 
