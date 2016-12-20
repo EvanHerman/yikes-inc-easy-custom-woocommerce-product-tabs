@@ -204,12 +204,15 @@
 	* @param  string | content	 | the content to supply the editor with
 	*/
 	function yikes_woo_set_content_for_wysiwyg( editor_id, content ) {
-
+		
 		// Check if tinymce is initialized, and if our instance is known
-		if ( tinymce !== 'undefined' && tinymce.get( editor_id ) !== 'undefined' ) {
+		if ( tinymce !== 'undefined' && tinymce.get( editor_id ) !== null ) {
 
 			// If it's initialized, we can just set the content from here using setContent()
 			tinymce.get( editor_id ).setContent( content );
+
+			// tinyMCE stores the value in both places, so we need to set the textarea content from here too
+			jQuery( '#' + editor_id ).val( content );
 		} else {
 
 			// Else we need to set the value using the textarea's val
