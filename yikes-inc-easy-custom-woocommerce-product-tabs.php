@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.5
+ * Version: 1.5.1
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -170,7 +170,7 @@
 			add_action( 'admin_menu', array( $this, 'yikes_woo_register_settings_page' ) );
 
 			// Default WYSIWYG to 'visual'
-			add_filter( 'wp_default_editor', array( $this, 'yikes_woo_set_editor_to_visual' ) );
+			add_filter( 'wp_default_editor', array( $this, 'yikes_woo_set_editor_to_visual' ), 10, 1 );
 
 			// i18n
 			add_action( 'plugins_loaded', array( $this, 'yikes_woo_load_plugin_textdomain' ) );
@@ -1130,9 +1130,17 @@
 		*
 		* @since 1.5
 		*
-		* @return string 'tinymce'
+		* @param  string | $mode | The current mode of the editor
+		* @return string 'tinymce' || nothing
 		*/
-		public function yikes_woo_set_editor_to_visual() {
+		public function yikes_woo_set_editor_to_visual( $mode ) {
+			global $post;
+
+			// Only default the editor on the products page
+			if ( ! isset( $post ) || ( isset( $post ) && isset( $post->post_type ) && $post->post_type !== 'product' ) ) {
+				return $mode;
+			}
+			
 			$default_editor_tab = apply_filters( 'yikes_woocommerce_default_editor_mode', 'tinymce' );
 			return $default_editor_tab;
 		}
