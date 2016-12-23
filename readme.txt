@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.7
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.6.9
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -73,6 +73,10 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.5.2 - December 23rd, 2016 =
+* The editor should only default to the 'Visual' tab for our Custom Product Tabs (no other editors)
+* Added all of the default WordPress settings to the editor
 
 = 1.5.1 - December 22nd, 2016 =
 * Fixed bug that caused content to be copied incorrectly when moving tabs up / down
