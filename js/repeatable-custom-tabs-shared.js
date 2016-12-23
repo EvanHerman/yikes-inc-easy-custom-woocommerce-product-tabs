@@ -46,8 +46,9 @@
 			}
 
 			// These are WordPress default editor settings, retrieved from wp-includes\class-wp-editor.php
+			// The `setup:` function is not part of the WordPress core, but the default styles were not being applied
 			tinymce.init({
-				selector: textarea_id,
+				selector: '#' + textarea_id,
 				theme: 'modern',
 				skin: 'lightgray',
 				language: 'en',
@@ -79,23 +80,29 @@
 				end_container_on_empty_block: true,
 				wpeditimage_disable_captions: false,
 				wpeditimage_html5_captions: true,
-				plugins: 'charmap,hr,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpview',
-				selector: '#' + textarea_id,
+				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview,wpembed',
 				resize: 'vertical',
 				menubar: false,
 				wpautop: true,
 				indent: false,
-				toolbar1: 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv',
-				toolbar2: 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
+				toolbar1: 'formatselect,bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_adv',
+				toolbar2: 'strikethrough,hr,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
 				toolbar3: '',
 				toolbar4: '',
 				tabfocus_elements: ':prev,:next',
 				body_class: 'id post-type-post post-status-publish post-format-standard',
+				setup: function( editor ) {
+					editor.on( 'init', function() {
+						this.getBody().style.fontFamily = 'Georgia, "Times New Roman", "Bitstream Charter", Times, serif';
+						this.getBody().style.fontSize = '16px';
+						this.getBody().style.color = '#333';
+					});
+				}
 			});
 
 			// Initialize tinymce
 			if( typeof( tinymce ) != 'undefined' ) {
-				tinymce.execCommand( 'mceAddEditor', false, textarea_id );	
+				tinymce.execCommand( 'mceAddEditor', false, textarea_id );
 			}
 
 			// After tinymce is initialized, let's check if we need to disable the box (because it's a saved tab)
