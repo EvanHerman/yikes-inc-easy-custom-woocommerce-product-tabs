@@ -1131,18 +1131,23 @@
 		* @since 1.5
 		*
 		* @param  string | $mode | The current mode of the editor
-		* @return string 'tinymce' || nothing
+		* @return string 'tinymce' || $mode
 		*/
 		public function yikes_woo_set_editor_to_visual( $mode ) {
 			global $post;
 
-			// Only default the editor on the products page
-			if ( ! isset( $post ) || ( isset( $post ) && isset( $post->post_type ) && $post->post_type !== 'product' ) ) {
+			// Only continue if we're on the products page
+			if ( isset( $post ) && isset( $post->post_type ) && $post->post_type !== 'product' ) {
 				return $mode;
 			}
-			
-			$default_editor_tab = apply_filters( 'yikes_woocommerce_default_editor_mode', 'tinymce' );
-			return $default_editor_tab;
+
+			// This is funky, but only default the editor when we don't have a post (and we're on the product page)
+			// This a result of calling the wp_editor via AJAX - I think
+			if ( ! isset( $post ) ) {
+				return apply_filters( 'yikes_woocommerce_default_editor_mode', 'tinymce' );
+			} else {
+				return $mode;
+			}
 		}
 
 		/* End Misc. */
