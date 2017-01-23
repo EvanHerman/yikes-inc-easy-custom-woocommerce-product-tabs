@@ -286,8 +286,7 @@
 						'title'		=> $tab['title'],
 						'priority'	=> $i++,
 						'callback'	=> array( $this, 'custom_product_tabs_panel_content' ),
-						'content'	=> $tab['content'],  // custom field
-						'class'		=> 'custom-css-class'
+						'content'	=> $tab['content']
 					);
 				}
 				if ( isset( $tabs['reviews'] ) ) {
@@ -315,9 +314,16 @@
 		 **/
 		public function custom_product_tabs_panel_content( $key, $tab ) {
 
-			// allow shortcodes to function
-			$content = apply_filters( 'the_content', $tab['content'] );
-			$content = str_replace( ']]>', ']]&gt;', $content );
+			// We don't want to run our content through the_content filter directly because the current $product's the_content may overwrite it
+			// So we need to use the same HTML-formatting functions the_content filter uses - (list of filters retrieved from /wp-includes/default-filters.php)
+			$content = $tab['content'];
+			$content = function_exists( 'capital_P_dangit' ) ? capital_P_dangit( $content ) : $content;
+			$content = function_exists( 'wptexturize' ) ? wptexturize( $content ) : $content;
+			$content = function_exists( 'convert_smilies' ) ? convert_smilies( $content ) : $content;
+			$content = function_exists( 'wpautop' ) ? wpautop( $content ) : $content;
+			$content = function_exists( 'shortcode_unautop' ) ? shortcode_unautop( $content ) : $content;
+			$content = function_exists( 'prepend_attachment' ) ? prepend_attachment( $content ) : $content;
+			$content = function_exists( 'wp_make_content_images_responsive' ) ? wp_make_content_images_responsive( $content ) : $content;
 
 			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_heading', '<h2 class="yikes-custom-woo-tab-title yikes-custom-woo-tab-title-'.sanitize_title($tab['title']).'">' . $tab['title'] . '</h2>', $tab );
 			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_content', $content, $tab );
@@ -431,7 +437,6 @@
 							$tab_id = preg_replace( "/\s+/", '-', $tab_id );
 							// replace all multiple spaces with single dashes
 							$tab_id = $tab_id;
-							// prepend with 'tab-' string
 						}
 					}
 					$current_tab_id_array[] = $tab_id;
