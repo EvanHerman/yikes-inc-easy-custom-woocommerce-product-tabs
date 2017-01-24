@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.7.1
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.6.9
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -73,6 +73,9 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.5.4 - January 23rd, 2016 =
+* Re-did 1.5.3 changes - `the_content` filter is reapplied and the specific Site Builder plugin's filters are
 
 = 1.5.3 - January 23rd, 2016 =
 * Replaced the use of `the_content` filter with the filter's associated functions (e.g. `wptexturize`, `wpautop`)
