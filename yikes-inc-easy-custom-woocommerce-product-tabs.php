@@ -325,6 +325,10 @@
 			$content = function_exists( 'prepend_attachment' ) ? prepend_attachment( $content ) : $content;
 			$content = function_exists( 'wp_make_content_images_responsive' ) ? wp_make_content_images_responsive( $content ) : $content;
 
+			// Deal with URLs
+			$embed = new WP_Embed;
+			$content = method_exists( $embed, 'autoembed' ) ? $embed->autoembed( $content ) : $content;
+
 			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_heading', '<h2 class="yikes-custom-woo-tab-title yikes-custom-woo-tab-title-'.sanitize_title($tab['title']).'">' . $tab['title'] . '</h2>', $tab );
 			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_content', $content, $tab );
 		}
