@@ -320,7 +320,7 @@
 			$content = apply_filters( 'the_content', $tab['content'] );
 
 			// Hardcoding Site Origin Page Builder conflict fix - re-add their the_content filter
-			add_filter( 'the_content', 'siteorigin_panels_filter_content' );
+			if ( function_exists( 'siteorigin_panels_filter_content' ) ) add_filter( 'the_content', 'siteorigin_panels_filter_content' );
 
 			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_heading', '<h2 class="yikes-custom-woo-tab-title yikes-custom-woo-tab-title-'.sanitize_title($tab['title']).'">' . $tab['title'] . '</h2>', $tab );
 			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_content', $content, $tab );
