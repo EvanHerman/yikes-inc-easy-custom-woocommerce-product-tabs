@@ -3,10 +3,10 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.7.1
+Tested up to: 4.7.2
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.6.9
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -74,13 +74,16 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
-= 1.5.5 - January 23rd, 2016 =
+= 1.5.6 - February 16th, 2017 =
+* Fixed an issue where the "Add a Saved Tab" modal was displaying YouTube videos if a saved tab had a YouTube URL in its content
+
+= 1.5.5 - January 23rd, 2017 =
 * Re-did 1.5.4 changes - checking for function existence before using it
 
-= 1.5.4 - January 23rd, 2016 =
+= 1.5.4 - January 23rd, 2017 =
 * Re-did 1.5.3 changes - `the_content` filter is reapplied and the specific Site Builder plugin's filters are
 
-= 1.5.3 - January 23rd, 2016 =
+= 1.5.3 - January 23rd, 2017 =
 * Replaced the use of `the_content` filter with the filter's associated functions (e.g. `wptexturize`, `wpautop`)
 
 = 1.5.2 - December 23rd, 2016 =
