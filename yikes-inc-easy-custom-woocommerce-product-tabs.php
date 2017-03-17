@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.5.7
+ * Version: 1.5.8
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -62,7 +62,7 @@
 		private $tab_data = false;
 
 		/** plugin version number */
-		const VERSION = '1.5.7';
+		const VERSION = '1.5.8';
 
 		/** plugin text domain */
 		const TEXT_DOMAIN = 'yikes-inc-easy-custom-woocommerce-product-tabs';
@@ -162,7 +162,8 @@
 			// Define our AJAX calls
 			add_action( 'wp_ajax_yikes_woo_get_wp_editor', array( $this, 'yikes_woo_get_wp_editor' ) );
 			add_action( 'wp_ajax_yikes_woo_save_tab_as_reusable', array( $this, 'yikes_woo_save_tab_as_reusable' ) ); 
-			add_action( 'wp_ajax_yikes_woo_fetch_reusable_tab', array( $this, 'yikes_woo_fetch_reusable_tab' ) ); 
+			add_action( 'wp_ajax_yikes_woo_fetch_reusable_tabs', array( $this, 'yikes_woo_fetch_reusable_tabs' ) );
+			add_action( 'wp_ajax_yikes_woo_fetch_reusable_tab', array( $this, 'yikes_woo_fetch_reusable_tab' ) );
 			add_action( 'wp_ajax_yikes_woo_delete_reusable_tab_handler', array( $this, 'yikes_woo_delete_reusable_tab_handler' ) );
 			add_action( 'wp_ajax_yikes_woo_save_product_tabs', array( $this, 'yikes_woo_save_product_tabs' ) );
 			
@@ -199,6 +200,7 @@
 						'ajaxurl' 						=> admin_url( 'admin-ajax.php' ),
 						'get_wp_editor_security_nonce' 	=> wp_create_nonce( 'yikes_woo_get_wp_editor_nonce' ),
 						'save_tab_as_reusable_nonce' 	=> wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
+						'fetch_reusable_tabs_nonce' 	=> wp_create_nonce( 'yikes_woo_fetch_reusable_tabs_nonce' ),
 						'fetch_reusable_tab_nonce' 		=> wp_create_nonce( 'yikes_woo_fetch_reusable_tab_nonce' ),
 						'delete_reusable_tab_nonce' 	=> wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ), 
 						'save_product_tabs_nonce' 		=> wp_create_nonce( 'yikes_woo_save_product_tabs_nonce' ),
@@ -296,6 +298,18 @@
 					$tabs['reviews']['priority'] = $i; // make sure the reviews tab remains on the end (if it is set)
 				}
 			}
+
+			/**
+			* Filter: 'yikes_woo_filter_all_product_tabs'
+			*
+			* Generic filter that passes all of the tab info and the corresponding product. Cheers.
+			*
+			* Note: This passes all of the tabs for the current product, not just the Custom Product Tabs created by this plugin.
+			*
+			* @param array  | $tab		| Array of $tab data arrays.
+			* @param object | $product	| The WooCommerce product these tabs are for
+			*/
+			$tabs = apply_filters( 'yikes_woo_filter_all_product_tabs', $tabs, $product );
 					
 			return $tabs;
 			
@@ -317,7 +331,7 @@
 		 **/
 		public function custom_product_tabs_panel_content( $key, $tab ) {
 
-			$content = '';
+			$content = '';			
 
 			// Hardcoding Site Origin Page Builder conflict fix - remove their the_content filter
 			remove_filter( 'the_content', 'siteorigin_panels_filter_content' );
@@ -623,8 +637,8 @@
 			);
 
 			// Return wp_editor HTML
-			wp_editor( $tab_content, $textarea_id, $wp_editor_options );
-			wp_die();
+			wp_editor( stripslashes( $tab_content ), $textarea_id, $wp_editor_options );
+			exit;
 		}
 
 		/**
@@ -786,12 +800,13 @@
 			wp_send_json_success( array( 'redirect' => false ) );
 		}
 
+
 		/**
-		* [AJAX] Fetch all reusable tabs
+		* [AJAX] Fetch a single reusable
 		*
 		* @since 1.5
 		*
-		* @return object success w/ saved_tabs || failure w/ message 
+		* @return object success w/ tab data || failure w/ message 
 		*/
 		public function yikes_woo_fetch_reusable_tab() {
 
@@ -800,15 +815,48 @@
 			 	wp_send_json_error();
 			}
 
+			$tab_id = isset( $_POST['tab_id'] ) ? filter_var( $_POST['tab_id'], FILTER_SANITIZE_NUMBER_INT ) : '';
+
 			// Get the array of saved tabs
 			$saved_tabs = get_option( 'yikes_woo_reusable_products_tabs' );
 
-			// Convert special chars to HTML
-			foreach( $saved_tabs as $key => $tab ) {
-				if ( isset( $tab['tab_content'] ) ) {
+			$tab = isset( $saved_tabs[$tab_id] ) ? $saved_tabs[$tab_id] : false;
 
-					// stripslashes() necessary for images
-					$saved_tabs[$key]['tab_content'] = stripslashes( $tab['tab_content'] ); 
+			$tab['tab_content'] = stripslashes( $tab['tab_content'] );
+
+			if ( ! empty( $saved_tabs ) ) {
+				wp_send_json_success( $tab );	
+			} else {
+				wp_send_json_success( array( 'message' => 'Could not find the tab. Pleae try again.' ) );
+			}
+
+			// If we get this far, send error
+			wp_send_json_error( array( 'message' => 'Uh oh. Something went wrong.' ) );
+		}
+
+		/**
+		* [AJAX] Fetch all reusable tabs
+		*
+		* @since 1.5
+		*
+		* @return object success w/ saved_tabs || failure w/ message 
+		*/
+		public function yikes_woo_fetch_reusable_tabs() {
+
+			// Verify the nonce
+			if ( ! check_ajax_referer( 'yikes_woo_fetch_reusable_tabs_nonce', 'security_nonce', false ) ) {
+			 	wp_send_json_error();
+			}
+
+			// Get the array of saved tabs
+			$saved_tabs = get_option( 'yikes_woo_reusable_products_tabs' );
+
+			$fetch_tab_content = isset( $_POST['fetch_tab_content'] ) ? filter_var( $_POST['fetch_tab_content'], FILTER_VALIDATE_BOOLEAN ) : false;
+
+			// We don't need to pass the content back, and it could be a LOT, so let's just remove it
+			if ( $fetch_tab_content === false ) {
+				foreach( $saved_tabs as $key => $tab ) {
+					unset( $saved_tabs[$key]['tab_content'] );
 				}
 			}
 
@@ -1048,6 +1096,9 @@
 			// Get our saved tabs array
 			$yikes_custom_tab_data = get_option( 'yikes_woo_reusable_products_tabs', array() );
 
+			// New tab URL - used to supply the 'Add Tab' href
+			$new_tab_url = add_query_arg( array( 'saved-tab-id' => 'new' ), esc_url_raw( 'options-general.php?page=' . $settings_page_slug ) );
+
 			// If saved_tab_id is set, we should show the single saved tab // add new tab page
 			if ( isset( $_GET['saved-tab-id'] ) && ! empty( $_GET['saved-tab-id'] ) ) {
 
@@ -1075,9 +1126,6 @@
 				if ( isset( $_GET['delete-success'] ) && $_GET['delete-success'] === '1' ) {
 					$delete_message_display = '';
 				}
-
-				// New tab URL - used to supply the 'Add Tab' href
-				$new_tab_url = add_query_arg( array( 'saved-tab-id' => 'new' ), esc_url_raw( 'options-general.php?page=' . $settings_page_slug ) );
 
 				// Show tab table list
 				require_once( plugin_dir_path(__FILE__) . 'admin/page.yikes-woo-saved-tabs.php' );

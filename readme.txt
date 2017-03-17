@@ -3,10 +3,10 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.7.2
+Tested up to: 4.7.3
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 2.6.9
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -73,6 +73,11 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.5.8 - March 17th, 2017 =
+* Replaced the saved tab's ID w/ an "Add New" button on the single saved tab page - it should be easier to add saved tabs in bulk now
+* Added a filter for all of the custom tab content - it should allow you to apply custom logic such as permissions in one central location
+* Changed the way saved tabs are applied on the edit product page - it should allow embed content (especially Google Maps Embed content) to function correctly in all instances.
 
 = 1.5.7 - February 27th, 2017 =
 * Duplicating a product now duplicates the corresponding saved tabs correctly

@@ -21,7 +21,9 @@ $number_of_products_using_this_tab = count( $products );
 <div class="wrap">
 	<h1 class="screen-media">
 		Custom Product Tabs for WooCommerce | <span id="yikes_woo_tab_title_header"><?php echo $tab_title; ?></span>
-		<span class="yikes_woo_tab_id page-title-action">ID: <?php echo $tab_id; ?></span>
+		<span class="yikes_woo_add_another_tab page-title-action" id="yikes_woo_add_another_tab">
+			<a href="<?php echo $new_tab_url; ?>"> <?php _e( 'Add Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>	</a>
+		</span>
 	</h1>
 
 	<?php if ( $new_tab !== true ) { ?>
