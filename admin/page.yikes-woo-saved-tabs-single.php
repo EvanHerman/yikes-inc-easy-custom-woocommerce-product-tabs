@@ -72,28 +72,27 @@ $number_of_products_using_this_tab = count( $products );
 				</span>
 			</div>
 		</div>
-
-		<div class="yikes_woo_saved_tab_products">
-			<h3 class="yikes_woo_saved_tab_header">Products</h3>
-			<div class="inside entry-details-overview">
-				<?php if ( $number_of_products_using_this_tab === 0 ) { ?>
-					<p>
+		<!-- <div class="yikes_woo_saved_tab_products"> -->
+			<!-- <h3 class="yikes_woo_saved_tab_header">Products</h3> -->
+			<!-- <div class="inside entry-details-overview"> -->
+				<!-- <?php // if ( $number_of_products_using_this_tab === 0 ) { ?> -->
+					<!-- <p>
 						This tab is currently not used for any products.
-					</p>
-				<?php } else {
-					$plural_product_name = ( $number_of_products_using_this_tab > 1 ) ? 'products' : 'product';
-				?>
-					<p>
-						This tab is currently used on <span class="yikes_woo_number_of_products"><?php echo $number_of_products_using_this_tab; ?></span> <?php echo $plural_product_name ?>
-					</p>
-					<?php foreach( $products as $product_id ) { ?> 
-						<p>
-							<?php $edit_product_url = add_query_arg( array( 'post' => $product_id, 'action' => 'edit' ), esc_url_raw( 'post.php' ) ); ?>
-							<span> <a href="<?php echo $edit_product_url ?>"> <?php echo get_the_title( $product_id ); ?> </a> </span>
-						</p>
-					<?php } ?>
-				<?php } ?>
-			</div>
-		</div>
+					</p> -->
+				<!-- <?php//  } else {
+					/* $plural_product_name = ( $number_of_products_using_this_tab > 1 ) ? 'products' : 'product'; */
+				?> -->
+					<!-- <p> -->
+						<!-- This tab is currently used on <span class="yikes_woo_number_of_products"><?php // echo $number_of_products_using_this_tab; ?></span> <?php // echo $plural_product_name ?> -->
+					<!-- </p> -->
+					<!-- <?php // foreach( $products as $product_id ) { ?>  -->
+						<!-- <p> -->
+							<!-- <?php /* $edit_product_url = add_query_arg( array( 'post' => $product_id, 'action' => 'edit' ), esc_url_raw( 'post.php' ) ); */ ?> -->
+							<!-- <span> <a href="<?php // echo $edit_product_url ?>"> <?php // echo get_the_title( $product_id ); ?> </a> </span> -->
+						<!-- </p> -->
+					<!-- <?php // } ?> -->
+				<!-- <?php // } ?> -->
+			<!-- </div> -->
+		<!-- </div> -->
 	</div>
 </div>
