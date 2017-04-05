@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.7.3
 Requires WooCommerce at least: 2.0
 Tested WooCommerce up to: 3.0.0
-Stable tag: 1.5.9
+Stable tag: 1.5.10
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -73,6 +73,9 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.5.10 - April 5th, 2017 =
+* Duplicating a product now duplicates custom product tabs and saved tabs correctly
 
 = 1.5.9 - April 4th, 2017 =
 * Tested and updated the plugin for WooCommerce v3.0.0

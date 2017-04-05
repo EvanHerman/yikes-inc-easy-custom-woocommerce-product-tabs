@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.5.9
+ * Version: 1.5.10
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -62,7 +62,7 @@
 		private $tab_data = false;
 
 		/** plugin version number */
-		const VERSION = '1.5.9';
+		const VERSION = '1.5.10';
 
 		/** plugin text domain */
 		const TEXT_DOMAIN = 'yikes-inc-easy-custom-woocommerce-product-tabs';
@@ -179,8 +179,11 @@
 			// Add settings link to plugin on plugins page
 			add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array( $this, 'add_plugin_action_links' ), 10, 1 );
 
+			// Duplicate any custom tabs when a product is duplicated
+			add_action( 'woocommerce_product_duplicate', array( $this, 'yikes_woo_dupe_custom_product_tabs' ), 10, 2 );
+
 			// Duplicate any saved tabs when a product is duplicated
-			add_filter( 'woocommerce_duplicate_product', array( $this, 'yikes_woo_dupe_saved_tabs_on_product_dupe' ), 10, 2 );
+			add_filter( 'woocommerce_product_duplicate', array( $this, 'yikes_woo_dupe_saved_tabs_on_product_dupe' ), 11, 2 );
 		}
 		
 		/**
@@ -1211,19 +1214,34 @@
 			}
 		}
 
+
+		/**
+		* When a WooCommere product is duplicated, check for and duplicate the custom tabs.
+		*
+		* @param object	| $duplicated_product | The new, duplicated product
+		* @param object | $original_product   | The original product
+		*/
+		public function yikes_woo_dupe_custom_product_tabs( $duplicate_product, $original_product ) {
+			$current_products_tabs = get_post_meta( $original_product->get_id(), 'yikes_woo_products_tabs', true );
+
+			if ( ! empty( $current_products_tabs ) ) {				
+				update_post_meta( $duplicate_product->get_id(), 'yikes_woo_products_tabs', $current_products_tabs );
+			}
+		}
+
 		/**
 		* When a WooCommere product is duplicated, check for and duplicate the saved tabs.
 		*
-		* @param int	| $post_id | The new post's ID
-		* @param object | $old_post| The old post's post object (the one that was used to duplicate - not the new, duplicated one)
+		* @param object	| $duplicated_product | The new, duplicated product
+		* @param object | $original_product   | The original product
 		*/
-		public function yikes_woo_dupe_saved_tabs_on_product_dupe( $post_id, $old_post ) {
+		public function yikes_woo_dupe_saved_tabs_on_product_dupe( $duplicate_product, $original_product ) {
 
 			// First, let's grab our applied saved tab options array
 			$saved_tabs_array = get_option( 'yikes_woo_reusable_products_tabs_applied' );
 
 			// Grab the old post's ID
-			$old_post_id = isset( $old_post->ID ) ? $old_post->ID : '';
+			$old_post_id = $original_product->get_id();
 
 			// (1) Make sure we have a non-empty array of saved tabs, 
 			// (2) Makre sure we have the ID of the old post, and then
@@ -1233,11 +1251,11 @@
 				// Loop through the $saved_tabs_array and update the post_id item
 				$new_products_saved_tabs = $saved_tabs_array[$old_post_id];
 				foreach ( $new_products_saved_tabs as $saved_tab_id => $saved_tab ) {
-					$new_products_saved_tabs[$saved_tab_id]['post_id'] = $post_id;
+					$new_products_saved_tabs[$saved_tab_id]['post_id'] = $duplicate_product->get_id();
 				}
 
 				// Add the old post's saved tabs, with the new post's ID as the key
-				$saved_tabs_array[$post_id] = $new_products_saved_tabs;
+				$saved_tabs_array[$duplicate_product->get_id()] = $new_products_saved_tabs;
 
 				// Update the saved tab's option
 				update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs_array );
