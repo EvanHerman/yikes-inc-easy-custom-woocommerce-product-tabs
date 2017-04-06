@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.5.10
+ * Version: 1.5.11
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -62,7 +62,7 @@
 		private $tab_data = false;
 
 		/** plugin version number */
-		const VERSION = '1.5.10';
+		const VERSION = '1.5.11';
 
 		/** plugin text domain */
 		const TEXT_DOMAIN = 'yikes-inc-easy-custom-woocommerce-product-tabs';
@@ -275,7 +275,9 @@
 		public function add_custom_product_tabs( $tabs ) {
 			global $product;
 
-			$product_tabs = get_post_meta( $product->get_id(), 'yikes_woo_products_tabs' , true );
+			$product_id = method_exists( $product, 'get_id' ) === true ? $product->get_id() : $product->ID;
+
+			$product_tabs = get_post_meta( $product_id, 'yikes_woo_products_tabs' , true );
 
 			if ( !empty( $product_tabs ) ) {
 				$this->tab_data = $product_tabs;
@@ -564,7 +566,9 @@
 		 */
 		private function product_has_custom_tabs( $product ) {
 			if ( false === $this->tab_data ) {
-				$this->tab_data = maybe_unserialize( get_post_meta( $product->get_id(), 'yikes_woo_products_tabs', true ) );
+				$product_id = method_exists( $product, 'get_id' ) === true ? $product->get_id() : $product->ID;
+
+				$this->tab_data = maybe_unserialize( get_post_meta( $product_id, 'yikes_woo_products_tabs', true ) );
 			}
 			// tab must at least have a title to exist
 			return ! empty( $this->tab_data ) && ! empty( $this->tab_data[0] ) && ! empty( $this->tab_data[0]['title'] );
@@ -1222,10 +1226,13 @@
 		* @param object | $original_product   | The original product
 		*/
 		public function yikes_woo_dupe_custom_product_tabs( $duplicate_product, $original_product ) {
-			$current_products_tabs = get_post_meta( $original_product->get_id(), 'yikes_woo_products_tabs', true );
+			$old_post_id = method_exists( $original_product, 'get_id' ) === true ? $original_product->get_id() : $original_product->ID;
+			$new_post_id = method_exists( $duplicate_product, 'get_id' ) === true ? $duplicate_product->get_id() : $duplicate_product->ID;
+
+			$current_products_tabs = get_post_meta( $old_post_id, 'yikes_woo_products_tabs', true );
 
 			if ( ! empty( $current_products_tabs ) ) {				
-				update_post_meta( $duplicate_product->get_id(), 'yikes_woo_products_tabs', $current_products_tabs );
+				update_post_meta( $new_post_id, 'yikes_woo_products_tabs', $current_products_tabs );
 			}
 		}
 
@@ -1241,21 +1248,24 @@
 			$saved_tabs_array = get_option( 'yikes_woo_reusable_products_tabs_applied' );
 
 			// Grab the old post's ID
-			$old_post_id = $original_product->get_id();
+			$old_post_id = method_exists( $original_product, 'get_id' ) === true ? $original_product->get_id() : $original_product->ID;
 
 			// (1) Make sure we have a non-empty array of saved tabs, 
 			// (2) Makre sure we have the ID of the old post, and then
 			// (3) Check for the old post's saved tabs. (If we don't find any, do nothing)
 			if ( ! empty( $saved_tabs_array ) && is_array( $saved_tabs_array ) && ! empty( $old_post_id ) && isset( $saved_tabs_array[$old_post_id] ) ) {
 
+				// Grab the new post's ID
+				$new_post_id = method_exists( $duplicate_product, 'get_id' ) === true ? $duplicate_product->get_id() : $duplicate_product->ID;
+
 				// Loop through the $saved_tabs_array and update the post_id item
 				$new_products_saved_tabs = $saved_tabs_array[$old_post_id];
 				foreach ( $new_products_saved_tabs as $saved_tab_id => $saved_tab ) {
-					$new_products_saved_tabs[$saved_tab_id]['post_id'] = $duplicate_product->get_id();
+					$new_products_saved_tabs[$saved_tab_id]['post_id'] = $new_post_id;
 				}
 
 				// Add the old post's saved tabs, with the new post's ID as the key
-				$saved_tabs_array[$duplicate_product->get_id()] = $new_products_saved_tabs;
+				$saved_tabs_array[$new_post_id] = $new_products_saved_tabs;
 
 				// Update the saved tab's option
 				update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs_array );
