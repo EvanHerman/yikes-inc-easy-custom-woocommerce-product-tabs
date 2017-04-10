@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.7.3
 Requires WooCommerce at least: 3.0.0
 Tested WooCommerce up to: 3.0.0
-Stable tag: 1.5.11
+Stable tag: 1.5.12
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -73,6 +73,9 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.5.12 - April 10th, 2017 =
+* Adding some CSS to allow the editor's text mode to function properly
 
 = 1.5.11 - April 6th, 2017 =
 * Checking for the existence of the `get_id()` method before using it.
