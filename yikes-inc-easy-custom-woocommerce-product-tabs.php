@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.5.12
+ * Version: 1.5.13
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -62,7 +62,7 @@
 		private $tab_data = false;
 
 		/** plugin version number */
-		const VERSION = '1.5.12';
+		const VERSION = '1.5.13';
 
 		/** plugin text domain */
 		const TEXT_DOMAIN = 'yikes-inc-easy-custom-woocommerce-product-tabs';
@@ -147,7 +147,8 @@
 		public function init() {
 			// Backend stuff (show our custom product tabs on edit screen, handle saving data)
 			add_action( 'woocommerce_product_write_panel_tabs', array( $this, 'render_custom_product_tabs' ) );
-			add_action( 'woocommerce_product_write_panels',     array( $this, 'product_page_yikes_custom_tabs_panel' ) );
+			add_action( 'woocommerce_product_data_panels',     array( $this, 'product_page_yikes_custom_tabs_panel' ) );
+			
 			add_action( 'woocommerce_process_product_meta',     array( $this, 'product_save_data' ), 10, 2 );
 
 			// Add our custom product tabs section to the product page
