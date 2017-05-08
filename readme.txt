@@ -3,10 +3,10 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.7.3
+Tested up to: 4.7.4
 Requires WooCommerce at least: 3.0.0
-Tested WooCommerce up to: 3.0.0
-Stable tag: 1.5.13
+Tested WooCommerce up to: 3.0.5
+Stable tag: 1.5.14
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -63,7 +63,7 @@ To create a saved tab, go to the 'Custom Product Tabs for WooCommerce' page foun
 To add a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Add a Saved Tab' button above the tab, and choose which tab you would like to add.
 
 = What does overriding a saved tab do? =
-When using a saved tab on the product page, a checkbox appears with the message 'Override Saved Tab for this product.' If you click that checkbox, edit the tab and save, the tab will be changed for that product only. Any edits to that saved tab under the 'Custom Product Tabs for WooCommerce' settings page, will not be applied to that product.
+When using a saved tab on the product page, a checkbox appears with the message 'Override Saved Tab' If you click that checkbox, edit the tab and save, the tab will be changed for that product only. Any edits to that saved tab under the 'Custom Product Tabs for WooCommerce' settings page, will not be applied to that product.
 
 = Why does the WYSIWYG editor default to the 'Visual' tab? =
 This was added in version 1.5 to support the dynamic adding and removing of the wp_editor/WYSIWYG editor. Without this setting, the WYSIWYG editor does not load the correct toolbar and the editor can potentially break.
@@ -73,6 +73,9 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.5.14 - May 8th, 2017 =
+* Updating some CSS for the admin tabs table - the table should now render correctly regardless of "Visual" or "Text" tab and the saved tabs list should include a scrollbar if necessary
 
 = 1.5.13 - April 17th, 2017 =
 * Updating a WooCommerce action - now using the proper one instead of a deprecated one
