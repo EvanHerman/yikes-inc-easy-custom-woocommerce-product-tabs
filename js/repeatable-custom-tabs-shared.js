@@ -41,13 +41,15 @@
 			jQuery( '.' + textarea_id + '_field' ).html( response ).addClass( '_yikes_wc_custom_repeatable_product_tabs_tab_content_field _yikes_wc_custom_repeatable_product_tabs_tab_content_field_dynamic' );
 
 			// Initialize quicktags (for working in 'Text tab' mode)
-			if ( typeof( quicktags() ) !== 'undefined' ) {
-				quicktags( { id: textarea_id } ); // currently does not work -- text tab buttons are not there until refresh
+			if ( typeof( QTags ) !== 'undefined' ) {
+				quicktags( textarea_id );
+				QTags._buttonsInit();
 			}
 
 			// These are WordPress default editor settings, retrieved from wp-includes\class-wp-editor.php
 			// The `setup:` function is not part of the WordPress core, but the default styles were not being applied
 			tinymce.init({
+				branding: false,
 				selector: '#' + textarea_id,
 				theme: 'modern',
 				skin: 'lightgray',
@@ -80,7 +82,7 @@
 				end_container_on_empty_block: true,
 				wpeditimage_disable_captions: false,
 				wpeditimage_html5_captions: true,
-				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview,wpembed',
+				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview',
 				resize: 'vertical',
 				menubar: false,
 				wpautop: true,
@@ -114,6 +116,96 @@
 			
 			return true;	
 		});
+	}
+
+	function yikes_woo_get_wp_editor_foureight( textarea_id, product_page, tab_content ) {
+
+		if ( ! wp && ! wp.editor && ! wp.editor.initialize ) {
+			yikes_woo_get_wp_editor_ajax( textarea_id, product_page, tab_content );
+		}
+
+		// Re-enable buttons / arrows
+		yikes_woo_toggle_controls( 'enable' );
+
+		var settings = {
+			tinymce: {
+				branding: false,
+				theme: 'modern',
+				skin: 'lightgray',
+				language: 'en',
+				formats: {
+					alignleft: [
+						{ selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign:'left' } },
+						{ selector: 'img,table,dl.wp-caption', classes: 'alignleft' }
+					],
+					aligncenter: [
+						{ selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign:'center' } },
+						{ selector: 'img,table,dl.wp-caption', classes: 'aligncenter' }
+					],
+					alignright: [
+						{ selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li', styles: { textAlign:'right' } },
+						{ selector: 'img,table,dl.wp-caption', classes: 'alignright' }
+					],
+					strikethrough: { inline: 'del' }
+				},
+				relative_urls: false,
+				remove_script_host: false,
+				convert_urls: false,
+				browser_spellcheck: true,
+				fix_list_elements: true,
+				entities: '38,amp,60,lt,62,gt',
+				entity_encoding: 'raw',
+				keep_styles: false,
+				paste_webkit_styles: 'font-weight font-style color',
+				preview_styles: 'font-family font-size font-weight font-style text-decoration text-transform',
+				end_container_on_empty_block: true,
+				wpeditimage_disable_captions: false,
+				wpeditimage_html5_captions: true,
+				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview',
+				menubar: false,
+				wpautop: true,
+				indent: false,
+				resize: 'both',
+				toolbar1: 'formatselect,bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_adv',
+				toolbar2: 'strikethrough,hr,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
+				toolbar3: '',
+				toolbar4: '',
+				tabfocus_elements: ':prev,:next',
+				// body_class: 'id post-type-post post-status-publish post-format-standard',
+				setup: function( editor ) {
+					editor.on( 'init', function() {
+						this.getBody().style.fontFamily = 'Georgia, "Times New Roman", "Bitstream Charter", Times, serif';
+						this.getBody().style.fontSize = '16px';
+						this.getBody().style.color = '#333';
+					});
+				},
+				// width: jQuery( '#yikes_woocommerce_custom_product_tabs' ).width() * .85
+			},
+			quicktags: {
+				buttons:"strong,em,link,block,del,ins,img,ul,ol,li,code,more,close"
+			}
+		}
+
+		wp.editor.initialize( textarea_id, settings );
+
+		// If we have content, add it
+		if ( tab_content.length > 0 ) {
+			yikes_woo_set_content_for_wysiwyg( textarea_id, tab_content );
+		}
+
+		// If we're on the button page, show the button holder (we temporarily hide it for UI/UX purposes)
+		if ( product_page === true ) {
+			jQuery( '.button-holder' ).show();
+		}
+
+		// After tinymce is initialized, let's check if we need to disable the box (because it's a saved tab)
+		var tab_number = yikes_woo_get_tab_number_from_id( textarea_id );
+		if ( jQuery( '#_yikes_wc_custom_repeatable_product_tabs_tab_title_' + tab_number ).hasClass( 'yikes_woo_disable_this_tab' ) ) {
+			jQuery( '#_yikes_wc_custom_repeatable_product_tabs_tab_title_' + tab_number ).removeClass( 'yikes_woo_disable_this_tab' );
+			yikes_woo_toggle_reusable_override_overlay( 'disable', tab_number );
+		}
+		
+		return true;
 	}
 
 	/**
