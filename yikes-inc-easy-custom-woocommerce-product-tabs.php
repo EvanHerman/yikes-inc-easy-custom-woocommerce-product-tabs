@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.5.15
+ * Version: 1.5.16
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -53,6 +53,29 @@
 			</div>
 		<?php
 	}
+
+	// When the plugin is uninstalled, brush away all footprints; there shall be no trace.
+	register_uninstall_hook( __FILE__, 'uninstall_custom_product_tabs_for_woocommerce' );
+
+	function uninstall_custom_product_tabs_for_woocommerce() {
+		global $wpdb;
+
+		// Remove all of our 'yikes_woo_products_tabs' post meta
+		$wpdb->delete(
+
+			// Table
+			"{$wpdb->prefix}postmeta",
+
+			// Where
+			array( 'meta_key' => 'yikes_woo_products_tabs' )
+		);
+
+		// Remove our 'yikes_woo_reusable_products_tabs' option
+		delete_option( 'yikes_woo_reusable_products_tabs' );
+
+		// Remove our 'yikes_woo_reusable_products_tabs_applied' option
+		delete_option( 'yikes_woo_reusable_products_tabs_applied' );
+	}
 	
 	/**
 	* Initialize the Custom Product Tab Class
@@ -62,7 +85,7 @@
 		private $tab_data = false;
 
 		/** plugin version number */
-		const VERSION = '1.5.15';
+		const VERSION = '1.5.16';
 
 		/** plugin text domain */
 		const TEXT_DOMAIN = 'yikes-inc-easy-custom-woocommerce-product-tabs';
