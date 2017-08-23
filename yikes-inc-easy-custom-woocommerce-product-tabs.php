@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.5.16
+ * Version: 1.5.17
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -468,8 +468,8 @@
 
 				// Deal with saving the tab content
 			
-				$tab_title = stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i] );
-				$tab_content = stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i] );
+				$tab_title   = isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i] ) ? stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i] ) : '';
+				$tab_content = isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i] ) ? stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i] ) : '';
 			
 				if ( empty( $tab_title ) && empty( $tab_content ) ) {
 					
