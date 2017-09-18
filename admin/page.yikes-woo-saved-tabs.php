@@ -87,7 +87,7 @@
 							$tab_name            = ( isset( $tab_data['tab_name'] ) ) ? $tab_data['tab_name'] : '';
 							$tab_content_excerpt = ( isset( $tab_data['tab_content'] ) && ! empty( $tab_data['tab_content'] ) ) ? stripslashes( substr( wp_strip_all_tags( $tab_data['tab_content'] ), 0, 150 ) ) : '';
 							$tab_id 			 = ( isset( $tab_data['tab_id'] ) && ! empty( $tab_data['tab_id'] ) ) ? (int) $tab_data['tab_id'] : 0;
-							$edit_tab_url 		 = ( isset( $settings_page_slug ) ) ? add_query_arg( array( 'saved-tab-id' => $tab_id ), esc_url_raw( 'options-general.php?page=' . $settings_page_slug ) ) : '';
+							$edit_tab_url 		 = add_query_arg( array( 'saved-tab-id' => $tab_id ), esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
 							?>
 								<tr class="yikes_woo_saved_tabs_row" id="yikes_woo_saved_tabs_row_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
 									<th class="check-column" scope="row">
