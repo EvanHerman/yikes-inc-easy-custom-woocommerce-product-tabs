@@ -160,26 +160,12 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 					// clean up if the custom tabs are removed
 					unset( $tab_data[$i] );
 				
-				} elseif ( ! empty( $tab_title ) || ! empty( $tab_content ) ) {
+				} else {
 					
 					$tab_id = '';
 					
 					if ( $tab_title ) {
-						if ( strlen( $tab_title ) != strlen( utf8_encode( $tab_title ) ) ) {
-							// can't have titles with utf8 characters as it breaks the tab-switching javascript
-							// so we'll just append an integer
-							$tab_id = "tab-custom-" . $i;
-						} else {
-							// convert the tab title into an id string
-							$tab_id = strtolower( $tab_title );
-							$tab_id = preg_replace( "/[^\w\s]/", '', $tab_id );
-							// remove non-alphas, numbers, underscores or whitespace
-							$tab_id = preg_replace( "/_+/", ' ', $tab_id );
-							// replace all underscores with single spaces
-							$tab_id = preg_replace( "/\s+/", '-', $tab_id );
-							// replace all multiple spaces with single dashes
-							$tab_id = $tab_id;
-						}
+						$tab_id = sanitize_title( $tab_title );
 					}
 
 					// push the data to the array

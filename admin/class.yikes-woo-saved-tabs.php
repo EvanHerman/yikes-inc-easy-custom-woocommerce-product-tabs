@@ -94,14 +94,8 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Get our $_POST vars
 			if ( isset( $_POST['tab_title'] ) && ! empty( $_POST['tab_title'] ) ) {
-				$tab_title = stripslashes( $_POST['tab_title'] );
-
-				$tab_string_id = strtolower( $tab_title );
-				$tab_string_id = preg_replace( "/[^\w\s]/", '', $tab_string_id );
-				// remove non-alphas, numbers, underscores or whitespace
-				$tab_string_id = preg_replace( "/_+/", ' ', $tab_string_id );
-				// replace all underscores with single spaces
-				$tab_string_id = preg_replace( "/\s+/", '-', $tab_string_id );
+				$tab_title     = stripslashes( $_POST['tab_title'] );
+				$tab_string_id = sanitize_title( $tab_title );
 			} else {
 				wp_send_json_error( array( 'reason' => 'no tab title', 'message' => 'Please fill out the tab title before saving.' ) );
 			}
