@@ -30,6 +30,9 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Duplicate any saved tabs when a product is duplicated
 			add_filter( 'woocommerce_product_duplicate', array( $this, 'yikes_woo_dupe_saved_tabs_on_product_dupe' ), 11, 2 );
+
+			// Delete any saved tabs when a product is deleted
+			add_action( 'delete_post', array( $this, 'delete_saved_tabs_on_product_delete' ), 10, 1 );
 		}
 
 		/**
@@ -598,6 +601,32 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 				// Update the saved tab's option
 				update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs_array );
+			}
+		}
+
+		/**
+		* When a WooCommerce product is deleted, delete any saved tabs from the saved tabs option
+		*
+		* @param int | $post_id
+		*/
+		public function delete_saved_tabs_on_product_delete( $post_id ) {
+
+			$post = get_post( $post_id );
+
+			if ( $post->post_type !== 'product' ) {
+				return;
+			}
+
+			// Get our saved tabs option
+			$saved_tabs = get_option( 'yikes_woo_reusable_products_tabs_applied' );
+
+			if ( empty( $saved_tabs ) ) {
+				return;
+			}
+
+			if ( ! empty( $saved_tabs[ $post_id ] ) ) {
+				unset( $saved_tabs[ $post_id ] );
+				update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs );
 			}
 		}
 

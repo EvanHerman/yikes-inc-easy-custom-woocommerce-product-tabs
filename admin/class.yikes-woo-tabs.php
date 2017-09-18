@@ -135,12 +135,17 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			$number_of_tabs = $_POST['number_of_tabs'];
 
 			// Create an array for tab_ids that we will use later
-			$current_tab_id_array = array();
-			$post_has_reusable_tabs = false;
+			$current_saved_tab_id_array = array();
 			$remove_a_tab_from_reusable = false;
 
 			// Fetch the reusable tab options (we'll use this later)
 			$reusable_tab_options_array = get_option( 'yikes_woo_reusable_products_tabs_applied', array() );
+
+			// Check if this tab has reusable tabs and set flag
+			$post_has_reusable_tabs = false;
+			if ( isset ( $reusable_tab_options_array[$post_id] ) ) {
+				$post_has_reusable_tabs = true;
+			}
 			
 			$i = 1;
 			while( $i <= $number_of_tabs ) {
@@ -176,7 +181,6 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 							$tab_id = $tab_id;
 						}
 					}
-					$current_tab_id_array[] = $tab_id;
 
 					// push the data to the array
 					$tab_data[$i] = array( 'title' => $tab_title, 'id' => $tab_id, 'content' => $tab_content );
@@ -184,22 +188,18 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
 				// Deal with saving / applying globally saved tabs
 
-				if ( isset ( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i] ) && isset ( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '_action'] ) ) {
+				if ( isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i] ) && isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '_action'] )
+					&& ! empty( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i] ) && ! empty( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '_action'] ) ) {
 					
 					// Store the tab_id and action
-					$reusable_tab_id = $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i];
+					$reusable_tab_id     = $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i];
 					$reusable_tab_action = $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '_action'];	
 
 					// If $reusable_tab_options_array is not empty, we've done this before
 					if ( ! empty( $reusable_tab_options_array ) ) {
 
-						// Check if this tab has reusable tabs and set flag
-						if ( isset ( $reusable_tab_options_array[$post_id] ) ) {
-							$post_has_reusable_tabs = true;
-						}
-
 						// If action is 'add', add the tab!
-						if ( $reusable_tab_action == 'add' ) {
+						if ( $reusable_tab_action === 'add' ) {
 
 							$reusable_tab_options_array[$post_id][$reusable_tab_id] = array(
 								'post_id' => $post_id,
@@ -210,7 +210,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 							// Update our applied tabs array
 							update_option( 'yikes_woo_reusable_products_tabs_applied', $reusable_tab_options_array );
 
-						} elseif ( $reusable_tab_action == 'remove' ) {
+						} elseif ( $reusable_tab_action === 'remove' ) {
 
 							// This tab will no longer be affected by the global/reusable tab changes
 							unset( $reusable_tab_options_array[$post_id][$reusable_tab_id] );
@@ -218,7 +218,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 							// Update our applied tabs array
 							update_option( 'yikes_woo_reusable_products_tabs_applied', $reusable_tab_options_array );
 						}
-					} elseif ( $reusable_tab_action == 'add' ) {
+					} elseif ( $reusable_tab_action === 'add' ) {
 
 						// First time adding a new tab
 						$reusable_tab_options_array_to_save = array();
@@ -231,22 +231,36 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 						// Update our applied tabs array
 						update_option( 'yikes_woo_reusable_products_tabs_applied', $reusable_tab_options_array_to_save );
 					}
+
+
+					// Add this ID to our array of saved tab IDs
+					$current_saved_tab_id_array[] = $tab_id;
 				}
 
 				$i++;
 			}
 
-			// Let's check our $current_tab_id_array and see if we need to remove any reusable tabs
+			// Let's check our $current_saved_tab_id_array and see if we need to remove any reusable tabs
 			if ( $post_has_reusable_tabs === true ) {
 
-				// Loop through our reusable tab array	
-				foreach( $reusable_tab_options_array[$post_id] as $id => $reusable_tab_array ) {
+				// If we have tabs...
+				if ( ! empty( $current_saved_tab_id_array ) ) {
 
-					// If we find one of our reusable tabs is no longer part of this post, remove it
-					if ( ! in_array( $reusable_tab_array['tab_id'], $current_tab_id_array ) ) {
-						unset( $reusable_tab_options_array[$post_id][$id] );
-						$remove_a_tab_from_reusable = true;
-					}
+					// Loop through our reusable tab array	
+					foreach( $reusable_tab_options_array[ $post_id ] as $id => $reusable_tab_array ) {
+
+						// If we find one of our reusable tabs is no longer part of this post, remove it
+						if ( ! in_array( $reusable_tab_array['tab_id'], $current_saved_tab_id_array ) ) {
+
+							unset( $reusable_tab_options_array[ $post_id ][ $id ] );
+							$remove_a_tab_from_reusable = true;
+						}
+					} 
+				} else {
+
+					// If we don't have any current tabs then we need to delete this post's option
+					unset( $reusable_tab_options_array[ $post_id ] );
+					$remove_a_tab_from_reusable = true;
 				}
 
 				// If we removed a tab, then update our applied tabs array
