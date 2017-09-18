@@ -104,9 +104,6 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Display' ) ) {
 
 			$content = '';			
 
-			// Hardcoding Site Origin Page Builder conflict fix - remove their the_content filter
-			remove_filter( 'the_content', 'siteorigin_panels_filter_content' );
-
 			$use_the_content_filter = apply_filters( 'yikes_woo_use_the_content_filter', true );
 
 			if ( $use_the_content_filter === true ) {
@@ -115,10 +112,8 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Display' ) ) {
 				$content = apply_filters( 'yikes_woo_filter_main_tab_content', $tab['content'] );
 			}
 
-			// Hardcoding Site Origin Page Builder conflict fix - re-add their the_content filter
-			if ( function_exists( 'siteorigin_panels_filter_content' ) ) add_filter( 'the_content', 'siteorigin_panels_filter_content' );
-
-			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_heading', '<h2 class="yikes-custom-woo-tab-title yikes-custom-woo-tab-title-'.sanitize_title($tab['title']).'">' . $tab['title'] . '</h2>', $tab );
+			$tab_title_html = '<h2 class="yikes-custom-woo-tab-title yikes-custom-woo-tab-title-' . sanitize_title( $tab['title'] ) . '">' . $tab['title'] . '</h2>';
+			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_heading', $tab_title_html, $tab );
 			echo apply_filters( 'yikes_woocommerce_custom_repeatable_product_tabs_content', $content, $tab );
 		}
 
