@@ -78,6 +78,7 @@
 	function yikes_woo_handle_saving_reusable_tab( tab_id ) {
 
 		var tab_title = jQuery( '#yikes_woo_reusable_tab_title_' + tab_id ).val();
+		var tab_name  = jQuery( '#yikes_woo_reusable_tab_name_' + tab_id ).val();
 		var tab_content = '';
 
 		if ( typeof( tinymce ) != 'undefined' && jQuery( '#wp-yikes_woo_reusable_tab_content_' + tab_id + '-wrap' ).hasClass( 'tmce-active' ) ) {
@@ -102,6 +103,7 @@
 			'tab_title': tab_title,
 			'tab_content': tab_content,
 			'tab_id': tab_id,
+			'tab_name': tab_name,
 			'security_nonce': repeatable_custom_tabs_settings.save_tab_as_reusable_nonce
 		};
 
