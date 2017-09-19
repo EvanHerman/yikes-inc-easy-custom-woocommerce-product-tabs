@@ -1,7 +1,7 @@
 <div class="wrap">
 
 	<h1>
-		Custom Product Tabs for WooCommerce | Saved Tabs
+		<?php echo apply_filters( 'yikes-woo-settings-page-title', __( 'Custom Product Tabs for WooCommerce | Saved Tabs', YIKES_Custom_Product_Tabs_Text_Domain ) ); ?>
 		<span class="yikes_woo_add_another_tab page-title-action" id="yikes_woo_add_another_tab">
 			<a href="<?php echo $new_tab_url; ?>"> <?php _e( 'Add Tab', YIKES_Custom_Product_Tabs_Text_Domain ); ?>	</a>
 		</span>
@@ -16,6 +16,8 @@
 			<span class="screen-reader-text">Dismiss this notice.</span>
 		</button>
 	</div>
+
+	<?php do_action( 'yikes-woo-saved-tabs-above-saved-tabs' ); ?>
 
 	<div class="yikes_woo_settings_info">
 		<p>

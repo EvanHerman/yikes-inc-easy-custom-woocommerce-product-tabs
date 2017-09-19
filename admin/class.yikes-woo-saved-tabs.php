@@ -504,9 +504,6 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				// Get the tab
 				$tab = isset( $yikes_custom_tab_data[$saved_tab_id] ) ? $yikes_custom_tab_data[$saved_tab_id] : array();
 
-				// Get all the products using this tab
-				$products = $this->fetch_all_products_using_current_tab( $saved_tab_id );
-
 				// Redirect URL
 				$redirect = admin_url( esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
 
@@ -523,39 +520,6 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				// Show tab table list
 				require_once( YIKES_Custom_Product_Tabs_Path . 'admin/page.yikes-woo-saved-tabs.php' );
 			}
-		}
-
-		/**
-		* Fetch all product ids that are using the saved tab
-		*
-		* @since 1.5
-		* 
-		* @param  int 	 | $tab_id 			  | unique identifier of a tab
-		* @return array  | $product_ids_array | array of product ids
-		*/
-		protected function fetch_all_products_using_current_tab( $tab_id ) {
-
-			// Set up our return array
-			$product_ids_array = array();
-
-			// Get all of the product IDs from the DB
-			$applied_tabs = get_option( 'yikes_woo_reusable_products_tabs_applied', array() );
-
-			// If the option returns an empty array, C YA
-			if ( empty( $applied_tabs ) ) {
-				return $product_ids_array;
-			}
-
-			// Loop through all of our applied tabs and get the product IDs
-			foreach( $applied_tabs as $product_id => $saved_tabs_array ) {
-
-				// This means the product is using this saved tab
-				if ( isset( $saved_tabs_array[$tab_id] ) ) {
-					$product_ids_array[] = $product_id;
-				}
-			}
-
-			return $product_ids_array;
 		}
 
 		/* End Plugin Settings Page */

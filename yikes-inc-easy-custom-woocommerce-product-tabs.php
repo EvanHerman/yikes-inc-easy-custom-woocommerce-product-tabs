@@ -30,14 +30,13 @@
 
 		/* Deactivate the plugin, and display our error notification */
 		deactivate_plugins( '/yikes-inc-easy-custom-woocommerce-product-tabs/yikes-inc-easy-custom-woocommerce-product-tabs.php' );
-		add_action( 'admin_notices' , 'display_admin_notice_error' );
+		add_action( 'admin_notices' , 'yikes_woo_display_admin_notice_error' );
 	}
 	
 	/**
-	* display_admin_notice_error()
-	* Display our error admin notice if WooCommerce is not installed+active
+	* Display our error admin notice if WooCommerce is not installed + active
 	*/
-	function display_admin_notice_error() {
+	function yikes_woo_display_admin_notice_error() {
 		?>	
 			<!-- hide the 'Plugin Activated' default message -->
 			<style>
@@ -59,8 +58,7 @@
 	class YIKES_Custom_Product_Tabs {
 
 		/**
-		* Gets things started by adding an action to initialize this plugin once
-		* WooCommerce is known to be active and initialized
+		* Construct :)
 		*/
 		public function __construct() {
 

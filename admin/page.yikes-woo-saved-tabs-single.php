@@ -15,9 +15,6 @@ $tab_content = ( isset( $tab['tab_content'] ) && ! empty( $tab['tab_content'] ) 
 $tab_id 	 = ( isset( $tab['tab_id'] ) && ! empty( $tab['tab_id'] ) ) ? (int) $tab['tab_id'] : 'new';
 $tab_name    = ( isset( $tab['tab_name'] ) ) ? $tab['tab_name'] : '';
 
-// Tab stats
-$number_of_products_using_this_tab = count( $products );
-
 ?>
 <div class="wrap">
 	<h1 class="screen-media">
@@ -71,6 +68,8 @@ $number_of_products_using_this_tab = count( $products );
 				 ?>
 			</div>
 
+			<?php do_action( 'yikes-woo-saved-tab-before-save-buttons', $saved_tab_id ); ?>
+
 			<!-- Buttons -->
 			<div class="yikes_woo_save_and_delete_tab_buttons">
 				<span class="button button-primary yikes_woo_save_this_tab" id="yikes_woo_save_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
@@ -81,28 +80,9 @@ $number_of_products_using_this_tab = count( $products );
 					<?php _e( 'Delete Tab', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 				</span>
 			</div>
+			
 		</div>
-		<!-- <div class="yikes_woo_saved_tab_products"> -->
-			<!-- <h3 class="yikes_woo_saved_tab_header">Products</h3> -->
-			<!-- <div class="inside entry-details-overview"> -->
-				<!-- <?php // if ( $number_of_products_using_this_tab === 0 ) { ?> -->
-					<!-- <p>
-						This tab is currently not used for any products.
-					</p> -->
-				<!-- <?php//  } else {
-					/* $plural_product_name = ( $number_of_products_using_this_tab > 1 ) ? 'products' : 'product'; */
-				?> -->
-					<!-- <p> -->
-						<!-- This tab is currently used on <span class="yikes_woo_number_of_products"><?php // echo $number_of_products_using_this_tab; ?></span> <?php // echo $plural_product_name ?> -->
-					<!-- </p> -->
-					<!-- <?php // foreach( $products as $product_id ) { ?>  -->
-						<!-- <p> -->
-							<!-- <?php /* $edit_product_url = add_query_arg( array( 'post' => $product_id, 'action' => 'edit' ), esc_url_raw( 'post.php' ) ); */ ?> -->
-							<!-- <span> <a href="<?php // echo $edit_product_url ?>"> <?php // echo get_the_title( $product_id ); ?> </a> </span> -->
-						<!-- </p> -->
-					<!-- <?php // } ?> -->
-				<!-- <?php // } ?> -->
-			<!-- </div> -->
-		<!-- </div> -->
+
+		<?php do_action( 'yikes-woo-saved-tab-after-save-buttons', $saved_tab_id ); ?>
 	</div>
 </div>
