@@ -19,7 +19,7 @@ Individual product tabs are managed on the WooCommerce Edit Product screen and c
 
 Tab content areas use the standard WordPress text editor and may contain text, images, html or shortcodes. 
 
-If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
+If you experience any problems, please submit a ticket on our [Free WordPress Support Forums](https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs) and we'll look in to it as soon as possible.
 
 This plugin is compatible with WPML.
 
