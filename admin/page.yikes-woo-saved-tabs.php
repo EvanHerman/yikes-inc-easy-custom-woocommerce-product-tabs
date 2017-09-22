@@ -55,6 +55,7 @@
 					<th id="columnname" class="manage-column column-columnname" scope="col">
 						<?php _e( 'Tab Content Preview', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</th>
+					<?php do_action( 'yikes-woo-saved-tabs-table-header' ); ?>
 					<th id="columnname" class="manage-column column-columnname" scope="col">&nbsp;</th>
 				</tr>
 			</thead>
@@ -74,6 +75,7 @@
 					<th id="columnname" class="manage-column column-columnname" scope="col">
 						<?php _e( 'Tab Content Preview', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</th>
+					<?php do_action( 'yikes-woo-saved-tabs-table-header' ); ?>
 					<th id="columnname" class="manage-column column-columnname" scope="col">&nbsp;</th>
 				</tr>
 			</tfoot>
@@ -108,6 +110,7 @@
 									</td>
 									<td class="column-columnname"><?php echo $tab_name; ?></td>
 									<td class="column-columnname"><?php echo $tab_content_excerpt; ?></td>
+									<?php do_action( 'yikes-woo-saved-tabs-table-taxonomy-column', $tab_data ); ?>
 									<td class="column-columnname" align="center">
 										<a href="<?php echo $edit_tab_url ?>" class="button-secondary view-saved-tab-button" data-entry-id="<?php echo (int) $tab_id; ?>">
 											<?php _e( 'Edit Tab', YIKES_Custom_Product_Tabs_Text_Domain ); ?>

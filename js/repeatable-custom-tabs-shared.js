@@ -82,7 +82,7 @@
 				end_container_on_empty_block: true,
 				wpeditimage_disable_captions: false,
 				wpeditimage_html5_captions: true,
-				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview',
+				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview',
 				resize: 'vertical',
 				menubar: false,
 				wpautop: true,
@@ -122,6 +122,7 @@
 
 		if ( ! wp && ! wp.editor && ! wp.editor.initialize ) {
 			yikes_woo_get_wp_editor_ajax( textarea_id, product_page, tab_content );
+			return false;
 		}
 
 		// Re-enable buttons / arrows
@@ -161,7 +162,7 @@
 				end_container_on_empty_block: true,
 				wpeditimage_disable_captions: false,
 				wpeditimage_html5_captions: true,
-				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview',
+				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview',
 				menubar: false,
 				wpautop: true,
 				indent: false,
@@ -204,6 +205,13 @@
 			jQuery( '#_yikes_wc_custom_repeatable_product_tabs_tab_title_' + tab_number ).removeClass( 'yikes_woo_disable_this_tab' );
 			yikes_woo_toggle_reusable_override_overlay( 'disable', tab_number );
 		}
+
+		// Add an 'Add Media' button
+		// The plugin is included with the instantiation of the editor but there is no HTML button to trigger the associated functions
+		var add_media_button = '<div id="wp-' + textarea_id + '-media-buttons" class="wp-media-buttons"> \
+			<button type="button" id="insert-media-button" class="button insert-media add_media" data-editor="' + textarea_id + '"><span class="wp-media-buttons-icon"></span> Add Media</button>\
+		</div>';
+		jQuery( '#wp-_yikes_wc_custom_repeatable_product_tabs_tab_content_' + tab_number + '-wrap > .wp-editor-tools' ).prepend( add_media_button );
 		
 		return true;
 	}

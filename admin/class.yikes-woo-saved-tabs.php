@@ -51,7 +51,9 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					'ajaxurl' 						=> admin_url( 'admin-ajax.php' ),
 					'tab_list_page_url' 			=> admin_url( esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ),
 					'save_tab_as_reusable_nonce' 	=> wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
-					'delete_reusable_tab_nonce' 	=> wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' )
+					'delete_reusable_tab_nonce' 	=> wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ),
+					'products_using_this_tab_nonce' => wp_create_nonce( 'yikes_woo_display_products_using_tab' ),
+					'is_cptpro_enabled'             => defined( 'YIKES_Custom_Product_Tabs_Pro_Enabled' ) ? true : false,
 				) );
 
 				wp_enqueue_script ( 'repeatable-custom-tabs-shared', YIKES_Custom_Product_Tabs_URI . 'js/repeatable-custom-tabs-shared.min.js' );
@@ -79,6 +81,8 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		* @param string  | $_POST['tab_title']   | Tab title to save
 		* @param string  | $_POST['tab_content'] | Tab content to save
 		* @param string  | $_POST['tab_id']      | Optional. Tab ID we're updating
+		* @param string  | $_POST['tab_name']    | Tab name to save
+		* @param array   | $_POST['taxonomies']  | Optional. Array of taxonomies.
 		*
 		* @return string | JSON response 
 		*/
@@ -100,15 +104,10 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				wp_send_json_error( array( 'reason' => 'no tab title', 'message' => 'Please fill out the tab title before saving.' ) );
 			}
 
-			if ( isset( $_POST['tab_content'] ) && ! empty( $_POST['tab_content'] ) ) {
-				$tab_content = $_POST['tab_content'];
-			}
-
-			if ( isset( $_POST['tab_id'] ) && ! empty( $_POST['tab_id'] ) ) {
-				$tab_id = $_POST['tab_id'];
-			}
-
-			$tab_name = isset( $_POST['tab_name'] ) ? $_POST['tab_name'] : '';
+			$tab_content = isset( $_POST['tab_content'] ) && ! empty( $_POST['tab_content'] ) ? $_POST['tab_content'] : '';
+			$tab_id      = isset( $_POST['tab_id'] ) && ! empty( $_POST['tab_id'] ) ? $_POST['tab_id'] : '';
+			$tab_name    = isset( $_POST['tab_name'] ) ? $_POST['tab_name'] : '';
+			$taxonomies  = isset( $_POST['taxonomies'] ) && ! empty( $_POST['taxonomies'] ) ? $_POST['taxonomies'] : array();
 
 			// Get our saved tabs array
 			$yikes_custom_tab_data = get_option( 'yikes_woo_reusable_products_tabs', array() );
@@ -116,13 +115,18 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			// If the saved tabs array is empty, create a new array and save it (first time we've done this)
 			if ( empty( $yikes_custom_tab_data ) ) {
 				$yikes_custom_tab_options_array = array();
-
-				$yikes_custom_tab_options_array[1] = array(
+				$new_tab = array(
 					'tab_title'   => $tab_title,
 					'tab_name'    => $tab_name,
 					'tab_content' => $tab_content,
 					'tab_id'      => 1,
+					'taxonomies'  => $taxonomies,
+					'tab_slug'    => $tab_string_id,
 				);
+
+				$yikes_custom_tab_options_array[1] = $new_tab;
+
+				do_action( 'yikes-woo-apply-taxonomies-on-tab-save', $new_tab, 'new' );
 
 				update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_options_array );
 
@@ -149,13 +153,19 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 					// Add 1 to the max ID
 					$new_tab_id = (int) $highest_tab_id + 1;
-				
-					$yikes_custom_tab_data[$new_tab_id] = array(
+
+					$new_tab =  array(
 						'tab_title'   => $tab_title,
 						'tab_name'    => $tab_name,
 						'tab_content' => $tab_content,
 						'tab_id'      => $new_tab_id,
+						'taxonomies'  => $taxonomies,
+						'tab_slug'    => $tab_string_id,
 					);
+				
+					$yikes_custom_tab_data[$new_tab_id] = $new_tab;
+
+					do_action( 'yikes-woo-apply-taxonomies-on-tab-save', $new_tab, 'new' );
 
 					update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_data );
 
@@ -168,12 +178,18 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				} else {
 
 					// This is an existing tab, so just update it
-					$yikes_custom_tab_data[$tab_id] = array(
+					$saved_tab = array(
 						'tab_title'   => $tab_title,
 						'tab_name'    => $tab_name,
 						'tab_content' => $tab_content,
 						'tab_id'      => $tab_id,
+						'taxonomies'  => $taxonomies,
+						'tab_slug'    => $tab_string_id,
 					);
+
+					$yikes_custom_tab_data[$tab_id] = $saved_tab;
+
+					do_action( 'yikes-woo-apply-taxonomies-on-tab-save', $saved_tab, 'existing' );
 
 					update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_data );
 
@@ -219,11 +235,11 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 						if ( $update_post_meta_flag === true ) {
 							update_post_meta( $post_id, 'yikes_woo_products_tabs', $custom_tab_data );
 						}
+					}
 
-						// If we updated the tab_string_id in the yikes_woo_reusable_products_tabs_applied array, save it
-						if ( $update_applied_products_array === true ) {
-							update_option( 'yikes_woo_reusable_products_tabs_applied', $reusable_tab_options_array);
-						}
+					// If we updated the tab_string_id in the yikes_woo_reusable_products_tabs_applied array, save it
+					if ( $update_applied_products_array === true ) {
+						update_option( 'yikes_woo_reusable_products_tabs_applied', $reusable_tab_options_array);
 					}
 				}
 			}
@@ -231,7 +247,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			wp_send_json_success( array( 'redirect' => false ) );
 		}
 
-				/**
+		/**
 		* [AJAX] Fetch a single reusable
 		*
 		* @since 1.5
@@ -252,16 +268,17 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			$tab = isset( $saved_tabs[$tab_id] ) ? $saved_tabs[$tab_id] : false;
 
-			$tab['tab_content'] = stripslashes( $tab['tab_content'] );
+			if ( $tab !== false ) {
 
-			if ( ! empty( $saved_tabs ) ) {
+				$tab['tab_content'] = stripslashes( $tab['tab_content'] );
+
 				wp_send_json_success( $tab );	
 			} else {
-				wp_send_json_success( array( 'message' => 'Could not find the tab. Pleae try again.' ) );
+				wp_send_json_success( array( 'message' => __( 'Could not find the tab. Please try again.', YIKES_Custom_Product_Tabs_Text_Domain ) ) );
 			}
 
 			// If we get this far, send error
-			wp_send_json_error( array( 'message' => 'Uh oh. Something went wrong.' ) );
+			wp_send_json_error( array( 'message' => __( 'Uh oh. Something went wrong.', YIKES_Custom_Product_Tabs_Text_Domain ) ) );
 		}
 
 		/**

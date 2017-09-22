@@ -104,11 +104,10 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 		}
 
 		/**
-		* Saves the data inputed into the product boxes, as post meta data
-		* identified by the name 'yikes_woo_products_tabs'
+		* Save the tab data.
 		*
-		* @param int $post_id the post (product) identifier
-		* @param stdClass $post the post (product)
+		* @param int    | $post_id
+		* @param object | $post
 		*/
 		public function product_save_data( $post_id, $post ) {
 
@@ -263,6 +262,11 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
 			if ( $is_ajax_flag === true ) {
 				return true;
+			} else {
+
+				// Fire off our Custom Product Tabs PRO action for taxonomy handling
+				do_action( 'yikes-woo-apply-taxonomies-on-product-save', $post_id );
+
 			}
 		}
 

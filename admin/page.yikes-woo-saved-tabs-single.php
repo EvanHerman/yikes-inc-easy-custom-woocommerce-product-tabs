@@ -10,10 +10,11 @@ if ( ! $new_tab && ( ! isset( $tab ) || empty( $tab ) ) ) {
 }
 
 // Set variables before using them
-$tab_title 	 = ( isset( $tab['tab_title'] ) && ! empty( $tab['tab_title'] ) ) ? $tab['tab_title'] : '';
-$tab_content = ( isset( $tab['tab_content'] ) && ! empty( $tab['tab_content'] ) ) ? $tab['tab_content'] : '';
-$tab_id 	 = ( isset( $tab['tab_id'] ) && ! empty( $tab['tab_id'] ) ) ? (int) $tab['tab_id'] : 'new';
-$tab_name    = ( isset( $tab['tab_name'] ) ) ? $tab['tab_name'] : '';
+$tab_title 	 = isset( $tab['tab_title'] ) && ! empty( $tab['tab_title'] ) ? $tab['tab_title'] : '';
+$tab_content = isset( $tab['tab_content'] ) && ! empty( $tab['tab_content'] ) ? $tab['tab_content'] : '';
+$tab_id 	 = isset( $tab['tab_id'] ) && ! empty( $tab['tab_id'] ) ? (int) $tab['tab_id'] : 'new';
+$tab_name    = isset( $tab['tab_name'] ) ? $tab['tab_name'] : '';
+$taxonomies  = isset( $tab['taxonomies'] ) && ! empty( $tab['taxonomies'] ) ? $tab['taxonomies'] : '';
 
 ?>
 <div class="wrap">
@@ -68,7 +69,7 @@ $tab_name    = ( isset( $tab['tab_name'] ) ) ? $tab['tab_name'] : '';
 				 ?>
 			</div>
 
-			<?php do_action( 'yikes-woo-saved-tab-before-save-buttons', $saved_tab_id ); ?>
+			<?php do_action( 'yikes-woo-saved-tab-before-save-buttons', $saved_tab_id, $taxonomies ); ?>
 
 			<!-- Buttons -->
 			<div class="yikes_woo_save_and_delete_tab_buttons">
