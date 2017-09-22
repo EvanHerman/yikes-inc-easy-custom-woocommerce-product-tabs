@@ -266,7 +266,6 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
 				// Fire off our Custom Product Tabs PRO action for taxonomy handling
 				do_action( 'yikes-woo-apply-taxonomies-on-product-save', $post_id );
-
 			}
 		}
 
@@ -298,7 +297,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			// Set up options
 			$wp_editor_options = array( 
 				'textarea_name' => $textarea_id,
-				'textarea_rows' => 8
+				'textarea_rows' => 8,
 			);
 
 			// Return wp_editor HTML
