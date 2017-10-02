@@ -72,7 +72,7 @@
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-tabs.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'public/class.yikes-woo-tabs-display.php';
 
-			add_action( 'woocommerce_init', array( $this, 'init' ) );
+			add_action( 'admin_init', array( $this, 'init' ) );
 		}
 
 		/**
@@ -247,8 +247,8 @@
 		* @param array | $links | array of links passed from the plugin_action_links_{plugin_name} filter
 		*/
 		public function add_plugin_action_links( $links ) {
-			$href = admin_url( esc_url_raw( 'page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
-			$links[] = '<a href="'. $href .'">Settings</a>';
+			$href = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() ) );
+			$links[] = '<a href="'. $href .'">Saved Tabs</a>';
 			return $links;
 		}
 
