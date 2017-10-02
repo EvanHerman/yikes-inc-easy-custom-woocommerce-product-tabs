@@ -3,7 +3,7 @@
 *	somewhat cool / very cool
 *	YIKES Inc. / Kevin Utz
 */
-	jQuery(document).ready(function() {
+	jQuery( document ).ready(function() {
 
 		// Save a tab
 		jQuery( '.yikes_woo_save_this_tab' ).click( function() {
@@ -81,6 +81,7 @@
 		var tab_name    = jQuery( '#yikes_woo_reusable_tab_name_' + tab_id ).val();
 		var tab_content = '';
 		var taxonomies  = {};
+		var global_tab  = false;
 
 		if ( typeof( tinymce ) != 'undefined' && jQuery( '#wp-yikes_woo_reusable_tab_content_' + tab_id + '-wrap' ).hasClass( 'tmce-active' ) ) {
 			tab_content = tinymce.get( 'yikes_woo_reusable_tab_content_' + tab_id ).getContent();
@@ -98,15 +99,23 @@
 			return;	
 		}
 
-		// Grab & format taxonomy data
+		// CPTPRO: Grab & format taxonomy data
 		if ( jQuery( '.cptpro-taxonomies' ).length > 0 ) {
 
 			// Create an object with taxonomy name => array( taxonomy_values )
 			jQuery( '.taxonomy-label' ).each( function() {
 				var taxonomy = jQuery( this ).data( 'taxonomy' );
-				taxonomies[ taxonomy ] = jQuery( 'input[name="' + taxonomy + '[]"]:checked' ).map( function() { return this.value; } ).get();
-			});
+				taxonomies[ taxonomy ] = {};
 
+				jQuery( 'input[name="' + taxonomy + '[]"].selected' ).each( function() {
+					taxonomies[ taxonomy ][ jQuery( this ).data( 'tt-id' ) ] = this.value;
+				});
+			});
+		}
+
+		// CPTPRO: Grab global value
+		if ( jQuery( '.global-section' ).length > 0 ) {
+			global_tab = jQuery( '#global-checkbox' ).prop( 'checked' );
 		}
 
 		// Create data object
@@ -117,6 +126,7 @@
 			'tab_id'        : tab_id,
 			'tab_name'      : tab_name,
 			'taxonomies'    : taxonomies,
+			'global_tab'    : global_tab,
 			'security_nonce': repeatable_custom_tabs_settings.save_tab_as_reusable_nonce
 		};
 

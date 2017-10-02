@@ -172,15 +172,18 @@
 				toolbar3: '',
 				toolbar4: '',
 				tabfocus_elements: ':prev,:next',
+				width: '100%',
 				// body_class: 'id post-type-post post-status-publish post-format-standard',
 				setup: function( editor ) {
 					editor.on( 'init', function() {
 						this.getBody().style.fontFamily = 'Georgia, "Times New Roman", "Bitstream Charter", Times, serif';
 						this.getBody().style.fontSize = '16px';
 						this.getBody().style.color = '#333';
+						if ( tab_content.length > 0 ) {
+							this.setContent( tab_content );
+						}
 					});
 				},
-				// width: jQuery( '#yikes_woocommerce_custom_product_tabs' ).width() * .85
 			},
 			quicktags: {
 				buttons:"strong,em,link,block,del,ins,img,ul,ol,li,code,more,close"
@@ -188,11 +191,6 @@
 		}
 
 		wp.editor.initialize( textarea_id, settings );
-
-		// If we have content, add it
-		if ( tab_content.length > 0 ) {
-			yikes_woo_set_content_for_wysiwyg( textarea_id, tab_content );
-		}
 
 		// If we're on the button page, show the button holder (we temporarily hide it for UI/UX purposes)
 		if ( product_page === true ) {

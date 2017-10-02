@@ -7,7 +7,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		public function __construct() {
 
 			// Add our custom settings page
-			add_action( 'admin_menu', array( $this, 'yikes_woo_register_settings_page' ) );
+			add_action( 'admin_menu', array( $this, 'yikes_woo_register_settings_page' ), 10 );
 
 			// Define our options and filters
 			add_action( 'admin_init', array( $this, 'init' ) );
@@ -42,14 +42,14 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		*/
 		public function enqueue_scripts_and_styles( $hook ) {
 
-			if ( $hook === 'settings_page_' . YIKES_Custom_Product_Tabs_Settings_Page ) {
+			if ( $hook === 'toplevel_page_' . YIKES_Custom_Product_Tabs_Settings_Page ) {
 
 				// JavaScript
 				wp_enqueue_script ( 'repeatable-custom-tabs-settings', YIKES_Custom_Product_Tabs_URI . 'js/repeatable-custom-tabs-settings.min.js' , array( 'jquery' ) , 'all' );
 				wp_localize_script( 'repeatable-custom-tabs-settings', 'repeatable_custom_tabs_settings', array(
 					'loading_gif' 					=> '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif-settings" />',
 					'ajaxurl' 						=> admin_url( 'admin-ajax.php' ),
-					'tab_list_page_url' 			=> admin_url( esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ),
+					'tab_list_page_url' 			=> esc_url_raw( admin_url( '?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ),
 					'save_tab_as_reusable_nonce' 	=> wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
 					'delete_reusable_tab_nonce' 	=> wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ),
 					'products_using_this_tab_nonce' => wp_create_nonce( 'yikes_woo_display_products_using_tab' ),
@@ -107,7 +107,10 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			$tab_content = isset( $_POST['tab_content'] ) && ! empty( $_POST['tab_content'] ) ? $_POST['tab_content'] : '';
 			$tab_id      = isset( $_POST['tab_id'] ) && ! empty( $_POST['tab_id'] ) ? $_POST['tab_id'] : '';
 			$tab_name    = isset( $_POST['tab_name'] ) ? $_POST['tab_name'] : '';
-			$taxonomies  = isset( $_POST['taxonomies'] ) && ! empty( $_POST['taxonomies'] ) ? $_POST['taxonomies'] : array();
+			$global_tab  = isset( $_POST['global_tab'] ) && $_POST['global_tab'] === 'true' ? true : false;
+			
+			// Remove taxonomies if we're using a global tab
+			$taxonomies  = isset( $_POST['taxonomies'] ) && ! empty( $_POST['taxonomies'] ) && $global_tab === false ? $_POST['taxonomies'] : array();
 
 			// Get our saved tabs array
 			$yikes_custom_tab_data = get_option( 'yikes_woo_reusable_products_tabs', array() );
@@ -122,16 +125,17 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					'tab_id'      => 1,
 					'taxonomies'  => $taxonomies,
 					'tab_slug'    => $tab_string_id,
+					'global_tab'  => $global_tab,
 				);
 
 				$yikes_custom_tab_options_array[1] = $new_tab;
 
-				do_action( 'yikes-woo-apply-taxonomies-on-tab-save', $new_tab, 'new' );
+				do_action( 'yikes-woo-handle-tab-save', $new_tab, 'new' );
 
 				update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_options_array );
 
 				// Return redirect URL
-				$return_redirect_url = admin_url( add_query_arg( array( 'saved-tab-id' => 1 ), esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ) );
+				$return_redirect_url = esc_url_raw( add_query_arg( array( 'saved-tab-id' => 1 ), admin_url( '?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ) );
 
 				// Send response
 				wp_send_json_success( array( 'tab_id' => 1, 'redirect' => true, 'redirect_url' => $return_redirect_url ) );
@@ -161,16 +165,17 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 						'tab_id'      => $new_tab_id,
 						'taxonomies'  => $taxonomies,
 						'tab_slug'    => $tab_string_id,
+						'global_tab'  => $global_tab,
 					);
 				
 					$yikes_custom_tab_data[$new_tab_id] = $new_tab;
 
-					do_action( 'yikes-woo-apply-taxonomies-on-tab-save', $new_tab, 'new' );
+					do_action( 'yikes-woo-handle-tab-save', $new_tab, 'new' );
 
 					update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_data );
 
 					// Return redirect URL
-					$return_redirect_url = admin_url( add_query_arg( array( 'saved-tab-id' => $new_tab_id ), esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ) );
+					$return_redirect_url = esc_url_raw( add_query_arg( array( 'saved-tab-id' => $new_tab_id ), admin_url( '?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ) );
 
 					// Send response
 					wp_send_json_success( array( 'tab_id' => $new_tab_id, 'redirect' => true, 'redirect_url' => $return_redirect_url ) );
@@ -185,11 +190,12 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 						'tab_id'      => $tab_id,
 						'taxonomies'  => $taxonomies,
 						'tab_slug'    => $tab_string_id,
+						'global_tab'  => $global_tab,
 					);
 
 					$yikes_custom_tab_data[$tab_id] = $saved_tab;
 
-					do_action( 'yikes-woo-apply-taxonomies-on-tab-save', $saved_tab, 'existing' );
+					do_action( 'yikes-woo-handle-tab-save', $saved_tab, 'existing' );
 
 					update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_data );
 
@@ -446,7 +452,13 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 							}
 						}
 
-						unset( $applied_tabs[$post_id][$tab_id] );
+						// Unset the array of our applied saved tabs
+						unset( $applied_tabs[ $post_id ][ $tab_id ] );
+
+						// If that was the only saved tab for this product, unset the product's array key
+						if ( empty( $applied_tabs[ $post_id ] ) ) {
+							unset( $applied_tabs[ $post_id ] );
+						}
 						$unset_applied_tabs_flag = true;
 					}
 				}
@@ -458,7 +470,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			}
 
 			// If we're on the single tab edit screen, we want to redirect back to tab list so let's return a var
-			$return_redirect_url = admin_url( add_query_arg( array( 'delete-success' => true ), esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ) );
+			$return_redirect_url = esc_url_raw( add_query_arg( array( 'delete-success' => true ), admin_url( '?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) ) );
 
 			$response = array(
 				'success' => true,
@@ -485,13 +497,14 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		public function yikes_woo_register_settings_page() {
 
 			// Add our custom settings page
-			add_submenu_page(	
-				'options-general.php',                                                                          // Parent slug
-				__( 'Settings - Custom Product Tabs for WooCommerce', YIKES_Custom_Product_Tabs_Text_Domain ),  // Tab title name (HTML title)
-				__( 'Custom Product Tabs for WooCommerce', YIKES_Custom_Product_Tabs_Text_Domain ),             // Menu page name
-				apply_filters( 'yikes_simple_taxonomy_ordering_capabilities', 'manage_options' ),               // Capability required
-				YIKES_Custom_Product_Tabs_Settings_Page,                                                        // Page slug (?page=slug-name)
-				array( $this, 'generate_yikes_settings_page' )                                                  // Function to generate page
+			add_menu_page(
+				apply_filters( 'yikes-woo-settings-menu-title', __( 'Custom Product Tabs', YIKES_Custom_Product_Tabs_Text_Domain ) ),     // Tab title name (HTML title)
+				apply_filters( 'yikes-woo-settings-menu-title', __( 'Custom Product Tabs', YIKES_Custom_Product_Tabs_Text_Domain ) ),     // Menu page name
+				apply_filters( 'yikes-woo-settings-menu-capability', 'manage_options' ),                                                  // Capability required
+				YIKES_Custom_Product_Tabs_Settings_Page,                                                                                  // Page slug (?page=slug-name)
+				array( $this, 'generate_yikes_settings_page' ),                                                                           // Function to generate page
+				'dashicons-exerpt-view',                                                                                                  // Icon
+				apply_filters( 'yikes-woo-settings-menu-priority', 100 )                                                                  // Position
 			);
 		}
 
@@ -507,7 +520,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			$yikes_custom_tab_data = get_option( 'yikes_woo_reusable_products_tabs', array() );
 
 			// New tab URL - used to supply the 'Add Tab' href
-			$new_tab_url = add_query_arg( array( 'saved-tab-id' => 'new' ), esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
+			$new_tab_url = esc_url( add_query_arg( array( 'saved-tab-id' => 'new' ), '?page=' . YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() );
 
 			// If saved_tab_id is set, we should show the single saved tab // add new tab page
 			if ( isset( $_GET['saved-tab-id'] ) && ! empty( $_GET['saved-tab-id'] ) ) {
@@ -522,7 +535,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				$tab = isset( $yikes_custom_tab_data[$saved_tab_id] ) ? $yikes_custom_tab_data[$saved_tab_id] : array();
 
 				// Redirect URL
-				$redirect = admin_url( esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
+				$redirect = esc_url_raw( admin_url( '?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
 
 				require_once( YIKES_Custom_Product_Tabs_Path . 'admin/page.yikes-woo-saved-tabs-single.php' );
 

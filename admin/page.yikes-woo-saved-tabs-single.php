@@ -15,6 +15,7 @@ $tab_content = isset( $tab['tab_content'] ) && ! empty( $tab['tab_content'] ) ? 
 $tab_id 	 = isset( $tab['tab_id'] ) && ! empty( $tab['tab_id'] ) ? (int) $tab['tab_id'] : 'new';
 $tab_name    = isset( $tab['tab_name'] ) ? $tab['tab_name'] : '';
 $taxonomies  = isset( $tab['taxonomies'] ) && ! empty( $tab['taxonomies'] ) ? $tab['taxonomies'] : '';
+$global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true : false;
 
 ?>
 <div class="wrap">
@@ -69,7 +70,7 @@ $taxonomies  = isset( $tab['taxonomies'] ) && ! empty( $tab['taxonomies'] ) ? $t
 				 ?>
 			</div>
 
-			<?php do_action( 'yikes-woo-saved-tab-before-save-buttons', $saved_tab_id, $taxonomies ); ?>
+			<?php do_action( 'yikes-woo-saved-tab-before-save-buttons', $saved_tab_id, $taxonomies, $global ); ?>
 
 			<!-- Buttons -->
 			<div class="yikes_woo_save_and_delete_tab_buttons">

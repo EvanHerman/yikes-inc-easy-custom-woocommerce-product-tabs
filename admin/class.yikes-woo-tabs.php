@@ -265,7 +265,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			} else {
 
 				// Fire off our Custom Product Tabs PRO action for taxonomy handling
-				do_action( 'yikes-woo-apply-taxonomies-on-product-save', $post_id );
+				do_action( 'yikes-woo-handle-tabs-on-product-save', $post_id );
 			}
 		}
 

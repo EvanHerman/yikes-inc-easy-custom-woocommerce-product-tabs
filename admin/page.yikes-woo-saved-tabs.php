@@ -1,7 +1,7 @@
 <div class="wrap">
 
 	<h1>
-		<?php echo apply_filters( 'yikes-woo-settings-page-title', __( 'Custom Product Tabs for WooCommerce | Saved Tabs', YIKES_Custom_Product_Tabs_Text_Domain ) ); ?>
+		<?php echo __( 'Custom Product Tabs for WooCommerce | Saved Tabs', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 		<span class="yikes_woo_add_another_tab page-title-action" id="yikes_woo_add_another_tab">
 			<a href="<?php echo $new_tab_url; ?>"> <?php _e( 'Add Tab', YIKES_Custom_Product_Tabs_Text_Domain ); ?>	</a>
 		</span>
@@ -16,8 +16,6 @@
 			<span class="screen-reader-text">Dismiss this notice.</span>
 		</button>
 	</div>
-
-	<?php do_action( 'yikes-woo-saved-tabs-above-saved-tabs' ); ?>
 
 	<div class="yikes_woo_settings_info">
 		<p>
@@ -46,17 +44,17 @@
 						<label class="screen-reader-text" for="cb-select-all-1"><?php _e( 'Select All', YIKES_Custom_Product_Tabs_Text_Domain ); ?></label>
 						<input id="cb-select-all-1" type="checkbox">
 					</td>
-					<th id="columnname" class="manage-column column-columnname" scope="col">
+					<th class="manage-column column-title" scope="col">
 						<?php _e( 'Tab Title', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</th>
-					<th id="columnname" class="manage-column column-columnname" scope="col">
+					<th class="manage-column column-name" scope="col">
 						<?php _e( 'Tab Name', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</th>
-					<th id="columnname" class="manage-column column-columnname" scope="col">
+					<th class="manage-column column-content" scope="col">
 						<?php _e( 'Tab Content Preview', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</th>
 					<?php do_action( 'yikes-woo-saved-tabs-table-header' ); ?>
-					<th id="columnname" class="manage-column column-columnname" scope="col">&nbsp;</th>
+					<th class="manage-column column-edit" scope="col">&nbsp;</th>
 				</tr>
 			</thead>
 
@@ -66,17 +64,17 @@
 						<label class="screen-reader-text" for="cb-select-all-1"><?php _e( 'Select All', YIKES_Custom_Product_Tabs_Text_Domain ); ?></label>
 						<input id="cb-select-all-1" type="checkbox">
 					</td>
-					<th id="columnname" class="manage-column column-columnname" scope="col">
+					<th class="manage-column column-title" scope="col">
 						<?php _e( 'Tab Title', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</th>
-					<th id="columnname" class="manage-column column-columnname" scope="col">
+					<th class="manage-column column-name" scope="col">
 						<?php _e( 'Tab Name', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</th>
-					<th id="columnname" class="manage-column column-columnname" scope="col">
+					<th class="manage-column column-content" scope="col">
 						<?php _e( 'Tab Content Preview', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</th>
 					<?php do_action( 'yikes-woo-saved-tabs-table-header' ); ?>
-					<th id="columnname" class="manage-column column-columnname" scope="col">&nbsp;</th>
+					<th class="manage-column column-edit" scope="col">&nbsp;</th>
 				</tr>
 			</tfoot>
 
@@ -91,13 +89,13 @@
 							$tab_name            = ( isset( $tab_data['tab_name'] ) ) ? $tab_data['tab_name'] : '';
 							$tab_content_excerpt = ( isset( $tab_data['tab_content'] ) && ! empty( $tab_data['tab_content'] ) ) ? stripslashes( substr( wp_strip_all_tags( $tab_data['tab_content'] ), 0, 150 ) ) : '';
 							$tab_id 			 = ( isset( $tab_data['tab_id'] ) && ! empty( $tab_data['tab_id'] ) ) ? (int) $tab_data['tab_id'] : 0;
-							$edit_tab_url 		 = add_query_arg( array( 'saved-tab-id' => $tab_id ), esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
+							$edit_tab_url 		 = esc_url_raw( add_query_arg( array( 'saved-tab-id' => $tab_id ), '?page=' . YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() );
 							?>
 								<tr class="yikes_woo_saved_tabs_row" id="yikes_woo_saved_tabs_row_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
 									<th class="check-column" scope="row">
 										<input class="entry-bulk-action-checkbox" type="checkbox" value="<?php echo $tab_id; ?>" />
 									</th>
-									<td class="column-columnname">
+									<td class="column-title">
 										<?php echo $tab_title; ?>
 										<div class="row-actions">
 											<span class="">
@@ -108,10 +106,10 @@
 											</span>
 										</div>
 									</td>
-									<td class="column-columnname"><?php echo $tab_name; ?></td>
-									<td class="column-columnname"><?php echo $tab_content_excerpt; ?></td>
-									<?php do_action( 'yikes-woo-saved-tabs-table-taxonomy-column', $tab_data ); ?>
-									<td class="column-columnname" align="center">
+									<td class="column-name"><?php echo $tab_name; ?></td>
+									<td class="column-content"><?php echo $tab_content_excerpt; ?></td>
+									<?php do_action( 'yikes-woo-saved-tabs-table-column', $tab_data ); ?>
+									<td class="column-edit" align="center">
 										<a href="<?php echo $edit_tab_url ?>" class="button-secondary view-saved-tab-button" data-entry-id="<?php echo (int) $tab_id; ?>">
 											<?php _e( 'Edit Tab', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 										</a>

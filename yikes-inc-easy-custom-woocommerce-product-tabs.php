@@ -64,6 +64,8 @@
 
 			$this->define_constants();
 
+			add_action( 'admin_init', array( $this, 'run_update_check' ) );
+
 			// Require our classes
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-export.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-saved-tabs.php';
@@ -115,8 +117,116 @@
 		}
 
 		/**
-		 * Init WooCommerce Product Tabs Lite extension once we know WooCommerce is active
-		 */
+		* Run any update scripts 
+		*/
+		public function run_update_check() {
+
+			$run_onesix_data_update = get_option( 'custom_product_tabs_onesix_data_update' );
+
+			// If we don't have a value for this option then run our update again
+			if ( empty( $run_onesix_data_update ) ) {
+				$this->run_onesix_data_update();
+			}
+
+		}
+
+		private function run_onesix_data_update() {
+
+			/** Update Saved Tabs **/
+			$saved_tabs = get_option( 'yikes_woo_reusable_products_tabs' );
+
+			foreach( $saved_tabs as $tab_id => &$tab ) {
+
+				// Set the tab slug to the sanitized tab's title
+				$tab['tab_slug'] = sanitize_title( $tab['tab_title'] );
+
+				// Default these elements
+				$tab['taxonomies'] = ! isset( $tab['taxonomies'] ) ? array() : $tab['taxonomies'];
+				$tab['global_tab'] = ! isset( $tab['global_tab'] ) ? false : $tab['global_tab'];
+				$tab['tab_name']   = ! isset( $tab['tab_name'] ) ? '' : $tab['tab_name'];
+			}
+
+			update_option( 'yikes_woo_reusable_products_tabs', $saved_tabs );
+
+			/** Update Saved Tabs Applied **/
+			$saved_tabs_applied = get_option( 'yikes_woo_reusable_products_tabs_applied' );
+
+			foreach( $saved_tabs_applied as $product_id => &$tabs ) {
+
+				if ( ! empty( $tabs ) ) {
+
+					foreach( $tabs as $saved_tab_id => &$tab ) {
+
+						if ( ! empty( $tab ) ) {
+
+							if ( isset( $saved_tabs[ $saved_tab_id ] ) ) { 
+
+								// Set the tab ID to the saved tab's slug
+								$tab_id = $saved_tabs[ $saved_tab_id ]['tab_slug'];
+								$tab['tab_id'] = $tab_id;
+							}
+
+						} else {
+
+							// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
+							unset( $tab );
+						}
+					}
+				} else {
+
+					// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
+					unset( $saved_tabs_applied[ $product_id ] );
+				}
+			}
+
+			update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs_applied );
+
+			/** Update Post Meta **/
+			global $wpdb;
+
+			// Fetch all of the post meta items where meta_key = 'yikes_woo_products_tabs'
+			$yikes_woo_products_tabs = $wpdb->get_results(
+				"
+				SELECT * 
+				FROM {$wpdb->postmeta}
+				WHERE meta_key = 'yikes_woo_products_tabs' 
+				"
+			);
+
+			if ( ! empty( $yikes_woo_products_tabs ) ) {
+
+				foreach( $yikes_woo_products_tabs as $table_row ) {
+
+					// Unserialize our tabs
+					$tabs = unserialize( $table_row->meta_value );
+
+					// If we have tabs...
+					if ( ! empty( $tabs ) ) {
+
+						foreach( $tabs as &$tab ) {
+
+							// Set the tab slug ('id') to the sanitized tab's title
+							$tab['id'] = sanitize_title( $tab['title'] );
+						}
+
+						update_post_meta( $table_row->post_id, 'yikes_woo_products_tabs', $tabs );
+
+					} else {
+
+						// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
+						delete_post_meta( $table_row->post_id, 'yikes_woo_products_tabs' );
+					}
+				}
+			}
+
+			// Set a flag so we don't run this update more than once
+			add_option( 'custom_product_tabs_onesix_data_update', true );
+		}
+
+
+		/**
+		* Run our basic plugin setup
+		*/
 		public function init() {
 
 			// Default WYSIWYG to 'visual'
@@ -137,7 +247,7 @@
 		* @param array | $links | array of links passed from the plugin_action_links_{plugin_name} filter
 		*/
 		public function add_plugin_action_links( $links ) {
-			$href = admin_url( esc_url_raw( 'options-general.php?page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
+			$href = admin_url( esc_url_raw( 'page=' . YIKES_Custom_Product_Tabs_Settings_Page ) );
 			$links[] = '<a href="'. $href .'">Settings</a>';
 			return $links;
 		}
