@@ -77,13 +77,16 @@
 	*/
 	function yikes_woo_handle_saving_reusable_tab( tab_id ) {
 
+		// Add loading spinner
+		yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_success_message', repeatable_custom_tabs_settings.loading_gif, {} );
+
 		var tab_title   = jQuery( '#yikes_woo_reusable_tab_title_' + tab_id ).val();
 		var tab_name    = jQuery( '#yikes_woo_reusable_tab_name_' + tab_id ).val();
 		var tab_content = '';
 		var taxonomies  = {};
 		var global_tab  = false;
 
-		if ( typeof( tinymce ) != 'undefined' && jQuery( '#wp-yikes_woo_reusable_tab_content_' + tab_id + '-wrap' ).hasClass( 'tmce-active' ) ) {
+		if ( typeof( tinymce ) !== 'undefined' && jQuery( '#wp-yikes_woo_reusable_tab_content_' + tab_id + '-wrap' ).hasClass( 'tmce-active' ) ) {
 			tab_content = tinymce.get( 'yikes_woo_reusable_tab_content_' + tab_id ).getContent();
 		} else {
 			tab_content = jQuery( '#yikes_woo_reusable_tab_content_' + tab_id ).val();
