@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: custom-product-tabs 1.5.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-22 17:18+0000\n"
+"POT-Creation-Date: 2017-10-06 15:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,9 +20,9 @@ msgstr ""
 
 #: admin/class.yikes-woo-generate-html.php:73
 #: admin/class.yikes-woo-generate-html.php:244
-#: admin/page.yikes-woo-saved-tabs-single.php:48
-#: admin/page.yikes-woo-saved-tabs.php:50
-#: admin/page.yikes-woo-saved-tabs.php:70
+#: admin/page.yikes-woo-saved-tabs-single.php:49
+#: admin/page.yikes-woo-saved-tabs.php:48
+#: admin/page.yikes-woo-saved-tabs.php:68
 msgid "Tab Title"
 msgstr ""
 
@@ -81,62 +81,59 @@ msgstr ""
 msgid "Add a Saved Tab"
 msgstr ""
 
-#: admin/class.yikes-woo-saved-tabs.php:64 admin/class.yikes-woo-tabs.php:63
-#: admin/class.yikes-woo-tabs.php:72
+#: admin/class.yikes-woo-saved-tabs.php:64 admin/class.yikes-woo-tabs.php:62
+#: admin/class.yikes-woo-tabs.php:71
 msgid ""
 "Sorry! An error has occurred while trying to retrieve the editor. Please "
 "refresh the page and try again."
 msgstr ""
 
-#: admin/class.yikes-woo-saved-tabs.php:277
+#: admin/class.yikes-woo-saved-tabs.php:283
 msgid "Could not find the tab. Please try again."
 msgstr ""
 
-#: admin/class.yikes-woo-saved-tabs.php:281
+#: admin/class.yikes-woo-saved-tabs.php:287
 msgid "Uh oh. Something went wrong."
 msgstr ""
 
-#: admin/class.yikes-woo-saved-tabs.php:490
-msgid "Settings - Custom Product Tabs for WooCommerce"
+#: admin/class.yikes-woo-saved-tabs.php:501
+#: admin/class.yikes-woo-saved-tabs.php:502
+msgid "Custom Product Tabs"
 msgstr ""
 
-#: admin/class.yikes-woo-saved-tabs.php:491
-msgid "Custom Product Tabs for WooCommerce"
-msgstr ""
-
-#: admin/class.yikes-woo-tabs.php:90
+#: admin/class.yikes-woo-tabs.php:89
 msgid "Custom Tabs"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs-single.php:24
+#: admin/page.yikes-woo-saved-tabs-single.php:25
 #: admin/page.yikes-woo-saved-tabs.php:6
 msgid "Add Tab"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs-single.php:32
+#: admin/page.yikes-woo-saved-tabs-single.php:33
 msgid "Any updates made here will apply to all products using this tab."
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs-single.php:40
+#: admin/page.yikes-woo-saved-tabs-single.php:41
 msgid "Go Back to Saved Tabs list"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs-single.php:56
-#: admin/page.yikes-woo-saved-tabs.php:53
-#: admin/page.yikes-woo-saved-tabs.php:73
+#: admin/page.yikes-woo-saved-tabs-single.php:57
+#: admin/page.yikes-woo-saved-tabs.php:51
+#: admin/page.yikes-woo-saved-tabs.php:71
 msgid "Tab Name"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs-single.php:65
+#: admin/page.yikes-woo-saved-tabs-single.php:66
 msgid "Tab Content"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs-single.php:77
+#: admin/page.yikes-woo-saved-tabs-single.php:78
 msgid "Save Tab"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs-single.php:81
-#: admin/page.yikes-woo-saved-tabs.php:107
+#: admin/page.yikes-woo-saved-tabs-single.php:82
+#: admin/page.yikes-woo-saved-tabs.php:105
 msgid "Delete Tab"
 msgstr ""
 
@@ -148,42 +145,42 @@ msgstr ""
 msgid "Tab deleted!"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:24
+#: admin/page.yikes-woo-saved-tabs.php:22
 msgid "Create and save tabs you can add to multiple products."
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:33
+#: admin/page.yikes-woo-saved-tabs.php:31
 msgid "Select bulk action"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:35
+#: admin/page.yikes-woo-saved-tabs.php:33
 msgid "Bulk Actions"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:36
+#: admin/page.yikes-woo-saved-tabs.php:34
 msgid "Delete"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:38
+#: admin/page.yikes-woo-saved-tabs.php:36
 msgid "Apply"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:46
-#: admin/page.yikes-woo-saved-tabs.php:66
+#: admin/page.yikes-woo-saved-tabs.php:44
+#: admin/page.yikes-woo-saved-tabs.php:64
 msgid "Select All"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:56
-#: admin/page.yikes-woo-saved-tabs.php:76
+#: admin/page.yikes-woo-saved-tabs.php:54
+#: admin/page.yikes-woo-saved-tabs.php:74
 msgid "Tab Content Preview"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:104
-#: admin/page.yikes-woo-saved-tabs.php:116
+#: admin/page.yikes-woo-saved-tabs.php:102
+#: admin/page.yikes-woo-saved-tabs.php:114
 msgid "Edit Tab"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:126
+#: admin/page.yikes-woo-saved-tabs.php:124
 msgid "There are no saved tabs. Add one!"
 msgstr ""
 

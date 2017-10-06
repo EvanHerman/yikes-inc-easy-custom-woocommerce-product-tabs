@@ -78,7 +78,7 @@
 	function yikes_woo_handle_saving_reusable_tab( tab_id ) {
 
 		// Add loading spinner
-		yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_success_message', repeatable_custom_tabs_settings.loading_gif, {'time': 10000} );
+		yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_success_message', repeatable_custom_tabs_settings.loading_gif, {'time': 100000} );
 
 		var tab_title   = jQuery( '#yikes_woo_reusable_tab_title_' + tab_id ).val();
 		var tab_name    = jQuery( '#yikes_woo_reusable_tab_name_' + tab_id ).val();
@@ -187,7 +187,7 @@
 
 		// Add a spinner...
 		if ( delete_method === 'single' ) {
-			yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_success_message', repeatable_custom_tabs_settings.loading_gif, {'time': 10000} );
+			yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_success_message', repeatable_custom_tabs_settings.loading_gif, {'time': 100000} );
 		}
 
 		// Create data object

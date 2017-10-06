@@ -172,7 +172,7 @@
 				toolbar3: '',
 				toolbar4: '',
 				tabfocus_elements: ':prev,:next',
-				width: '100%',
+				// width: '100%',
 				// body_class: 'id post-type-post post-status-publish post-format-standard',
 				setup: function( editor ) {
 					editor.on( 'init', function() {
