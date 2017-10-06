@@ -259,7 +259,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 					'label' => __( 'Content', YIKES_Custom_Product_Tabs_Text_Domain ), 
 					'placeholder' => __( 'HTML and text to display.', YIKES_Custom_Product_Tabs_Text_Domain ), 
 					'value' => $tab['content'], 
-					'style' => 'width:70%;height:10.5em;', 
+					'style' => 'width:100%;min-height:10rem;', 
 					'class' => 'yikes_woo_tabs_content_field',
 					'number' => $i
 				) );
@@ -315,7 +315,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		*/
 		protected function display_woocommerce_wp_wysiwyg_input_duplicate() {
 
-			$this->woocommerce_wp_textarea_input( array( 'id' => 'hidden_duplicator_row_content' , 'label' => __( 'Content', YIKES_Custom_Product_Tabs_Text_Domain ), 'placeholder' => __( 'HTML and text to display.', YIKES_Custom_Product_Tabs_Text_Domain ), 'style' => 'width:70%;height:10.5em;' , 'class' => 'yikes_woo_tabs_content_field' ) );
+			$this->woocommerce_wp_textarea_input( array( 'id' => 'hidden_duplicator_row_content' , 'label' => __( 'Content', YIKES_Custom_Product_Tabs_Text_Domain ), 'placeholder' => __( 'HTML and text to display.', YIKES_Custom_Product_Tabs_Text_Domain ), 'style' => 'width:100%; min-height:10rem;' , 'class' => 'yikes_woo_tabs_content_field' ) );
 		}
 
 		/**
