@@ -33,9 +33,9 @@
 			}
 
 			// If we're on the button page, show the button holder (we temporarily hide it for UI/UX purposes)
-			if ( product_page === true ) {
-				jQuery( '.button-holder' ).show();
-			}
+			// if ( product_page === true ) {
+			// 	jQuery( '.button-holder' ).show();
+			// }
 
 			// Add wp_editor HTML to the page
 			jQuery( '.' + textarea_id + '_field' ).html( response ).addClass( '_yikes_wc_custom_repeatable_product_tabs_tab_content_field _yikes_wc_custom_repeatable_product_tabs_tab_content_field_dynamic' );
@@ -193,9 +193,9 @@
 		wp.editor.initialize( textarea_id, settings );
 
 		// If we're on the button page, show the button holder (we temporarily hide it for UI/UX purposes)
-		if ( product_page === true ) {
-			jQuery( '.button-holder' ).show();
-		}
+		// if ( product_page === true ) {
+		// 	jQuery( '.button-holder' ).show();
+		// }
 
 		// After tinymce is initialized, let's check if we need to disable the box (because it's a saved tab)
 		var tab_number = yikes_woo_get_tab_number_from_id( textarea_id );
