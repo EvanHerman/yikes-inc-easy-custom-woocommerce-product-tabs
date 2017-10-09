@@ -3,10 +3,10 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.8.1
+Tested up to: 4.8.2
 Requires WooCommerce at least: 3.0.0
 Tested WooCommerce up to: 3.1.2
-Stable tag: 1.5.17
+Stable tag: 1.6.0
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -19,7 +19,7 @@ Individual product tabs are managed on the WooCommerce Edit Product screen and c
 
 Tab content areas use the standard WordPress text editor and may contain text, images, html or shortcodes. 
 
-If you experience any problems, please submit a New Issue on our [Github Issue Tracker](https://github.com/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/issues) and we'll look in to it as soon as possible.
+If you experience any problems, please submit a ticket on our [Free WordPress Support Forums](https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs) and we'll look in to it as soon as possible.
 
 This plugin is compatible with WPML.
 
@@ -75,6 +75,19 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.6.0 - October 3rd, 2017 = 
+* Complete re-organization of all plugin files and removal of legacy code
+* Added a "name" field for saved tabs. This field is used only on the admin as a way of identifying tabs.
+* Tab "slugs" are now created via the WP Core `sanitize_title()` function. This should allow meaningful tab slugs when foreign characters are used in a title.
+* Re-added the "Add Media" button to the editor when it's first initialized. This had disappeared when WP4.8 was released.
+* Fixed some issues with loading saved tab content into the editor. This should fix the issue that some users were experiencing where adding a saved tab would only work the second time.
+* Setting the width of the editor to 100%. 
+* Custom Product Tabs is now a top-level menu item instead of a sub-menu item.
+* Cleaning up the saved tab's array so we don't leave orphaned data (e.g. added a hook so we delete a product's tabs when the product is deleted)
+* Added a data update script to update all existing tab slugs to use `sanitize_title()` function.
+* Generated new POT file.
+* Added support and hooks for our new Custom Product Tabs Pro plugin! 
 
 = 1.5.17 - Auguest 23rd, 2017 = 
 * Cleaning up some PHP Notices being thrown - thanks to @ZombiEquinox on GitHub for reporting this

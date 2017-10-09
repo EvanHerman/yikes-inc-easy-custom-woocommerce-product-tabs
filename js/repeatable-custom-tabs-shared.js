@@ -33,9 +33,9 @@
 			}
 
 			// If we're on the button page, show the button holder (we temporarily hide it for UI/UX purposes)
-			if ( product_page === true ) {
-				jQuery( '.button-holder' ).show();
-			}
+			// if ( product_page === true ) {
+			// 	jQuery( '.button-holder' ).show();
+			// }
 
 			// Add wp_editor HTML to the page
 			jQuery( '.' + textarea_id + '_field' ).html( response ).addClass( '_yikes_wc_custom_repeatable_product_tabs_tab_content_field _yikes_wc_custom_repeatable_product_tabs_tab_content_field_dynamic' );
@@ -82,7 +82,7 @@
 				end_container_on_empty_block: true,
 				wpeditimage_disable_captions: false,
 				wpeditimage_html5_captions: true,
-				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview',
+				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview',
 				resize: 'vertical',
 				menubar: false,
 				wpautop: true,
@@ -122,6 +122,7 @@
 
 		if ( ! wp && ! wp.editor && ! wp.editor.initialize ) {
 			yikes_woo_get_wp_editor_ajax( textarea_id, product_page, tab_content );
+			return false;
 		}
 
 		// Re-enable buttons / arrows
@@ -161,7 +162,7 @@
 				end_container_on_empty_block: true,
 				wpeditimage_disable_captions: false,
 				wpeditimage_html5_captions: true,
-				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview',
+				plugins: 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview',
 				menubar: false,
 				wpautop: true,
 				indent: false,
@@ -171,15 +172,18 @@
 				toolbar3: '',
 				toolbar4: '',
 				tabfocus_elements: ':prev,:next',
+				// width: '100%',
 				// body_class: 'id post-type-post post-status-publish post-format-standard',
 				setup: function( editor ) {
 					editor.on( 'init', function() {
 						this.getBody().style.fontFamily = 'Georgia, "Times New Roman", "Bitstream Charter", Times, serif';
 						this.getBody().style.fontSize = '16px';
 						this.getBody().style.color = '#333';
+						if ( tab_content.length > 0 ) {
+							this.setContent( tab_content );
+						}
 					});
 				},
-				// width: jQuery( '#yikes_woocommerce_custom_product_tabs' ).width() * .85
 			},
 			quicktags: {
 				buttons:"strong,em,link,block,del,ins,img,ul,ol,li,code,more,close"
@@ -188,15 +192,10 @@
 
 		wp.editor.initialize( textarea_id, settings );
 
-		// If we have content, add it
-		if ( tab_content.length > 0 ) {
-			yikes_woo_set_content_for_wysiwyg( textarea_id, tab_content );
-		}
-
 		// If we're on the button page, show the button holder (we temporarily hide it for UI/UX purposes)
-		if ( product_page === true ) {
-			jQuery( '.button-holder' ).show();
-		}
+		// if ( product_page === true ) {
+		// 	jQuery( '.button-holder' ).show();
+		// }
 
 		// After tinymce is initialized, let's check if we need to disable the box (because it's a saved tab)
 		var tab_number = yikes_woo_get_tab_number_from_id( textarea_id );
@@ -204,6 +203,13 @@
 			jQuery( '#_yikes_wc_custom_repeatable_product_tabs_tab_title_' + tab_number ).removeClass( 'yikes_woo_disable_this_tab' );
 			yikes_woo_toggle_reusable_override_overlay( 'disable', tab_number );
 		}
+
+		// Add an 'Add Media' button
+		// The plugin is included with the instantiation of the editor but there is no HTML button to trigger the associated functions
+		var add_media_button = '<div id="wp-' + textarea_id + '-media-buttons" class="wp-media-buttons"> \
+			<button type="button" id="insert-media-button" class="button insert-media add_media" data-editor="' + textarea_id + '"><span class="wp-media-buttons-icon"></span> Add Media</button>\
+		</div>';
+		jQuery( '#wp-_yikes_wc_custom_repeatable_product_tabs_tab_content_' + tab_number + '-wrap > .wp-editor-tools' ).prepend( add_media_button );
 		
 		return true;
 	}
@@ -368,3 +374,8 @@
 			jQuery( '#' + editor_id ).val( content );
 		}
 	}
+
+
+
+
+
