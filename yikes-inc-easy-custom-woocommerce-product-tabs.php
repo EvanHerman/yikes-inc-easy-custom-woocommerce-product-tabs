@@ -135,51 +135,58 @@
 			/** Update Saved Tabs **/
 			$saved_tabs = get_option( 'yikes_woo_reusable_products_tabs' );
 
-			foreach( $saved_tabs as $tab_id => &$tab ) {
+			if ( ! empty( $saved_tabs ) ) {
 
-				// Set the tab slug to the sanitized tab's title
-				$tab['tab_slug'] = sanitize_title( $tab['tab_title'] );
+				foreach( $saved_tabs as $tab_id => &$tab ) {
 
-				// Default these elements
-				$tab['taxonomies'] = ! isset( $tab['taxonomies'] ) ? array() : $tab['taxonomies'];
-				$tab['global_tab'] = ! isset( $tab['global_tab'] ) ? false : $tab['global_tab'];
-				$tab['tab_name']   = ! isset( $tab['tab_name'] ) ? '' : $tab['tab_name'];
+					// Set the tab slug to the sanitized tab's title
+					$tab['tab_slug'] = sanitize_title( $tab['tab_title'] );
+
+					// Default these elements
+					$tab['taxonomies'] = ! isset( $tab['taxonomies'] ) ? array() : $tab['taxonomies'];
+					$tab['global_tab'] = ! isset( $tab['global_tab'] ) ? false : $tab['global_tab'];
+					$tab['tab_name']   = ! isset( $tab['tab_name'] ) ? '' : $tab['tab_name'];
+				}
+
+				update_option( 'yikes_woo_reusable_products_tabs', $saved_tabs );
+
 			}
-
-			update_option( 'yikes_woo_reusable_products_tabs', $saved_tabs );
 
 			/** Update Saved Tabs Applied **/
 			$saved_tabs_applied = get_option( 'yikes_woo_reusable_products_tabs_applied' );
 
-			foreach( $saved_tabs_applied as $product_id => &$tabs ) {
+			if ( ! empty( $saved_tabs_applied ) ) {
 
-				if ( ! empty( $tabs ) ) {
+				foreach( $saved_tabs_applied as $product_id => &$tabs ) {
 
-					foreach( $tabs as $saved_tab_id => &$tab ) {
+					if ( ! empty( $tabs ) ) {
 
-						if ( ! empty( $tab ) ) {
+						foreach( $tabs as $saved_tab_id => &$tab ) {
 
-							if ( isset( $saved_tabs[ $saved_tab_id ] ) ) { 
+							if ( ! empty( $tab ) ) {
 
-								// Set the tab ID to the saved tab's slug
-								$tab_id = $saved_tabs[ $saved_tab_id ]['tab_slug'];
-								$tab['tab_id'] = $tab_id;
+								if ( isset( $saved_tabs[ $saved_tab_id ] ) ) { 
+
+									// Set the tab ID to the saved tab's slug
+									$tab_id = $saved_tabs[ $saved_tab_id ]['tab_slug'];
+									$tab['tab_id'] = $tab_id;
+								}
+
+							} else {
+
+								// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
+								unset( $tab );
 							}
-
-						} else {
-
-							// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
-							unset( $tab );
 						}
+					} else {
+
+						// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
+						unset( $saved_tabs_applied[ $product_id ] );
 					}
-				} else {
-
-					// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
-					unset( $saved_tabs_applied[ $product_id ] );
 				}
-			}
 
-			update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs_applied );
+				update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs_applied );
+			}
 
 			/** Update Post Meta **/
 			global $wpdb;
