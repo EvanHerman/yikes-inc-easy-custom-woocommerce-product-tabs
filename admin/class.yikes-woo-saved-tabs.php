@@ -16,8 +16,8 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		public function init() {
 
 			// Add our custom options for saved tabs
-			add_option( 'yikes_woo_reusable_products_tabs' );
-			add_option( 'yikes_woo_reusable_products_tabs_applied' );
+			add_option( 'yikes_woo_reusable_products_tabs', array() );
+			add_option( 'yikes_woo_reusable_products_tabs_applied', array() );
 
 			// Enqueue our JS / CSS files
 			add_action( 'admin_enqueue_scripts' , array( $this , 'enqueue_scripts_and_styles' ), 10, 1 );
@@ -222,7 +222,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 						// Loop through $custom_tab_data and find the custom tab that was just updated
 						foreach( $custom_tab_data as $index => $tab ) {
-							if ( $tab['id'] === $reusable_tab_data[$tab_id]['tab_id'] ) {
+							if ( isset( $reusable_tab_data[ $tab_id ] ) && $tab['id'] === $reusable_tab_data[ $tab_id ]['tab_id'] ) {
 								$custom_tab_data[$index]['title']   = $tab_title;
 								$custom_tab_data[$index]['name']    = $tab_name;
 								$custom_tab_data[$index]['content'] = $tab_content;
