@@ -261,7 +261,7 @@
 		*/
 		public function yikes_woo_load_plugin_textdomain() {
 			load_plugin_textdomain(
-				YIKES_Custom_Product_Tabs_Text_Domain,
+				'yikes-inc-easy-custom-woocommerce-product-tabs',
 				false,
 				YIKES_Custom_Product_Tabs_Path . 'languages/'
 			);

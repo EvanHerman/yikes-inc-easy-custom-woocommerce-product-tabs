@@ -61,7 +61,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 						'loading_gif' 					=> '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif" />',
 						'ajaxurl' 						=> admin_url( 'admin-ajax.php' ),
 						'get_wp_editor_security_nonce' 	=> wp_create_nonce( 'yikes_woo_get_wp_editor_nonce' ),
-						'get_wp_editor_failure_message' => __( 'Sorry! An error has occurred while trying to retrieve the editor. Please refresh the page and try again.', YIKES_Custom_Product_Tabs_Text_Domain ),
+						'get_wp_editor_failure_message' => __( 'Sorry! An error has occurred while trying to retrieve the editor. Please refresh the page and try again.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
 					) );
 
 				// CSS
@@ -280,11 +280,11 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 				wp_send_json_success( $tab );	
 			} else {
-				wp_send_json_success( array( 'message' => __( 'Could not find the tab. Please try again.', YIKES_Custom_Product_Tabs_Text_Domain ) ) );
+				wp_send_json_success( array( 'message' => __( 'Could not find the tab. Please try again.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) ) );
 			}
 
 			// If we get this far, send error
-			wp_send_json_error( array( 'message' => __( 'Uh oh. Something went wrong.', YIKES_Custom_Product_Tabs_Text_Domain ) ) );
+			wp_send_json_error( array( 'message' => __( 'Uh oh. Something went wrong.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) ) );
 		}
 
 		/**
@@ -498,8 +498,8 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Add our custom settings page
 			add_menu_page(
-				apply_filters( 'yikes-woo-settings-menu-title', __( 'Custom Product Tabs', YIKES_Custom_Product_Tabs_Text_Domain ) ),     // Tab title name (HTML title)
-				apply_filters( 'yikes-woo-settings-menu-title', __( 'Custom Product Tabs', YIKES_Custom_Product_Tabs_Text_Domain ) ),     // Menu page name
+				apply_filters( 'yikes-woo-settings-menu-title', __( 'Custom Product Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) ),     // Tab title name (HTML title)
+				apply_filters( 'yikes-woo-settings-menu-title', __( 'Custom Product Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) ),     // Menu page name
 				apply_filters( 'yikes-woo-settings-menu-capability', 'manage_options' ),                                                  // Capability required
 				YIKES_Custom_Product_Tabs_Settings_Page,                                                                                  // Page slug (?page=slug-name)
 				array( $this, 'generate_yikes_settings_page' ),                                                                           // Function to generate page

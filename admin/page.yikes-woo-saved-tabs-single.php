@@ -22,7 +22,7 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 	<h1 class="screen-media">
 		Custom Product Tabs for WooCommerce | <span id="yikes_woo_tab_title_header"><?php echo $tab_title; ?></span>
 		<span class="yikes_woo_add_another_tab page-title-action" id="yikes_woo_add_another_tab">
-			<a href="<?php echo $new_tab_url; ?>"> <?php _e( 'Add Tab', YIKES_Custom_Product_Tabs_Text_Domain ); ?>	</a>
+			<a href="<?php echo $new_tab_url; ?>"> <?php _e( 'Add Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>	</a>
 		</span>
 	</h1>
 
@@ -30,7 +30,7 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 		<!-- Only show this if we're updating an existing tab -->
 		<div class="yikes_woo_settings_info">
 			<p>
-				<?php _e( "Any updates made here will apply to all products using this tab.", YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+				<?php _e( "Any updates made here will apply to all products using this tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 			</p>
 		</div>
 	<?php } ?>
@@ -38,7 +38,7 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 	<div id="poststuff">
 
 		<div class="yikes_woo_go_back_url">
-			<a href="<?php echo $redirect; ?>"><?php _e( 'Go Back to Saved Tabs list', YIKES_Custom_Product_Tabs_Text_Domain ); ?></a>  
+			<a href="<?php echo $redirect; ?>"><?php _e( 'Go Back to Saved Tabs list', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>  
 		</div>
 
 		<div class="row yikes_woo_reusable_tabs_container" id="yikes_woo_reusable_tabs_container_<?php echo $tab_id ?>" data-tab-id="<?php echo $tab_id; ?>">
@@ -46,7 +46,7 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 			<!-- Title -->
 			<div class="yikes_woo_reusable_tab_title">
 				<label class="yikes_woo_reusable_tab_title_label" for="yikes_woo_reusable_tab_title_<?php echo $tab_id; ?>">
-					<h3><?php _e( 'Tab Title', YIKES_Custom_Product_Tabs_Text_Domain ); ?></h3>
+					<h3><?php _e( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></h3>
 				</label>
 				<input type="text" id="yikes_woo_reusable_tab_title_<?php echo $tab_id; ?>" value="<?php echo $tab_title; ?>" />
 			</div>
@@ -54,7 +54,7 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 			<!-- Tab Name -->
 			<div class="yikes_woo_reusable_tab_title">
 				<label class="yikes_woo_reusable_tab_title_label" for="yikes_woo_reusable_tab_name_<?php echo $tab_id; ?>">
-					<h3><?php _e( 'Tab Name', YIKES_Custom_Product_Tabs_Text_Domain ); ?></h3>
+					<h3><?php _e( 'Tab Name', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></h3>
 				</label>
 				<span> This is for your reference only. </span>
 				<input type="text" id="yikes_woo_reusable_tab_name_<?php echo $tab_id; ?>" value="<?php echo $tab_name; ?>" />
@@ -63,7 +63,7 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 			<!-- Content -->
 			<div class="yikes_woo_reusable_tab_content">
 				<label class="yikes_woo_reusable_tab_content_label" for="yikes_woo_reusable_tab_content_<?php echo $tab_id; ?>">
-					<h3><?php _e( 'Tab Content', YIKES_Custom_Product_Tabs_Text_Domain ); ?></h3>
+					<h3><?php _e( 'Tab Content', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></h3>
 				</label>
 				<?php 
 					wp_editor( stripslashes( $tab_content ), 'yikes_woo_reusable_tab_content_' . $tab_id, array( 'textarea_name' => 'yikes_woo_reusable_tab_content_' . $tab_id, 'textarea_rows' => 8 ) );
@@ -75,11 +75,11 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 			<!-- Buttons -->
 			<div class="yikes_woo_save_and_delete_tab_buttons">
 				<span class="button button-primary yikes_woo_save_this_tab" id="yikes_woo_save_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
-					<?php _e( 'Save Tab', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+					<?php _e( 'Save Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 				</span>
 				<span class="button button-secondary yikes_woo_delete_this_tab yikes_woo_delete_this_tab_single" id="yikes_woo_delete_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
 					<i class="dashicons dashicons-dismiss inline-button-dashicons"></i>
-					<?php _e( 'Delete Tab', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+					<?php _e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 				</span>
 			</div>
 			
