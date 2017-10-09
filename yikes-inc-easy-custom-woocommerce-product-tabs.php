@@ -72,6 +72,7 @@
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-tabs.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.support.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'public/class.yikes-woo-tabs-display.php';
+			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.premium.php';
 
 			add_action( 'admin_init', array( $this, 'init' ) );
 		}
@@ -121,6 +122,13 @@
 			*/
 			if ( ! defined( 'YIKES_Custom_Product_Tabs_Support_Page' ) ) {
 				define( 'YIKES_Custom_Product_Tabs_Support_Page', 'yikes-woo-support' );
+			}
+
+			/**
+			* Define the page slug for our plugin's premium page
+			*/
+			if ( ! defined( 'YIKES_Custom_Product_Tabs_Premium_Page' ) ) {
+				define( 'YIKES_Custom_Product_Tabs_Premium_Page', 'yikes-woo-premium' );
 			}
 		}
 
