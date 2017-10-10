@@ -67,12 +67,12 @@
 			add_action( 'admin_init', array( $this, 'run_update_check' ) );
 
 			// Require our classes
-			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-export.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-saved-tabs.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-tabs.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.support.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'public/class.yikes-woo-tabs-display.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.premium.php';
+			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.export.php';
 
 			add_action( 'admin_init', array( $this, 'init' ) );
 		}
