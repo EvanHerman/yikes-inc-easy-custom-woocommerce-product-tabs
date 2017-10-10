@@ -137,16 +137,16 @@
 		*/
 		public function run_update_check() {
 
-			$run_onesix_data_update = get_option( 'custom_product_tabs_onesix_data_update' );
+			$run_onesixone_data_update = get_option( 'custom_product_tabs_onesixone_data_update' );
 
 			// If we don't have a value for this option then run our update again
 			if ( empty( $run_onesix_data_update ) ) {
-				$this->run_onesix_data_update();
+				$this->run_onesixone_data_update();
 			}
 
 		}
 
-		private function run_onesix_data_update() {
+		private function run_onesixone_data_update() {
 
 			/** Update Saved Tabs **/
 			$saved_tabs = get_option( 'yikes_woo_reusable_products_tabs' );
@@ -156,7 +156,7 @@
 				foreach( $saved_tabs as $tab_id => &$tab ) {
 
 					// Set the tab slug to the sanitized tab's title
-					$tab['tab_slug'] = sanitize_title( $tab['tab_title'] );
+					$tab['tab_slug'] = urldecode( sanitize_title( $tab['tab_title'] ) );
 
 					// Default these elements
 					$tab['taxonomies'] = ! isset( $tab['taxonomies'] ) ? array() : $tab['taxonomies'];
@@ -229,7 +229,7 @@
 						foreach( $tabs as &$tab ) {
 
 							// Set the tab slug ('id') to the sanitized tab's title
-							$tab['id'] = sanitize_title( $tab['title'] );
+							$tab['id'] = urldecode( sanitize_title( $tab['title'] ) );
 						}
 
 						update_post_meta( $table_row->post_id, 'yikes_woo_products_tabs', $tabs );
@@ -243,7 +243,7 @@
 			}
 
 			// Set a flag so we don't run this update more than once
-			add_option( 'custom_product_tabs_onesix_data_update', true );
+			add_option( 'custom_product_tabs_onesixone_data_update', true );
 		}
 
 
