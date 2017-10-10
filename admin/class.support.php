@@ -11,13 +11,29 @@
 			add_action( 'admin_menu', array( $this, 'register_support_subpage' ), 20 );
 
 			// Enqueue scripts & styles
-			// add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10, 1 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10, 1 );
 
 			// Add our free support page HTML
 			add_action( 'yikes-woo-support-page-free', array( $this, 'render_support_page' ), 100 );
 		}
 
 		/**
+<<<<<<< HEAD
+=======
+		* Enqueue our scripts and styes
+		*
+		* @param string | $page | The slug of the page we're currently on
+		*/
+		public function enqueue_scripts( $page ) {
+
+			if ( $page === 'custom-product-tabs_page_' . YIKES_Custom_Product_Tabs_Support_Page ) {
+
+				wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
+			}
+		}
+
+		/**
+>>>>>>> ea453a036fcc532aac5f0a007b3a011168543d53
 		* Register our settings page
 		*/
 		public function register_support_subpage() {

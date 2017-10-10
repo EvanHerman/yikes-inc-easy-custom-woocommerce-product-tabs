@@ -68,8 +68,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				wp_enqueue_script( 'twitter-button', YIKES_Custom_Product_Tabs_URI . 'js/twitter-embed.js', null, YIKES_Custom_Product_Tabs_Version );
 
 				// CSS
-				wp_register_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
-				wp_enqueue_style( 'repeatable-custom-tabs-styles' );
+				wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
 			}
 
 		}
@@ -443,7 +442,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					if ( isset( $applied_tabs_array[$tab_id] ) ) {
 
 						// Now we also need to remove this entry from our postmeta
-						$post_tabs = get_post_meta( $post_id, 'yikes_woo_products_tabs', true );
+						$post_tabs = maybe_unserialize( get_post_meta( $post_id, 'yikes_woo_products_tabs', true ) );
 
 						// Make sure it exists
 						if ( ! empty( $post_tabs ) ) {

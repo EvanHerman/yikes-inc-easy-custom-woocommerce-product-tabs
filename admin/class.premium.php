@@ -30,6 +30,7 @@
 				wp_enqueue_style ( 'repeatable-custom-tabs-styles', YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css' );
 				wp_enqueue_script( 'lightslider-scripts', YIKES_Custom_Product_Tabs_URI . 'slider/js/lightslider.min.js', array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
 				wp_enqueue_script( 'premium-scripts', YIKES_Custom_Product_Tabs_URI . 'js/premium.js', array( 'lightslider-scripts' ), YIKES_Custom_Product_Tabs_Version );
+				wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
 			}
 		}
 
@@ -71,8 +72,8 @@
 			}
 
 			?>
-			<div class="yikes-woo-all-about-us">
-				<div class="yikes-woo-review-us postbox">
+			<div class="yikes-woo-all-about-us yikes-saved-tabs-row">
+				<div class="postbox yikes-woo-review-us">
 					<h3>Show Us Some Love</h3>
 
 					<div class="yikes-woo-review-us yikes-woo-all-about-us-box" id="yikes-woo-review-us">
@@ -101,7 +102,7 @@
 					</div>
 				</div>
 
-				<div class="yikes-woo-buy-us yikes-woo-all-about-us-box postbox" id="yikes-woo-buy-us">
+				<div class="postbox yikes-woo-buy-us yikes-woo-all-about-us-box" id="yikes-woo-buy-us">
 
 					<p><?php _e( 'Check out Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
 					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
