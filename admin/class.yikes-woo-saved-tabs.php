@@ -443,7 +443,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					if ( isset( $applied_tabs_array[$tab_id] ) ) {
 
 						// Now we also need to remove this entry from our postmeta
-						$post_tabs = get_post_meta( $post_id, 'yikes_woo_products_tabs', true );
+						$post_tabs = maybe_unserialize( get_post_meta( $post_id, 'yikes_woo_products_tabs', true ) );
 
 						// Make sure it exists
 						if ( ! empty( $post_tabs ) ) {
