@@ -164,7 +164,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 					$tab_id = '';
 					
 					if ( $tab_title ) {
-						$tab_id = sanitize_title( $tab_title );
+						$tab_id = urldecode( sanitize_title( $tab_title ) );
 					}
 
 					// push the data to the array

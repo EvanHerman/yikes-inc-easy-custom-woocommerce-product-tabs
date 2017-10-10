@@ -102,7 +102,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			// Get our $_POST vars
 			if ( isset( $_POST['tab_title'] ) && ! empty( $_POST['tab_title'] ) ) {
 				$tab_title     = stripslashes( $_POST['tab_title'] );
-				$tab_string_id = sanitize_title( $tab_title );
+				$tab_string_id = urldecode( sanitize_title( $tab_title ) );
 			} else {
 				wp_send_json_error( array( 'reason' => 'no tab title', 'message' => 'Please fill out the tab title before saving.' ) );
 			}
