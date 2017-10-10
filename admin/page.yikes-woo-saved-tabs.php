@@ -23,6 +23,8 @@
 		</p>
 	</div>
 
+	<?php do_action( 'yikes-woo-saved-tabs-list-ad' ); ?>
+
 	<div id="poststuff">
 
 		<!-- Bulk Actions -->

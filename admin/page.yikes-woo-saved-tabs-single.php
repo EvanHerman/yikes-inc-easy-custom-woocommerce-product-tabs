@@ -35,6 +35,8 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 		</div>
 	<?php } ?>
 
+	<?php do_action( 'yikes-woo-saved-tabs-list-ad' ); ?>
+
 	<div id="poststuff">
 
 		<div class="yikes_woo_go_back_url">
