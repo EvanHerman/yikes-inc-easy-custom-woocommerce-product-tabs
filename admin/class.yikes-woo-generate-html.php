@@ -353,12 +353,10 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		* @param array $field Array of HTML field related values
 		*/
 		private function woocommerce_wp_textarea_input( $field ) {
-			global $thepostid, $post;
 
-			if ( ! $thepostid ) $thepostid = $post->ID;
 			if ( ! isset( $field['placeholder'] ) ) $field['placeholder'] = '';
-			if ( ! isset( $field['class'] ) ) $field['class'] = 'short';
-			if ( ! isset( $field['value'] ) ) $field['value'] = get_post_meta( $thepostid, $field['id'], true );
+			if ( ! isset( $field['class'] ) ) $field['class'] = '';
+			if ( ! isset( $field['value'] ) ) $field['value'] = '';
 
 			echo '<p class="form-field-tinymce ' . $field['id'] . '_field">       <textarea class="' . $field['class'] . '" name="' . $field['id'] . '" id="' . $field['id'] . '" placeholder="' . $field['placeholder'] . '" rows="2" cols="20"' . (isset( $field['style'] ) ? ' style="' . $field['style'] . '"' : '') . '>' . $field['value'] . '</textarea> ';
 
@@ -375,12 +373,10 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 		* @param array $field Array of HTML field related values
 		*/
 		private function woocommerce_wp_wysiwyg_input( $field ) {
-			global $thepostid, $post;
 
-			if ( ! $thepostid ) $thepostid = $post->ID;
 			if ( ! isset( $field['placeholder'] ) ) $field['placeholder'] = '';
-			if ( ! isset( $field['class'] ) ) $field['class'] = 'short';
-			if ( ! isset( $field['value'] ) ) $field['value'] = get_post_meta( $thepostid, $field['id'], true );
+			if ( ! isset( $field['class'] ) ) $field['class'] = '';
+			if ( ! isset( $field['value'] ) ) $field['value'] = '';
 
 			$editor_settings = array(
 				'textarea_name' => $field['id']

@@ -216,7 +216,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					foreach( $reusable_tab_options_array as $post_id => $reusable_tab_data ) {
 
 						// Fetch the relevant postmeta field
-						$custom_tab_data = get_post_meta( $post_id, 'yikes_woo_products_tabs', true );
+						$custom_tab_data = maybe_unserialize( get_post_meta( $post_id, 'yikes_woo_products_tabs', true ) );
 
 						// If we don't have custom tab data then continue
 						if ( empty( $custom_tab_data ) ) {
