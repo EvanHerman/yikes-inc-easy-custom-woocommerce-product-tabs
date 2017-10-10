@@ -1,7 +1,9 @@
-<div>
+<div class="wrap woo-ct-admin-page-wrap">
 
-	<!-- Title -->
-	<h1><?php _e( 'Custom Product Tabs Features', YIKES_Custom_Product_Tabs_Text_Domain ); ?></h1>
+	<h1>
+		<span class="dashicons dashicons-exerpt-view"></span>
+		<?php _e( 'Custom Product Tabs Features', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+	</h1>
 
 	<a class="button button-secondary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
 		<?php _e( 'Check it out', YIKES_Custom_Product_Tabs_Text_Domain ); ?>

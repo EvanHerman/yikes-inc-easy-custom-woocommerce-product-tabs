@@ -1,4 +1,7 @@
-<div class="cptpro-settings-container">
+<div class="wrap woo-ct-admin-page-wrap">
+
+	<!-- Title -->
+	<h1><span class="dashicons dashicons-exerpt-view"></span> Custom Product Tabs Support</h1>
 
 	<!-- Title -->
 	<h1>Custom <span class="cptpro-blue">Pro</span>duct Tabs</h1>

@@ -1,6 +1,7 @@
-<div class="wrap">
+<div class="wrap woo-ct-admin-page-wrap">
 
 	<h1>
+		<span class="dashicons dashicons-exerpt-view"></span>
 		<?php echo __( 'Custom Product Tabs for WooCommerce | Saved Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 		<span class="yikes_woo_add_another_tab page-title-action" id="yikes_woo_add_another_tab">
 			<a href="<?php echo $new_tab_url; ?>"> <?php _e( 'Add Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>	</a>
