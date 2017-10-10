@@ -72,33 +72,36 @@
 
 			?>
 			<div class="yikes-woo-all-about-us">
+				<div class="yikes-woo-review-us postbox">
+					<h3>Show Us Some Love</h3>
 
-				<div class="yikes-woo-review-us yikes-woo-all-about-us-box" id="yikes-woo-review-us">
+					<div class="yikes-woo-review-us yikes-woo-all-about-us-box" id="yikes-woo-review-us">
 
-					<p><?php _e( 'Leave a review', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
-					<p class="star-container">
-						<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/?rate=5#new-post" target="_blank">
-							<span class="dashicons dashicons-star-filled"></span>
-							<span class="dashicons dashicons-star-filled"></span>
-							<span class="dashicons dashicons-star-filled"></span>
-							<span class="dashicons dashicons-star-filled"></span>
-							<span class="dashicons dashicons-star-filled"></span>
-						</a>
-					</p>
+						<p><?php _e( 'Leave a review', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
+						<p class="star-container">
+							<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/?rate=5#new-post" target="_blank">
+								<span class="dashicons dashicons-star-filled"></span>
+								<span class="dashicons dashicons-star-filled"></span>
+								<span class="dashicons dashicons-star-filled"></span>
+								<span class="dashicons dashicons-star-filled"></span>
+								<span class="dashicons dashicons-star-filled"></span>
+							</a>
+						</p>
+					</div>	
+
+					<div class="yikes-woo-all-about-us-separator"></div>
+
+					<div class="yikes-woo-tweet-us yikes-woo-all-about-us-box" id="yikes-woo-tweet-us">
+
+						<p><?php _e( 'Tweet about us', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
+						<a class="twitter-share-button"
+						  href="https://twitter.com/intent/tweet?text=I wanted everyone to know that I'm using the very cool Custom Product Tabs plugin by YIKES.&url=<?php echo home_url(); ?>"
+						  data-size="large">
+						<?php _e( 'Tweet', YIKES_Custom_Product_Tabs_Text_Domain ); ?></a>
+					</div>
 				</div>
 
-				<div class="yikes-woo-all-about-us-separator"></div>
-
-				<div class="yikes-woo-tweet-us yikes-woo-all-about-us-box" id="yikes-woo-tweet-us">
-
-					<p><?php _e( 'Tweet about us', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
-					<a class="twitter-share-button"
-					  href="https://twitter.com/intent/tweet?text=I wanted everyone to know that I'm using the very cool Custom Product Tabs plugin by YIKES.&url=<?php echo home_url(); ?>"
-					  data-size="large">
-					<?php _e( 'Tweet', YIKES_Custom_Product_Tabs_Text_Domain ); ?></a>
-				</div>
-
-				<div class="yikes-woo-buy-us yikes-woo-all-about-us-box" id="yikes-woo-buy-us">
+				<div class="yikes-woo-buy-us yikes-woo-all-about-us-box postbox" id="yikes-woo-buy-us">
 
 					<p><?php _e( 'Check out Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
 					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
