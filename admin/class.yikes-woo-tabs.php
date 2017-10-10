@@ -86,7 +86,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 		 * Adds a new tab to the Product Data postbox in the admin product interface
 		 */
 		public function render_custom_product_tabs() {
-			echo "<li class=\"yikes_wc_product_tabs_tab\"><a href=\"#yikes_woocommerce_custom_product_tabs\">" . __( 'Custom Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . "</a></li>";
+			echo "<li class=\"yikes_wc_product_tabs_tab\"><a href=\"#yikes_woocommerce_custom_product_tabs\"><span>" . __( 'Custom Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . "</span></a></li>";
 		}
 
 
