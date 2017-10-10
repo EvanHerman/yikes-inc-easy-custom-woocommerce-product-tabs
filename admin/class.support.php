@@ -18,19 +18,6 @@
 		}
 
 		/**
-		* Enqueue our scripts and styes
-		*
-		* @param string | $page | The slug of the page we're currently on
-		*/
-		// public function enqueue_scripts( $page ) {
-
-		// 	if ( $page === 'custom-product-tabs-pro_page_' . YIKES_Custom_Product_Tabs_Support_Page ) {
-
-		// 		// wp_enqueue_style ( 'cptpro-settings-styles', YIKES_Custom_Product_Tabs_Pro_URI . 'css/settings.min.css' );
-		// 	}
-		// }
-
-		/**
 		* Register our settings page
 		*/
 		public function register_support_subpage() {
@@ -66,7 +53,7 @@
 					<p>
 						<?php 
 							_e( 
-								'Users of the free version of Custom Product Tabs can post questions to our support forum on the WordPress Plugin Directory. We aim to respond to support requests for the free version of the plugin within a week although we often respond much quicker.', 
+								'Users of the Custom Product Tabs free can post questions to our support forum on the WordPress Plugin Directory. We aim to respond to support requests for the free version of the plugin within a week..', 
 								YIKES_Custom_Product_Tabs_Text_Domain  
 							);
 						?>
@@ -83,12 +70,22 @@
 								'<a href="https://yikesplugins.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/" target="_blank">', '</a>' ); 
 						?>
 					</p>
+
+					<hr />
+					
+
 					<p>
 						<h1><span class="dashicons dashicons-wordpress-alt"></span>&nbsp;<?php _e( 'WordPress.org Plugin Directory', YIKES_Custom_Product_Tabs_Text_Domain ); ?></h1>
 						<a class="button button-primary" href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs#new-post" target="_blank">
 							<?php _e( 'Submit a New WordPress.org Support Request', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 						</a>
 					</p>
+
+
+					<img src="<?php echo YIKES_Custom_Product_Tabs_URI . 'images/support-screenshot.png' ?>" />
+
+
+
 				</div>
 			<?php
 		}
