@@ -140,7 +140,7 @@
 			$run_onesixone_data_update = get_option( 'custom_product_tabs_onesixone_data_update' );
 
 			// If we don't have a value for this option then run our update again
-			if ( empty( $run_onesix_data_update ) ) {
+			if ( empty( $run_onesixone_data_update ) ) {
 				$this->run_onesixone_data_update();
 			}
 
