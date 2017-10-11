@@ -84,6 +84,8 @@
 
 			/**
 			* Define the text domain
+			*
+			* This isn't used anywhere as I don't believe you can use a constant as a text domain
 			*/
 			if ( ! defined( 'YIKES_Custom_Product_Tabs_Text_Domain' ) ) {
 				define( 'YIKES_Custom_Product_Tabs_Text_Domain', 'yikes-inc-easy-custom-woocommerce-product-tabs' );

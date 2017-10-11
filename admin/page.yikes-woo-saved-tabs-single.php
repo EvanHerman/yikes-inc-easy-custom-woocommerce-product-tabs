@@ -4,7 +4,10 @@
 // Make sure we have a tab
 if ( ! $new_tab && ( ! isset( $tab ) || empty( $tab ) ) ) {
 	if ( isset( $redirect ) ) {
-		echo '<p> Oops. It looks like something went wrong. Please <a href="' . $redirect . '" title="go back">go back</a> and try again</p>';
+		echo '<p>';
+		echo sprintf( __( 'It looks like something went wrong. Please %1sgo back%2s. and try again', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), 
+				'<a href="' . $redirect . '" title="go back">', '</a>' ); 
+		echo '</p>';
 	}
 	exit;
 }
