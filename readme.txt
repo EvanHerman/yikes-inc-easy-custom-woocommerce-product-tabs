@@ -1,5 +1,5 @@
 === Custom Product Tabs for WooCommerce  ===
-Contributors: yikesinc, eherman24, liljimmi, yikesitskevin
+Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
@@ -17,7 +17,7 @@ This plugin extends [WooCommerce](www.woothemes.com/woocommerce/) to allow shop 
 
 Individual product tabs are managed on the WooCommerce Edit Product screen and can be added on a per product basis. You can also create saved tabs and add them to multiple products as needed. Tabs can be easily added, deleted and rearranged.
 
-Tab content areas use the standard WordPress text editor and may contain text, images, html or shortcodes. 
+Tab content areas use the standard WordPress text editor and may contain text, images, HTML or shortcodes. 
 
 If you experience any problems, please submit a ticket on our [Free WordPress Support Forums](https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs) and we'll look in to it as soon as possible.
 

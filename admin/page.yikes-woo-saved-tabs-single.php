@@ -36,6 +36,8 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 		</div>
 	<?php } ?>
 
+	<?php do_action( 'yikes-woo-display-too-many-products-warning' ); ?>
+
 	<?php do_action( 'yikes-woo-saved-tabs-list-ad' ); ?>
 
 	<div id="poststuff">

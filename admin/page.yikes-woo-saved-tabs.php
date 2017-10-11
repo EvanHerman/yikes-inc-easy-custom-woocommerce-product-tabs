@@ -24,6 +24,8 @@
 		</p>
 	</div>
 
+	<?php do_action( 'yikes-woo-display-too-many-products-warning' ); ?>
+
 	<?php do_action( 'yikes-woo-saved-tabs-list-ad' ); ?>
 
 	<div id="poststuff" class="yikes-saved-tabs-row">
