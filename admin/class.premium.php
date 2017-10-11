@@ -106,9 +106,9 @@
 
 				<div class="postbox yikes-woo-buy-us yikes-woo-all-about-us-box" id="yikes-woo-buy-us">
 					<h3>Custom Product Tabs Pro</h3>
-					<p><?php _e( 'Check out Custom Product Tabs Pro!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
+					<h4><?php _e( 'Check out Custom Product Tabs Pro!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </h4>
 					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
-					<a class="button button-secondary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
+					<a class="button button-primary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
 						<?php _e( 'Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</a>
 				</div>

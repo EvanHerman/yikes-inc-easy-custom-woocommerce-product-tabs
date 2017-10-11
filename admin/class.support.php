@@ -65,37 +65,35 @@
 				<div class="cptpro-settings cptpro-settings-support-help-container">
 					<p>
 						<?php 
-							echo sprintf( __( 'Custom Product Tabs Pro users qualify for premium support. Check out %1sCustom Product Tabs Pro%2s!', YIKES_Custom_Product_Tabs_Text_Domain  ), 
-								'<a href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">', '</a>' ); 
-						?>
-					</p>
-					<p>
-						<?php 
-							echo sprintf( __( 'Before submitting a support request, please visit our %1sknowledge base%2s where we have step-by-step guides and troubleshooting help.', YIKES_Custom_Product_Tabs_Text_Domain  ), 
+							echo sprintf( __( 'Before submitting a support request, please visit our %1sKnowledge Base%2s where we have step-by-step guides and troubleshooting help.', YIKES_Custom_Product_Tabs_Text_Domain  ), 
 								'<a href="https://yikesplugins.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/" target="_blank">', '</a>' ); 
 						?>
 					</p>
 
-					<hr />
-					
+					<p>
+						<?php 
+							echo sprintf( __( 'Custom Product Tabs Pro users qualify for premium support. Check out %1sCustom Product Tabs Pro%2s!', YIKES_Custom_Product_Tabs_Text_Domain  ), 
+								'<a href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">', '</a>' ); 
+						?>
+					</p>
+
+					<hr />					
 
 
 					<h1>
-						<span class="dashicons dashicons-wordpress-alt"></span>&nbsp;<?php _e( 'WordPress.org Plugin Directory', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+						<span class="dashicons dashicons-wordpress-alt"></span> <?php _e( 'WordPress.org Support Forums', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</h1>
 
 					<p>
 						<?php 
-							_e( 
-								'Users of the Custom Product Tabs free can post questions to <a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs#new-post" target="_blank">our support forum on the WordPress Plugin Directory</a>. We aim to respond to support requests for the free version of the plugin within a week..', 
-								YIKES_Custom_Product_Tabs_Text_Domain  
-							);
+							echo sprintf( __( 'If you need help with free Custom Product Tabs, please post questions to %1sour support forum on the WordPress Plugin Directory%2s. We aim to respond to support requests within a week.', YIKES_Custom_Product_Tabs_Text_Domain  ), 
+								'<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs#new-post" target="_blank">', '</a>' ); 
 						?>
 					</p>
 
 					<p>
 						<a class="button button-primary" href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs#new-post" target="_blank">
-							<?php _e( 'Submit a New WordPress.org Support Request', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+							<?php _e( 'Submit a Support Request', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 						</a>
 					</p>
 
