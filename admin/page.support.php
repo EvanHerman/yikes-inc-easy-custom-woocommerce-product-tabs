@@ -3,7 +3,7 @@
 	<!-- Title -->
 	<h1>
 		<span class="dashicons dashicons-exerpt-view"></span> 
-		<?php _e( 'Custom Product Tabs for WooCommerce | Support', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+		<?php _e( 'Custom Product Tabs for WooCommerce | Support', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 	</h1>
 
 	<!-- Free Support-content Hook -->

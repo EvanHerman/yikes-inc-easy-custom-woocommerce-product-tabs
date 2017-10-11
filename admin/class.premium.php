@@ -29,8 +29,8 @@
 				wp_enqueue_style ( 'lightslider-styles', YIKES_Custom_Product_Tabs_URI . 'slider/css/lightslider.min.css' );
 				wp_enqueue_style ( 'repeatable-custom-tabs-styles', YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css' );
 				wp_enqueue_script( 'lightslider-scripts', YIKES_Custom_Product_Tabs_URI . 'slider/js/lightslider.min.js', array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
-				wp_enqueue_script( 'premium-scripts', YIKES_Custom_Product_Tabs_URI . 'js/premium.js', array( 'lightslider-scripts' ), YIKES_Custom_Product_Tabs_Version );
-				wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
+				wp_enqueue_script( 'premium-scripts', YIKES_Custom_Product_Tabs_URI . 'js/premium.min.js', array( 'lightslider-scripts' ), YIKES_Custom_Product_Tabs_Version );
+				wp_enqueue_style ( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
 			}
 		}
 
@@ -46,8 +46,8 @@
 			// Add our custom settings page
 			add_submenu_page(
 				YIKES_Custom_Product_Tabs_Settings_Page,                            // Parent menu item slug
-				__( 'Go Pro', YIKES_Custom_Product_Tabs_Text_Domain ),             // Tab title name (HTML title)
-				__( 'Go Pro', YIKES_Custom_Product_Tabs_Text_Domain ),             // Menu page name
+				__( 'Go Pro', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),             // Tab title name (HTML title)
+				__( 'Go Pro', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),             // Menu page name
 				apply_filters( 'yikes-woo-premium-capability', 'manage_options' ),  // Capability required
 				YIKES_Custom_Product_Tabs_Premium_Page,                             // Page slug (?page=slug-name)
 				array( $this, 'premium_page' )                                      // Function to generate page
@@ -78,7 +78,7 @@
 
 					<div class="yikes-woo-review-us yikes-woo-all-about-us-box" id="yikes-woo-review-us">
 
-						<p><?php _e( 'Leave a review!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
+						<p><?php _e( 'Leave a review!', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </p>
 						<p class="star-container">
 							<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/?rate=5#new-post" target="_blank">
 								<span class="dashicons dashicons-star-filled"></span>
@@ -94,11 +94,11 @@
 
 					<div class="yikes-woo-tweet-us yikes-woo-all-about-us-box" id="yikes-woo-tweet-us">
 
-						<p><?php _e( 'Tweet about us!', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
+						<p><?php _e( 'Tweet about us!', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 						<a class="twitter-share-button"
 						  href="https://twitter.com/intent/tweet?text=I wanted everyone to know that I'm using the very cool Custom Product Tabs plugin by YIKES.&url=<?php echo home_url(); ?>"
 						  data-size="large">
-						<?php _e( 'Tweet', YIKES_Custom_Product_Tabs_Text_Domain ); ?></a>
+						<?php _e( 'Tweet', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
 					</div>
 
 					<p class="yikes-woo-review-us-footer">This plugin made with <span class="dashicons dashicons-heart yikes-love"></span> by <a href="http://www.yikesinc.com" target="_blank" title="YIKES Inc.">YIKES Inc.</a></p>
@@ -106,10 +106,10 @@
 
 				<div class="postbox yikes-woo-buy-us yikes-woo-all-about-us-box" id="yikes-woo-buy-us">
 					<h3>Custom Product Tabs Pro</h3>
-					<h4><?php _e( 'Check out Custom Product Tabs Pro!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </h4>
-					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
+					<h4><?php _e( 'Check out Custom Product Tabs Pro!', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </h4>
+					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 					<a class="button button-primary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
-						<?php _e( 'Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+						<?php _e( 'Custom Product Tabs Pro', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 					</a>
 				</div>
 			</div>
