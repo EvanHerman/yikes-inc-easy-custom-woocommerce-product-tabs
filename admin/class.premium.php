@@ -93,16 +93,18 @@
 
 					<div class="yikes-woo-tweet-us yikes-woo-all-about-us-box" id="yikes-woo-tweet-us">
 
-						<p><?php _e( 'Tweet about us', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
+						<p><?php _e( 'Tweet about us!', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
 						<a class="twitter-share-button"
 						  href="https://twitter.com/intent/tweet?text=I wanted everyone to know that I'm using the very cool Custom Product Tabs plugin by YIKES.&url=<?php echo home_url(); ?>"
 						  data-size="large">
 						<?php _e( 'Tweet', YIKES_Custom_Product_Tabs_Text_Domain ); ?></a>
 					</div>
+
+					<p class="yikes-woo-review-us-footer">This plugin made with <span class="dashicons dashicons-heart yikes-love"></span> by <a href="http://www.yikesinc.com" target="_blank" title="YIKES Inc.">YIKES Inc.</a></p>
 				</div>
 
 				<div class="postbox yikes-woo-buy-us yikes-woo-all-about-us-box" id="yikes-woo-buy-us">
-
+					<h3>Custom Product Tabs Pro</h3>
 					<p><?php _e( 'Check out Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
 					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					<a class="button button-secondary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
