@@ -46,8 +46,8 @@
 			// Add our custom settings page
 			add_submenu_page(
 				YIKES_Custom_Product_Tabs_Settings_Page,                            // Parent menu item slug
-				__( 'Get Pro', YIKES_Custom_Product_Tabs_Text_Domain ),             // Tab title name (HTML title)
-				__( 'Get Pro', YIKES_Custom_Product_Tabs_Text_Domain ),             // Menu page name
+				__( 'Go Pro', YIKES_Custom_Product_Tabs_Text_Domain ),             // Tab title name (HTML title)
+				__( 'Go Pro', YIKES_Custom_Product_Tabs_Text_Domain ),             // Menu page name
 				apply_filters( 'yikes-woo-premium-capability', 'manage_options' ),  // Capability required
 				YIKES_Custom_Product_Tabs_Premium_Page,                             // Page slug (?page=slug-name)
 				array( $this, 'premium_page' )                                      // Function to generate page
