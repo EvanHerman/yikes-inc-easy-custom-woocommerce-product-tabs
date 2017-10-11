@@ -64,8 +64,8 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 					<label class="yikes_woo_reusable_tab_title_label" for="yikes_woo_reusable_tab_name_<?php echo $tab_id; ?>">
 						<h3><?php _e( 'Tab Name', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></h3>
 					</label>
-					<span> This is for your reference only. </span>
 					<input type="text" id="yikes_woo_reusable_tab_name_<?php echo $tab_id; ?>" value="<?php echo $tab_name; ?>" />
+					<div class="yikes_woo_reusable_tab_title_note"><?php _e( 'This is for your reference only.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></div>
 				</div>
 				
 				<!-- Content -->
