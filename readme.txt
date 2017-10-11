@@ -5,7 +5,7 @@ Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs,
 Requires at least: 3.8
 Tested up to: 4.8.2
 Requires WooCommerce at least: 3.0.0
-Tested WooCommerce up to: 3.1.2
+Tested WooCommerce up to: 3.2.0
 Stable tag: 1.6.1
 License: GPLv2 or later
 
