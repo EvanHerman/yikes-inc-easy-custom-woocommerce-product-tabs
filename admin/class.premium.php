@@ -74,43 +74,46 @@
 			?>
 			<div class="yikes-woo-all-about-us yikes-saved-tabs-row">
 				<div class="postbox yikes-woo-review-us">
-					<h3>Show Us Some Love</h3>
+					<h3 class="yikes-woo-review-us-title">Show Us Some Love</h3>
+					<div class="yikes-woo-review-us-body">
+						<div class="yikes-woo-review-us yikes-woo-all-about-us-box" id="yikes-woo-review-us">
 
-					<div class="yikes-woo-review-us yikes-woo-all-about-us-box" id="yikes-woo-review-us">
+							<p><?php _e( 'Leave a review!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
+							<p class="star-container">
+								<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/?rate=5#new-post" target="_blank">
+									<span class="dashicons dashicons-star-filled"></span>
+									<span class="dashicons dashicons-star-filled"></span>
+									<span class="dashicons dashicons-star-filled"></span>
+									<span class="dashicons dashicons-star-filled"></span>
+									<span class="dashicons dashicons-star-filled"></span>
+								</a>
+							</p>
+						</div>	
 
-						<p><?php _e( 'Leave a review!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
-						<p class="star-container">
-							<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/?rate=5#new-post" target="_blank">
-								<span class="dashicons dashicons-star-filled"></span>
-								<span class="dashicons dashicons-star-filled"></span>
-								<span class="dashicons dashicons-star-filled"></span>
-								<span class="dashicons dashicons-star-filled"></span>
-								<span class="dashicons dashicons-star-filled"></span>
-							</a>
-						</p>
-					</div>	
+						<div class="yikes-woo-all-about-us-separator"></div>
 
-					<div class="yikes-woo-all-about-us-separator"></div>
+						<div class="yikes-woo-tweet-us yikes-woo-all-about-us-box" id="yikes-woo-tweet-us">
 
-					<div class="yikes-woo-tweet-us yikes-woo-all-about-us-box" id="yikes-woo-tweet-us">
+							<p><?php _e( 'Tweet about us!', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
+							<a class="twitter-share-button"
+							  href="https://twitter.com/intent/tweet?text=I wanted everyone to know that I'm using the very cool Custom Product Tabs plugin by YIKES.&url=<?php echo home_url(); ?>"
+							  data-size="large">
+							<?php _e( 'Tweet', YIKES_Custom_Product_Tabs_Text_Domain ); ?></a>
+						</div>
 
-						<p><?php _e( 'Tweet about us!', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
-						<a class="twitter-share-button"
-						  href="https://twitter.com/intent/tweet?text=I wanted everyone to know that I'm using the very cool Custom Product Tabs plugin by YIKES.&url=<?php echo home_url(); ?>"
-						  data-size="large">
-						<?php _e( 'Tweet', YIKES_Custom_Product_Tabs_Text_Domain ); ?></a>
-					</div>
-
-					<p class="yikes-woo-review-us-footer">This plugin made with <span class="dashicons dashicons-heart yikes-love"></span> by <a href="http://www.yikesinc.com" target="_blank" title="YIKES Inc.">YIKES Inc.</a></p>
+						<p class="yikes-woo-review-us-footer">This plugin made with <span class="dashicons dashicons-heart yikes-love"></span> by <a href="http://www.yikesinc.com" target="_blank" title="YIKES Inc.">YIKES Inc.</a></p>
+					</div><!-- .yikes-woo-review-us-body -->
 				</div>
 
 				<div class="postbox yikes-woo-buy-us yikes-woo-all-about-us-box" id="yikes-woo-buy-us">
-					<h3>Custom Product Tabs Pro</h3>
-					<h4><?php _e( 'Check out Custom Product Tabs Pro!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </h4>
-					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
-					<a class="button button-primary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
-						<?php _e( 'Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
-					</a>
+					<h3 class="yikes-woo-buy-us-title">Custom Product Tabs Pro</h3>
+					<div class="yikes-woo-buy-us-body">
+						<h4><?php _e( 'Check out Custom Product Tabs Pro!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </h4>
+						<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
+						<a class="button button-primary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
+							<?php _e( 'Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+						</a>
+					</div><!-- .yikes-woo-buy-us-body -->
 				</div>
 			</div>
 			<?php
