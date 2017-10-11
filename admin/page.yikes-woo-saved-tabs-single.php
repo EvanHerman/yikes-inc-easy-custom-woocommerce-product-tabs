@@ -43,8 +43,6 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 
 		<?php do_action( 'yikes-woo-display-too-many-products-warning' ); ?>
 
-		<?php do_action( 'yikes-woo-saved-tabs-list-ad' ); ?>
-
 		<div id="poststuff">
 
 			<div class="yikes_woo_go_back_url">
@@ -99,4 +97,6 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 		</div><!-- #poststuff -->
 
 	</div>
+
+	<?php do_action( 'yikes-woo-saved-tabs-list-ad' ); ?>
 </div>
