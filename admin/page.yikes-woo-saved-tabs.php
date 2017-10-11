@@ -8,7 +8,7 @@
 		</span>
 	</h1>	
 
-	<div class="cptpro-settings cptpro-savedtabs-pro-container">
+	<div class="cptpro-settings cptpro-savedtabs-pro-container <?php do_action( 'yikes-woo-saved-tabs-table-classes' ); ?>">
 
 		<!-- Delete-success Message -->
 		<div id="yikes_woo_delete_success_message" class="deleted notice notice-success is-dismissible" style="<?php echo $delete_message_display ?>">

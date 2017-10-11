@@ -30,7 +30,7 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 		</span>
 	</h1>
 
-	<div class="cptpro-settings cptpro-savedtabs-pro-container">
+	<div class="cptpro-settings cptpro-savedtabs-pro-container <?php do_action( 'yikes-woo-saved-tabs-table-classes' ); ?>">
 
 		<?php if ( $new_tab !== true ) { ?>
 			<!-- Only show this if we're updating an existing tab -->
