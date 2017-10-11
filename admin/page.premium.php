@@ -74,8 +74,9 @@
 			</li>
 
 			<li>
-				<h3> <?php _e( 'Search', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </h3>
-				<img src="<?php echo YIKES_Custom_Product_Tabs_URI . 'images/cptpro-search-settings.png' ?>" class="cptpro-image"/>
+				<h3> <?php _e( 'Settings', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </h3>
+				<img src="<?php echo YIKES_Custom_Product_Tabs_URI . 'images/cptpro-settings.png' ?>" class="cptpro-image"/>
+				<p><?php _e( 'Remove the tab title from tab content site-wide without needing a filter', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </p>
 				<p><?php _e( 'Make WordPress\' and/or WooCommerce\'s search aware of Custom Product Tab information', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </p>
 			</li>
 
@@ -83,15 +84,6 @@
 				<h3> <?php _e( ' Premium Support', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </h3>
 				<img src="<?php echo YIKES_Custom_Product_Tabs_URI . 'images/cptpro-support-form.png' ?>" class="cptpro-image"/>
 				<p><?php _e( 'Premium support with a ticket form accessible directly from your dashboard', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </p>
-			</li>
-
-			<li>
-				<h3> <?php _e( 'Miscellaneous', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </h3>
-				<img src="<?php echo YIKES_Custom_Product_Tabs_URI . 'images/cptpro-misc.png' ?>" class="cptpro-image"/>
-				<p>
-					<p><?php _e( 'Remove the tab title from tab content site-wide without needing a filter', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </p>
-					<p><?php _e( 'From a saved tab, view which products are currently using that tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </p>
-				</p>
 			</li>
 		</ul>
 
