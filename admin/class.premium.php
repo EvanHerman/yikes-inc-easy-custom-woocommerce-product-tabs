@@ -72,7 +72,7 @@
 			}
 
 			?>
-			<div class="yikes-woo-all-about-us yikes-saved-tabs-row">
+			<div class="yikes-woo-all-about-us">
 				<div class="postbox yikes-woo-review-us">
 					<h3 class="yikes-woo-review-us-title">Show Us Some Love</h3>
 					<div class="yikes-woo-review-us-body">

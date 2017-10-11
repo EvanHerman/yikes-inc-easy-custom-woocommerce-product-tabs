@@ -28,7 +28,7 @@
 
 	<?php do_action( 'yikes-woo-saved-tabs-list-ad' ); ?>
 
-	<div id="poststuff" class="yikes-saved-tabs-row">
+	<div id="poststuff">
 
 		<!-- Bulk Actions -->
 		<div class="tablenav top">
