@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.8.2
 Requires WooCommerce at least: 3.0.0
 Tested WooCommerce up to: 3.1.2
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -76,7 +76,14 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
-= 1.6.0 - October 3rd, 2017 = 
+= 1.6.1 - October 12th, 2017 =
+* Fixed an issue with handling foreign characters. Foreign character tab titles should be working properly now. Sorry about that everyone!
+* Added support for native WooCommerce exporting. You can now export and import your tabs with just WooCommerce!
+* Fixed some styling issues
+* Added a new "Support" page
+* Added a new "Go Pro" page - check out [Custom Product Tabs Pro](https://yikesplugins.com/plugin/custom-product-tabs-pro/)
+
+= 1.6.0 - October 9th, 2017 = 
 * Complete re-organization of all plugin files and removal of legacy code
 * Added a "name" field for saved tabs. This field is used only on the admin as a way of identifying tabs.
 * Tab "slugs" are now created via the WP Core `sanitize_title()` function. This should allow meaningful tab slugs when foreign characters are used in a title.
