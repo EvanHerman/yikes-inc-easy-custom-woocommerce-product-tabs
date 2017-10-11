@@ -78,7 +78,7 @@
 
 					<div class="yikes-woo-review-us yikes-woo-all-about-us-box" id="yikes-woo-review-us">
 
-						<p><?php _e( 'Leave a review', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
+						<p><?php _e( 'Leave a review!', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
 						<p class="star-container">
 							<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/?rate=5#new-post" target="_blank">
 								<span class="dashicons dashicons-star-filled"></span>
@@ -107,7 +107,7 @@
 				<div class="postbox yikes-woo-buy-us yikes-woo-all-about-us-box" id="yikes-woo-buy-us">
 					<h3>Custom Product Tabs Pro</h3>
 					<p><?php _e( 'Check out Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?> </p>
-					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
+					<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', YIKES_Custom_Product_Tabs_Text_Domain ); ?></p>
 					<a class="button button-secondary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
 						<?php _e( 'Custom Product Tabs Pro', YIKES_Custom_Product_Tabs_Text_Domain ); ?>
 					</a>
