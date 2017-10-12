@@ -13,6 +13,8 @@
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ * 
+ * This plugin is originally a fork of SkyVerge WooCommerce Custom Product Tabs Lite
  *
  */
 

@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.8.2
 Requires WooCommerce at least: 3.0.0
 Tested WooCommerce up to: 3.2.0
-Stable tag: 1.6.2
+Stable tag: 1.6.1
 License: GPLv2 or later
 
 Add custom tabs with content to products in WooCommerce. 
@@ -23,7 +23,7 @@ If you experience any problems, please submit a ticket on our [Free WordPress Su
 
 This plugin is compatible with WPML.
 
-Upgrade to [Custom Product Tabs Pro](https://yikesplugins.com/plugin/custom-product-tabs-pro/) for great enhanced features!
+This plugin is a fork of <a href="https://wordpress.org/plugins/woocommerce-custom-product-tabs-lite/" target="_blank">SkyVerge WooCommerce Custom Product Tabs Lite</a>
 
 == Installation ==
 
