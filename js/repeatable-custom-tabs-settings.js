@@ -144,8 +144,8 @@
 				} else {
 					yikes_woo_display_feedback_messages( '#yikes_woo_delete_this_tab_' + tab_id, 'yikes_woo_tab_success_message', 'Tab saved successfully.', {} );
 
-					if ( repeatable_custom_tabs_settings.is_cptpro_enabled === '1' ) {
-						yikes_woo_refresh_products_list( tab_id );
+					if ( repeatable_custom_tabs_settings.is_cptpro_enabled === '1' && typeof cptpro_show_products_using_this_tab === 'function' ) {
+						cptpro_show_products_using_this_tab( tab_id );
 					}
 				}
 
@@ -159,18 +159,6 @@
 					console.log( response );
 				}
 			}
-		});
-	}
-
-	function yikes_woo_refresh_products_list( tab_id ) {
-		var data = {
-			'action': 'display_products_using_this_tab_ajax',
-			'tab_id': tab_id,
-			'nonce' : repeatable_custom_tabs_settings.products_using_this_tab_nonce
-		};
-
-		jQuery.post( repeatable_custom_tabs_settings.ajaxurl, data, function( response ) {
-			jQuery( '.yikes_woo_saved_tab_products' ).replaceWith( response );
 		});
 	}
 
