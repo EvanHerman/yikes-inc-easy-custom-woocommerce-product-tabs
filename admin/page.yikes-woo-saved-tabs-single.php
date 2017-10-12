@@ -31,23 +31,24 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 	</h1>
 
 	<div class="cptpro-settings cptpro-savedtabs-pro-container cptpro-savedtabs-single-pro-container <?php do_action( 'yikes-woo-saved-tabs-table-classes' ); ?>">
-
-		<?php if ( $new_tab !== true ) { ?>
-			<!-- Only show this if we're updating an existing tab -->
-			<div class="yikes_woo_settings_info">
-				<p>
-					<?php _e( "Any updates made here will apply to all products using this tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
-				</p>
-			</div>
-		<?php } ?>
-
-		<?php do_action( 'yikes-woo-display-too-many-products-warning' ); ?>
+		<div class="yikes_woo_go_back_url">				
+			<span class="dashicons dashicons-arrow-left-alt"></span> <a href="<?php echo $redirect; ?>">
+				<?php _e( 'Go Back to All Saved Tabs list', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+			</a>  
+		</div>
 
 		<div id="poststuff">
 
-			<div class="yikes_woo_go_back_url">
-				<a href="<?php echo $redirect; ?>"><?php _e( 'Go Back to Saved Tabs list', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>  
-			</div>
+			<?php if ( $new_tab !== true ) { ?>
+				<!-- Only show this if we're updating an existing tab -->
+				<div class="yikes_woo_settings_info">
+					<p>
+						<?php _e( "Any updates made here will apply to all products using this tab.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+					</p>
+				</div>
+			<?php } ?>
+
+			<?php do_action( 'yikes-woo-display-too-many-products-warning' ); ?>
 
 			<div class="row yikes_woo_reusable_tabs_container" id="yikes_woo_reusable_tabs_container_<?php echo $tab_id ?>" data-tab-id="<?php echo $tab_id; ?>">
 
