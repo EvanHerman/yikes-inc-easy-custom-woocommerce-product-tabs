@@ -52,7 +52,6 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					'tab_list_page_url' 			=> esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() ) ),
 					'save_tab_as_reusable_nonce' 	=> wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
 					'delete_reusable_tab_nonce' 	=> wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ),
-					'products_using_this_tab_nonce' => wp_create_nonce( 'yikes_woo_display_products_using_tab' ),
 					'is_cptpro_enabled'             => defined( 'YIKES_Custom_Product_Tabs_Pro_Enabled' ) ? true : false,
 				) );
 
