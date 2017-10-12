@@ -170,7 +170,7 @@
 		};
 
 		jQuery.post( repeatable_custom_tabs_settings.ajaxurl, data, function( response ) {
-			jQuery( '.yikes_woo_saved_tab_products' ).html( response );
+			jQuery( '.yikes_woo_saved_tab_products' ).replaceWith( response );
 		});
 	}
 
