@@ -97,7 +97,7 @@
 
 							<p><?php _e( 'Tweet about us!', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 							<a class="twitter-share-button"
-							  href="https://twitter.com/intent/tweet?text=I'm using Custom Product Tabs for WooCommerce by @yikesinc to help sell products online. It's awesome! &url=https://wordpress.org/plugins/yikes-inc-easy-custom-woocommerce-product-tabs/"
+							  href="https://twitter.com/intent/tweet?text=I use Custom Product Tabs for WooCommerce by @yikesinc to help sell products online. Awesome #WordPress #plugins &url=https://wordpress.org/plugins/yikes-inc-easy-custom-woocommerce-product-tabs/"
 							  data-size="large">
 							<?php _e( 'Tweet', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
 						</div>
