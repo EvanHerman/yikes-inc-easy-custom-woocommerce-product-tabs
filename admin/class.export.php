@@ -20,7 +20,12 @@ class YIKES_Custom_Product_Tabs_Export {
 	}
 
 	public function add_custom_product_tabs_data_to_product_export( $value, $product, $column_id ) {
-		return ! empty ( get_post_meta( $product->get_id(), 'yikes_woo_products_tabs', true ) ) ? serialize( get_post_meta( $product->get_id(), 'yikes_woo_products_tabs', true ) ) : '';
+
+		$tabs = get_post_meta( $product->get_id(), 'yikes_woo_products_tabs', true );
+
+		$tabs = ! empty( $tabs ) ? serialize( $tabs ) : '';
+
+		return $tabs;
 	}
 }
 
