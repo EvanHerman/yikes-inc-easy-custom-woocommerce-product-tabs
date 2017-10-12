@@ -82,11 +82,7 @@
 							<p><?php _e( 'Leave a review!', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </p>
 							<p class="star-container">
 								<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/?rate=5#new-post" target="_blank">
-									<span class="dashicons dashicons-star-filled"></span>
-									<span class="dashicons dashicons-star-filled"></span>
-									<span class="dashicons dashicons-star-filled"></span>
-									<span class="dashicons dashicons-star-filled"></span>
-									<span class="dashicons dashicons-star-filled"></span>
+									<span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span>
 								</a>
 							</p>
 						</div>	
@@ -110,7 +106,7 @@
 					<h3 class="yikes-woo-buy-us-title">Custom Product Tabs Pro</h3>
 					<div class="yikes-woo-buy-us-body">
 						<h4><?php _e( 'Check out Custom Product Tabs Pro!', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </h4>
-						<p><?php _e( 'Create global tabs, add tabs to products based on taxonomies, add your tabs to the search, and more.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
+						<p><?php _e( 'Create global tabs, add tabs to products based on categories or tags, add tab content to search results, and more!', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 						<a class="button button-primary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
 							<?php _e( 'Custom Product Tabs Pro', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 						</a>
