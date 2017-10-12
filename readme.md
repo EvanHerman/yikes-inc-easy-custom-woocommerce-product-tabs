@@ -1,17 +1,10 @@
-=== Custom Product Tabs for WooCommerce  ===
-Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee
-Donate link: http://yikesinc.com
-Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
-Requires at least: 3.8
-Tested up to: 4.8.2
-Requires WooCommerce at least: 3.0.0
-Tested WooCommerce up to: 3.2.0
-Stable tag: 1.6.1
-License: GPLv2 or later
-
-Add custom tabs with content to products in WooCommerce. 
-
-== Description ==
+Custom Product Tabs for WooCommerce
+=====================
+[![WordPress](https://img.shields.io/wordpress/plugin/dt/yikes-inc-easy-custom-woocommerce-product-tabs.svg)]()
+![Rating](https://img.shields.io/wordpress/plugin/r/yikes-inc-easy-custom-woocommerce-product-tabs.svg)
+[![License](https://poser.pugx.org/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs/license)](https://packagist.org/packages/yikesinc/yikes-inc-easy-custom-woocommerce-product-tabs)
+![WordPress plugin](https://img.shields.io/wordpress/plugin/v/yikes-inc-easy-custom-woocommerce-product-tabs.svg)
+![WordPress](https://img.shields.io/wordpress/v/yikes-inc-easy-custom-woocommerce-product-tabs.svg)
 
 This plugin extends [WooCommerce](www.woothemes.com/woocommerce/) to allow shop owners to add custom tabs to products. The tabs are displayed on the individual product pages to the right of the default "Description" tab.
 
@@ -25,56 +18,12 @@ This plugin is compatible with WPML.
 
 This plugin is a fork of <a href="https://wordpress.org/plugins/woocommerce-custom-product-tabs-lite/" target="_blank">SkyVerge WooCommerce Custom Product Tabs Lite</a>
 
-== Installation ==
+#### Documentation
 
-1. Download the plugin .zip file and make note of where on your computer you downloaded it to.
-2. In the WordPress admin (yourdomain.com/wp-admin) go to Plugins > Add New or click the "Add New" button on the main plugins screen.
-3. On the following screen, click the "Upload Plugin" button.
-4. Browse your computer to where you downloaded the plugin .zip file, select it and click the "Install Now" button.
-5. After the plugin has successfully installed, click "Activate Plugin" and enjoy!
-6. Edit a product, then click on 'Custom Tab' within the 'Product Data' panel
-7. Create saved, reusable tabs under Settings > Custom Product Tabs for WooCommerce
-
-== Screenshots ==
-
-1. Custom Tabs manager on the 'Edit Product' screen
-2. Custom product tab content displayed on the front end
-3. All of the saved tabs on the settings page
-4. Editing a single saved tab
-
-== Frequently Asked Questions ==
-
-**All documentation can be found in [our Knowledge Base](https://yikesplugins.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/).**
-
-= Where do I go to add tabs to a product? =
-When editing a product in WooCommerce, you will find "Custom Tabs" in the bottom left corner of the Product Data box. Click on "Custom Tabs" to reveal the custom tab manager.
-
-= Where will these tabs appear? =
-When the product is viewed on your website you will see the tabs you created to the right of the default "Description" tab. 
-
-= How do I change the order of the tabs? =
-To change the order of custom tabs use the up and down "Move tab order" arrows.
-
-= How do saved tabs work? =
-Saved tabs are tabs you can create under the Custom Product Tabs for WooCommerce settings page and then add to as many products you would like. If you update the tab from the settings page, the changes will take effect for all products using that tab.
-
-= How do I create saved tabs? =
-To create a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found under the Settings menu and click the "Add Tab" button.
-
-= How do I add a saved tab to a product? =
-To add a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Add a Saved Tab' button above the tab, and choose which tab you would like to add.
-
-= What does overriding a saved tab do? =
-When using a saved tab on the product page, a checkbox appears with the message 'Override Saved Tab' If you click that checkbox, edit the tab and save, the tab will be changed for that product only. Any edits to that saved tab under the 'Custom Product Tabs for WooCommerce' settings page, will not be applied to that product.
-
-= Why does the WYSIWYG editor default to the 'Visual' tab? =
-This was added in version 1.5 to support the dynamic adding and removing of the wp_editor/WYSIWYG editor. Without this setting, the WYSIWYG editor does not load the correct toolbar and the editor can potentially break.
-
-= Does custom tab data get exported with standard WooCommerce product data? =
-Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is exported with all of the other standard WooCommerce data. This ensures a smooth transition of products between sites.
+For full documentation, please visit [our Knowledge Base](https://yikesplugins.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/).
 
 
-== Changelog ==
+#### Changelog
 
 = 1.6.1 - October 12th, 2017 =
 * Fixed an issue with handling foreign characters. Foreign character tab titles should be working properly now. Sorry about that everyone!
