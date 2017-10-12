@@ -71,9 +71,8 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 						'get_wp_editor_failure_message' => __( 'Sorry! An error has occurred while trying to retrieve the editor. Please refresh the page and try again.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
 					) );
 
-					// styles + font
-					wp_register_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version );
-					wp_enqueue_style( 'repeatable-custom-tabs-styles' );
+					// styles
+					wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
 
 					// JS lity modal library and CSS
 					wp_enqueue_script( 'lity-js', YIKES_Custom_Product_Tabs_URI . 'js/lity.min.js' , array( 'jquery' ) , YIKES_Custom_Product_Tabs_Version );
@@ -86,7 +85,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 		 * Adds a new tab to the Product Data postbox in the admin product interface
 		 */
 		public function render_custom_product_tabs() {
-			echo "<li class=\"yikes_wc_product_tabs_tab\"><a href=\"#yikes_woocommerce_custom_product_tabs\">" . __( 'Custom Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . "</a></li>";
+			echo "<li class=\"yikes_wc_product_tabs_tab\"><a href=\"#yikes_woocommerce_custom_product_tabs\"><span>" . __( 'Custom Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) . "</span></a></li>";
 		}
 
 
@@ -164,7 +163,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 					$tab_id = '';
 					
 					if ( $tab_title ) {
-						$tab_id = sanitize_title( $tab_title );
+						$tab_id = urldecode( sanitize_title( $tab_title ) );
 					}
 
 					// push the data to the array

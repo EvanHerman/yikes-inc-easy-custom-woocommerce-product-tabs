@@ -16,6 +16,9 @@ module.exports = function(grunt) {
 					'js/repeatable-custom-tabs.min.js': [
 						'js/repeatable-custom-tabs.js'
 					],
+					'js/premium.min.js': [
+						'js/premium.js'
+					],
 				}
 			}
 		},

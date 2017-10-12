@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc
  * Author URI: http://www.yikesinc.com
- * Version: 1.6.0
+ * Version: 1.6.1
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -67,10 +67,12 @@
 			add_action( 'admin_init', array( $this, 'run_update_check' ) );
 
 			// Require our classes
-			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-export.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-saved-tabs.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-tabs.php';
+			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.support.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'public/class.yikes-woo-tabs-display.php';
+			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.premium.php';
+			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.export.php';
 
 			add_action( 'admin_init', array( $this, 'init' ) );
 		}
@@ -82,6 +84,8 @@
 
 			/**
 			* Define the text domain
+			*
+			* This isn't used anywhere as I don't believe you can use a constant as a text domain
 			*/
 			if ( ! defined( 'YIKES_Custom_Product_Tabs_Text_Domain' ) ) {
 				define( 'YIKES_Custom_Product_Tabs_Text_Domain', 'yikes-inc-easy-custom-woocommerce-product-tabs' );
@@ -98,7 +102,7 @@
 			* Define the plugin's version
 			*/
 			if ( ! defined( 'YIKES_Custom_Product_Tabs_Version' ) ) {
-				define( 'YIKES_Custom_Product_Tabs_Version', '1.6.0' );
+				define( 'YIKES_Custom_Product_Tabs_Version', '1.6.1' );
 			}
 
 			/**
@@ -114,6 +118,20 @@
 			if ( ! defined( 'YIKES_Custom_Product_Tabs_Path' ) ) {
 				define( 'YIKES_Custom_Product_Tabs_Path', plugin_dir_path( __FILE__ ) );
 			}
+
+			/**
+			* Define the page slug for our plugin's support page
+			*/
+			if ( ! defined( 'YIKES_Custom_Product_Tabs_Support_Page' ) ) {
+				define( 'YIKES_Custom_Product_Tabs_Support_Page', 'yikes-woo-support' );
+			}
+
+			/**
+			* Define the page slug for our plugin's premium page
+			*/
+			if ( ! defined( 'YIKES_Custom_Product_Tabs_Premium_Page' ) ) {
+				define( 'YIKES_Custom_Product_Tabs_Premium_Page', 'yikes-woo-premium' );
+			}
 		}
 
 		/**
@@ -121,65 +139,72 @@
 		*/
 		public function run_update_check() {
 
-			$run_onesix_data_update = get_option( 'custom_product_tabs_onesix_data_update' );
+			$run_onesixone_data_update = get_option( 'custom_product_tabs_onesixone_data_update' );
 
 			// If we don't have a value for this option then run our update again
-			if ( empty( $run_onesix_data_update ) ) {
-				$this->run_onesix_data_update();
+			if ( empty( $run_onesixone_data_update ) ) {
+				$this->run_onesixone_data_update();
 			}
 
 		}
 
-		private function run_onesix_data_update() {
+		private function run_onesixone_data_update() {
 
 			/** Update Saved Tabs **/
 			$saved_tabs = get_option( 'yikes_woo_reusable_products_tabs' );
 
-			foreach( $saved_tabs as $tab_id => &$tab ) {
+			if ( ! empty( $saved_tabs ) ) {
 
-				// Set the tab slug to the sanitized tab's title
-				$tab['tab_slug'] = sanitize_title( $tab['tab_title'] );
+				foreach( $saved_tabs as $tab_id => &$tab ) {
 
-				// Default these elements
-				$tab['taxonomies'] = ! isset( $tab['taxonomies'] ) ? array() : $tab['taxonomies'];
-				$tab['global_tab'] = ! isset( $tab['global_tab'] ) ? false : $tab['global_tab'];
-				$tab['tab_name']   = ! isset( $tab['tab_name'] ) ? '' : $tab['tab_name'];
+					// Set the tab slug to the sanitized tab's title
+					$tab['tab_slug'] = urldecode( sanitize_title( $tab['tab_title'] ) );
+
+					// Default these elements
+					$tab['taxonomies'] = ! isset( $tab['taxonomies'] ) ? array() : $tab['taxonomies'];
+					$tab['global_tab'] = ! isset( $tab['global_tab'] ) ? false : $tab['global_tab'];
+					$tab['tab_name']   = ! isset( $tab['tab_name'] ) ? '' : $tab['tab_name'];
+				}
+
+				update_option( 'yikes_woo_reusable_products_tabs', $saved_tabs );
+
 			}
-
-			update_option( 'yikes_woo_reusable_products_tabs', $saved_tabs );
 
 			/** Update Saved Tabs Applied **/
 			$saved_tabs_applied = get_option( 'yikes_woo_reusable_products_tabs_applied' );
 
-			foreach( $saved_tabs_applied as $product_id => &$tabs ) {
+			if ( ! empty( $saved_tabs_applied ) ) {
 
-				if ( ! empty( $tabs ) ) {
+				foreach( $saved_tabs_applied as $product_id => &$tabs ) {
 
-					foreach( $tabs as $saved_tab_id => &$tab ) {
+					if ( ! empty( $tabs ) ) {
 
-						if ( ! empty( $tab ) ) {
+						foreach( $tabs as $saved_tab_id => &$tab ) {
 
-							if ( isset( $saved_tabs[ $saved_tab_id ] ) ) { 
+							if ( ! empty( $tab ) ) {
 
-								// Set the tab ID to the saved tab's slug
-								$tab_id = $saved_tabs[ $saved_tab_id ]['tab_slug'];
-								$tab['tab_id'] = $tab_id;
+								if ( isset( $saved_tabs[ $saved_tab_id ] ) ) { 
+
+									// Set the tab ID to the saved tab's slug
+									$tab_id = $saved_tabs[ $saved_tab_id ]['tab_slug'];
+									$tab['tab_id'] = $tab_id;
+								}
+
+							} else {
+
+								// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
+								unset( $tab );
 							}
-
-						} else {
-
-							// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
-							unset( $tab );
 						}
+					} else {
+
+						// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
+						unset( $saved_tabs_applied[ $product_id ] );
 					}
-				} else {
-
-					// In previous versions of the plugin we were leaving some empty arrays. Clean 'em up.
-					unset( $saved_tabs_applied[ $product_id ] );
 				}
-			}
 
-			update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs_applied );
+				update_option( 'yikes_woo_reusable_products_tabs_applied', $saved_tabs_applied );
+			}
 
 			/** Update Post Meta **/
 			global $wpdb;
@@ -206,7 +231,7 @@
 						foreach( $tabs as &$tab ) {
 
 							// Set the tab slug ('id') to the sanitized tab's title
-							$tab['id'] = sanitize_title( $tab['title'] );
+							$tab['id'] = urldecode( sanitize_title( $tab['title'] ) );
 						}
 
 						update_post_meta( $table_row->post_id, 'yikes_woo_products_tabs', $tabs );
@@ -220,7 +245,7 @@
 			}
 
 			// Set a flag so we don't run this update more than once
-			add_option( 'custom_product_tabs_onesix_data_update', true );
+			add_option( 'custom_product_tabs_onesixone_data_update', true );
 		}
 
 
