@@ -57,16 +57,16 @@ When the product is viewed on your website you will see the tabs you created to 
 To change the order of custom tabs use the up and down "Move tab order" arrows.
 
 = How do saved tabs work? =
-Saved tabs are tabs you can create under the Custom Product Tabs for WooCommerce settings page and then add to as many products you would like. If you update the tab from the settings page, the changes will take effect for all products using that tab.
+Saved tabs are tabs you can create and then add to as many products you would like. If you update a saved tab, the changes will be updated for all products using that tab.
 
 = How do I create saved tabs? =
-To create a saved tab, go to the 'Custom Product Tabs for WooCommerce' page found under the Settings menu and click the "Add Tab" button.
+To create a saved tab, click on the 'Custom Product Tabs' item on the WordPress dashboard menu and click the "Add Tab" button.
 
 = How do I add a saved tab to a product? =
 To add a saved tab to a product, go to the custom tabs section on the edit product screen, click the 'Add a Saved Tab' button above the tab, and choose which tab you would like to add.
 
 = What does overriding a saved tab do? =
-When using a saved tab on the product page, a checkbox appears with the message 'Override Saved Tab' If you click that checkbox, edit the tab and save, the tab will be changed for that product only. Any edits to that saved tab under the 'Custom Product Tabs for WooCommerce' settings page, will not be applied to that product.
+When using a saved tab on a product, a checkbox appears with the message 'Override Saved Tab' If you click that checkbox, edit the tab and save, the tab will be changed for that product only. Any edits to that saved tab under 'Custom Product Tabs' will not be applied to that product.
 
 = Why does the WYSIWYG editor default to the 'Visual' tab? =
 This was added in version 1.5 to support the dynamic adding and removing of the wp_editor/WYSIWYG editor. Without this setting, the WYSIWYG editor does not load the correct toolbar and the editor can potentially break.
