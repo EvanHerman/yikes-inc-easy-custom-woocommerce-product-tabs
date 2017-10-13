@@ -3,9 +3,9 @@
  * Plugin Name: Custom Product Tabs for WooCommerce 
  * Plugin URI: http://www.yikesinc.com
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
- * Author: YIKES, Inc
+ * Author: YIKES, Inc.
  * Author URI: http://www.yikesinc.com
- * Version: 1.6.1
+ * Version: 1.6.2
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -13,6 +13,8 @@
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ * 
+ * This plugin is originally a fork of SkyVerge WooCommerce Custom Product Tabs Lite
  *
  */
 
@@ -102,7 +104,7 @@
 			* Define the plugin's version
 			*/
 			if ( ! defined( 'YIKES_Custom_Product_Tabs_Version' ) ) {
-				define( 'YIKES_Custom_Product_Tabs_Version', '1.6.1' );
+				define( 'YIKES_Custom_Product_Tabs_Version', '1.6.2' );
 			}
 
 			/**
