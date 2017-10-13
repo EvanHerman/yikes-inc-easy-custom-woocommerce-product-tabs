@@ -97,11 +97,11 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 * Generated new POT file.
 * Added support and hooks for our new Custom Product Tabs Pro plugin! 
 
-= 1.5.17 - Auguest 23rd, 2017 = 
+= 1.5.17 - August 23rd, 2017 = 
 * Cleaning up some PHP Notices being thrown - thanks to @ZombiEquinox on GitHub for reporting this
 * Updating readme compatibility values
 
-= 1.5.16 - Auguest 1st, 2017 = 
+= 1.5.16 - August 1st, 2017 = 
 * Adding a proper deactivation hook. The plugin will leave no trace.
 
 = 1.5.15 - June 8th, 2017 =
@@ -152,7 +152,7 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 = 1.5.1 - December 22nd, 2016 =
 * Fixed bug that caused content to be copied incorrectly when moving tabs up / down
-* Only on the product page will the editor defaul to 'Visual' (instead of every page)
+* Only on the product page will the editor default to 'Visual' (instead of every page)
 
 = 1.5 - December 20th, 2016 =
 * Version 1.5 includes a brand new feature - saved tabs - as well as a number of bug fixes, style tweaks, code clean-up, and comments
