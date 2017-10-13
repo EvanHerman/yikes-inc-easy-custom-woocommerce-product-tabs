@@ -25,6 +25,10 @@ For full documentation, please visit [our Knowledge Base](https://yikesplugins.c
 
 #### Changelog
 
+= 1.6.2 - October 13th, 2017 =
+* Fixed a PHP Fatal Error that was occurring for users with PHP versions < 5.5.
+* Updated some of our documentation and language
+
 = 1.6.1 - October 12th, 2017 =
 * Fixed an issue with handling foreign characters. Foreign character tab titles should be working properly now. Sorry about that everyone!
 * Added support for native WooCommerce exporting. You can now export and import your tabs with just WooCommerce!
