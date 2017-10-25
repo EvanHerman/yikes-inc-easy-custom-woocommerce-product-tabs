@@ -9,6 +9,9 @@
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
+ * WC requires at least: 3.0.0
+ * WC tested up to: 3.2.1
+ *
  * Copyright: (c) 2014-2015 YIKES Inc.
  *
  * License: GNU General Public License v3.0
