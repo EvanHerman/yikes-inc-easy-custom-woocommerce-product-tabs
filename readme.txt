@@ -76,7 +76,9 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 == Changelog ==
 
 = 1.6.4 - January 9th, 2018 =
-* Happy new year! The editor is now vertically resizeable.
+* Happy new year! 
+* The editor is now vertically resizeable.
+* The default capability for interacting with saved tabs is now Publish Products (publish_products)
 
 = 1.6.3 - November 1st, 2017 =
 * Declaring compatibility with WooCommerce and WordPress
