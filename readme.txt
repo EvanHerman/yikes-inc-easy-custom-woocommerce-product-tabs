@@ -3,8 +3,8 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee, mial
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.8.3
-Stable tag: 1.6.3
+Tested up to: 4.9.1
+Stable tag: 1.6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,9 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.6.4 - January 9th, 2018 =
+* Happy new year! The editor is now vertically resizeable.
 
 = 1.6.3 - November 1st, 2017 =
 * Declaring compatibility with WooCommerce and WordPress
