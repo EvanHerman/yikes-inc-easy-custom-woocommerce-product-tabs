@@ -48,7 +48,7 @@
 				YIKES_Custom_Product_Tabs_Settings_Page,                            // Parent menu item slug
 				__( 'Go Pro', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),             // Tab title name (HTML title)
 				__( 'Go Pro', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),             // Menu page name
-				apply_filters( 'yikes-woo-premium-capability', 'manage_options' ),  // Capability required
+				apply_filters( 'yikes-woo-premium-capability', 'publish_products' ),  // Capability required
 				YIKES_Custom_Product_Tabs_Premium_Page,                             // Page slug (?page=slug-name)
 				array( $this, 'premium_page' )                                      // Function to generate page
 			);
