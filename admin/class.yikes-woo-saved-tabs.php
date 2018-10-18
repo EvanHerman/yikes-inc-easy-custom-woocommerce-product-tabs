@@ -378,7 +378,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			}
 
 			// We shouldn't have gotten this far, but if we did let's return failure
-			wp_send_json_failure();
+			wp_send_json_error();
 		}
 
 		/* End AJAX Functions */
