@@ -326,7 +326,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			} else {
 
 				// Fail gracefully...
-				wp_send_json_failure( array( 'message' => 'Could not find the product!' ) );
+				wp_send_json_error( array( 'message' => 'Could not find the product!' ) );
 			}
 
 			// Save our tabs!
@@ -335,7 +335,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			if ( $success === true ) {
 				wp_send_json_success( array( 'message' => 'Your tabs have been saved' ) );
 			} else {
-				wp_send_json_failure( array( 'message' => 'Uh oh! Something went wrong with saving. Please try again.' ) );
+				wp_send_json_error( array( 'message' => 'Uh oh! Something went wrong with saving. Please try again.' ) );
 			}
 		}
 
