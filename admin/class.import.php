@@ -9,7 +9,7 @@ class YIKES_Custom_Product_Tabs_Import {
 	 * Define hooks.
 	 */
 	public function __construct() {
-		add_filter( 'woocommerce_product_importer_formatting_callbacks', 'remove_wp_kses_posts_callback_from_import', 10, 2 );
+		add_filter( 'woocommerce_product_importer_formatting_callbacks', array( $this, 'remove_wp_kses_posts_callback_from_import' ), 10, 2 );
 	}
 
 	/**

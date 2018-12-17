@@ -77,6 +77,7 @@
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.support.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'public/class.yikes-woo-tabs-display.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.premium.php';
+			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.export.php';
 			require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.import.php';
 
 			add_action( 'admin_init', array( $this, 'init' ) );
