@@ -501,7 +501,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			add_menu_page(
 				apply_filters( 'yikes-woo-settings-menu-title', __( 'Custom Product Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) ),     // Tab title name (HTML title)
 				apply_filters( 'yikes-woo-settings-menu-title', __( 'Custom Product Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) ),     // Menu page name
-				apply_filters( 'yikes-woo-settings-menu-capability', 'publish_products' ),                                                  // Capability required
+				apply_filters( 'yikes-woo-settings-menu-capability', 'publish_products' ),                                                // Capability required
 				YIKES_Custom_Product_Tabs_Settings_Page,                                                                                  // Page slug (?page=slug-name)
 				array( $this, 'generate_yikes_settings_page' ),                                                                           // Function to generate page
 				'dashicons-exerpt-view',                                                                                                  // Icon

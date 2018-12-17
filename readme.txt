@@ -3,8 +3,8 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee, mial
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 4.9.8
-Stable tag: 1.6.6
+Tested up to: 5.0.1
+Stable tag: 1.6.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,11 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 
 == Changelog ==
+
+= 1.6.7 - December 18th, 2018 =
+* Adding filter to help allow importing of custom tabs.
+* Removing custom export filters. Use WooCommerce's meta native export/import features.
+* The default capability for all admin pages is now `publish_products`.
 
 = 1.6.6 - October 26th, 2018 =
 * Bumping WooCo Compatibility.
