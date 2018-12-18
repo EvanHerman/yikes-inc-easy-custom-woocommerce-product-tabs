@@ -1,31 +1,32 @@
 <?php
 
+/**
+ * Class YIKES_Custom_Product_Tabs_Export.
+ */
 class YIKES_Custom_Product_Tabs_Export {
 
+	/**
+	 * Define our hooks.
+	 */
 	public function __construct() {
-
-		add_filter( 'woocommerce_product_export_product_default_columns', array( $this, 'add_custom_product_tabs_header_to_product_export' ), 10, 1 );
-
-		add_filter( 'woocommerce_product_export_product_column_yikes_woo_products_tabs', array( $this, 'add_custom_product_tabs_data_to_product_export' ), 10, 3 );
+		add_filter( 'woocommerce_product_export_meta_value', array( $this, 'prep_product_tabs_for_export' ), 10, 4 );
 	}
 
-	public function add_custom_product_tabs_header_to_product_export( $columns ) {
-
-		if ( apply_filters( 'yikes-woo-do-not-export-tabs', false ) === true ) {
-			return $columns;
+	/**
+	 * Prep our tabs for an export.
+	 *
+	 * @param mixed      $meta_value The meta value.
+	 * @param object     $meta       The meta field.
+	 * @param WC_Product $product    Product being exported.
+	 * @param array      $row        Row data.
+	 */
+	public function prep_product_tabs_for_export( $meta_value, $meta, $product, $row ) {
+		if ( isset( $meta->key ) && $meta->key === 'yikes_woo_products_tabs' ) {
+			if ( is_array( $meta_value ) ) {
+				return serialize( $meta_value );
+			}
 		}
-
-		$columns['yikes_woo_products_tabs'] = 'yikes_woo_products_tabs';
-		return $columns;
-	}
-
-	public function add_custom_product_tabs_data_to_product_export( $value, $product, $column_id ) {
-
-		$tabs = get_post_meta( $product->get_id(), 'yikes_woo_products_tabs', true );
-
-		$tabs = ! empty( $tabs ) ? serialize( $tabs ) : '';
-
-		return $tabs;
+		return $meta_value;
 	}
 }
 
