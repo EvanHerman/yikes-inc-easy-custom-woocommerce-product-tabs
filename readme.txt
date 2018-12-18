@@ -77,7 +77,7 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 = 1.6.7 - December 18th, 2018 =
 * Adding filter to help allow importing of custom tabs.
-* Changing our export filters to use WooCommerce's meta native export/import features.
+* Changing our export filters so custom tabs work with WooCommerce's native meta export/import features.
 * The default capability for all admin pages is now `publish_products`.
 
 = 1.6.6 - October 26th, 2018 =
