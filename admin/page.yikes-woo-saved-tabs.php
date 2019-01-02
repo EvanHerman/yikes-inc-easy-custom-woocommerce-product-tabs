@@ -42,20 +42,20 @@
 				</div>
 				<br class="clear">
 			</div>
-			<table class="widefat fixed" cellspacing="0">
+			<table id="yikes-woo-saved-tabs-list-table" class="widefat fixed" cellspacing="0">
 				<thead>
 					<tr>
 						<td id="cb" class="manage-column column-cb check-column" scope="col">
 							<label class="screen-reader-text" for="cb-select-all-1"><?php _e( 'Select All', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></label>
 							<input id="cb-select-all-1" type="checkbox">
 						</td>
-						<th class="manage-column column-title" scope="col">
+						<th class="manage-column column-tab-title" scope="col">
 							<?php _e( 'Tab Title', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 						</th>
-						<th class="manage-column column-name" scope="col">
+						<th class="manage-column column-tab-name" scope="col">
 							<?php _e( 'Tab Name', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 						</th>
-						<th class="manage-column column-content" scope="col">
+						<th class="manage-column column-tab-content-preview" scope="col">
 							<?php _e( 'Tab Content Preview', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 						</th>
 						<?php do_action( 'yikes-woo-saved-tabs-table-header' ); ?>
@@ -83,7 +83,7 @@
 					</tr>
 				</tfoot>
 
-				<tbody id="yikes-woo-saved-tabs-list-table">
+				<tbody id="yikes-woo-saved-tabs-list-tbody">
 					<?php
 						if( ! empty( $yikes_custom_tab_data ) ) {
 
