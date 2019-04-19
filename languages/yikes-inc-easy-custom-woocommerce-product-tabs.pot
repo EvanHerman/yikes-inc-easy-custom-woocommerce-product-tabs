@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the custom-product-tabs package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: custom-product-tabs 1.5.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-13 13:07+0000\n"
+"POT-Creation-Date: 2019-04-19 10:02-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -303,7 +303,7 @@ msgid "Save Tab"
 msgstr ""
 
 #: admin/page.yikes-woo-saved-tabs-single.php:91
-#: admin/page.yikes-woo-saved-tabs.php:110
+#: admin/page.yikes-woo-saved-tabs.php:113
 msgid "Delete Tab"
 msgstr ""
 
@@ -345,12 +345,12 @@ msgstr ""
 msgid "Tab Content Preview"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:107
-#: admin/page.yikes-woo-saved-tabs.php:119
+#: admin/page.yikes-woo-saved-tabs.php:110
+#: admin/page.yikes-woo-saved-tabs.php:122
 msgid "Edit Tab"
 msgstr ""
 
-#: admin/page.yikes-woo-saved-tabs.php:129
+#: admin/page.yikes-woo-saved-tabs.php:133
 msgid "There are no saved tabs. Add one!"
 msgstr ""
 
@@ -374,16 +374,8 @@ msgstr[1] ""
 msgid "yyyy-mm-dd"
 msgstr ""
 
-#: yikes-inc-easy-custom-woocommerce-product-tabs.php:51
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:52
 msgid ""
 "Custom Product Tabs for WooCommerce could not be activated because "
 "WooCommerce is not installed and active."
-msgstr ""
-
-#: yikes-inc-easy-custom-woocommerce-product-tabs.php:52
-msgid "Please install and activate "
-msgstr ""
-
-#: yikes-inc-easy-custom-woocommerce-product-tabs.php:52
-msgid " before activating the plugin."
 msgstr ""
