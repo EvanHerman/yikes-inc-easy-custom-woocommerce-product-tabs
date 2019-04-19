@@ -120,7 +120,7 @@
 
 	function yikes_woo_get_wp_editor_foureight( textarea_id, product_page, tab_content ) {
 
-		if ( ! wp && ! wp.editor && ! wp.editor.initialize ) {
+		if ( ! wp || ! wp.editor || ! wp.editor.initialize ) {
 			yikes_woo_get_wp_editor_ajax( textarea_id, product_page, tab_content );
 			return false;
 		}
