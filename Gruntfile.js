@@ -70,7 +70,7 @@ module.exports = function(grunt) {
 	});
 
 	// load tasks
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+	grunt.loadNpmTasks( 'grunt-contrib-uglify-es' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-pot' );
 
