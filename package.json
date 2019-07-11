@@ -13,6 +13,7 @@
     "grunt": "^1.0.3",
     "js-yaml": ">=3.13.1",
     "underscore.string": ">=3.3.5",
-    "clean-css": ">=4.1.11"
+    "clean-css": ">=4.1.11",
+    "lodash": ">=4.17.13"
   }
 }
