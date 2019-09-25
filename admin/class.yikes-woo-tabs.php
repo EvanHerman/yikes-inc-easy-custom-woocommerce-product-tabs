@@ -40,7 +40,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			global $post;
 			global $wp_version;
 			if ( $hook === 'post-new.php' || $hook === 'post.php' ) {
-				if ( $post->post_type === 'product' ) {
+				if ( isset( $post->post_type ) &&  $post->post_type === 'product' ) {
 
 					// Enqueue WordPress' built-in editor functions - added in WPv4.8
 					if ( function_exists( 'wp_enqueue_editor' ) ) {
