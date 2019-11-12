@@ -10,7 +10,7 @@
  * Domain Path: languages/
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 3.6
+ * WC tested up to: 3.8
  *
  * Copyright: (c) 2014-2015 YIKES Inc.
  *
