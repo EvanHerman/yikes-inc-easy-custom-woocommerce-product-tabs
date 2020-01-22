@@ -75,6 +75,9 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
+= 1.6.13 - January 22nd, 2020 =
+* Support WooCommerce 3.9.
+
 = 1.6.12 - November 20th, 2019 =
 * Support WooCommerce 3.8.
 
