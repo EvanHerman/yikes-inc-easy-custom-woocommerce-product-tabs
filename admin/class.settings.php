@@ -18,6 +18,9 @@ class YIKES_Custom_Product_Tabs_Settings {
 
         // Render settings area.
         add_action( 'yikes-woo-settings-area', array( $this, 'render_settings_area' ), 10 );
+
+        // REST API
+        add_action( 'rest_api_init', array( $this, 'register_rest_route' ) );
     }
 
     /**
@@ -39,6 +42,44 @@ class YIKES_Custom_Product_Tabs_Settings {
         );
 
         wp_enqueue_script( 'yikes-cpt-settings-modal' );
+    }
+
+    /**
+     * Register Rest API Route.
+     */
+    public function register_rest_route() {
+        register_rest_route(
+            'yikes/cpt/v1',
+            '/settings',
+            array(
+                'methods'  => 'POST',
+                'callback' => array( $this, 'rest_response' ),
+            ),
+        );
+    }
+
+    /**
+     * REST API Response
+     *
+     * @param WP_REST_Request $request current WP Rest Request.
+     */
+    public function rest_response( WP_REST_Request $request ) {
+        $response = new WP_REST_Response();
+
+        $toggle_the_content = isset( $request['toggle_the_content'] ) ? sanitize_text_field( $request['toggle_the_content'] ) : 'false';
+
+        if ( ! $update ) {
+            $response->set_data( array(
+                'status'  => 'error',
+                'message' =>  'An error occured.',
+            ) );
+        } else {
+            $response->set_data( array(
+                'status'  => 'success',
+            ) );
+        }
+
+        return $response;
     }
 
     /**
