@@ -22,8 +22,7 @@
 		*
 		* @param string | $page | The slug of the page we're currently on
 		*/
-		public function enqueue_scripts( $page ) {
-
+		public function enqueue_scripts( $page ) {			
 			if ( $page === 'custom-product-tabs_page_' . YIKES_Custom_Product_Tabs_Premium_Page ) {
 
 				wp_enqueue_style ( 'lightslider-styles', YIKES_Custom_Product_Tabs_URI . 'slider/css/lightslider.min.css' );
@@ -70,7 +69,6 @@
 			if ( defined( 'YIKES_Custom_Product_Tabs_Pro_Enabled' ) ) {
 				return;
 			}
-
 			?>
 			<div class="yikes-woo-all-about-us">
 				<div class="postbox yikes-woo-review-us">
@@ -112,6 +110,8 @@
 						</a>
 					</div><!-- .yikes-woo-buy-us-body -->
 				</div>
+
+				<?php do_action( 'yikes-woo-settings-area' ); ?>
 			</div>
 			<?php
 		}

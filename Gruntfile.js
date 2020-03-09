@@ -19,6 +19,9 @@ module.exports = function(grunt) {
 					'js/premium.min.js': [
 						'js/premium.js'
 					],
+					'js/settings.min.js': [
+						'js/settings.js'
+					]
 				}
 			}
 		},
