@@ -81,6 +81,7 @@ class YIKES_Custom_Product_Tabs {
 		require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.yikes-woo-tabs.php';
 		require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.support.php';
 		require_once YIKES_Custom_Product_Tabs_Path . 'public/class.yikes-woo-tabs-display.php';
+		require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.settings.php';
 		require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.premium.php';
 		require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.export.php';
 		require_once YIKES_Custom_Product_Tabs_Path . 'admin/class.import.php';
