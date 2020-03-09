@@ -68,16 +68,12 @@ class YIKES_Custom_Product_Tabs_Settings {
 
         $toggle_the_content = isset( $request['toggle_the_content'] ) ? sanitize_text_field( $request['toggle_the_content'] ) : 'false';
 
-        if ( ! $update ) {
-            $response->set_data( array(
-                'status'  => 'error',
-                'message' =>  'An error occured.',
-            ) );
-        } else {
-            $response->set_data( array(
-                'status'  => 'success',
-            ) );
-        }
+        update_option( 'yikes_cpt_use_the_content', $toggle_the_content );
+
+        $response->set_data( array(
+            'status'  => 'success',
+            'message' => 'Settings updated.'
+        ) );
 
         return $response;
     }
