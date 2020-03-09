@@ -15,7 +15,7 @@ class YIKES_Custom_Product_Tabs_Settings {
 
         // Enqueue scripts & styles.
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10, 1 );
-        
+
         // Render settings area.
         add_action( 'yikes-woo-settings-area', array( $this, 'render_settings_area' ), 10 );
     }
