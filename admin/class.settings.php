@@ -27,7 +27,18 @@ class YIKES_Custom_Product_Tabs_Settings {
         if ( defined( 'YIKES_Custom_Product_Tabs_Pro_Enabled' ) ) {
             return;
         }
-        wp_enqueue_script( 'yikes-cpt-settings-modal', YIKES_Custom_Product_Tabs_URI . 'js/settings.js', array( 'jquery' ), '1.0.0', true );
+        wp_register_script( 'yikes-cpt-settings-modal', YIKES_Custom_Product_Tabs_URI . 'js/settings.js', array( 'jquery' ), '1.0.0', true );
+
+        wp_localize_script(
+            'yikes-cpt-settings-modal',
+            'yikesCptSettings',
+            array(
+                'root'  => esc_url_raw( rest_url() ),
+                'nonce' => wp_create_nonce( 'wp_rest' ),
+            )
+        );
+
+        wp_enqueue_script( 'yikes-cpt-settings-modal' );
     }
 
     /**
