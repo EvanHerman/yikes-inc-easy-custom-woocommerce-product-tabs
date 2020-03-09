@@ -19,8 +19,11 @@ class YIKES_Custom_Product_Tabs_Settings {
         // Render settings area.
         add_action( 'yikes-woo-settings-area', array( $this, 'render_settings_area' ), 10 );
 
-        // REST API
+        // REST API.
         add_action( 'rest_api_init', array( $this, 'register_rest_route' ) );
+
+        // Admin Notice.
+        add_action( 'yikes-woo-display-too-many-products-warning', array( $this, 'generate_messages' ) );
     }
 
     /**
@@ -79,6 +82,15 @@ class YIKES_Custom_Product_Tabs_Settings {
     }
 
     /**
+     * Generate Admin Notices
+     */
+    public function generate_messages() {
+        ?>
+        <div style="display: none;" id="settings-updated" class="updated notice is-dismissible"><p>Settings updated.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>
+        <?php
+    }
+
+    /**
      * Render settings area
      */
     public function render_settings_area() {
@@ -95,7 +107,7 @@ class YIKES_Custom_Product_Tabs_Settings {
                 <p><?php _e( 'If you\'re using a page builder and you\'re having issues toggle this setting on. This will allow other plugins to use the WordPress \'the_content\' filter will we use our own custom version.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
                 <p>
                 <label>Toggle the_content filter.
-                    <input id="yikes-woo-toggle-content-input" type="checkbox" name="yikes-the-content-toggle" id="yikes-the-content-toggle" <?php checked( 1 == $toggle_the_content ); ?> />
+                    <input id="yikes-woo-toggle-content-input" type="checkbox" name="yikes-the-content-toggle" id="yikes-the-content-toggle" <?php checked( 'true' === $toggle_the_content ); ?> />
                 </label>
                 <p>
                 <a id="yikes-woo-toggle-content" class="button button-primary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">

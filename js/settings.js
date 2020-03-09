@@ -21,7 +21,13 @@ jQuery( document ).ready( function( $ ) {
                 'toggle_the_content' : isChecked,
             }
         } ).success( function ( response ) {
-            console.log( response );
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            $( '#settings-updated' ).css( 'display', 'block' )
+
+            setTimeout( function() {
+                $( '#settings-updated' ).fadeOut();
+            }, 2000 );
+            
         } )
         .fail(e => console.error(e));
 
