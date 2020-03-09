@@ -22,8 +22,7 @@
 		*
 		* @param string | $page | The slug of the page we're currently on
 		*/
-		public function enqueue_scripts( $page ) {
-
+		public function enqueue_scripts( $page ) {			
 			if ( $page === 'custom-product-tabs_page_' . YIKES_Custom_Product_Tabs_Premium_Page ) {
 
 				wp_enqueue_style ( 'lightslider-styles', YIKES_Custom_Product_Tabs_URI . 'slider/css/lightslider.min.css' );
@@ -70,9 +69,6 @@
 			if ( defined( 'YIKES_Custom_Product_Tabs_Pro_Enabled' ) ) {
 				return;
 			}
-
-			$toggle_the_content = get_option( 'yikes_cpt_use_the_content' );
-
 			?>
 			<div class="yikes-woo-all-about-us">
 				<div class="postbox yikes-woo-review-us">
@@ -115,21 +111,7 @@
 					</div><!-- .yikes-woo-buy-us-body -->
 				</div>
 
-				<div class="postbox yikes-woo-buy-us yikes-woo-all-about-us-box" id="yikes-woo-buy-us">
-					<h3 class="yikes-woo-settings-title">Settings</h3>
-					<div class="yikes-woo-buy-us-body">
-						<h4><?php _e( 'Use a custom filter for the_content', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </h4>
-						<p><?php _e( 'If you\'re using a page builder and you\'re having issues toggle this setting on. This will allow other plugins to use the WordPress \'the_content\' filter will we use our own custom version.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
-						<p>
-						<label>Toggle the_content filter.
-							<input type="checkbox" name="yikes-the-content-toggle" id="yikes-the-content-toggle" <?php checked( 1 == $toggle_the_content ); ?> />
-						</label>
-						<p>
-						<a id="yikes-woo-toggle-content" class="button button-primary" href="https://yikesplugins.com/plugin/custom-product-tabs-pro/" target="_blank">
-							<?php _e( 'Save Settings', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
-						</a>
-					</div><!-- .yikes-woo-buy-us-body -->
-				</div>
+				<?php do_action( 'yikes-woo-settings-area' ); ?>
 			</div>
 			<?php
 		}
