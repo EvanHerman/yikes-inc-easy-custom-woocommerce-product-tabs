@@ -24,6 +24,35 @@ class YIKES_Custom_Product_Tabs_Settings {
 
         // Admin Notice.
         add_action( 'yikes-woo-display-too-many-products-warning', array( $this, 'generate_messages' ) );
+
+        if ( $this->maybe_use_the_content_filter() ) {
+            add_filter( 'yikes_woo_use_the_content_filter', '__return_false' );
+            add_filter( 'yikes_woo_filter_main_tab_content', array( $this, 'yikes_the_content_filter' ), 10, 1 );
+        }
+    }
+
+    /**
+     * Replacement function for the_content
+     *
+     * @param string $content post content.
+     */
+    public function yikes_the_content_filter( $content ) {
+        $content = function_exists( 'capital_P_dangit' ) ? capital_P_dangit( $content ) : $content;
+        $content = function_exists( 'wptexturize' ) ? wptexturize( $content ) : $content;
+        $content = function_exists( 'convert_smilies' ) ? convert_smilies( $content ) : $content;
+        $content = function_exists( 'wpautop' ) ? wpautop( $content ) : $content;
+        $content = function_exists( 'shortcode_unautop' ) ? shortcode_unautop( $content ) : $content;
+        $content = function_exists( 'prepend_attachment' ) ? prepend_attachment( $content ) : $content;
+        $content = function_exists( 'wp_make_content_images_responsive' ) ? wp_make_content_images_responsive( $content ) : $content;
+        $content = function_exists( 'do_shortcode' ) ? do_shortcode( $content ) : $content;
+    
+        if ( class_exists( 'WP_Embed' ) ) {
+            // Deal with URLs
+            $embed = new WP_Embed;
+            $content = method_exists( $embed, 'autoembed' ) ? $embed->autoembed( $content ) : $content;
+        }
+    
+        return $content;
     }
 
     /**
@@ -116,6 +145,13 @@ class YIKES_Custom_Product_Tabs_Settings {
             </div><!-- .yikes-woo-buy-us-body -->
         </div>
         <?php
+    }
+
+    /**
+     * Check if we should use the filter
+     */
+    public function maybe_use_the_content_filter() {
+        return 'true' === get_option( 'yikes_cpt_use_the_content' );
     }
 }
 
