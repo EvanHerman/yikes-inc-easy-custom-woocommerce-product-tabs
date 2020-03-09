@@ -1,11 +1,30 @@
-document.addEventListener( 'DOMContentLoaded', function() {
+jQuery( document ).ready( function( $ ) {
 
-    var toggleInput = document.querySelector( '#yikes-woo-toggle-content-input' );
+    let toggleInput = $( '#yikes-woo-toggle-content-input' );
+    let savBtn      = $( '#yikes-woo-toggle-content' );
 
-    toggleInput.addEventListener( 'click', yikesToggleTheContent );
+    savBtn.click( 'click', yikesToggleTheContent );
 
     function yikesToggleTheContent( event ) {
+
+        event.preventDefault();
+
+        let isChecked = ( toggleInput.prop('checked') ) ? 'true' : 'false';
         
+        $.ajax( {
+            url: yikesCptSettings.root + 'yikes/cpt/v1/settings',
+            method: 'POST',
+            beforeSend: function ( xhr ) {
+                xhr.setRequestHeader( 'X-WP-Nonce', yikesCptSettings.nonce );
+            },
+            data:{
+                'toggle_the_content' : isChecked,
+            }
+        } ).success( function ( response ) {
+            console.log( response );
+        } )
+        .fail(e => console.error(e));
+
     }
 
 } );
