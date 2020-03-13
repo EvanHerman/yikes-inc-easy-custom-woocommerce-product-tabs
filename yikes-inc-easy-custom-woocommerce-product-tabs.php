@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc.
  * Author URI: http://www.yikesinc.com
- * Version: 1.7.0
+ * Version: 1.7.1
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -105,7 +105,7 @@ class YIKES_Custom_Product_Tabs {
 		 * Define the plugin's version.
 		 */
 		if ( ! defined( 'YIKES_Custom_Product_Tabs_Version' ) ) {
-			define( 'YIKES_Custom_Product_Tabs_Version', '1.7.0' );
+			define( 'YIKES_Custom_Product_Tabs_Version', '1.7.1' );
 		}
 
 		/**
