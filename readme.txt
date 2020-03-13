@@ -75,7 +75,7 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
-= 1.6.13 - January 22nd, 2020 =
+= 1.7.0 – March 10th, 2020 =
 * Toggle the content filter on or off setting added. Use this to help with compatibility.
 * Support WooCommerce 4.0.
 * Support WordPress 5.4.
