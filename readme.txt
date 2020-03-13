@@ -75,6 +75,9 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
+= 1.7.1 – March 13th, 2020 =
+* Fixes a bug with product display in certain conditions.
+
 = 1.7.0 – March 10th, 2020 =
 * Toggle the content filter on or off setting added. Use this to help with compatibility.
 * Support WooCommerce 4.0.
