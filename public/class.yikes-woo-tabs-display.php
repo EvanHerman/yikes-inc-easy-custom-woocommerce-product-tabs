@@ -42,7 +42,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Display' ) ) {
 
 			$product_tabs = maybe_unserialize( get_post_meta( $product_id, 'yikes_woo_products_tabs' , true ) );
 
-			if ( ! empty( $product_tabs ) ) {
+			if ( is_array( $product_tabs ) && ! empty( $product_tabs ) ) {
 
 				// Setup priorty to loop over, and render tabs in proper order
 				$i = 25; 
