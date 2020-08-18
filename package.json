@@ -8,6 +8,9 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
     "css-loader": "^4.2.1",
     "mini-css-extract-plugin": "^0.10.0",
     "sass": "^1.26.10",
