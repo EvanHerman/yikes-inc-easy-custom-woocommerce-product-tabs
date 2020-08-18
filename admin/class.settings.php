@@ -89,6 +89,7 @@ class YIKES_Custom_Product_Tabs_Settings {
             array(
                 'methods'  => 'POST',
                 'callback' => array( $this, 'rest_response' ),
+                'permission_callback' => '__return_true'
             )
         );
     }
