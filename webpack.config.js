@@ -1,8 +1,9 @@
 
 const path = require( 'path' );
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = env => {
-  console.log(`🛠️YIKES Watcher: ${env} Mode 🛠️`);
+  console.log(`YIKES Tools 🛠️🛠️🛠️`);
 
   return {
     entry: {
@@ -20,7 +21,11 @@ module.exports = env => {
         rules: [
           {
             test: /\.scss$/,
-            use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+            use: [
+                MiniCssExtractPlugin.loader,
+                'css-loader',
+                'sass-loader'
+            ]
           },
           {
             test: /\.js$/,
@@ -33,6 +38,11 @@ module.exports = env => {
             }
           }
         ]
-    }
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].min.css',
+        }),
+    ]
   }
 };
