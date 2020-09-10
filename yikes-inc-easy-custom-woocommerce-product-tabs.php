@@ -5,12 +5,12 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc.
  * Author URI: http://www.yikesinc.com
- * Version: 1.7.4
+ * Version: 1.7.3
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 4.5
+ * WC tested up to: 4.4
  *
  * Copyright: (c) 2014-2015 YIKES Inc.
  *
