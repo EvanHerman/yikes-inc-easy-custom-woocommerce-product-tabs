@@ -1,6 +1,6 @@
 {
   "name": "custom-product-tabs",
-  "version": "1.7.2",
+  "version": "1.7.4",
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
