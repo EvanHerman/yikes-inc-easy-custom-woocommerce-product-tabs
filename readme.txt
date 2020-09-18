@@ -75,8 +75,8 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
-= 1.7.4 – September 18th, 2020 =
-* Swapping (deprecated) wp_make_content_images_responsive for wp_filter_content_tags in our content filter.
+= 1.7.5 – September 18th, 2020 =
+* Swapping (deprecated) wp_make_content_images_responsive for wp_filter_content_tags in our content filter. Thanks @stephencd!
 
 = 1.7.4 – September 12th, 2020 =
 * WooCommerce 4.5.
