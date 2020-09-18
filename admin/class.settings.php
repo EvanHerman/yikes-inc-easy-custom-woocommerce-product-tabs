@@ -43,7 +43,7 @@ class YIKES_Custom_Product_Tabs_Settings {
         $content = function_exists( 'wpautop' ) ? wpautop( $content ) : $content;
         $content = function_exists( 'shortcode_unautop' ) ? shortcode_unautop( $content ) : $content;
         $content = function_exists( 'prepend_attachment' ) ? prepend_attachment( $content ) : $content;
-        $content = function_exists( 'wp_make_content_images_responsive' ) ? wp_make_content_images_responsive( $content ) : $content;
+        $content = function_exists( 'wp_filter_content_tags' ) ? wp_filter_content_tags( $content ) : $content;
         $content = function_exists( 'do_shortcode' ) ? do_shortcode( $content ) : $content;
     
         if ( class_exists( 'WP_Embed' ) ) {
