@@ -3,7 +3,7 @@ Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee, mial
 Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
-Tested up to: 5.6.2
+Tested up to: 5.7
 Stable tag: 1.7.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
