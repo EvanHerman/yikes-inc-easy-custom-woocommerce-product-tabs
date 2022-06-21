@@ -89,7 +89,7 @@ class YIKES_Custom_Product_Tabs_Settings {
             array(
                 'methods'  => 'POST',
                 'callback' => array( $this, 'rest_response' ),
-                'permission_callback' => '__return_true'
+                'permission_callback' => array( $this, 'permission_callback' )
             )
         );
     }
@@ -112,6 +112,15 @@ class YIKES_Custom_Product_Tabs_Settings {
         ) );
 
         return $response;
+    }
+
+	/**
+     * Only allow admins to modify the content setting.
+     *
+	 * @return bool
+	 */
+    public function permission_callback(){
+       return current_user_can( 'manage_options' );
     }
 
     /**

@@ -36,7 +36,11 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Display' ) ) {
 		 * @return array | Array of this product's current tabs plus our custom tabs
 		 */
 		public function add_custom_product_tabs( $tabs ) {
-			global $product;
+			$product = wc_get_product();
+
+			if ( empty( $product ) ) {
+				return $tabs;
+			}
 
 			$product_id = method_exists( $product, 'get_id' ) === true ? $product->get_id() : $product->ID;
 
