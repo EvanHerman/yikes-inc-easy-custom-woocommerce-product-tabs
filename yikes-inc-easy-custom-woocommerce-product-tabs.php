@@ -10,9 +10,9 @@
  * Domain Path: languages/
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 4.6
+ * WC tested up to: 6.0
  *
- * Copyright: (c) 2014-2015 YIKES Inc.
+ * Copyright: (c) 2014-2022 YIKES Inc.
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -21,7 +21,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 // Must include plugin.php to use is_plugin_active().
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -58,7 +60,7 @@ function yikes_woo_display_admin_notice_error() {
 				echo sprintf( esc_html( 'Please install and activate %1s before activating the plugin.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), '<a href="' . esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce' ) ) . '" title="WooCommerce">WooCommerce</a>' );
 				?>
 			</p>
-		</div>
+		</div> 
 	<?php
 }
 
