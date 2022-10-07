@@ -111,6 +111,13 @@ class YIKES_Custom_Product_Tabs {
 		}
 
 		/**
+		 * Define the bundled lity.js version
+		 */
+		if ( ! defined( 'YIKES_Custom_Product_LITY_Version' ) ) {
+			define( 'YIKES_Custom_Product_LITY_Version', '2.4.1' );
+		}
+
+		/**
 		 * Define the plugin's URI.
 		 */
 		if ( ! defined( 'YIKES_Custom_Product_Tabs_URI' ) ) {

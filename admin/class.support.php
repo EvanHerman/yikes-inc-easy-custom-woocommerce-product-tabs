@@ -26,7 +26,10 @@
 
 			if ( $page === 'custom-product-tabs_page_' . YIKES_Custom_Product_Tabs_Support_Page ) {
 
-				wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
+				$suffix = SCRIPT_DEBUG ? '' : '.min';
+
+				wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . "css/repeatable-custom-tabs{$suffix}.css", array(), YIKES_Custom_Product_Tabs_Version, 'all' );
+
 			}
 		}
 

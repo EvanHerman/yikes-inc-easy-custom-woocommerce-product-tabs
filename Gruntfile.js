@@ -7,6 +7,9 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
+					'js/premium.min.js': [
+						'js/premium.js'
+					],
 					'js/repeatable-custom-tabs-settings.min.js': [ 
 						'js/repeatable-custom-tabs-settings.js'
 					],
@@ -16,11 +19,11 @@ module.exports = function(grunt) {
 					'js/repeatable-custom-tabs.min.js': [
 						'js/repeatable-custom-tabs.js'
 					],
-					'js/premium.min.js': [
-						'js/premium.js'
-					],
 					'js/settings.min.js': [
 						'js/settings.js'
+					],
+					'js/twitter-embed.min.js': [
+						'js/twitter-embed.js'
 					]
 				}
 			}

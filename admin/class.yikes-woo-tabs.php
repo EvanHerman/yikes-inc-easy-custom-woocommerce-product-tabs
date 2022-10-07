@@ -47,8 +47,10 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 						wp_enqueue_editor();
 					}
 
+					$suffix = SCRIPT_DEBUG ? '' : '.min';
+
 					// script
-					wp_enqueue_script ( 'repeatable-custom-tabs', YIKES_Custom_Product_Tabs_URI . 'js/repeatable-custom-tabs.min.js' , array( 'jquery' ) , YIKES_Custom_Product_Tabs_Version );
+					wp_enqueue_script ( 'repeatable-custom-tabs', YIKES_Custom_Product_Tabs_URI . "js/repeatable-custom-tabs{$suffix}.js" , array( 'jquery' ) , YIKES_Custom_Product_Tabs_Version );
 					wp_localize_script( 'repeatable-custom-tabs', 'repeatable_custom_tabs', array(
 						'loading_gif'					=> '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif" />',
 						'ajaxurl' 						=> admin_url( 'admin-ajax.php' ),
@@ -63,7 +65,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 						'wp_version_four_eight'			=> $wp_version >= '4.8',
 					) );
 
-					wp_enqueue_script ( 'repeatable-custom-tabs-shared', YIKES_Custom_Product_Tabs_URI . 'js/repeatable-custom-tabs-shared.min.js', array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
+					wp_enqueue_script ( 'repeatable-custom-tabs-shared', YIKES_Custom_Product_Tabs_URI . "js/repeatable-custom-tabs-shared{$suffix}.js", array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
 					wp_localize_script( 'repeatable-custom-tabs-shared', 'repeatable_custom_tabs_shared', array(
 						'loading_gif'					=> '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif" />',
 						'ajaxurl' 						=> admin_url( 'admin-ajax.php' ),
@@ -72,11 +74,11 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 					) );
 
 					// styles
-					wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
+					wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . "css/repeatable-custom-tabs{$suffix}.css", array(), YIKES_Custom_Product_Tabs_Version, 'all' );
 
 					// JS lity modal library and CSS
-					wp_enqueue_script( 'lity-js', YIKES_Custom_Product_Tabs_URI . 'js/lity.min.js' , array( 'jquery' ) , YIKES_Custom_Product_Tabs_Version );
-					wp_enqueue_style( 'lity-css', YIKES_Custom_Product_Tabs_URI . 'css/dist/lity.min.css' );
+					wp_enqueue_script( 'lity-js', YIKES_Custom_Product_Tabs_URI . "js/lity{$suffix}.js" , array( 'jquery' ) , YIKES_Custom_Product_LITY_Version );
+					wp_enqueue_style( 'lity-css', YIKES_Custom_Product_Tabs_URI . "css/lity{$suffix}.css", array(), YIKES_Custom_Product_LITY_Version, 'all' );
 				}
 			}
 		}

@@ -24,12 +24,13 @@
 		*/
 		public function enqueue_scripts( $page ) {			
 			if ( $page === 'custom-product-tabs_page_' . YIKES_Custom_Product_Tabs_Premium_Page ) {
+				$suffix = SCRIPT_DEBUG ? '' : '.min';
 
-				wp_enqueue_style ( 'lightslider-styles', YIKES_Custom_Product_Tabs_URI . 'slider/css/lightslider.min.css' );
-				wp_enqueue_style ( 'repeatable-custom-tabs-styles', YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css' );
-				wp_enqueue_script( 'lightslider-scripts', YIKES_Custom_Product_Tabs_URI . 'slider/js/lightslider.min.js', array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
-				wp_enqueue_script( 'premium-scripts', YIKES_Custom_Product_Tabs_URI . 'js/premium.min.js', array( 'lightslider-scripts' ), YIKES_Custom_Product_Tabs_Version );
-				wp_enqueue_style ( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
+				wp_enqueue_style ( 'lightslider-styles', YIKES_Custom_Product_Tabs_URI . "slider/css/lightslider{$suffix}.css" );
+				wp_enqueue_style ( 'repeatable-custom-tabs-styles', YIKES_Custom_Product_Tabs_URI . "css/repeatable-custom-tabs{$suffix}.css" );
+				wp_enqueue_script( 'lightslider-scripts', YIKES_Custom_Product_Tabs_URI . "slider/js/lightslider{$suffix}.js", array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
+				wp_enqueue_script( 'premium-scripts', YIKES_Custom_Product_Tabs_URI . "js/premium{$suffix}.js", array( 'lightslider-scripts' ), YIKES_Custom_Product_Tabs_Version );
+				wp_enqueue_style ( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . "css/repeatable-custom-tabs{$suffix}.css", array(), YIKES_Custom_Product_Tabs_Version, 'all' );
 			}
 		}
 
