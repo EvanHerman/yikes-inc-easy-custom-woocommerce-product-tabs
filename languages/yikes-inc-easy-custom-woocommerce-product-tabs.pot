@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: custom-product-tabs 1.7.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-07 02:15-0400\n"
+"POT-Creation-Date: 2022-10-07 02:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,10 @@ msgstr ""
 
 #: admin/class.premium.php:49 admin/class.premium.php:50
 msgid "Go Pro"
+msgstr ""
+
+#: admin/class.premium.php:77
+msgid "Show Us Some Love"
 msgstr ""
 
 #: admin/class.premium.php:81
@@ -34,18 +38,29 @@ msgstr ""
 msgid "Tweet"
 msgstr ""
 
-#: admin/class.premium.php:107
+#. //yikesinc.com.
+#: admin/class.premium.php:105
+#, php-format
+msgid "This plugin made with %1$s by %2$s"
+msgstr ""
+
+#: admin/class.premium.php:116 admin/class.premium.php:121
+#: admin/class.support.php:84
+msgid "Custom Product Tabs Pro"
+msgstr ""
+
+#: admin/class.premium.php:118
 msgid "Check out Custom Product Tabs Pro!"
 msgstr ""
 
-#: admin/class.premium.php:108
+#: admin/class.premium.php:119
 msgid ""
 "Create global tabs, add tabs to products based on categories or tags, add "
 "tab content to search results, and more!"
 msgstr ""
 
-#: admin/class.premium.php:110
-msgid "Custom Product Tabs Pro"
+#: admin/class.settings.php:146 admin/page.premium.php:77
+msgid "Settings"
 msgstr ""
 
 #: admin/class.settings.php:148
@@ -59,7 +74,11 @@ msgid ""
 "will we use our own custom version."
 msgstr ""
 
-#: admin/class.settings.php:156
+#: admin/class.settings.php:152
+msgid "Toggle the_content filter."
+msgstr ""
+
+#: admin/class.settings.php:157
 msgid "Save Settings"
 msgstr ""
 
@@ -67,33 +86,40 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: admin/class.support.php:71
+#: admin/class.support.php:73
 #, php-format
 msgid ""
-"Before submitting a support request, please visit our %1sKnowledge Base%2s "
-"where we have step-by-step guides and troubleshooting help."
+"Before submitting a support request, please visit our %s where we have step-"
+"by-step guides and troubleshooting help."
 msgstr ""
 
-#: admin/class.support.php:78
+#: admin/class.support.php:74
+msgid "Knowledge Base"
+msgstr ""
+
+#. //yikesplugins.com/plugin/custom-product-tabs-pro/.
+#: admin/class.support.php:83
 #, php-format
 msgid ""
-"Custom Product Tabs Pro users qualify for premium support. Check out "
-"%1sCustom Product Tabs Pro%2s!"
-msgstr ""
-
-#: admin/class.support.php:87
-msgid "WordPress.org Support Forums"
+"Custom Product Tabs Pro users qualify for premium support. Check out %s!"
 msgstr ""
 
 #: admin/class.support.php:92
-#, php-format
-msgid ""
-"If you need help with free Custom Product Tabs, please post questions to "
-"%1sour support forum on the WordPress Plugin Directory%2s. We aim to respond "
-"to support requests within a week."
+msgid "WordPress.org Support Forums"
 msgstr ""
 
 #: admin/class.support.php:99
+#, php-format
+msgid ""
+"If you need help with free Custom Product Tabs, please post questions to "
+"%ss. We aim to respond to support requests within a week."
+msgstr ""
+
+#: admin/class.support.php:100
+msgid "our support forum on the WordPress Plugin Directory"
+msgstr ""
+
+#: admin/class.support.php:107
 msgid "Submit a Support Request"
 msgstr ""
 
@@ -190,6 +216,18 @@ msgstr ""
 msgid "Custom Tabs"
 msgstr ""
 
+#: admin/class.yikes-woo-tabs.php:331
+msgid "Could not find the product!"
+msgstr ""
+
+#: admin/class.yikes-woo-tabs.php:338
+msgid "Your tabs have been saved"
+msgstr ""
+
+#: admin/class.yikes-woo-tabs.php:340
+msgid "Uh oh! Something went wrong with saving. Please try again."
+msgstr ""
+
 #: admin/page.premium.php:5
 msgid "Custom Product Tabs for WooCommerce | Go Pro"
 msgstr ""
@@ -259,10 +297,6 @@ msgstr ""
 #: admin/page.premium.php:73
 msgid ""
 "Assign saved tabs to products via the product's default bulk edit screen."
-msgstr ""
-
-#: admin/page.premium.php:77
-msgid "Settings"
 msgstr ""
 
 #: admin/page.premium.php:79
@@ -344,6 +378,10 @@ msgstr ""
 
 #: admin/page.yikes-woo-saved-tabs.php:22
 msgid "Tab deleted!"
+msgstr ""
+
+#: admin/page.yikes-woo-saved-tabs.php:25
+msgid "Dismiss this notice."
 msgstr ""
 
 #: admin/page.yikes-woo-saved-tabs.php:31
