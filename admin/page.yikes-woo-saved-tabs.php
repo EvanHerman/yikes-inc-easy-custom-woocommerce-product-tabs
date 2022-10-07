@@ -3,13 +3,13 @@
 	<h1 class="wp-heading-inline">
 		<span class="dashicons dashicons-exerpt-view"></span>
 		<?php esc_html_e( 'Custom Product Tabs for WooCommerce | Saved Tabs', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
-	</h1>	
+	</h1>
 
-	<a href="<?php echo esc_url( $new_tab_url ); ?>" class="page-title-action"> <?php _e( 'Add Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>	</a>
+	<a href="<?php echo esc_url( $new_tab_url ); ?>" class="page-title-action"> <?php _e( 'Add New', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>	</a>
 
 	<div id="poststuff">
 
-		<div id="post-body" class="metabox-holder columns-2">
+		<div id="post-body" class="metabox-holder columns-2"> 
 
 			<!-- main content -->
 			<div id="post-body-content">
@@ -48,7 +48,7 @@
 						</div>
 						<br class="clear">
 					</div>
-					<table id="yikes-woo-saved-tabs-list-table" class="widefat fixed" cellspacing="0">
+					<table id="yikes-woo-saved-tabs-list-table" class="widefat fixed striped" cellspacing="0">
 						<thead>
 							<tr>
 								<td id="cb" class="manage-column column-cb check-column" scope="col">
@@ -103,7 +103,7 @@
 										$tab_name            = isset( $tab_data['tab_name'] ) ? $tab_data['tab_name'] : '';
 										$tab_content_excerpt = isset( $tab_data['tab_content'] ) && ! empty( $tab_data['tab_content'] ) ? stripslashes( substr( wp_strip_all_tags( $tab_data['tab_content'] ), 0, 150 ) ) : '';
 										$tab_id 			 = isset( $tab_data['tab_id'] ) && ! empty( $tab_data['tab_id'] ) ? (int) $tab_data['tab_id'] : 0;
-										$edit_tab_url 		 = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page, 'saved-tab-id' => $tab_id ), admin_url() ) );
+										$edit_tab_url 		 = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page, 'saved-tab-id' => $tab_id ), admin_url( 'admin.php' ) ) );
 										?>
 											<tr class="yikes_woo_saved_tabs_row" id="yikes_woo_saved_tabs_row_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>" data-order="<?php echo esc_attr( $tab_order ); ?>">
 												<th class="check-column" scope="row">
@@ -113,10 +113,10 @@
 													<?php echo $tab_title; ?>
 													<div class="row-actions">
 														<span class="">
-															<a href="<?php echo $edit_tab_url ?>"><?php _e( 'Edit Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
+															<a href="<?php echo esc_url( $edit_tab_url ); ?>"><?php _e( 'Edit Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
 														</span> |
 														<span data-tab-id="<?php echo $tab_id; ?>" class="yikes_woo_delete_this_tab trash">
-															<?php _e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+															<a href="#" title="<?php esc_attr_e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>"><?php _e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 														</span>
 													</div>
 												</td>
@@ -124,7 +124,7 @@
 												<td class="column-content"><?php echo $tab_content_excerpt; ?></td>
 												<?php do_action( 'yikes-woo-saved-tabs-table-column', $tab_data ); ?>
 												<td class="column-edit" align="center">
-													<a href="<?php echo $edit_tab_url ?>" class="button-secondary view-saved-tab-button" data-entry-id="<?php echo (int) $tab_id; ?>">
+													<a href="<?php echo esc_url( $edit_tab_url ); ?>" class="button-secondary view-saved-tab-button" data-entry-id="<?php echo (int) $tab_id; ?>">
 														<?php _e( 'Edit Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 													</a>
 												</td>
