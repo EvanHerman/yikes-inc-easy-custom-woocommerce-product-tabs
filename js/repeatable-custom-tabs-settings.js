@@ -116,10 +116,19 @@
 				var taxonomy = jQuery( this ).data( 'taxonomy' );
 				taxonomies[ taxonomy ] = {};
 
-				jQuery( 'input[name="' + taxonomy + '[]"].selected' ).each( function() {
-					taxonomies[ taxonomy ][ jQuery( this ).data( 'tt-id' ) ] = this.value;
-				});
-			});
+				console.log( taxonomy );
+
+				// fuck.
+				const data = jQuery( 'select[name="' + taxonomy + '[]"]' ).select2( 'data' );
+
+				for ( var key in data ) {
+					const obj = data[ key ];
+					console.log( obj.element );
+					taxonomies[ taxonomy ][ obj.id ] = obj.element.dataset['slug'];
+				}
+
+			} );
+
 		}
 
 		// CPTPRO: Grab global value
