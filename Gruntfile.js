@@ -7,6 +7,9 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
+					'js/premium.min.js': [
+						'js/premium.js'
+					],
 					'js/repeatable-custom-tabs-settings.min.js': [ 
 						'js/repeatable-custom-tabs-settings.js'
 					],
@@ -16,11 +19,11 @@ module.exports = function(grunt) {
 					'js/repeatable-custom-tabs.min.js': [
 						'js/repeatable-custom-tabs.js'
 					],
-					'js/premium.min.js': [
-						'js/premium.js'
-					],
 					'js/settings.min.js': [
 						'js/settings.js'
+					],
+					'js/twitter-embed.min.js': [
+						'js/twitter-embed.js'
 					]
 				}
 			}
@@ -47,9 +50,9 @@ module.exports = function(grunt) {
 			options: {
 				text_domain: 'yikes-inc-easy-custom-woocommerce-product-tabs', 
 				dest: 'languages/', 
-		        keywords: [
-		        	'__:1',
-		        	'_e:1',
+				keywords: [
+					'__:1',
+					'_e:1',
 					'_x:1,2c',
 					'esc_html__:1',
 					'esc_html_e:1',
@@ -66,7 +69,7 @@ module.exports = function(grunt) {
 			},
 			files: {
 				src:  [ '**/*.php' ],
-				expand: true,
+				expand: true
 			}
 		}
 

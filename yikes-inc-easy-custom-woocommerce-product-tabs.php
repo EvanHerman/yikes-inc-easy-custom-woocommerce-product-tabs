@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: Custom Product Tabs for WooCommerce
- * Plugin URI: http://www.yikesinc.com
+ * Plugin URI: https://www.yikesinc.com
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc.
- * Author URI: http://www.yikesinc.com
+ * Author URI: https://www.yikesinc.com
  * Version: 1.7.9
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 4.6
+ * WC tested up to: 6.0
  *
- * Copyright: (c) 2014-2015 YIKES Inc.
+ * Copyright: (c) 2014-2022 YIKES Inc.
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -21,7 +21,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 // Must include plugin.php to use is_plugin_active().
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -49,16 +51,31 @@ function yikes_woo_display_admin_notice_error() {
 		<div class="error">
 			<p>
 				<?php
-				esc_html_e( 'Custom Product Tabs for WooCommerce could not be activated because WooCommerce is not installed and active.', 'yikes-inc-easy-custom-woocommerce-product-tabs' );
-				?>
-				</p>
-			<p>
-				<?php
-				/* translators: The placeholder is a URL to the WooCommerce plugin. */
-				echo sprintf( esc_html( 'Please install and activate %1s before activating the plugin.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), '<a href="' . esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce' ) ) . '" title="WooCommerce">WooCommerce</a>' );
+				$message = sprintf(
+					/* translators: The placeholder is a URL to the WooCommerce plugin. */
+					__( 'Please install and activate %1s before activating Custom WooCommerce Product Tabs.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
+					'<a href="' . esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce' ) ) . '" title="WooCommerce">WooCommerce</a>'
+				);
+
+				if ( file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' ) ) {
+					$activate_url = add_query_arg(
+						array(
+							'action'   => 'activate',
+							'plugin'   => 'woocommerce/woocommerce.php',
+							'_wpnonce' => wp_create_nonce( 'activate-plugin_woocommerce/woocommerce.php' )
+						),
+						admin_url( 'plugins.php' )
+					);
+					$message = sprintf(
+						/* translators: The placeholder is a URL to the WooCommerce plugin. */
+						__( 'Please activate %1s before activating Custom WooCommerce Product Tabs.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
+						'<a href="' . esc_url( $activate_url ) . '" title="WooCommerce">WooCommerce</a>'
+					);
+				}
+				echo $message;
 				?>
 			</p>
-		</div>
+		</div> 
 	<?php
 }
 
@@ -106,6 +123,13 @@ class YIKES_Custom_Product_Tabs {
 		 */
 		if ( ! defined( 'YIKES_Custom_Product_Tabs_Version' ) ) {
 			define( 'YIKES_Custom_Product_Tabs_Version', '1.7.9' );
+		}
+
+		/**
+		 * Define the bundled lity.js version
+		 */
+		if ( ! defined( 'YIKES_Custom_Product_LITY_Version' ) ) {
+			define( 'YIKES_Custom_Product_LITY_Version', '2.4.1' );
 		}
 
 		/**
@@ -279,8 +303,8 @@ class YIKES_Custom_Product_Tabs {
 	 * @return array $links The $links array, with our saved tabs page appended.
 	 */
 	public function add_plugin_action_links( $links ) {
-		$href    = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() ) );
-		$links[] = '<a href="' . $href . '">Saved Tabs</a>';
+		$href    = add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url( 'admin.php' ) );
+		$links[] = '<a href="' . esc_url_raw( $href ) . '">Saved Tabs</a>';
 		return $links;
 	}
 

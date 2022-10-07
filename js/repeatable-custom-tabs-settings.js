@@ -16,7 +16,7 @@
 		jQuery( '.yikes_woo_delete_this_tab' ).click( function() {
 
 			// Confirm: Are you sure?
-			var continue_delete = confirm( 'Are you sure you want to delete this tab?' );
+			var continue_delete = confirm( repeatable_custom_tabs_settings.confirm_delete_single_tab ); 
 
 			if ( continue_delete === false ) {
 				return;
@@ -42,6 +42,12 @@
 
 			// Currently only supporting 'delete' bulk action, so make sure that is the value of the dropdown
 			if ( jQuery( '#bulk-action-selector-top' ).val() !== 'delete' ) {
+				return;
+			}
+
+			var continue_bulk_delete = confirm( repeatable_custom_tabs_settings.confirm_delete_bulk_tabs );
+
+			if ( continue_bulk_delete === false ) {
 				return;
 			}
 
@@ -110,10 +116,19 @@
 				var taxonomy = jQuery( this ).data( 'taxonomy' );
 				taxonomies[ taxonomy ] = {};
 
-				jQuery( 'input[name="' + taxonomy + '[]"].selected' ).each( function() {
-					taxonomies[ taxonomy ][ jQuery( this ).data( 'tt-id' ) ] = this.value;
-				});
-			});
+				console.log( taxonomy );
+
+				// fuck.
+				const data = jQuery( 'select[name="' + taxonomy + '[]"]' ).select2( 'data' );
+
+				for ( var key in data ) {
+					const obj = data[ key ];
+					console.log( obj.element );
+					taxonomies[ taxonomy ][ obj.id ] = obj.element.dataset['slug'];
+				}
+
+			} );
+
 		}
 
 		// CPTPRO: Grab global value

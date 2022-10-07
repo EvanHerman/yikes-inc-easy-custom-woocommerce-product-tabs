@@ -44,18 +44,22 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			if ( $hook === 'toplevel_page_' . YIKES_Custom_Product_Tabs_Settings_Page ) {
 
+				$suffix = SCRIPT_DEBUG ? '' : '.min';
+
 				// JavaScript
-				wp_enqueue_script ( 'repeatable-custom-tabs-settings', YIKES_Custom_Product_Tabs_URI . 'js/repeatable-custom-tabs-settings.min.js', array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
+				wp_enqueue_script ( 'repeatable-custom-tabs-settings', YIKES_Custom_Product_Tabs_URI . "js/repeatable-custom-tabs-settings{$suffix}.js", array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
 				wp_localize_script( 'repeatable-custom-tabs-settings', 'repeatable_custom_tabs_settings', array(
-					'loading_gif' 					=> '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif-settings" />',
-					'ajaxurl' 						=> admin_url( 'admin-ajax.php' ),
-					'tab_list_page_url' 			=> esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() ) ),
-					'save_tab_as_reusable_nonce' 	=> wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
-					'delete_reusable_tab_nonce' 	=> wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ),
-					'is_cptpro_enabled'             => defined( 'YIKES_Custom_Product_Tabs_Pro_Enabled' ) ? true : false,
+					'loading_gif'                  => '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif-settings" />',
+					'ajaxurl'                      => admin_url( 'admin-ajax.php' ),
+					'tab_list_page_url'            => esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() ) ),
+					'save_tab_as_reusable_nonce'   => wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
+					'delete_reusable_tab_nonce'    => wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ),
+					'is_cptpro_enabled'            => defined( 'YIKES_Custom_Product_Tabs_Pro_Enabled' ) ? true : false,
+					'confirm_delete_single_tab'    => __( 'Are you sure you want to delete this tab?', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
+					'confirm_delete_bulk_tabs'     => __( 'Are you sure you want to delete these tabs? This cannot be undone.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
 				) );
 
-				wp_enqueue_script ( 'repeatable-custom-tabs-shared', YIKES_Custom_Product_Tabs_URI . 'js/repeatable-custom-tabs-shared.min.js', array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
+				wp_enqueue_script ( 'repeatable-custom-tabs-shared', YIKES_Custom_Product_Tabs_URI . "js/repeatable-custom-tabs-shared{$suffix}.js", array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
 				wp_localize_script( 'repeatable-custom-tabs-shared', 'repeatable_custom_tabs_shared', array(
 						'loading_gif' 					=> '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif" />',
 						'ajaxurl' 						=> admin_url( 'admin-ajax.php' ),
@@ -64,10 +68,11 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					) );
 
 				// Twitter script for our Tweet Us button
-				wp_enqueue_script( 'twitter-button', YIKES_Custom_Product_Tabs_URI . 'js/twitter-embed.js', null, YIKES_Custom_Product_Tabs_Version );
+				wp_enqueue_script( 'twitter-button', YIKES_Custom_Product_Tabs_URI . "js/twitter-embed{$suffix}.js", array(), YIKES_Custom_Product_Tabs_Version );
 
 				// CSS
-				wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . 'css/repeatable-custom-tabs.min.css', '', YIKES_Custom_Product_Tabs_Version, 'all' );
+				wp_enqueue_style( 'repeatable-custom-tabs-styles' , YIKES_Custom_Product_Tabs_URI . "css/repeatable-custom-tabs{$suffix}.css", array(), YIKES_Custom_Product_Tabs_Version, 'all' );
+
 			}
 
 		}
@@ -176,7 +181,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					update_option( 'yikes_woo_reusable_products_tabs', $yikes_custom_tab_data );
 
 					// Return redirect URL
-					$return_redirect_url = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page, 'saved-tab-id' => $new_tab_id ), admin_url() ) );
+					$return_redirect_url = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page, 'saved-tab-id' => $new_tab_id ), admin_url( 'admin.php' ) ) );
 
 					// Send response
 					wp_send_json_success( array( 'tab_id' => $new_tab_id, 'redirect' => true, 'redirect_url' => $return_redirect_url ) );
@@ -265,7 +270,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Verify the nonce
 			if ( ! check_ajax_referer( 'yikes_woo_fetch_reusable_tab_nonce', 'security_nonce', false ) ) {
-			 	wp_send_json_error();
+				wp_send_json_error();
 			}
 
 			$tab_id = isset( $_POST['tab_id'] ) ? filter_var( $_POST['tab_id'], FILTER_SANITIZE_NUMBER_INT ) : '';
@@ -299,7 +304,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Verify the nonce
 			if ( ! check_ajax_referer( 'yikes_woo_fetch_reusable_tabs_nonce', 'security_nonce', false ) ) {
-			 	wp_send_json_error();
+				wp_send_json_error();
 			}
 
 			// Get the array of saved tabs
@@ -336,7 +341,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Verify the nonce
 			if ( ! check_ajax_referer( 'yikes_woo_delete_reusable_tab_nonce', 'security_nonce', false ) ) {
-			 	wp_send_json_error();
+				wp_send_json_error();
 			}
 
 			// Get our tab_id
@@ -536,7 +541,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				$tab = isset( $yikes_custom_tab_data[$saved_tab_id] ) ? $yikes_custom_tab_data[$saved_tab_id] : array();
 
 				// Redirect URL
-				$redirect = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() ) );
+				$redirect = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url( 'admin.php' ) ) );
 
 				require_once( YIKES_Custom_Product_Tabs_Path . 'admin/page.yikes-woo-saved-tabs-single.php' );
 
