@@ -270,7 +270,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Verify the nonce
 			if ( ! check_ajax_referer( 'yikes_woo_fetch_reusable_tab_nonce', 'security_nonce', false ) ) {
-			 	wp_send_json_error();
+				wp_send_json_error();
 			}
 
 			$tab_id = isset( $_POST['tab_id'] ) ? filter_var( $_POST['tab_id'], FILTER_SANITIZE_NUMBER_INT ) : '';
@@ -304,7 +304,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Verify the nonce
 			if ( ! check_ajax_referer( 'yikes_woo_fetch_reusable_tabs_nonce', 'security_nonce', false ) ) {
-			 	wp_send_json_error();
+				wp_send_json_error();
 			}
 
 			// Get the array of saved tabs
@@ -341,7 +341,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 			// Verify the nonce
 			if ( ! check_ajax_referer( 'yikes_woo_delete_reusable_tab_nonce', 'security_nonce', false ) ) {
-			 	wp_send_json_error();
+				wp_send_json_error();
 			}
 
 			// Get our tab_id
