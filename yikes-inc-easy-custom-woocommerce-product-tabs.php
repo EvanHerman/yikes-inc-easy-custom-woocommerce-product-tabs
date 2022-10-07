@@ -51,13 +51,28 @@ function yikes_woo_display_admin_notice_error() {
 		<div class="error">
 			<p>
 				<?php
-				esc_html_e( 'Custom Product Tabs for WooCommerce could not be activated because WooCommerce is not installed and active.', 'yikes-inc-easy-custom-woocommerce-product-tabs' );
-				?>
-				</p>
-			<p>
-				<?php
-				/* translators: The placeholder is a URL to the WooCommerce plugin. */
-				echo sprintf( esc_html( 'Please install and activate %1s before activating the plugin.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ), '<a href="' . esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce' ) ) . '" title="WooCommerce">WooCommerce</a>' );
+				$message = sprintf(
+					/* translators: The placeholder is a URL to the WooCommerce plugin. */
+					__( 'Please install and activate %1s before activating Custom WooCommerce Product Tabs.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
+					'<a href="' . esc_url( admin_url( 'plugin-install.php?tab=search&type=term&s=WooCommerce' ) ) . '" title="WooCommerce">WooCommerce</a>'
+				);
+
+				if ( file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' ) ) {
+					$activate_url = add_query_arg(
+						array(
+							'action'   => 'activate',
+							'plugin'   => 'woocommerce/woocommerce.php',
+							'_wpnonce' => wp_create_nonce( 'activate-plugin_woocommerce/woocommerce.php' )
+						),
+						admin_url( 'plugins.php' )
+					);
+					$message = sprintf(
+						/* translators: The placeholder is a URL to the WooCommerce plugin. */
+						__( 'Please activate %1s before activating Custom WooCommerce Product Tabs.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
+						'<a href="' . esc_url( $activate_url ) . '" title="WooCommerce">WooCommerce</a>'
+					);
+				}
+				echo $message;
 				?>
 			</p>
 		</div> 
@@ -288,8 +303,8 @@ class YIKES_Custom_Product_Tabs {
 	 * @return array $links The $links array, with our saved tabs page appended.
 	 */
 	public function add_plugin_action_links( $links ) {
-		$href    = esc_url_raw( add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url() ) );
-		$links[] = '<a href="' . $href . '">Saved Tabs</a>';
+		$href    = add_query_arg( array( 'page' => YIKES_Custom_Product_Tabs_Settings_Page ), admin_url( 'admin.php' ) );
+		$links[] = '<a href="' . esc_url_raw( $href ) . '">Saved Tabs</a>';
 		return $links;
 	}
 

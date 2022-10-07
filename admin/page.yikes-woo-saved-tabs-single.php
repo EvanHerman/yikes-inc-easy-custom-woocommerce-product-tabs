@@ -13,7 +13,7 @@ if ( ! $new_tab && ( ! isset( $tab ) || empty( $tab ) ) ) {
 }
 
 // Set variables before using them
-$tab_title   = isset( $tab['tab_title'] ) && ! empty( $tab['tab_title'] ) ? $tab['tab_title'] : __( 'New Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' );
+$tab_title   = isset( $tab['tab_title'] ) && ! empty( $tab['tab_title'] ) ? $tab['tab_title'] : '';
 $tab_content = isset( $tab['tab_content'] ) && ! empty( $tab['tab_content'] ) ? $tab['tab_content'] : '';
 $tab_id      = isset( $tab['tab_id'] ) && ! empty( $tab['tab_id'] ) ? (int) $tab['tab_id'] : 'new';
 $tab_name    = isset( $tab['tab_name'] ) ? $tab['tab_name'] : '';
@@ -26,7 +26,7 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 
 	<h1>
 		<span class="dashicons dashicons-exerpt-view"></span>
-		<?php esc_html_e( 'Custom Product Tabs for WooCommerce ', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> | <span id="yikes_woo_tab_title_header"><?php echo $tab_title; ?></span>
+		<?php esc_html_e( 'Custom Product Tabs for WooCommerce ', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> | <span id="yikes_woo_tab_title_header"><?php echo ! empty( $tab_title ) ? esc_html( $tab_title ) : __( 'New Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></span>
 		<a href="<?php echo $new_tab_url; ?>" class="page-title-action"> <?php _e( 'Add New', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>	</a>
 	</h1>
 
@@ -91,15 +91,12 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 						<span class="button button-primary yikes_woo_save_this_tab" id="yikes_woo_save_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
 							<?php _e( 'Save Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 						</span>
-						<span class="button button-secondary yikes_woo_delete_this_tab yikes_woo_delete_this_tab_single" id="yikes_woo_delete_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
-							<i class="dashicons dashicons-dismiss inline-button-dashicons"></i>
+						<span class="button button-primary yikes_woo_delete_this_tab yikes_woo_delete_this_tab_single" id="yikes_woo_delete_this_tab_<?php echo $tab_id; ?>" data-tab-id="<?php echo $tab_id; ?>">
 							<?php _e( 'Delete Tab', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 						</span>
 					</div>
 
 				</div>
-
-				<?php do_action( 'yikes-woo-saved-tab-after-save-buttons', $saved_tab_id ); ?>
 
 			</div>
 			<!-- post-body-content -->
@@ -110,6 +107,8 @@ $global      = isset( $tab['global_tab'] ) && $tab['global_tab'] === true ? true
 				<div class="meta-box-sortables">
 
 					<?php do_action( 'yikes-woo-saved-tabs-list-ad' ); ?>
+
+					<?php do_action( 'yikes-woo-saved-tab-after-save-buttons', $saved_tab_id ); ?>
 
 				</div>
 				<!-- .meta-box-sortables -->

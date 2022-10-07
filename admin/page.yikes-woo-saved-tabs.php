@@ -9,7 +9,7 @@
 
 	<div id="poststuff">
 
-		<div id="post-body" class="metabox-holder columns-2"> 
+		<div id="post-body" class="<?php echo esc_attr( apply_filters( 'yikes_woo_tabs_columns_container_class', 'metabox-holder columns-2' ) ); ?>"> 
 
 			<!-- main content -->
 			<div id="post-body-content">

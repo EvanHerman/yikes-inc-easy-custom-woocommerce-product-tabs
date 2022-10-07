@@ -363,13 +363,18 @@ iframe[id^=_yikes_wc_custom_repeatable_product_tabs_tab_content_] {
 	margin-bottom: 1.5em;
 }
 
-.wp-core-ui .button-secondary.yikes_woo_delete_this_tab {
+.wp-core-ui .button-primary.yikes_woo_delete_this_tab {
 	background: #e35b5b;
-	border-color: #dc3232;
-	box-shadow: 0 1px 0 #dc3232;
+	border-color: #e35b5b;
 	color: #fff;
 	cursor: pointer;
 }
+
+		.wp-core-ui .button-primary.yikes_woo_delete_this_tab:hover,
+		.wp-core-ui .button-primary.yikes_woo_delete_this_tab:active {
+			background: #c55353;
+			border-color: #c55353;
+		}
 
 .yikes_woo_add_another_tab:hover > a {
 	color: white;
