@@ -211,8 +211,9 @@ iframe[id^=_yikes_wc_custom_repeatable_product_tabs_tab_content_] {
 	padding-top: 1em;
 }
 
-.add_tabs_container, ._yikes_wc_add_tab_center {
-    border-top: 1px solid #a0a5aa;
+.add_tabs_container,
+._yikes_wc_add_tab_center {
+	border-top: 1px solid #eee;
 	margin: 2em 2px 0 0;
 	text-align: right;
 	width: 100%;
