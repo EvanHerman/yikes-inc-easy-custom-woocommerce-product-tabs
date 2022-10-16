@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: custom-product-tabs 1.7.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-07 02:42-0400\n"
+"POT-Creation-Date: 2022-10-16 12:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,64 +123,84 @@ msgstr ""
 msgid "Submit a Support Request"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:71
-#: admin/class.yikes-woo-generate-html.php:215
+#: admin/class.yikes-woo-generate-html.php:70
+#: admin/class.yikes-woo-generate-html.php:217
 #: admin/page.yikes-woo-saved-tabs-single.php:63
 #: admin/page.yikes-woo-saved-tabs.php:59
 #: admin/page.yikes-woo-saved-tabs.php:79
 msgid "Tab Title"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:71
-#: admin/class.yikes-woo-generate-html.php:215
+#: admin/class.yikes-woo-generate-html.php:70
+#: admin/class.yikes-woo-generate-html.php:217
 msgid "Custom Tab Title"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:137
+#: admin/class.yikes-woo-generate-html.php:133
 msgid ""
 "For help using Custom Tabs please visit our <a href='https://yikesplugins."
 "com/support/knowledge-base/product/easy-custom-product-tabs-for-"
 "woocommerce/' target='_blank'>Knowledge Base</a>"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:139
+#: admin/class.yikes-woo-generate-html.php:135
 msgid "Help Me!"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:164
-#: admin/class.yikes-woo-generate-html.php:284
+#: admin/class.yikes-woo-generate-html.php:160
 msgid "Check this box to override the saved tab"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:166
+#: admin/class.yikes-woo-generate-html.php:162
 msgid " Override Saved Tab"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:180
-#: admin/class.yikes-woo-generate-html.php:254
-#: admin/class.yikes-woo-generate-html.php:296
+#: admin/class.yikes-woo-generate-html.php:170
+#: admin/class.yikes-woo-generate-html.php:255
+#: admin/class.yikes-woo-generate-html.php:288
 msgid "Remove Tab"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:230
+#: admin/class.yikes-woo-generate-html.php:173
+#: admin/class.yikes-woo-generate-html.php:290
+msgid "Move tab order"
+msgstr ""
+
+#: admin/class.yikes-woo-generate-html.php:175
+#: admin/class.yikes-woo-generate-html.php:292
+msgid "Move up"
+msgstr ""
+
+#: admin/class.yikes-woo-generate-html.php:177
+#: admin/class.yikes-woo-generate-html.php:294
+msgid "Move tab up"
+msgstr ""
+
+#: admin/class.yikes-woo-generate-html.php:179
+#: admin/class.yikes-woo-generate-html.php:296
+msgid "Move down"
+msgstr ""
+
+#: admin/class.yikes-woo-generate-html.php:181
+#: admin/class.yikes-woo-generate-html.php:298
+msgid "Move tab down"
+msgstr ""
+
+#: admin/class.yikes-woo-generate-html.php:232
 #: admin/class.yikes-woo-generate-html.php:269
 msgid "Content"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:231
+#: admin/class.yikes-woo-generate-html.php:233
 #: admin/class.yikes-woo-generate-html.php:269
 msgid "HTML and text to display."
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:285
-msgid "Override Saved Tab"
-msgstr ""
-
-#: admin/class.yikes-woo-generate-html.php:336
+#: admin/class.yikes-woo-generate-html.php:341
 msgid "Add a Tab"
 msgstr ""
 
-#: admin/class.yikes-woo-generate-html.php:341
+#: admin/class.yikes-woo-generate-html.php:346
 msgid "Add a Saved Tab"
 msgstr ""
 
