@@ -102,7 +102,7 @@ class YIKES_Custom_Product_Tabs_Premium {
 						printf(
 							wp_kses_post(
 								/* translators: %1$s is html markup for a heart icon. %2$s is an anchor tag (link) to https://yikesinc.com. */
-								__( 'This plugin made with %1$s by %2$s', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
+								__( 'This plugin made with %1$s by %2$s', 'yikes-inc-easy-custom-woocommerce-product-tabs' )
 							),
 							'<span class="dashicons dashicons-heart yikes-love"></span>',
 							'<a href="https://www.yikesinc.com" target="_blank" title="YIKES Inc.">YIKES Inc.</a>'
