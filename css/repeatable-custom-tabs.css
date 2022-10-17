@@ -233,24 +233,33 @@ iframe[id^=_yikes_wc_custom_repeatable_product_tabs_tab_content_] {
 }
 
 #add_another_tab {
-	background: #cc99c2;
-	border-color: #b366a4;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 0 rgba(0,0,0,.15);
+	background: #bb77ae;
+	border-color: #a36597;
+	box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 0 #a36597;
 	color: #fff;
-	text-decoration: none !important;
+	text-shadow: 0 -1px 1px #a36597, 1px 0 1px #a36597, 0 1px 1px #a36597, -1px 0 1px #a36597;
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
 
 #_yikes_wc_apply_a_saved_tab {
-	background: #cc99c2;
-	border-color: #b366a4;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 0 rgba(0,0,0,.15);
+	background: #bb77ae;
+	border-color: #a36597;
+	box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 0 #a36597;
 	color: #fff;
-	text-decoration: none !important;
+	text-shadow: 0 -1px 1px #a36597, 1px 0 1px #a36597, 0 1px 1px #a36597, -1px 0 1px #a36597;
 	margin: 10px 0 0 8px;
+}
+
+#add_another_tab:hover,
+#add_another_tab:active,
+#add_another_tab:focus,
+#_yikes_wc_apply_a_saved_tab:hover,
+#_yikes_wc_apply_a_saved_tab:active,
+#_yikes_wc_apply_a_saved_tab:focus {
+	background: #a36597;
+	border-color: #a36597;
+	box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 0 #a36597;
 }
 
 .yikes_woo_using_reusable_tab {
