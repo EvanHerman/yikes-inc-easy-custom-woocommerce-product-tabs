@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: custom-product-tabs 1.7.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-16 12:16-0400\n"
+"POT-Creation-Date: 2022-10-17 00:19-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -405,7 +405,7 @@ msgid "Dismiss this notice."
 msgstr ""
 
 #: admin/page.yikes-woo-saved-tabs.php:31
-msgid "Create and save tabs you can add to multiple products."
+msgid "Create and save tabs that you can add to multiple products."
 msgstr ""
 
 #: admin/page.yikes-woo-saved-tabs.php:42
@@ -473,4 +473,19 @@ msgstr ""
 #: yikes-inc-easy-custom-woocommerce-product-tabs.php:71
 #, php-format
 msgid "Please activate %1s before activating Custom WooCommerce Product Tabs."
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:311
+msgid "Saved Tabs"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:312
+msgid "Documentation"
+msgstr ""
+
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:343
+#, php-format
+msgid ""
+"Thank you for using Custom Product Tabs for WooCommerce. Please consider "
+"leaving us %s on the WordPress.org plugin repository."
 msgstr ""
