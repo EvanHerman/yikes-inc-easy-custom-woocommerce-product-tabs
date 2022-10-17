@@ -28,7 +28,7 @@
 
 				<div class="yikes_woo_settings_info">
 					<p>
-						<?php esc_html_e( 'Create and save tabs you can add to multiple products.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
+						<?php esc_html_e( 'Create and save tabs that you can add to multiple products.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
 					</p>
 				</div>
 
