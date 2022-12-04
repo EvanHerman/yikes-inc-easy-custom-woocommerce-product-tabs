@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
@@ -18,7 +18,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
 			// Save custom tab data
 			add_action( 'woocommerce_process_product_meta', array( $this, 'product_save_data' ), 10, 2 );
-			
+
 			// Enqueue our JS / CSS files
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_and_styles' ), 10, 1 );
 
@@ -58,7 +58,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 						'save_tab_as_reusable_nonce'    => wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
 						'fetch_reusable_tabs_nonce'     => wp_create_nonce( 'yikes_woo_fetch_reusable_tabs_nonce' ),
 						'fetch_reusable_tab_nonce'      => wp_create_nonce( 'yikes_woo_fetch_reusable_tab_nonce' ),
-						'delete_reusable_tab_nonce'     => wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ), 
+						'delete_reusable_tab_nonce'     => wp_create_nonce( 'yikes_woo_delete_reusable_tab_nonce' ),
 						'save_product_tabs_nonce'       => wp_create_nonce( 'yikes_woo_save_product_tabs_nonce' ),
 						'global_post_id'                => $post->ID,
 						'get_wp_editor_failure_message' => __( 'Sorry! An error has occurred while trying to retrieve the editor. Please refresh the page and try again.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
@@ -131,7 +131,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 		*/
 		protected function save_tabs( $post_id, $is_ajax_flag ) {
 			$tab_data = array();
-			
+
 			$number_of_tabs = $_POST['number_of_tabs'];
 
 			// Create an array for tab_ids that we will use later
@@ -146,24 +146,24 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			if ( isset ( $reusable_tab_options_array[$post_id] ) ) {
 				$post_has_reusable_tabs = true;
 			}
-			
+
 			$i = 1;
 			while( $i <= $number_of_tabs ) {
 
 				// Deal with saving the tab content
-			
+
 				$tab_title   = isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i] ) ? stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_title_' . $i] ) : '';
 				$tab_content = isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i] ) ? stripslashes( $_POST['_yikes_wc_custom_repeatable_product_tabs_tab_content_' . $i] ) : '';
-			
+
 				if ( empty( $tab_title ) && empty( $tab_content ) ) {
-					
+
 					// clean up if the custom tabs are removed
 					unset( $tab_data[$i] );
-				
+
 				} else {
-					
+
 					$tab_id = '';
-					
+
 					if ( $tab_title ) {
 						$tab_id = urldecode( sanitize_title( $tab_title ) );
 					}
@@ -176,10 +176,10 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
 				if ( isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i] ) && isset( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '_action'] )
 					&& ! empty( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i] ) && ! empty( $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '_action'] ) ) {
-					
+
 					// Store the tab_id and action
 					$reusable_tab_id     = $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i];
-					$reusable_tab_action = $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '_action'];	
+					$reusable_tab_action = $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' . $i . '_action'];
 
 					// If $reusable_tab_options_array is not empty, we've done this before
 					if ( ! empty( $reusable_tab_options_array ) ) {
@@ -232,7 +232,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 				// If we have tabs...
 				if ( ! empty( $current_saved_tab_id_array ) ) {
 
-					// Loop through our reusable tab array	
+					// Loop through our reusable tab array
 					foreach( $reusable_tab_options_array[ $post_id ] as $id => $reusable_tab_array ) {
 
 						// If we find one of our reusable tabs is no longer part of this post, remove it
@@ -241,7 +241,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 							unset( $reusable_tab_options_array[ $post_id ][ $id ] );
 							$remove_a_tab_from_reusable = true;
 						}
-					} 
+					}
 				} else {
 
 					// If we don't have any current tabs then we need to delete this post's option
@@ -254,7 +254,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 					update_option( 'yikes_woo_reusable_products_tabs_applied', $reusable_tab_options_array );
 				}
 			}
-			
+
 			// Reset the array count, when items are removed
 			$tab_data = array_values( $tab_data );
 
@@ -296,7 +296,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			$tab_content = isset( $_POST['tab_content'] ) ? $_POST['tab_content'] : '';
 
 			// Set up options
-			$wp_editor_options = array( 
+			$wp_editor_options = array(
 				'textarea_name' => $textarea_id,
 				'textarea_rows' => 8,
 			);
@@ -313,7 +313,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 		*
 		* @param  string $_POST['post_id']   	| ID of the current product (post)
 		* @param  array  $_POST['product_tabs'] | array of all the tab data
-		* @return object success w/ message || failure w/ message 
+		* @return object success w/ message || failure w/ message
 		*/
 		public function yikes_woo_save_product_tabs() {
 
@@ -353,7 +353,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
 			$current_products_tabs = get_post_meta( $old_post_id, 'yikes_woo_products_tabs', true );
 
-			if ( ! empty( $current_products_tabs ) ) {				
+			if ( ! empty( $current_products_tabs ) ) {
 				update_post_meta( $new_post_id, 'yikes_woo_products_tabs', $current_products_tabs );
 			}
 		}
@@ -364,4 +364,3 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
 	new YIKES_Custom_Product_Tabs_Custom_Tabs();
 }
-
