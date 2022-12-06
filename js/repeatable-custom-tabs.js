@@ -549,6 +549,8 @@
 
 				// Display lity box
 				global_lity = lity( lity_html, { handler: 'inline' } );
+
+				jQuery( '.lity-opened' ).addClass( 'custom-product-tabs select-tab' );
 			}
 
 		} else if (  typeof( fetch_tabs_response.success ) !== 'undefined' && fetch_tabs_response.success === false ) {

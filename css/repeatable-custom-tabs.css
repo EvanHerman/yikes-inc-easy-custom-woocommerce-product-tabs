@@ -269,6 +269,11 @@ iframe[id^=_yikes_wc_custom_repeatable_product_tabs_tab_content_] {
 	margin: 1em auto;
 }
 
+.lity-opened.custom-product-tabs.select-tab .lity-container {
+	max-height: 90vh;
+	overflow-y: auto;
+}
+
 #_yikes_wc_apply_a_saved_tab.disabled {
 	background: #bb77ae !important;
 	color: #fff !important;
