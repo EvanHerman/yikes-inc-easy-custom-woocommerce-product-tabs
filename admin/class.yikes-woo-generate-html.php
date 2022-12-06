@@ -97,7 +97,6 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 				$reusable_tab_flag = false;
 				$reusable_tab_id = '';
 
-				// wp_die( print_r( $reusable_tab_options ) );
 				// If $tab is in the array of reusable tabs, set flag
 				if ( isset( $reusable_tab_options ) && isset( $reusable_tab_options[$post->ID] ) ) {
 

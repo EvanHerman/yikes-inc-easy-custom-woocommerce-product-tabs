@@ -301,7 +301,7 @@
 			var tab_id = jQuery( '#saved_tab_container_' + saved_tab_number ).data( 'tab-id' );
 
 			// Replace the lity box with a spinner because some tabs take a while to load
-			jQuery( '.lity-content' ).html( repeatable_custom_tabs.loading_gif ).css( 'width', '50px' ).children( 'img' ).css( 'margin-left', '37%' );
+			jQuery( '.lity-content' ).html( repeatable_custom_tabs.loading_gif ).css( 'width', '50px' );
 
 			yikes_woo_fetch_reusable_tab( tab_id, yikes_woo_apply_resuable_tab );
 		});
@@ -766,6 +766,8 @@
 
 			yikes_woo_get_wp_editor_ajax( textarea_id, true, tab_content );
 		}
+
+		jQuery( '#duplicate_this_row' ).find( 'input[type="hidden"]' ).removeAttr( 'name' );
 
 		// Remove some classes
 		jQuery( '.last-button-holder' ).removeClass( 'last-button-holder' );

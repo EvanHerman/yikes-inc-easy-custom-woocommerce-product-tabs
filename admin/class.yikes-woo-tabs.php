@@ -52,7 +52,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 					// script
 					wp_enqueue_script ( 'repeatable-custom-tabs', YIKES_Custom_Product_Tabs_URI . "js/repeatable-custom-tabs{$suffix}.js" , array( 'jquery' ) , YIKES_Custom_Product_Tabs_Version );
 					wp_localize_script( 'repeatable-custom-tabs', 'repeatable_custom_tabs', array(
-						'loading_gif'                   => '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif" />',
+						'loading_gif'                   => '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif custom-tabs-preloader" />',
 						'ajaxurl'                       => admin_url( 'admin-ajax.php' ),
 						'get_wp_editor_security_nonce'  => wp_create_nonce( 'yikes_woo_get_wp_editor_nonce' ),
 						'save_tab_as_reusable_nonce'    => wp_create_nonce( 'yikes_woo_save_tab_as_reusable_nonce' ),
@@ -67,7 +67,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 
 					wp_enqueue_script ( 'repeatable-custom-tabs-shared', YIKES_Custom_Product_Tabs_URI . "js/repeatable-custom-tabs-shared{$suffix}.js", array( 'jquery' ), YIKES_Custom_Product_Tabs_Version );
 					wp_localize_script( 'repeatable-custom-tabs-shared', 'repeatable_custom_tabs_shared', array(
-						'loading_gif'                   => '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif" />',
+						'loading_gif'                   => '<img src="' . admin_url( 'images/loading.gif' ) . '" alt="preloader" class="loading-wp-editor-gif custom-tabs-preloader" />',
 						'ajaxurl'                       => admin_url( 'admin-ajax.php' ),
 						'get_wp_editor_security_nonce'  => wp_create_nonce( 'yikes_woo_get_wp_editor_nonce' ),
 						'get_wp_editor_failure_message' => __( 'Sorry! An error has occurred while trying to retrieve the editor. Please refresh the page and try again.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
@@ -116,6 +116,10 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			if ( empty( $post_id ) ) {
 				return;
 			}
+
+			update_option( 'what', $_POST );
+			update_option( 'etesting_action', $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_1_action'] );
+			update_option( 'etesting_id', $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_1'] );
 
 			// Save our tabs!
 			$this->save_tabs( $post_id, $is_ajax = false );
