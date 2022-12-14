@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: YIKES, Inc.
  * Author URI: https://www.yikesinc.com
- * Version: 1.8.1
+ * Version: 1.8.2
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  *
@@ -40,7 +40,7 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
  * Display our error admin notice if WooCommerce is not installed + active.
  */
 function yikes_woo_display_admin_notice_error() {
-	?>	
+	?>
 		<!-- hide the 'Plugin Activated' default message -->
 		<style>
 		#message.updated {
@@ -75,7 +75,7 @@ function yikes_woo_display_admin_notice_error() {
 				echo $message;
 				?>
 			</p>
-		</div> 
+		</div>
 	<?php
 }
 
@@ -122,7 +122,7 @@ class YIKES_Custom_Product_Tabs {
 		 * Define the plugin's version.
 		 */
 		if ( ! defined( 'YIKES_Custom_Product_Tabs_Version' ) ) {
-			define( 'YIKES_Custom_Product_Tabs_Version', '1.8.1' );
+			define( 'YIKES_Custom_Product_Tabs_Version', '1.8.2' );
 		}
 
 		/**
@@ -241,9 +241,9 @@ class YIKES_Custom_Product_Tabs {
 		// Fetch all of the post meta items where meta_key = 'yikes_woo_products_tabs'.
 		$yikes_woo_products_tabs = $wpdb->get_results(
 			"
-			SELECT * 
+			SELECT *
 			FROM {$wpdb->postmeta}
-			WHERE meta_key = 'yikes_woo_products_tabs' 
+			WHERE meta_key = 'yikes_woo_products_tabs'
 			"
 		);
 

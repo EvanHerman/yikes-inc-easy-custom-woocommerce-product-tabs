@@ -4,11 +4,11 @@ Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
 Tested up to: 6.0
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add custom tabs with content to products in WooCommerce. 
+Add custom tabs with content to products in WooCommerce.
 
 == Description ==
 
@@ -16,7 +16,7 @@ This plugin extends [WooCommerce](www.woothemes.com/woocommerce/) to allow shop 
 
 Individual product tabs are managed on the WooCommerce Edit Product screen and can be added on a per product basis. You can also create saved tabs and add them to multiple products as needed. Tabs can be easily added, deleted and rearranged.
 
-Tab content areas use the standard WordPress text editor and may contain text, images, HTML or shortcodes. 
+Tab content areas use the standard WordPress text editor and may contain text, images, HTML or shortcodes.
 
 If you experience any problems, please submit a ticket on our [Free WordPress Support Forums](https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs) and we'll look in to it as soon as possible.
 
@@ -49,7 +49,7 @@ Upgrade to [Custom Product Tabs Pro](https://yikesplugins.com/plugin/custom-prod
 When editing a product in WooCommerce, you will find "Custom Tabs" in the bottom left corner of the Product Data box. Click on "Custom Tabs" to reveal the custom tab manager.
 
 = Where will these tabs appear? =
-When the product is viewed on your website you will see the tabs you created to the right of the default "Description" tab. 
+When the product is viewed on your website you will see the tabs you created to the right of the default "Description" tab.
 
 = How do I change the order of the tabs? =
 To change the order of custom tabs use the up and down "Move tab order" arrows.
