@@ -5,7 +5,7 @@
 */
 	jQuery(document).ready(function() {
 		// Disable fields on-load if necessary (delay 4 seconds to allow wp_editor to initialize)
-		setTimeout(	function() { 
+		setTimeout(	function() {
 			yikes_woo_check_for_reusable_tabs_and_disable();
 			yikes_woo_set_editor_specific_styles();
 		}, 4000 );
@@ -85,13 +85,13 @@
 			var tab_title_prefix	= '_yikes_wc_custom_repeatable_product_tabs_tab_title_';
 			var tab_content_prefix	= '_yikes_wc_custom_repeatable_product_tabs_tab_content_';
 			var removed_textarea_id = tab_content_prefix + last_post_position;
-			
+
 			// Set up our DOM elements to be removed
 			var tab_reusable_container_to_remove = jQuery( '#_yikes_wc_override_reusable_tab_container_' + last_post_position );
 			var tab_title_to_remove = jQuery( '.' + tab_title_prefix + last_post_position + '_field' );
-			var tab_content_to_remove = jQuery( '.' + tab_content_prefix + last_post_position + '_field' );
+			var tab_content_to_remove = jQuery( '.' + tab_content_prefix + last_post_position );
 			var divider_to_remove = jQuery( '.yikes-woo-custom-tab-divider' ).last();
-			var button_holder_to_remove = jQuery( '.' + tab_content_prefix + last_post_position + '_field' ).next( '.button-holder' );
+			var button_holder_to_remove = jQuery( '.button-holder[alt="' + last_post_position + '"]' );
 			var number_of_tabs = parseInt( last_post_position ) - parseInt( 1 );
 
 			// Destroy our tinymce instance (this enables us to re-add it later if we need to)
@@ -103,9 +103,10 @@
 			tab_reusable_container_to_remove.remove();
 			tab_title_to_remove.remove();
 			tab_content_to_remove.remove();
+			jQuery( '.' + tab_content_prefix + last_post_position + '_field' ).remove();
 			divider_to_remove.remove();
 			button_holder_to_remove.remove();
-			
+
 			// Store the new number of tabs
 			jQuery( '#number_of_tabs' ).val( number_of_tabs );
 
@@ -113,7 +114,7 @@
 			if ( parseInt( number_of_tabs ) === 0 ) {
 				jQuery( '#add_another_tab' ).parent( '.add_tabs_container' ).addClass( '_yikes_wc_add_tab_center' );
 			}
-			
+
 			e.preventDefault();
 		});
 
@@ -141,13 +142,13 @@
 			var previous_content = yikes_woo_get_content_from_wysiwyg( tab_content_prefix + previous_position );
 
 			// Deal with saved tab disabled overlay classes
-			if ( jQuery( '.' + tab_title_prefix + clicked_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' ) 
+			if ( jQuery( '.' + tab_title_prefix + clicked_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' )
 					&& ! jQuery( '.' + tab_title_prefix + previous_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' ) ) {
 
 				// Add overlay to the previous tab && remove it from the current one
 				yikes_woo_toggle_reusable_override_overlay( 'enable', clicked_position );
 				yikes_woo_toggle_reusable_override_overlay( 'disable', previous_position );
-			} else if ( jQuery( '.' + tab_title_prefix + previous_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' ) 
+			} else if ( jQuery( '.' + tab_title_prefix + previous_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' )
 					&& ! jQuery( '.' + tab_title_prefix + clicked_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' ) ) {
 
 				// Add overlay to the current tab && remove it from the previous one
@@ -168,22 +169,22 @@
 			// Deal with saved tab checkbox
 
 			// Checked / Unchecked
-			if ( jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).is( ':checked' ) === true 
+			if ( jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).is( ':checked' ) === true
 					&& jQuery( '#_yikes_wc_override_reusable_tab_' + previous_position ).is( ':checked' ) === false ) {
 				jQuery( '#_yikes_wc_override_reusable_tab_' + previous_position ).prop( 'checked', true );
 				jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).prop( 'checked', false );
-			} else if ( jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).is( ':checked' ) === false 
+			} else if ( jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).is( ':checked' ) === false
 					&& jQuery( '#_yikes_wc_override_reusable_tab_' + previous_position ).is( ':checked' ) === true ) {
 				jQuery( '#_yikes_wc_override_reusable_tab_' + previous_position ).prop( 'checked', false );
 				jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).prop( 'checked', true );
 			}
 
 			// Shown / Hidden
-			if ( jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).is( ':visible' ) === true 
+			if ( jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).is( ':visible' ) === true
 					&& jQuery( '#_yikes_wc_override_reusable_tab_container_' + previous_position ).is( ':visible' ) === false ) {
 				jQuery( '#_yikes_wc_override_reusable_tab_container_' + previous_position ).show();
 				jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).hide();
-			} else if ( jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).is( ':visible' ) === false 
+			} else if ( jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).is( ':visible' ) === false
 					&& jQuery( '#_yikes_wc_override_reusable_tab_container_' + previous_position ).is( ':visible' ) === true ) {
 				jQuery( '#_yikes_wc_override_reusable_tab_container_' + previous_position ).hide();
 				jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).show();
@@ -197,13 +198,13 @@
 			yikes_woo_set_content_for_wysiwyg( tab_content_prefix + clicked_position, previous_content );
 			yikes_woo_set_content_for_wysiwyg( tab_content_prefix + previous_position, clicked_content );
 		});
-		
-		// Move tab selected tab down, move below-tab above 
+
+		// Move tab selected tab down, move below-tab above
 		jQuery( 'body' ).on( 'click' , '.move-tab-data-down' , function( ) {
 			var clicked_button = jQuery( this );
 			var clicked_position = clicked_button.parents( '.button-holder' ).attr( 'alt' );
 			var number_of_tabs = jQuery( '#number_of_tabs' ).val();
-			
+
 			// If we're trying to move the bottom tab, bail
 			if ( clicked_position == number_of_tabs ) {
 				return false;
@@ -223,13 +224,13 @@
 			var next_content = yikes_woo_get_content_from_wysiwyg( tab_content_prefix + next_position );
 
 			// Deal with saved tab disabled overlay classes
-			if ( jQuery( '.' + tab_title_prefix + clicked_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' ) 
+			if ( jQuery( '.' + tab_title_prefix + clicked_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' )
 					&& ! jQuery( '.' + tab_title_prefix + next_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' ) ) {
 
 				// Add overlay to the next tab && remove it from the current one
 				yikes_woo_toggle_reusable_override_overlay( 'enable', clicked_position );
 				yikes_woo_toggle_reusable_override_overlay( 'disable', next_position );
-			} else if ( jQuery( '.' + tab_title_prefix + next_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' ) 
+			} else if ( jQuery( '.' + tab_title_prefix + next_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' )
 					&& ! jQuery( '.' + tab_title_prefix + clicked_position + '_field' ).hasClass( 'yikes_woo_using_reusable_tab' ) ) {
 
 				// Add overlay to the current tab && remove it from the next one
@@ -250,22 +251,22 @@
 			// Deal with saved tab checkbox
 
 			// Checked / Unchecked
-			if ( jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).is( ':checked' ) === true 
+			if ( jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).is( ':checked' ) === true
 					&& jQuery( '#_yikes_wc_override_reusable_tab_' + next_position ).is( ':checked' ) === false ) {
 				jQuery( '#_yikes_wc_override_reusable_tab_' + next_position ).prop( 'checked', true );
 				jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).prop( 'checked', false );
-			} else if ( jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).is( ':checked' ) === false 
+			} else if ( jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).is( ':checked' ) === false
 					&& jQuery( '#_yikes_wc_override_reusable_tab_' + next_position ).is( ':checked' ) === true ) {
 				jQuery( '#_yikes_wc_override_reusable_tab_' + next_position ).prop( 'checked', false );
 				jQuery( '#_yikes_wc_override_reusable_tab_' + clicked_position ).prop( 'checked', true );
 			}
 
 			// Shown / Hidden
-			if ( jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).is( ':visible' ) === true 
+			if ( jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).is( ':visible' ) === true
 					&& jQuery( '#_yikes_wc_override_reusable_tab_container_' + next_position ).is( ':visible' ) === false ) {
 				jQuery( '#_yikes_wc_override_reusable_tab_container_' + next_position ).show();
 				jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).hide();
-			} else if ( jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).is( ':visible' ) === false 
+			} else if ( jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).is( ':visible' ) === false
 					&& jQuery( '#_yikes_wc_override_reusable_tab_container_' + next_position ).is( ':visible' ) === true ) {
 				jQuery( '#_yikes_wc_override_reusable_tab_container_' + next_position ).hide();
 				jQuery( '#_yikes_wc_override_reusable_tab_container_' + clicked_position ).show();
@@ -300,7 +301,7 @@
 			var tab_id = jQuery( '#saved_tab_container_' + saved_tab_number ).data( 'tab-id' );
 
 			// Replace the lity box with a spinner because some tabs take a while to load
-			jQuery( '.lity-content' ).html( repeatable_custom_tabs.loading_gif ).css( 'width', '50px' ).children( 'img' ).css( 'margin-left', '37%' );
+			jQuery( '.lity-content' ).html( repeatable_custom_tabs.loading_gif ).css( 'width', '50px' );
 
 			yikes_woo_fetch_reusable_tab( tab_id, yikes_woo_apply_resuable_tab );
 		});
@@ -331,7 +332,7 @@
 				yikes_woo_toggle_reusable_override_overlay( 'disable', tab_number );
 			}
 		});
-		
+
 		// Handle two tabs with the same name by creating an overlay and showing an error message
 		// To-do: make this function more robust - it doesn't handle multiple duplicates well
 		jQuery( 'body' ).on( 'focusout', '.yikes_woo_tabs_title_field', function() {
@@ -383,7 +384,7 @@
 		});
 
 		// Handle saving all the tabs
-		jQuery( '#yikes_woo_save_custom_tabs' ).click( function() { 
+		jQuery( '#yikes_woo_save_custom_tabs' ).click( function() {
 
 			// If we've added the disabled class, do not go further
 			if ( jQuery( '#yikes_woo_save_custom_tabs' ).hasClass( 'disabled' ) === true ) {
@@ -407,9 +408,13 @@
 				'security_nonce': repeatable_custom_tabs.save_product_tabs_nonce
 			};
 
+			console.log( data );
+
 			// We're going to collect all the data and send it to the server as if it were a form submission
 			// So data object should have all the relevant fields like: field_name => field_value
 			for ( var ii = 1; ii <= number_of_tabs; ii++ ) {
+
+				console.log( '_yikes_wc_custom_repeatable_product_tabs_tab_title_' + ii );
 
 				// Title
 				data['_yikes_wc_custom_repeatable_product_tabs_tab_title_' + ii] = jQuery( '#_yikes_wc_custom_repeatable_product_tabs_tab_title_' + ii ).val();
@@ -461,7 +466,7 @@
 		// Tab number of our created tab will be equal to the number of tabs
 		var tab_number = jQuery( '#number_of_tabs' ).val();
 
-		// Apply variables 
+		// Apply variables
 
 		// Title
 		jQuery( '#' + tab_title_prefix + tab_number ).val( saved_tab_title );
@@ -470,24 +475,24 @@
 		jQuery( '#_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' + tab_number + '_action' ).val( 'add' );
 		jQuery( '#_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' + tab_number ).val( saved_tab_id );
 
-		
+
 		// Check if our tinymce instance has been initialized yet
 		if ( jQuery( '#qt__yikes_wc_custom_repeatable_product_tabs_tab_content_' + tab_number + '_toolbar' ).length > 0 ) {
 
 			// Add a class to the items to indicate this is a reusable tab
-			yikes_woo_toggle_reusable_override_overlay( 'disable', tab_number )	
+			yikes_woo_toggle_reusable_override_overlay( 'disable', tab_number )
 		} else {
 
 			// If our tinymce instance is not initialized, let's set a flag so we know to do it
 			jQuery( '#' + tab_title_prefix + tab_number ).addClass( 'yikes_woo_disable_this_tab' );
 		}
-		
+
 		// Show checkbox to let the user override the reusable tab status
 		jQuery( '#_yikes_wc_override_reusable_tab_container_' + tab_number ).show();
 	}
 
 	function yikes_woo_fetch_reusable_tab( tab_id, callback_function ) {
-		
+
 		// Create data object for AJAX call
 		var data = {
 			'action': 'yikes_woo_fetch_reusable_tab',
@@ -531,19 +536,21 @@
 	function yikes_woo_handle_reusable_tabs( fetch_tabs_response ) {
 
 		if ( typeof( fetch_tabs_response.success ) !== 'undefined' && fetch_tabs_response.success === true ) {
-		
+
 			// If we have a message, no tabs were found
 			if ( typeof( fetch_tabs_response.data ) !== 'undefined' && typeof( fetch_tabs_response.data.message ) !== 'undefined' ) {
 				jQuery( '#yikes_woo_ajax_save_feedback' ).removeClass().addClass( 'yikes_woo_save_success' ).text( fetch_tabs_response.data.message ).fadeIn().delay( '2000' ).fadeOut();
 			} else {
 				// Save response data
 				var saved_tabs = JSON.parse( fetch_tabs_response.data );
-				
+
 				// Create HTML from response data
 				lity_html = create_lity_manage_reusable_tabs_html( saved_tabs );
 
 				// Display lity box
 				global_lity = lity( lity_html, { handler: 'inline' } );
+
+				jQuery( '.lity-opened' ).addClass( 'custom-product-tabs select-tab' );
 			}
 
 		} else if (  typeof( fetch_tabs_response.success ) !== 'undefined' && fetch_tabs_response.success === false ) {
@@ -587,8 +594,8 @@
 			lity_html +=	'<div class="yikes_wc_lity_col_select">';
 			lity_html += 		'<span class="yikes_woo_saved_tab_selector_lity dashicons dashicons-plus-alt" data-saved-tab-number="' + ii + '"></span>';
 			lity_html +=	'</div>';
-			lity_html += '</div>';	
-			
+			lity_html += '</div>';
+
 			ii++;
 		});
 
@@ -691,7 +698,6 @@
 		// Setup variables for use in generating a new tab
 		var clone_container = jQuery( '#duplicate_this_row' );
 		var new_count = parseInt( jQuery( '#number_of_tabs' ).val() ) + parseInt( 1 ); /* get new number of cloned element */
-		// var remove_tab_button = jQuery( '#duplicate_this_row .remove_this_tab' );
 		var move_tab_content_buttons = jQuery( '#duplicate_this_row .button-holder' );
 		var textarea_id = '_yikes_wc_custom_repeatable_product_tabs_tab_content_' + new_count;
 		var title_id = '_yikes_wc_custom_repeatable_product_tabs_tab_title_' + new_count;
@@ -708,26 +714,26 @@
 									.removeClass( 'hidden_duplicator_row_title_field' ).find( 'label' ).removeAttr( 'for' ).attr( 'for', title_id + '_field' );
 				}
 			});
-			
+
 			// Change content classes
 			jQuery( '.new_duplicate_row' ).find( 'textarea' ).each( function() {
 				if ( jQuery( this ).is( 'textarea[name="hidden_duplicator_row_content"]' ) ) {
+					jQuery( this ).parent( '.form-field-tinymce' ).addClass( '_yikes_wc_custom_repeatable_product_tabs_tab_content_field ' + textarea_id );
 					jQuery( this ).attr( 'name' , textarea_id ).attr( 'id' , textarea_id ).parent( 'div' ).addClass( textarea_id + '_field' ).removeClass( 'hidden_duplicator_row_content_field' )
 								.find( 'label' ).removeAttr( 'for' ).attr( 'for', textarea_id + '_field' );
 				}
 			});
 
 			// Change button holder classes
-			jQuery( '.new_duplicate_row' ).find( '.button-holder' ).attr( 'alt', new_count );
+			jQuery( '.new_duplicate_row.button-holder' ).attr( 'alt', new_count );
 			jQuery( '.new_duplicate_row' ).find( '.yikes_wc_override_reusable_tab_container' ).attr( 'id', '_yikes_wc_override_reusable_tab_container_' + new_count );
-			jQuery( '.new_duplicate_row' ).find( '.button-holder' ).css( 'width', '19.25%' ).unwrap(); // fix weird spacing issue on cloned button holder.
 
 			// Set the new number of tabs value
 			jQuery( '#number_of_tabs' ).val( new_count );
 
 			// Append the divider between tabs
 			if ( new_count > 1 ) {
-				jQuery( '.new_duplicate_row' ).first().before( '<div class="yikes-woo-custom-tab-divider"></div>' );	
+				jQuery( '.new_duplicate_row' ).first().before( '<div class="yikes-woo-custom-tab-divider"></div>' );
 			}
 		});
 
@@ -739,6 +745,7 @@
 		// Change override label
 		reusable_tab_container.children( '._yikes_wc_override_reusable_tab_label_duplicate' ).attr( 'for', '_yikes_wc_override_reusable_tab_' + new_count ).attr( 'id', '_yikes_wc_override_reusable_tab_label_' + new_count )
 										.removeClass( '_yikes_wc_override_reusable_tab_label_duplicate' ).addClass( '_yikes_wc_override_reusable_tab_label' );
+
 		// Change hidden input action field
 		reusable_tab_container.children( '#_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_action_duplicate' )
 										.attr( 'name', '_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_' + new_count + '_action' )
@@ -758,10 +765,12 @@
 
 			// Add a loading gif until AJAX returns
 			jQuery( '.' + textarea_id + '_field' ).html( repeatable_custom_tabs.loading_gif );
-			
+
 			yikes_woo_get_wp_editor_ajax( textarea_id, true, tab_content );
 		}
-		
+
+		jQuery( '#duplicate_this_row' ).find( 'input[type="hidden"]' ).removeAttr( 'name' );
+
 		// Remove some classes
 		jQuery( '.last-button-holder' ).removeClass( 'last-button-holder' );
 		jQuery( '.new_duplicate_row' ).removeClass( 'new_duplicate_row' );

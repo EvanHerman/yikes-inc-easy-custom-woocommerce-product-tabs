@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
@@ -90,13 +90,13 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		* @param string  | $_POST['tab_name']    | Tab name to save
 		* @param array   | $_POST['taxonomies']  | Optional. Array of taxonomies.
 		*
-		* @return string | JSON response 
+		* @return string | JSON response
 		*/
 		public function yikes_woo_save_tab_as_reusable() {
 
 			// Verify the nonce
 			if ( ! check_ajax_referer( 'yikes_woo_save_tab_as_reusable_nonce', 'security_nonce', false ) ) {
-			 	wp_send_json_error();
+				wp_send_json_error();
 			}
 
 			// Define it now, because we may use this later...
@@ -114,7 +114,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			$tab_id      = isset( $_POST['tab_id'] ) && ! empty( $_POST['tab_id'] ) ? $_POST['tab_id'] : '';
 			$tab_name    = isset( $_POST['tab_name'] ) ? $_POST['tab_name'] : '';
 			$global_tab  = isset( $_POST['global_tab'] ) && $_POST['global_tab'] === 'true' ? true : false;
-			
+
 			// Remove taxonomies if we're using a global tab
 			$taxonomies  = isset( $_POST['taxonomies'] ) && ! empty( $_POST['taxonomies'] ) && $global_tab === false ? $_POST['taxonomies'] : array();
 
@@ -173,7 +173,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 						'tab_slug'    => $tab_string_id,
 						'global_tab'  => $global_tab,
 					);
-				
+
 					$yikes_custom_tab_data[$new_tab_id] = $new_tab;
 
 					do_action( 'yikes-woo-handle-tab-save', $new_tab, 'new' );
@@ -210,7 +210,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					// Get the array of applied product tabs
 					$reusable_tab_options_array = get_option( 'yikes_woo_reusable_products_tabs_applied', array() );
 
-					// Flag so we know we found a post and we should update it 
+					// Flag so we know we found a post and we should update it
 					$update_post_meta_flag = false;
 
 					// Flag so we know we have to update the yikes_woo_reusable_products_tabs_applied
@@ -264,7 +264,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		*
 		* @since 1.5
 		*
-		* @return object success w/ tab data || failure w/ message 
+		* @return object success w/ tab data || failure w/ message
 		*/
 		public function yikes_woo_fetch_reusable_tab() {
 
@@ -284,7 +284,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 
 				$tab['tab_content'] = stripslashes( $tab['tab_content'] );
 
-				wp_send_json_success( $tab );	
+				wp_send_json_success( $tab );
 			} else {
 				wp_send_json_success( array( 'message' => __( 'Could not find the tab. Please try again.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ) ) );
 			}
@@ -298,7 +298,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		*
 		* @since 1.5
 		*
-		* @return object success w/ saved_tabs || failure w/ message 
+		* @return object success w/ saved_tabs || failure w/ message
 		*/
 		public function yikes_woo_fetch_reusable_tabs() {
 
@@ -320,7 +320,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			}
 
 			if ( ! empty( $saved_tabs ) ) {
-				wp_send_json_success( json_encode( $saved_tabs ) );	
+				wp_send_json_success( json_encode( $saved_tabs ) );
 			} else {
 				wp_send_json_success( array( 'message' => 'No saved tabs were found.' ) );
 			}
@@ -334,8 +334,8 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		*
 		* @since 1.5
 		*
-		* @param  string $_POST['tab_id'] 
-		* @return object success w/ saved_tabs || failure w/ message 
+		* @param  string $_POST['tab_id']
+		* @return object success w/ saved_tabs || failure w/ message
 		*/
 		public function yikes_woo_delete_reusable_tab_handler() {
 
@@ -348,7 +348,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			if ( isset( $_POST['tab_id'] ) && ! empty( $_POST['tab_id'] ) ) {
 
 				$tab_ids = $_POST['tab_id'];
-				
+
 				// if $tab_ids isn't an array, turn it into one
 				if ( ! is_array( $tab_ids ) ) {
 					$tab_ids = array( $tab_ids );
@@ -360,12 +360,12 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				foreach( $tab_ids as $tab_id ) {
 
 					// Delete the tab, store the return values in $return_vars
-					$return_vars = $this->yikes_woo_delete_reusable_tab( $tab_id );	
+					$return_vars = $this->yikes_woo_delete_reusable_tab( $tab_id );
 
 					// Make sure $return_vars is what we think it is, and check if our delete failed
 					if ( is_array( $return_vars ) && isset( $return_vars['success'] ) && $return_vars['success'] === false ) {
 
-						// If something failed, let's return 
+						// If something failed, let's return
 						wp_send_json_error( $return_vars );
 					}
 				}
@@ -378,7 +378,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			// Make sure $return_vars is what we think it is, and check if our delete was successful
 			if ( is_array( $return_vars ) && isset( $return_vars['success'] ) && $return_vars['success'] === true ) {
 
-				// If nothing failed, let's return 
+				// If nothing failed, let's return
 				wp_send_json_success( $return_vars );
 			}
 
@@ -394,7 +394,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 		* Delete a saved tab from the options array and delete the tab from the product's tabs array
 		*
 		* @since 1.5
-		* 
+		*
 		* @param  int 	 | $tab_id 	 | unique identifier of a tab
 		* @return array  | $response | array of data signifying success, message, reason, and other needed data
 		*/
@@ -414,7 +414,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 					$response = array(
 						'success' => false,
 						'tab_id' => $tab_id,
-						'message' => 'No saved tab with id ' . $tab_id . ' found!', 
+						'message' => 'No saved tab with id ' . $tab_id . ' found!',
 						'reason' => 'no saved tab found'
 					);
 					return $response;
@@ -423,7 +423,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 				$response = array(
 					'success' => false,
 					'tab_id' => $tab_id,
-					'message' => 'No saved tabs found!', 
+					'message' => 'No saved tabs found!',
 					'reason' => 'no saved tabs found'
 				);
 				return $response;
@@ -481,7 +481,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			$response = array(
 				'success' => true,
 				'tab_id' => $tab_id,
-				'message' => 'Tab successfully deleted!', 
+				'message' => 'Tab successfully deleted!',
 				'reason' => 'tab successfully deleted',
 				'redirect_url' => $return_redirect_url
 			);
@@ -576,7 +576,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Saved_Tabs' ) ) {
 			// Grab the old post's ID
 			$old_post_id = method_exists( $original_product, 'get_id' ) === true ? $original_product->get_id() : $original_product->ID;
 
-			// (1) Make sure we have a non-empty array of saved tabs, 
+			// (1) Make sure we have a non-empty array of saved tabs,
 			// (2) Makre sure we have the ID of the old post, and then
 			// (3) Check for the old post's saved tabs. (If we don't find any, do nothing)
 			if ( ! empty( $saved_tabs_array ) && is_array( $saved_tabs_array ) && ! empty( $old_post_id ) && isset( $saved_tabs_array[$old_post_id] ) ) {

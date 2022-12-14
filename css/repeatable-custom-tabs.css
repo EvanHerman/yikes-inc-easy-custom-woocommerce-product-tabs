@@ -12,7 +12,7 @@
 }
 
 .loading-wp-editor-gif-settings {
-	padding-left: 50px;	
+	padding-left: 50px;
 }
 
 .dashicons.inline-button-dashicons {
@@ -57,12 +57,13 @@
 #yikes_woocommerce_custom_product_tabs.woocommerce_options_panel div.form-field-tinymce  {
 	display: inline-block;
 	padding-left: 0;
+	padding-right: 0;
 	vertical-align: top;
 	width: 80%;
 }
 
 	#yikes_woocommerce_custom_product_tabs.woocommerce_options_panel p.form-field-tinymce .mce-edit-area.mce-container,
-	#yikes_woocommerce_custom_product_tabs.woocommerce_options_panel div.form-field-tinymce div.form-field-tinymce,	
+	#yikes_woocommerce_custom_product_tabs.woocommerce_options_panel div.form-field-tinymce div.form-field-tinymce,
 	._yikes_wc_custom_repeatable_product_tabs_tab_content_field .mce-edit-area.mce-container {
 		min-height: 10rem
 	}
@@ -262,6 +263,23 @@ iframe[id^=_yikes_wc_custom_repeatable_product_tabs_tab_content_] {
 	box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%), 0 1px 0 #a36597;
 }
 
+.lity-container .custom-tabs-preloader {
+	display: block;
+	padding: 0.5em 1em;
+	margin: 1em auto;
+}
+
+.lity-opened.custom-product-tabs.select-tab .lity-container {
+	max-height: 90vh;
+	overflow-y: auto;
+}
+
+#_yikes_wc_apply_a_saved_tab.disabled {
+	background: #bb77ae !important;
+	color: #fff !important;
+	opacity: 0.75;
+}
+
 .yikes_woo_using_reusable_tab {
 	opacity: 0.6;
 	pointer-events: none;
@@ -457,7 +475,7 @@ iframe[id^=_yikes_wc_custom_repeatable_product_tabs_tab_content_] {
 	text-align: center;
 }
 
-	.yikes-woo-all-about-us .yikes-woo-review-us-body, 
+	.yikes-woo-all-about-us .yikes-woo-review-us-body,
 	.yikes-woo-all-about-us .yikes-woo-buy-us-body {
 		padding: 0 1rem 1rem;
 	}
@@ -495,8 +513,6 @@ iframe[id^=_yikes_wc_custom_repeatable_product_tabs_tab_content_] {
 }
 
 .cptpro-image {
-	max-width: 800px; 
+	max-width: 800px;
 	max-height: 600px;
 }
-
-
