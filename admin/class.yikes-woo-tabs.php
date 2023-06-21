@@ -117,10 +117,6 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 				return;
 			}
 
-			update_option( 'what', $_POST );
-			update_option( 'etesting_action', $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_1_action'] );
-			update_option( 'etesting_id', $_POST['_yikes_wc_custom_repeatable_product_tabs_saved_tab_id_1'] );
-
 			// Save our tabs!
 			$this->save_tabs( $post_id, $is_ajax = false );
 		}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: custom-product-tabs 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 00:18-0500\n"
+"POT-Creation-Date: 2023-06-21 13:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -443,27 +443,27 @@ msgstr[1] ""
 msgid "yyyy-mm-dd"
 msgstr ""
 
-#: yikes-inc-easy-custom-woocommerce-product-tabs.php:56
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:57
 #, php-format
 msgid ""
 "Please install and activate %1s before activating Custom WooCommerce Product "
 "Tabs."
 msgstr ""
 
-#: yikes-inc-easy-custom-woocommerce-product-tabs.php:71
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:72
 #, php-format
 msgid "Please activate %1s before activating Custom WooCommerce Product Tabs."
 msgstr ""
 
-#: yikes-inc-easy-custom-woocommerce-product-tabs.php:311
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:312
 msgid "Saved Tabs"
 msgstr ""
 
-#: yikes-inc-easy-custom-woocommerce-product-tabs.php:312
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:313
 msgid "Documentation"
 msgstr ""
 
-#: yikes-inc-easy-custom-woocommerce-product-tabs.php:343
+#: yikes-inc-easy-custom-woocommerce-product-tabs.php:344
 #, php-format
 msgid ""
 "Thank you for using Custom Product Tabs for WooCommerce. Please consider "
