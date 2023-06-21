@@ -30,6 +30,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+	// Enable WooCommerce HPOS compatibility.
+	add_action( 'before_woocommerce_init', function() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	} );
 	new YIKES_Custom_Product_Tabs();
 } else {
 	// Deactivate the plugin, and display our error notification.
