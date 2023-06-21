@@ -290,7 +290,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Custom_Tabs' ) ) {
 			}
 
 			// Get & sanitize the $_POST var textarea_id
-			$textarea_id = filter_var( $_POST['textarea_id'], FILTER_SANITIZE_STRING );
+			$textarea_id = htmlspecialchars( filter_var( $_POST['textarea_id'], FILTER_UNSAFE_RAW ) );
 
 			// Check if we have tab content
 			$tab_content = isset( $_POST['tab_content'] ) ? $_POST['tab_content'] : '';

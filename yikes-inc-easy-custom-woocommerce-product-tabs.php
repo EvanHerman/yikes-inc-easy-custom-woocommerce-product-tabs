@@ -324,7 +324,7 @@ class YIKES_Custom_Product_Tabs {
 	 */
 	public function yikes_custom_product_tabs_admin_footer_text( $footer_text ) {
 
-		$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING );
+		$page = htmlspecialchars( filter_input( INPUT_GET, 'page', FILTER_UNSAFE_RAW ) );
 
 		$allowed_pages = array(
 			'yikes-woo-settings',
