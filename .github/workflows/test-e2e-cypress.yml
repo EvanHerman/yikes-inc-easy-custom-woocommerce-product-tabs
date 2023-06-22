@@ -45,8 +45,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apt-get update
-          apt-get install gettext-base
+          sudo apt-get update
+          sudo apt-get install gettext-base
           npm install
           npx wp-env start
 
