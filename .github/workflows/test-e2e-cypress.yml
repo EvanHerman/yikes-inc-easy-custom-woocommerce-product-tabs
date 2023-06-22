@@ -27,8 +27,6 @@ jobs:
   test_cypress_e2e:
     name: E2E Test
     runs-on: ubuntu-latest
-    env:
-      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     strategy:
       fail-fast: false
       matrix:
@@ -76,7 +74,7 @@ jobs:
           CYPRESS_SPEC=$(find ./tests/* -name ${{ matrix.spec }} -type f)
           echo '{"wpUsername":"admin","wpPassword":"password","testURL":"http://localhost:8889"}' | jq . > cypress.env.json
           ./node_modules/.bin/cypress verify
-          ./node_modules/.bin/cypress run --record --browser ${{ inputs.browser }} --spec $CYPRESS_SPEC
+          ./node_modules/.bin/cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser ${{ inputs.browser }} --spec $CYPRESS_SPEC
 
       - name: Upload failure video
         if: ${{ failure() }}
