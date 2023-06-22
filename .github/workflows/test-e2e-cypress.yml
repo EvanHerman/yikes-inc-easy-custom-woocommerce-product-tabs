@@ -45,14 +45,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-
           npm install
           npx wp-env start
 
       - name: Build plugin
         run: |
           npx grunt uglify
-          npx grun cssmin
+          npx grunt cssmin
           mkdir -p build/yikes-inc-easy-custom-woocommerce-product-tabs
           rsync -av --exclude-from=.svnignore . build/yikes-inc-easy-custom-woocommerce-product-tabs --delete --ignore-existing
           # moving the built directory to this location means no dev files in tests-container.
