@@ -94,4 +94,70 @@ describe( 'Tests', () => {
 		cy.get( '.yikes-custom-woo-tab-title' ).should( 'have.text', 'Custom Tab' );
 		cy.get( '#tab-custom-tab' ).contains( 'Custom tab content goes here.' );
 	} );
+
+	it( 'Saved tabs applies to a product properly.', () => {
+		// Create a new saved tab.
+		cy.visit( Cypress.env( 'testURL' ) + '/wp-admin/admin.php?page=yikes-woo-settings&saved-tab-id=new' );
+
+		cy.get( '#yikes_woo_reusable_tab_title_new' ).type( 'Saved Tab Title' );
+		cy.get( '#yikes_woo_reusable_tab_name_new' ).type( 'Saved Tab Name (reference only)' );
+
+		cy.setTinyMceContent( 0, 'yikes_woo_reusable_tab_content_new_ifr', 'Saved Tab Content Data.' );
+
+		cy.get( '#yikes_woo_save_this_tab_new' ).click();
+
+		cy.get( '#yikes_woo_tab_title_header' ).contains( 'Saved Tab Title' );
+
+		// Confirm the data shows up properly in the dashboard.
+		cy.visit( Cypress.env( 'testURL' ) + '/wp-admin/admin.php?page=yikes-woo-settings' );
+
+		cy.get( '#yikes-woo-saved-tabs-list-tbody .yikes_woo_saved_tabs_row:first-child .column-title' ).contains( 'Saved Tab Title' );
+		cy.get( '#yikes-woo-saved-tabs-list-tbody .yikes_woo_saved_tabs_row:first-child .column-name' ).contains( 'Saved Tab Name (reference only)' );
+		cy.get( '#yikes-woo-saved-tabs-list-tbody .yikes_woo_saved_tabs_row:first-child .column-content' ).contains( 'Saved Tab Content Data.' );
+
+		// Add the saved tab to a product.
+		cy.visit( Cypress.env( 'testURL' ) + '/wp-admin/post-new.php?post_type=product' );
+
+		cy.get( 'input[name="post_title"]' ).type( 'Saved Tab Product' );
+		cy.setTinyMceContent( 0, 'content_ifr', 'Saved tab content test.' );
+
+		cy.get( 'li.yikes_wc_product_tabs_tab' ).click();
+		cy.get( '#_yikes_wc_apply_a_saved_tab' ).click();
+
+		cy.get( '.display_saved_tabs_lity #saved_tab_container_1 .yikes_wc_lity_col_select' ).click();
+
+		cy.get( '#publish' ).click();
+
+		// Check from of site data matches what we added.
+		cy.get( '#message.updated.notice a' ).click();
+
+		cy.get( '.wc-tabs li.saved-tab-title_tab' ).contains( 'Saved Tab Title' ).click();
+
+		cy.get( '.yikes-custom-woo-tab-title' ).should( 'have.text', 'Saved Tab Title' );
+		cy.get( '#tab-saved-tab-title' ).contains( 'Saved Tab Content Data.' );
+	} );
+
+	it( 'Saved tabs deletes properly', () => {
+		cy.visit( Cypress.env( 'testURL' ) + '/wp-admin/admin.php?page=yikes-woo-settings' );
+
+		cy.get( '#yikes-woo-saved-tabs-list-tbody .yikes_woo_saved_tabs_row:first-child .column-title' ).contains( 'Saved Tab Title' );
+		cy.get( '#yikes-woo-saved-tabs-list-tbody .yikes_woo_saved_tabs_row:first-child .column-name' ).contains( 'Saved Tab Name (reference only)' );
+		cy.get( '#yikes-woo-saved-tabs-list-tbody .yikes_woo_saved_tabs_row:first-child .column-content' ).contains( 'Saved Tab Content Data.' );
+
+		cy.get( '#yikes-woo-saved-tabs-list-tbody .row-actions:first-child .yikes_woo_delete_this_tab' ).click( { force: true } );
+
+		cy.on('window:confirm', (str) => {
+			expect( str ).to.equal( 'Are you sure you want to delete this tab?' );
+		} );
+
+		cy.on( 'window:confirm', () => true );
+
+		cy.get( '#yikes_woo_delete_success_message' ).contains( 'Tab deleted!' );
+
+		cy.wait( 2000 );
+
+		cy.reload();
+
+		cy.get( '#yikes-woo-saved-tabs-list-tbody tr td strong' ).contains( 'There are no saved tabs. Add one!' );
+	} );
 } );
