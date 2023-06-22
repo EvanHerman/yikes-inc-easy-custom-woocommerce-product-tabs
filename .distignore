@@ -9,6 +9,7 @@
 # Files
 .distignore
 .gitignore
+.nvmrc
 .svnignore
 .scrutinizer.yml
 Gruntfile.js

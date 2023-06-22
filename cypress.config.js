@@ -11,7 +11,7 @@ module.exports = defineConfig( {
 		supportFile: false,
 	},
 	env: {
-		testURL: 'https://woocommerce.test',
+		testURL: 'http://localhost:8889',
 		wpPassword: 'password',
 		wpUsername: 'admin',
 	},

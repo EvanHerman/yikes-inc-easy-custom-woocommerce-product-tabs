@@ -6,6 +6,7 @@ tests/
 .gitignore
 .wordpress-org
 .distignore
+.nvmrc
 .svnignore
 cypress.config.js
 Gruntfile.js
