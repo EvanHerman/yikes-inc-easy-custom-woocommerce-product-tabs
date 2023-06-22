@@ -3,10 +3,13 @@
 /.git
 /.github
 /node_modules
+/tests
+/build
 
 # Files
 .distignore
 .gitignore
+.nvmrc
 .svnignore
 .scrutinizer.yml
 Gruntfile.js
