@@ -1,0 +1,78 @@
+name: Test / E2E Cypress Job
+
+on:
+  workflow_call:
+    inputs:
+      browser:
+        required: false
+        type: string
+        default: chrome
+      theme:
+        required: false
+        type: string
+      wpVersion:
+        required: false
+        type: string
+        default: ""
+      phpVersion:
+        required: false
+        type: string
+        default: "8.2"
+    secrets:
+      record-key:
+        description: 'Record key for Cypress Dashboard'
+        required: false
+
+jobs:
+  test_cypress_e2e:
+    name: E2E Test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        spec:
+          - test.cypress.js
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'node'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npx wp-env start
+
+      - name: Build plugin
+        run: |
+          npx grunt
+          mkdir -p build/yikes-inc-easy-custom-woocommerce-product-tabs
+          rsync -av --exclude-from=.svnignore . build/yikes-inc-easy-custom-woocommerce-product-tabs --delete --ignore-existing
+          # moving the built directory to this location means no dev files in tests-container.
+          mv ./build/yikes-inc-easy-custom-woocommerce-product-tabs $(npx wp-env install-path)/tests-WordPress/wp-content/plugins/
+
+      - name: Prepare tests
+        run: |
+          WP_CORE_VERSION=$(npx wp-env run cli wp core version)
+          echo "WP_CORE_VERSION=${WP_CORE_VERSION}" >> $GITHUB_ENV
+          npx wp-env run cli wp option update permalink_structure '/%postname%'
+
+      - name: Run tests
+        run: |
+          CYPRESS_SPEC=$(find ./src/* -name ${{ matrix.spec }} -type f)
+          echo '{"wpUsername":"admin","wpPassword":"password","testURL":"http://localhost:8889"}' | jq . > cypress.env.json
+          ./node_modules/.bin/cypress verify
+          ./node_modules/.bin/cypress run --browser ${{ inputs.browser }} --spec $CYPRESS_SPEC
+
+      - name: Upload failure video
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.spec }}-fail.mp4
+          path: ./tests/cypress/videos/${{ matrix.spec }}.mp4
+          retention-days: 1
