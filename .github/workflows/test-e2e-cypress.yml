@@ -36,6 +36,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        
+      - name: Setup wp-env
+        uses: godaddy-wordpress/setup-wp-env@v1
+        with:
+          core: ${{ inputs.wpVersion }}
+          phpVersion: ${{ inputs.phpVersion }}
+          plugins: '["https://downloads.wordpress.org/plugin/woocommerce.zip"]'
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -46,7 +53,6 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npx wp-env start
 
       - name: Build plugin
         run: |
