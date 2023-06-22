@@ -39,9 +39,9 @@ describe( 'Tests', () => {
 		cy.visit( Cypress.env( 'testURL' ) + '/wp-admin/plugins.php' );
 
 		// Deactivate WooCommerce to test our admin notice.
-		cy.get( 'tr[data-slug="woocommerce"] .row-actions span:first-child' ).then( ( $btn ) => {
-			if ( $btn.hasClass( 'deactivate' ) ) {
-				cy.get( 'tr[data-slug="woocommerce"] .row-actions span:first-child a' ).click();
+		cy.get( 'tr[data-slug="woocommerce"] .row-actions' ).then( ( $row ) => {
+			if ( $row.find( '.deactivate' ).length > 0 ) {
+				cy.get( 'tr[data-slug="woocommerce"] .row-actions span.deactivate a' ).click();
 			}
 		} );
 
