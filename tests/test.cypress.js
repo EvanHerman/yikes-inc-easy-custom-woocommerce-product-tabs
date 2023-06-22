@@ -38,6 +38,13 @@ describe( 'Tests', () => {
 	it( 'Plugin activation notice shows when WooCommerce is not active.', () => {
 		cy.visit( Cypress.env( 'testURL' ) + '/wp-admin/plugins.php' );
 
+		// Deactivate WooCommerce to test our admin notice.
+		cy.get( 'tr[data-slug="woocommerce"] .row-actions span:first-child' ).then( ( $btn ) => {
+			if ( $btn.hasClass( 'deactivate' ) ) {
+				cy.get( 'tr[data-slug="woocommerce"] .row-actions span:first-child a' ).click();
+			}
+		} );
+
 		cy.get( 'tr[data-slug="yikes-inc-easy-custom-woocommerce-product-tabs"] .row-actions span:first-child' ).then( ( $btn ) => {
 			if ( $btn.hasClass( 'activate' ) ) {
 				cy.get( 'tr[data-slug="yikes-inc-easy-custom-woocommerce-product-tabs"] .row-actions span:first-child a' ).click();
