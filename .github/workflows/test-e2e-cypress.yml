@@ -27,6 +27,8 @@ jobs:
   test_cypress_e2e:
     name: E2E Test
     runs-on: ubuntu-latest
+    env:
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     strategy:
       fail-fast: false
       matrix:
