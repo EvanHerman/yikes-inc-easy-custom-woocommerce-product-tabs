@@ -60,6 +60,7 @@ jobs:
         run: |
           WP_CORE_VERSION=$(npx wp-env run cli wp core version)
           echo "WP_CORE_VERSION=${WP_CORE_VERSION}" >> $GITHUB_ENV
+          npx wp-env run cli wp plugin install woocommerce --activate
           npx wp-env run cli wp option update permalink_structure '/%postname%'
 
       - name: Run tests
