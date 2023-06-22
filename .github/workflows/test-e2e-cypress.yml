@@ -52,7 +52,8 @@ jobs:
 
       - name: Build plugin
         run: |
-          npx grunt
+          npx grunt uglify
+          npx grun cssmin
           mkdir -p build/yikes-inc-easy-custom-woocommerce-product-tabs
           rsync -av --exclude-from=.svnignore . build/yikes-inc-easy-custom-woocommerce-product-tabs --delete --ignore-existing
           # moving the built directory to this location means no dev files in tests-container.
