@@ -17,5 +17,6 @@ Readme.md
 README.md
 composer.json
 composer.lock
+cypress.config.js
 package.json
 package-lock.json
