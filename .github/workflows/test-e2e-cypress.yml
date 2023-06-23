@@ -76,11 +76,11 @@ jobs:
           ./node_modules/.bin/cypress verify
           
       - name: Run Cypress Tests on Master (record)
-        if: github.head_ref === 'master'
+        if: ${{ github.head_ref === 'master' }}
         run: ./node_modules/.bin/cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser ${{ inputs.browser }} --spec $CYPRESS_SPEC
       
       - name: Run Cypress Tests on Other Branches (do not record)
-        if: github.head_ref !== 'master'
+        if: ${{ github.head_ref !== 'master' }}
         run: ./node_modules/.bin/cypress run --browser ${{ inputs.browser }} --spec $CYPRESS_SPEC
 
       - name: Upload failure video
