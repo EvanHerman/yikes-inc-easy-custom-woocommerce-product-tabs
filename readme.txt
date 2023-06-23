@@ -72,21 +72,15 @@ This was added in version 1.5 to support the dynamic adding and removing of the 
 = Does custom tab data get exported with standard WooCommerce product data? =
 Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is exported with all of the other standard WooCommerce data. This ensures a smooth transition of products between sites.
 
-
 == Changelog ==
 
-* Bump WC tested up to to 6.0.
-* Update Custom Tabs page styles.
-* Move full changelog to a changelog.txt file.
-* Updated a few strings throughout the plugin.
-* Tweaked README.md.
-* Escape missed text, attributes and html.
-* Wrap additional strings in gettext functions for translation.
-* Regenerated .pot file.
-* Added a conditional 2 column layout on the admin pages.
-* Refactored the tab save method to account for new select2 fields in pro.
-* Tweak the styles on the WooCommerce Custom Tabs section.
-* Tweaked the markup so that when a new tab is added the button holder width is correct.
-* Update button styles to match WooCommerce branding.
-* Add custom admin footer text on our pages.
-* Remove extra comma causing PHP 7.2 issues.
+= 1.8.3 / 2023-06-23 =
+
+# Updates
+* Remove unnecessary test data.
+* Regenerate `.pot` file.
+* Remove `FILTER_SANITIZE_STRING` and replace with `htmlspecialchars`.
+* Enable WooCommerce [HPOS](https://github.com/woocommerce/woocommerce/wiki/High-Performance-Order-Storage-Upgrade-Recipe-Book) support. 
+* Bump `WC tested up to:` to 7.8.
+* Bump `Tested up to:` to 6.2.
+* Introduce Cypress `e2e` tests to ensure the plugin is functioning as intended.
