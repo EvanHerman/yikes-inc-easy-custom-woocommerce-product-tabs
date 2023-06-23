@@ -1,0 +1,17 @@
+name: Test / E2E Runner
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  chrome_e2e_php74:
+    name: Chrome on PHP 7.4
+    uses: ./.github/workflows/test-e2e-cypress.yml
+    with:
+      wpVersion: "WordPress/WordPress#6.2.2"
+      phpVersion: "7.4"
+    concurrency:
+      group: chrome-php74
+      cancel-in-progress: true

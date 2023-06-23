@@ -8,12 +8,12 @@
  * Version: 1.8.2
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
- * Tested up to: 6.1
+ * Tested up to: 6.2
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 7.0
+ * WC tested up to: 7.8
  *
- * Copyright: (c) 2014-2022 YIKES Inc.
+ * Copyright: (c) 2014-2023 YIKES Inc.
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -30,6 +30,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+	// Enable WooCommerce HPOS compatibility.
+	add_action( 'before_woocommerce_init', function() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	} );
 	new YIKES_Custom_Product_Tabs();
 } else {
 	// Deactivate the plugin, and display our error notification.
@@ -324,7 +330,7 @@ class YIKES_Custom_Product_Tabs {
 	 */
 	public function yikes_custom_product_tabs_admin_footer_text( $footer_text ) {
 
-		$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING );
+		$page = htmlspecialchars( filter_input( INPUT_GET, 'page', FILTER_UNSAFE_RAW ) );
 
 		$allowed_pages = array(
 			'yikes-woo-settings',

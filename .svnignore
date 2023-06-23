@@ -1,5 +1,13 @@
 node_modules/
+build/
+tests/
+.git
+.github
 .gitignore
+.wordpress-org
+.distignore
+.svnignore
+cypress.config.js
 Gruntfile.js
 package-lock.json
 package.json

@@ -146,7 +146,7 @@ class YIKES_Custom_Product_Tabs_Settings {
 			<h3 class="yikes-woo-settings-title"><?php esc_html_e( 'Settings', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></h3>
 			<div class="yikes-woo-buy-us-body">
 				<h4><?php _e( 'Use a custom filter for the_content', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?> </h4>
-				<p><?php _e( "If you're using a page builder and you're having issues toggle this setting on. This will allow other plugins to use the WordPress 'the_content' filter will we use our own custom version.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
+				<p><?php _e( "If you're using a page builder and you're having issues toggle this setting on. This will allow other plugins to use the WordPress 'the_content' filter, while we use our own custom version.", 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 				<p>
 				<label>
 					<?php esc_html_e( 'Toggle the_content filter.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?>
