@@ -74,8 +74,6 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           wait-on: 'http://localhost:8889'
-          record: true
-          parallel: true
           browser: chrome
           spec: |
             tests/**/*.cypress.js
