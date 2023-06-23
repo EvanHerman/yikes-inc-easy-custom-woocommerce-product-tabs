@@ -1,9 +1,6 @@
 name: Test / E2E Runner
 
-on:
-  pull_request:
-    branches:
-      - master
+on: push
 
 jobs:
   chrome_e2e_php74:

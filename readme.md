@@ -4,7 +4,8 @@
 ![Rating](https://img.shields.io/wordpress/plugin/r/yikes-inc-easy-custom-woocommerce-product-tabs.svg)
 ![WordPress plugin](https://img.shields.io/wordpress/plugin/v/yikes-inc-easy-custom-woocommerce-product-tabs.svg)
 ![WordPress](https://img.shields.io/wordpress/v/yikes-inc-easy-custom-woocommerce-product-tabs.svg)
-[![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/EvanHerman/yikes-inc-easy-custom-woocommerce-product-tabs/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)](https://github.com/EvanHerman/yikes-inc-easy-custom-woocommerce-product-tabs/blob/master/LICENSE)
+[![Test / E2E Runner](https://github.com/EvanHerman/yikes-inc-easy-custom-woocommerce-product-tabs/actions/workflows/test-e2e.yml/badge.svg?branch=master&event=push)](https://github.com/EvanHerman/yikes-inc-easy-custom-woocommerce-product-tabs/actions/workflows/test-e2e.yml)
 
 [![Custom Product Tabs for WooCommerce, Add custom tabs with content to products in WooCommerce.](https://github.com/EvanHerman/yikes-inc-easy-custom-woocommerce-product-tabs/blob/master/.wordpress-org/banner-1544x500.png?raw=true)](https://wordpress.org/plugins/yikes-inc-easy-custom-woocommerce-product-tabs/)
 
