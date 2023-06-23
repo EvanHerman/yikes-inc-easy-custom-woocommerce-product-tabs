@@ -82,18 +82,3 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-
-      # - name: Run tests
-      #   run: |
-      #     CYPRESS_SPEC=$(find ./tests/* -name ${{ matrix.spec }} -type f)
-      #     echo '{"wpUsername":"admin","wpPassword":"password","testURL":"http://localhost:8889"}' | jq . > cypress.env.json
-      #     ./node_modules/.bin/cypress verify
-      #     ./node_modules/.bin/cypress run --browser ${{ inputs.browser }} --spec $CYPRESS_SPEC
-
-      - name: Upload failure video
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.spec }}-fail.mp4
-          path: ./tests/cypress/videos/${{ matrix.spec }}.mp4
-          retention-days: 1
