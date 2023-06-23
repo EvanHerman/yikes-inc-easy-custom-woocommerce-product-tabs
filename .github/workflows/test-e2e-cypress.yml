@@ -68,13 +68,27 @@ jobs:
           WP_CORE_VERSION=$(npx wp-env run cli wp core version)
           echo "WP_CORE_VERSION=${WP_CORE_VERSION}" >> $GITHUB_ENV
           npx wp-env run cli wp option update permalink_structure '/%postname%'
+          
+      - name: Cypress run
+        # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
+        uses: cypress-io/github-action@v5
+        with:
+          wait-on: 'http://localhost:8889'
+          record: true
+          parallel: true
+          browser: chrome
+          spec: |
+            tests/**/*.cypress.js
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
 
-      - name: Run tests
-        run: |
-          CYPRESS_SPEC=$(find ./tests/* -name ${{ matrix.spec }} -type f)
-          echo '{"wpUsername":"admin","wpPassword":"password","testURL":"http://localhost:8889"}' | jq . > cypress.env.json
-          ./node_modules/.bin/cypress verify
-          ./node_modules/.bin/cypress run --browser ${{ inputs.browser }} --spec $CYPRESS_SPEC
+      # - name: Run tests
+      #   run: |
+      #     CYPRESS_SPEC=$(find ./tests/* -name ${{ matrix.spec }} -type f)
+      #     echo '{"wpUsername":"admin","wpPassword":"password","testURL":"http://localhost:8889"}' | jq . > cypress.env.json
+      #     ./node_modules/.bin/cypress verify
+      #     ./node_modules/.bin/cypress run --browser ${{ inputs.browser }} --spec $CYPRESS_SPEC
 
       - name: Upload failure video
         if: ${{ failure() }}
