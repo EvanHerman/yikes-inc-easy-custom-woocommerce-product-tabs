@@ -1,9 +1,15 @@
-= 1.8.1 - October 17th, 2022 =
-- Fix repeatable tabs not working as intended.
-- Add overflow to repeatable tabs modal to allow for scrolling.
+= 1.8.3 - June 23rd, 2023
+* Remove unnecessary test data.
+* Regenerate `.pot` file.
+* Remove `FILTER_SANITIZE_STRING` and replace with `htmlspecialchars`.
+* Enable WooCommerce [HPOS](https://github.com/woocommerce/woocommerce/wiki/High-Performance-Order-Storage-Upgrade-Recipe-Book) support. 
+* Bump `WC tested up to:` to 7.8.
+* Bump `Tested up to:` to 6.2.
+* Introduce Cypress `e2e` tests to ensure the plugin is functioning as intended.
 
-
 = 1.8.1 - October 17th, 2022 =
+* Fix repeatable tabs not working as intended.
+* Add overflow to repeatable tabs modal to allow for scrolling.
 * Remove extra comma causing PHP 7.2 issues.
 
 = 1.8.0 - October 17th, 2022 =
