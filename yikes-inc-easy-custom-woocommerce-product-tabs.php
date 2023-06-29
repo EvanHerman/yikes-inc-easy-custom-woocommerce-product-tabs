@@ -344,6 +344,7 @@ class YIKES_Custom_Product_Tabs {
 			'yikes-woo-settings',
 			'yikes-woo-support',
 			'yikes-woo-premium',
+			'cptpro-settings',
 		);
 
 		if ( ! in_array( $page, $allowed_pages, true ) ) {
@@ -352,7 +353,7 @@ class YIKES_Custom_Product_Tabs {
 
 		}
 
-		$stars = '<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/" alt="Custom Product Tabs for WooCommerce | WordPress.org" target="_blank"><span class="dashicons dashicons-star-filled yikes-star"></span><span class="dashicons dashicons-star-filled yikes-star"></span><span class="dashicons dashicons-star-filled yikes-star"></span><span class="dashicons dashicons-star-filled yikes-star"></span><span class="dashicons dashicons-star-filled yikes-star"></span></a>';
+		$stars = '<a href="https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs/reviews/" alt="Custom Product Tabs for WooCommerce | WordPress.org" target="_blank" style="color: #daa520;"><span class="dashicons dashicons-star-filled yikes-star"></span><span class="dashicons dashicons-star-filled yikes-star"></span><span class="dashicons dashicons-star-filled yikes-star"></span><span class="dashicons dashicons-star-filled yikes-star"></span><span class="dashicons dashicons-star-filled yikes-star"></span></a>';
 
 		$footer_text = sprintf(
 			__( 'Thank you for using Custom Product Tabs for WooCommerce. Please consider leaving us %s on the WordPress.org plugin repository.', 'yikes-inc-easy-custom-woocommerce-product-tabs' ),
