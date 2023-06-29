@@ -330,7 +330,15 @@ class YIKES_Custom_Product_Tabs {
 	 */
 	public function yikes_custom_product_tabs_admin_footer_text( $footer_text ) {
 
-		$page = htmlspecialchars( filter_input( INPUT_GET, 'page', FILTER_UNSAFE_RAW ) );
+		$page = filter_input( INPUT_GET, 'page', FILTER_UNSAFE_RAW );
+
+		if ( ! $page ) {
+
+			return $footer_text;
+
+		}
+
+		$page = htmlspecialchars( $page );
 
 		$allowed_pages = array(
 			'yikes-woo-settings',
@@ -338,7 +346,7 @@ class YIKES_Custom_Product_Tabs {
 			'yikes-woo-premium',
 		);
 
-		if ( ! $page || ! in_array( $page, $allowed_pages, true ) ) {
+		if ( ! in_array( $page, $allowed_pages, true ) ) {
 
 			return $footer_text;
 
