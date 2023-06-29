@@ -4,7 +4,7 @@ Donate link: http://yikesinc.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
 Tested up to: 6.2
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,13 +74,7 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
-= 1.8.3 / 2023-06-23 =
+= 1.8.4 / 2023-06-29 =
 
 # Updates
-* Remove unnecessary test data.
-* Regenerate `.pot` file.
-* Remove `FILTER_SANITIZE_STRING` and replace with `htmlspecialchars`.
-* Enable WooCommerce [HPOS](https://github.com/woocommerce/woocommerce/wiki/High-Performance-Order-Storage-Upgrade-Recipe-Book) support. 
-* Bump `WC tested up to:` to 7.8.
-* Bump `Tested up to:` to 6.2.
-* Introduce Cypress `e2e` tests to ensure the plugin is functioning as intended.
+* Check `page` query arg before wrapping it in `htmlspecialchars`.

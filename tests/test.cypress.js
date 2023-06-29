@@ -131,6 +131,8 @@ describe( 'Tests', () => {
 		// Check from of site data matches what we added.
 		cy.get( '#message.updated.notice a' ).click();
 
+		cy.wait( 2000 );
+
 		cy.get( '.wc-tabs li.saved-tab-title_tab' ).contains( 'Saved Tab Title' ).click();
 
 		cy.get( '.yikes-custom-woo-tab-title' ).should( 'have.text', 'Saved Tab Title' );

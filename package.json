@@ -1,6 +1,6 @@
 {
   "name": "custom-product-tabs",
-  "version": "1.8.3",
+  "version": "4",
   "devDependencies": {
     "@foreachbe/cypress-tinymce": "^1.0.0",
     "@wordpress/env": "^5.16.0",
