@@ -11,7 +11,7 @@
  * Tested up to: 6.3
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 7.8
+ * WC tested up to: 8.1
  *
  * Copyright: (c) 2014-2023 Code Parrots
  *
