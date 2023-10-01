@@ -1,19 +1,19 @@
 <?php
 /**
  * Plugin Name: Custom Product Tabs for WooCommerce
- * Plugin URI: https://www.yikesinc.com
+ * Plugin URI: https://www.codeparrots.com
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
- * Author: YIKES, Inc.
- * Author URI: https://www.yikesinc.com
+ * Author: Code Parrots
+ * Author URI: https://www.codeparrots.com
  * Version: 1.8.4
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
- * Tested up to: 6.2
+ * Tested up to: 6.3
  *
  * WC requires at least: 3.0.0
  * WC tested up to: 7.8
  *
- * Copyright: (c) 2014-2023 YIKES Inc.
+ * Copyright: (c) 2014-2023 Code Parrots
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html

@@ -1,8 +1,8 @@
 <?php
 /**
- * YIKES Inc. Custom WooCommerce Product Tabs
+ * Custom WooCommerce Product Tabs
  *
- * @author Freddie Mixell
+ * @author Code Parrots
  * @since 1.7.0
  */
 

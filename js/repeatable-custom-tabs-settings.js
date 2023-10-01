@@ -1,7 +1,7 @@
 /*
 *	jQuery for repeatable woo commerce tabs (on settings page)
 *	somewhat cool / very cool
-*	YIKES Inc. / Kevin Utz
+*	Kevin Utz
 */
 	jQuery( document ).ready(function() {
 
