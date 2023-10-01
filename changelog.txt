@@ -1,3 +1,7 @@
+= 1.8.5 - October 1st, 2023 =
+* Bump tested up to version to 6.3.
+* Update copy, links, email addresses etc. to point to new author.
+
 = 1.8.4 - June 29th, 2023 =
 * Check `page` query arg before wrapping it in `htmlspecialchars`.
 

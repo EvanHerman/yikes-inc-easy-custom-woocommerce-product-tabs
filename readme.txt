@@ -4,7 +4,7 @@ Donate link: https://codeparrots.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
 Tested up to: 6.2
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,7 +74,7 @@ Yes! Since v1.4 we've added the necessary code to ensure the custom tab data is 
 
 == Changelog ==
 
-= 1.8.4 / 2023-06-29 =
-
+= 1.8.5 / 2023-10-01 =
 # Updates
-* Check `page` query arg before wrapping it in `htmlspecialchars`.
+* Bump tested up to version to 6.3.
+* Update copy, links, email addresses etc. to point to new author.
