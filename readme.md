@@ -19,7 +19,7 @@ If you experience any problems, please submit a ticket on our [Free WordPress Su
 
 This plugin is compatible with WPML.
 
-Upgrade to [Custom Product Tabs Pro](https://yikesplugins.com/plugin/custom-product-tabs-pro/) for great enhanced features!
+Upgrade to [Custom Product Tabs Pro](https://codeparrots.com/plugin/custom-product-tabs-pro/) for great enhanced features!
 
 ### Download
 
@@ -27,11 +27,11 @@ Upgrade to [Custom Product Tabs Pro](https://yikesplugins.com/plugin/custom-prod
 
 ### Documentation
 
-For full documentation, please visit [our Knowledge Base](https://yikesplugins.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/).
+For full documentation, please visit [our Knowledge Base](https://codeparrots.com/support/knowledge-base/product/easy-custom-product-tabs-for-woocommerce/).
 
 ## Support
 
-Need help? This is a developer's portal for Custom Product Tabs for WooCommerce and should not be used for general support and queries. Please visit the [Custom Product Tabs for WooCommerce support forum on WordPress.org](https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs) for assistance, or consider upgrading to [Custom Product Tabs Pro](https://yikesplugins.com/plugin/custom-product-tabs-pro/) for enhanced features and priority support.
+Need help? This is a developer's portal for Custom Product Tabs for WooCommerce and should not be used for general support and queries. Please visit the [Custom Product Tabs for WooCommerce support forum on WordPress.org](https://wordpress.org/support/plugin/yikes-inc-easy-custom-woocommerce-product-tabs) for assistance, or consider upgrading to [Custom Product Tabs Pro](https://codeparrots.com/plugin/custom-product-tabs-pro/) for enhanced features and priority support.
 
 ### Credits
 

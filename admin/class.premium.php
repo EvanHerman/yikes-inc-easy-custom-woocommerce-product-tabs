@@ -92,7 +92,7 @@ class YIKES_Custom_Product_Tabs_Premium {
 
 						<p><?php _e( 'Tweet about us!', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></p>
 						<a class="twitter-share-button"
-							href="https://twitter.com/intent/tweet?text=I use Custom Product Tabs for WooCommerce by @yikesinc to help sell products online. Awesome #WordPress #plugins &url=https://wordpress.org/plugins/yikes-inc-easy-custom-woocommerce-product-tabs/"
+							href="https://twitter.com/intent/tweet?text=I use Custom Product Tabs for WooCommerce by @codeparrots to help sell products online. Awesome #WordPress #plugins &url=https://wordpress.org/plugins/yikes-inc-easy-custom-woocommerce-product-tabs/"
 							data-size="large">
 						<?php _e( 'Tweet', 'yikes-inc-easy-custom-woocommerce-product-tabs' ); ?></a>
 					</div>
@@ -101,11 +101,11 @@ class YIKES_Custom_Product_Tabs_Premium {
 						<?php
 						printf(
 							wp_kses_post(
-								/* translators: %1$s is html markup for a heart icon. %2$s is an anchor tag (link) to https://yikesinc.com. */
+								/* translators: %1$s is html markup for a heart icon. %2$s is an anchor tag (link) to https://codeparrots.com. */
 								__( 'This plugin made with %1$s by %2$s', 'yikes-inc-easy-custom-woocommerce-product-tabs' )
 							),
 							'<span class="dashicons dashicons-heart yikes-love"></span>',
-							'<a href="https://www.yikesinc.com" target="_blank" title="YIKES Inc.">YIKES Inc.</a>'
+							'<a href="https://www.codeparrots.com" target="_blank" title="Code Parrots">Code Parrots</a>'
 						);
 						?>
 					</p>

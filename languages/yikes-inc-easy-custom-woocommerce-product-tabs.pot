@@ -44,7 +44,7 @@ msgstr ""
 msgid "Tweet"
 msgstr ""
 
-#. //yikesinc.com.
+#. //codeparrots.com.
 #: admin/class.premium.php:105
 #: build/yikes-inc-easy-custom-woocommerce-product-tabs/admin/class.premium.php:105
 #, php-format

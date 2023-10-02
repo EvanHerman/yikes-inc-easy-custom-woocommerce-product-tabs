@@ -1,7 +1,7 @@
 /*
 *	jQuery for repeatable woo commerce tabs (on product page)
 *	somewhat cool / very cool
-*	YIKES Inc. / Evan Herman / Kevin Utz
+* Evan Herman / Kevin Utz
 */
 	jQuery(document).ready(function() {
 		// Disable fields on-load if necessary (delay 4 seconds to allow wp_editor to initialize)
