@@ -1,5 +1,5 @@
 === Custom Product Tabs for WooCommerce  ===
-Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee, mialevesque
+Contributors: yikesinc, eherman24, liljimmi, yikesitskevin, metalandcoffee, mialevesque, codeparrots
 Donate link: https://codeparrots.com
 Tags: woocommerce, product tabs, repeatable, duplicate, customize, custom, tabs, product, woo, commerce
 Requires at least: 3.8
