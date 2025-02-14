@@ -5,7 +5,7 @@
  * Description: Extend WooCommerce to add and manage custom product tabs. Create as many product tabs as needed per product.
  * Author: Code Parrots
  * Author URI: https://www.codeparrots.com
- * Version: 1.8.5
+ * Version: 1.8.6
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
  * Tested up to: 6.4
@@ -259,7 +259,7 @@ class YIKES_Custom_Product_Tabs {
 			foreach ( $yikes_woo_products_tabs as $table_row ) {
 
 				// Unserialize our tabs.
-				$tabs = unserialize( $table_row->meta_value );
+				$tabs = $table_row->meta_value;
 
 				// If we have tabs...
 				if ( ! empty( $tabs ) ) {
