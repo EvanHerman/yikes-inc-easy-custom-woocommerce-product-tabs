@@ -44,7 +44,7 @@ if ( ! class_exists( 'YIKES_Custom_Product_Tabs_Display' ) ) {
 
 			$product_id = method_exists( $product, 'get_id' ) === true ? $product->get_id() : $product->ID;
 
-			$product_tabs = maybe_unserialize( get_post_meta( $product_id, 'yikes_woo_products_tabs' , true ) );
+			$product_tabs = yikes_custom_tabs_maybe_unserialize( get_post_meta( $product_id, 'yikes_woo_products_tabs' , true ) );
 
 			if ( is_array( $product_tabs ) && ! empty( $product_tabs ) ) {
 
