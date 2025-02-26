@@ -6,14 +6,14 @@
 	jQuery( document ).ready(function() {
 
 		// Save a tab
-		jQuery( '.yikes_woo_save_this_tab' ).click( function() {
+		jQuery( '.yikes_woo_save_this_tab' ).on('click', function() {
 			var tab_id = jQuery( this ).data( 'tab-id' );
 
 			yikes_woo_handle_saving_reusable_tab( tab_id );
 		});
 
 		// Delete a saved tab
-		jQuery( '.yikes_woo_delete_this_tab' ).click( function() {
+		jQuery( '.yikes_woo_delete_this_tab' ).on('click', function() {
 
 			// Confirm: Are you sure?
 			var continue_delete = confirm( repeatable_custom_tabs_settings.confirm_delete_single_tab ); 
@@ -38,7 +38,7 @@
 		});
 
 		// Handle bulk actions
-		jQuery( '.yikes_woo_handle_bulk_action' ).click( function() {
+		jQuery( '.yikes_woo_handle_bulk_action' ).on('click', function() {
 
 			// Currently only supporting 'delete' bulk action, so make sure that is the value of the dropdown
 			if ( jQuery( '#bulk-action-selector-top' ).val() !== 'delete' ) {
