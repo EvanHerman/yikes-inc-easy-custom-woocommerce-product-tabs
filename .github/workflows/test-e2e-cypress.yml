@@ -42,7 +42,7 @@ jobs:
         with:
           core: ${{ inputs.wpVersion }}
           phpVersion: ${{ inputs.phpVersion }}
-          plugins: '["https://downloads.wordpress.org/plugin/woocommerce.zip"]'
+          plugins: '[".","https://downloads.wordpress.org/plugin/woocommerce.zip"]'
 
       - name: Setup Node
         uses: actions/setup-node@v4
