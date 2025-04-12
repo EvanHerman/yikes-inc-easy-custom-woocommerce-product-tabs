@@ -16,7 +16,7 @@
 		});
 
 		// Add a new tab
-		jQuery( '#add_another_tab' ).click( function( e ) {
+		jQuery( '#add_another_tab' ).on('click', function( e ) {
 			yikes_woo_add_another_tab( '' );
 			e.preventDefault();
 		});

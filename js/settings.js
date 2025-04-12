@@ -3,7 +3,7 @@ jQuery( document ).ready( function( $ ) {
     let toggleInput = $( '#yikes-woo-toggle-content-input' );
     let savBtn      = $( '#yikes-woo-toggle-content' );
 
-    savBtn.click( 'click', yikesToggleTheContent );
+    savBtn.on( 'click', yikesToggleTheContent );
 
     function yikesToggleTheContent( event ) {
 
@@ -20,7 +20,7 @@ jQuery( document ).ready( function( $ ) {
             data:{
                 'toggle_the_content' : isChecked,
             }
-        } ).success( function ( response ) {
+        } ).done( function ( response ) {
             $("html, body").animate({ scrollTop: 0 }, "slow");
             $( '#settings-updated' ).css( 'display', 'block' )
 

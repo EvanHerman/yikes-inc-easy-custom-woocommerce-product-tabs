@@ -16,7 +16,7 @@ if ( ! class_exists( 'Yikes_Woo_Custom_Product_Tabs_HTML' ) ) {
 			global $post;
 
 			// Pull the custom tab data out of the database
-			$tab_data = maybe_unserialize( get_post_meta( $post->ID, 'yikes_woo_products_tabs', true ) );
+			$tab_data = yikes_custom_tabs_maybe_unserialize( get_post_meta( $post->ID, 'yikes_woo_products_tabs', true ) );
 			$tab_data = is_array( $tab_data ) ? $tab_data : array();
 
 			// If we don't have tab data, we display things slightly differently
