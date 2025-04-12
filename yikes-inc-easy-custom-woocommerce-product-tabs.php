@@ -8,10 +8,10 @@
  * Version: 1.8.6
  * Text Domain: yikes-inc-easy-custom-woocommerce-product-tabs
  * Domain Path: languages/
- * Tested up to: 6.4
+ * Tested up to: 6.7
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 8.6
+ * WC tested up to: 9.8
  *
  * Copyright: (c) 2014-2024 Code Parrots
  *

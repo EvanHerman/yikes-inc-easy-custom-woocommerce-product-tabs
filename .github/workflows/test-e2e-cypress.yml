@@ -35,19 +35,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup wp-env
         uses: godaddy-wordpress/setup-wp-env@v1
         with:
           core: ${{ inputs.wpVersion }}
           phpVersion: ${{ inputs.phpVersion }}
-          plugins: '["https://downloads.wordpress.org/plugin/woocommerce.zip"]'
+          plugins: '[".","https://downloads.wordpress.org/plugin/woocommerce.zip"]'
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '18'
           cache: 'npm'
 
       - name: Install dependencies
@@ -71,7 +71,7 @@ jobs:
           
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           wait-on: 'http://localhost:8889'
           browser: chrome
@@ -84,8 +84,9 @@ jobs:
 
       - name: Upload failure video
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
+          record: true
           name: ${{ matrix.spec }}-fail.mp4
           path: ./tests/videos/${{ matrix.spec }}.mp4
           retention-days: 1

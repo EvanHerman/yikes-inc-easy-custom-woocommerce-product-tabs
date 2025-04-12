@@ -45,9 +45,9 @@ describe( 'Tests', () => {
 			}
 		} );
 
-		cy.get( 'tr[data-slug="yikes-inc-easy-custom-woocommerce-product-tabs"] .row-actions span:first-child' ).then( ( $btn ) => {
+		cy.get( 'tr[data-slug="custom-product-tabs-for-woocommerce"] .row-actions span:first-child' ).then( ( $btn ) => {
 			if ( $btn.hasClass( 'activate' ) ) {
-				cy.get( 'tr[data-slug="yikes-inc-easy-custom-woocommerce-product-tabs"] .row-actions span:first-child a' ).click();
+				cy.get( 'tr[data-slug="custom-product-tabs-for-woocommerce"] .row-actions span:first-child a' ).click();
 				cy.get( 'div.error' ).contains( 'Please activate WooCommerce before activating Custom WooCommerce Product Tabs.' );
 			}
 		} );
@@ -63,9 +63,9 @@ describe( 'Tests', () => {
 			}
 		} );
 
-		cy.get( 'tr[data-slug="yikes-inc-easy-custom-woocommerce-product-tabs"] .row-actions span:first-child' ).then( ( $btn ) => {
+		cy.get( 'tr[data-slug="custom-product-tabs-for-woocommerce"] .row-actions span:first-child' ).then( ( $btn ) => {
 			if ( $btn.hasClass( 'activate' ) ) {
-				cy.get( 'tr[data-slug="yikes-inc-easy-custom-woocommerce-product-tabs"] .row-actions span:first-child a' ).click();
+				cy.get( 'tr[data-slug="custom-product-tabs-for-woocommerce"] .row-actions span:first-child a' ).click();
 				cy.get( 'div#message' ).contains( 'Plugin activated.' );
 			}
 		} );
