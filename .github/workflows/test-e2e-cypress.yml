@@ -86,6 +86,7 @@ jobs:
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4
         with:
+          record: true
           name: ${{ matrix.spec }}-fail.mp4
           path: ./tests/videos/${{ matrix.spec }}.mp4
           retention-days: 1
