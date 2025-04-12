@@ -4,11 +4,11 @@ on: push
 
 jobs:
   chrome_e2e_php74:
-    name: Chrome on PHP 7.4
+    name: Chrome on PHP 8.3
     uses: ./.github/workflows/test-e2e-cypress.yml
     with:
-      wpVersion: "WordPress/WordPress#6.2.2"
-      phpVersion: "7.4"
+      wpVersion: "WordPress/WordPress#6.7.2"
+      phpVersion: "8.3"
     concurrency:
-      group: chrome-php74
+      group: chrome-php83
       cancel-in-progress: true

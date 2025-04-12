@@ -1,3 +1,6 @@
+= 1.8.6 - April 12th, 2025 =
+* Resolve security vulnerability. Props [BackuPs](https://github.com/BackuPs) [#177](https://github.com/EvanHerman/yikes-inc-easy-custom-woocommerce-product-tabs/pull/177)
+
 = 1.8.5 - October 1st, 2023 =
 * Bump tested up to version to 6.3.
 * Update copy, links, email addresses etc. to point to new author.

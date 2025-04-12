@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup wp-env
         uses: godaddy-wordpress/setup-wp-env@v1
@@ -45,7 +45,7 @@ jobs:
           plugins: '["https://downloads.wordpress.org/plugin/woocommerce.zip"]'
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'npm'
@@ -84,7 +84,7 @@ jobs:
 
       - name: Upload failure video
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.spec }}-fail.mp4
           path: ./tests/videos/${{ matrix.spec }}.mp4
