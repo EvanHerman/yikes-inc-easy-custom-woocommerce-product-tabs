@@ -3,7 +3,7 @@
   "version": "1.8.6",
   "devDependencies": {
     "@foreachbe/cypress-tinymce": "^1.0.0",
-    "@wordpress/env": "^5.16.0",
+    "@wordpress/env": "^10.1.0",
     "cypress": "^13.2.0",
     "cypress-log-to-output": "1.1.2",
     "cypress-wait-until": "^2.0.0",
